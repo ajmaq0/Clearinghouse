@@ -182,3 +182,33 @@ class AdminNetworkOut(BaseModel):
     nodes: List[NetworkNode]
     edges: List[NetworkEdge]
     cycle_id: Optional[str] = None
+
+
+# ── Network Topology (clusters, components, gaps) ─────────────────────────
+
+class TopologyNode(BaseModel):
+    id: str
+    name: str
+    sector: str
+    cluster: str
+    total_invoice_volume_cents: int = 0
+    net_position_cents: int = 0
+    component_id: int = 0
+
+
+class TopologyEdge(BaseModel):
+    source: str
+    target: str
+    total_amount_cents: int
+
+
+class ClusterGap(BaseModel):
+    cluster_a: str
+    cluster_b: str
+
+
+class TopologyOut(BaseModel):
+    nodes: List[TopologyNode]
+    edges: List[TopologyEdge]
+    gaps: List[ClusterGap]
+    clusters: List[str]

@@ -20,4 +20,5 @@ function normalizeStats(raw) {
 export const networkApi = {
   stats:     () => api.get('/network/stats').then(normalizeStats),
   dashboard: () => api.get('/network/dashboard'),
+  topology:  () => api.get('/network/topology'),
 }

@@ -1,0 +1,2353 @@
+{
+  "generated": "2026-04-05",
+  "nodes": [
+    {
+      "id": "C001",
+      "name": "Hanseatic Spedition GmbH",
+      "sector": "port_logistics",
+      "subtype": "Spedition",
+      "size": "medium",
+      "district": "Hamburg-Mitte",
+      "gls_member": false,
+      "out_degree": 9,
+      "in_degree": 8,
+      "total_degree": 17
+    },
+    {
+      "id": "C002",
+      "name": "Elbe Logistik AG",
+      "sector": "port_logistics",
+      "subtype": "Spedition",
+      "size": "micro",
+      "district": "HafenCity",
+      "gls_member": false,
+      "out_degree": 8,
+      "in_degree": 7,
+      "total_degree": 15
+    },
+    {
+      "id": "C003",
+      "name": "Nord-Express Spedition GmbH",
+      "sector": "port_logistics",
+      "subtype": "Spedition",
+      "size": "medium",
+      "district": "Hamburg-Mitte",
+      "gls_member": true,
+      "out_degree": 7,
+      "in_degree": 7,
+      "total_degree": 14
+    },
+    {
+      "id": "C004",
+      "name": "Container Service Hamburg GmbH",
+      "sector": "port_logistics",
+      "subtype": "Spedition",
+      "size": "small",
+      "district": "Hamburg-Mitte",
+      "gls_member": true,
+      "out_degree": 10,
+      "in_degree": 10,
+      "total_degree": 20
+    },
+    {
+      "id": "C005",
+      "name": "Röding Transporte GmbH",
+      "sector": "port_logistics",
+      "subtype": "Spedition",
+      "size": "micro",
+      "district": "Hammerbrook",
+      "gls_member": false,
+      "out_degree": 6,
+      "in_degree": 6,
+      "total_degree": 12
+    },
+    {
+      "id": "C006",
+      "name": "Nordsee-Express Spedition GmbH",
+      "sector": "port_logistics",
+      "subtype": "Spedition",
+      "size": "micro",
+      "district": "Hamburg-Mitte",
+      "gls_member": false,
+      "out_degree": 4,
+      "in_degree": 4,
+      "total_degree": 8
+    },
+    {
+      "id": "C007",
+      "name": "Nord-Zoll Dienstleistungen GmbH",
+      "sector": "port_logistics",
+      "subtype": "Zolldienstleister",
+      "size": "medium",
+      "district": "HafenCity",
+      "gls_member": false,
+      "out_degree": 10,
+      "in_degree": 9,
+      "total_degree": 19
+    },
+    {
+      "id": "C008",
+      "name": "Weichert Zollabfertigung GmbH",
+      "sector": "port_logistics",
+      "subtype": "Zolldienstleister",
+      "size": "medium",
+      "district": "HafenCity",
+      "gls_member": true,
+      "out_degree": 8,
+      "in_degree": 8,
+      "total_degree": 16
+    },
+    {
+      "id": "C009",
+      "name": "Hamburger Zollagentur GmbH",
+      "sector": "port_logistics",
+      "subtype": "Zolldienstleister",
+      "size": "micro",
+      "district": "Hamburg-Mitte",
+      "gls_member": false,
+      "out_degree": 6,
+      "in_degree": 6,
+      "total_degree": 12
+    },
+    {
+      "id": "C010",
+      "name": "Freihafen Customs GmbH",
+      "sector": "port_logistics",
+      "subtype": "Zolldienstleister",
+      "size": "small",
+      "district": "Hamburg-Mitte",
+      "gls_member": true,
+      "out_degree": 6,
+      "in_degree": 6,
+      "total_degree": 12
+    },
+    {
+      "id": "C011",
+      "name": "Lagerhaus am Waltershof GmbH",
+      "sector": "port_logistics",
+      "subtype": "Lagerhaus",
+      "size": "micro",
+      "district": "Wilhelmsburg",
+      "gls_member": true,
+      "out_degree": 8,
+      "in_degree": 10,
+      "total_degree": 18
+    },
+    {
+      "id": "C012",
+      "name": "Freihafen Lagerei GmbH",
+      "sector": "port_logistics",
+      "subtype": "Lagerhaus",
+      "size": "small",
+      "district": "Wilhelmsburg",
+      "gls_member": true,
+      "out_degree": 6,
+      "in_degree": 8,
+      "total_degree": 14
+    },
+    {
+      "id": "C013",
+      "name": "Hamburger Lagerhausgesellschaft mbH",
+      "sector": "port_logistics",
+      "subtype": "Lagerhaus",
+      "size": "small",
+      "district": "Hammerbrook",
+      "gls_member": true,
+      "out_degree": 8,
+      "in_degree": 10,
+      "total_degree": 18
+    },
+    {
+      "id": "C014",
+      "name": "Speicherstadt Depot GmbH",
+      "sector": "port_logistics",
+      "subtype": "Lagerhaus",
+      "size": "micro",
+      "district": "Hammerbrook",
+      "gls_member": true,
+      "out_degree": 6,
+      "in_degree": 6,
+      "total_degree": 12
+    },
+    {
+      "id": "C015",
+      "name": "Küstenschifffahrt Lührs AG",
+      "sector": "port_logistics",
+      "subtype": "Reederei",
+      "size": "small",
+      "district": "Wilhelmsburg",
+      "gls_member": false,
+      "out_degree": 6,
+      "in_degree": 5,
+      "total_degree": 11
+    },
+    {
+      "id": "C016",
+      "name": "Stülcken Reederei GmbH",
+      "sector": "port_logistics",
+      "subtype": "Reederei",
+      "size": "medium",
+      "district": "HafenCity",
+      "gls_member": true,
+      "out_degree": 4,
+      "in_degree": 4,
+      "total_degree": 8
+    },
+    {
+      "id": "C017",
+      "name": "HHLA Terminal Services GmbH",
+      "sector": "port_logistics",
+      "subtype": "Terminal",
+      "size": "micro",
+      "district": "Hamburg-Mitte",
+      "gls_member": false,
+      "out_degree": 3,
+      "in_degree": 2,
+      "total_degree": 5
+    },
+    {
+      "id": "C018",
+      "name": "JadeWeserPort Feederdienst GmbH",
+      "sector": "port_logistics",
+      "subtype": "Terminal",
+      "size": "medium",
+      "district": "HafenCity",
+      "gls_member": false,
+      "out_degree": 3,
+      "in_degree": 1,
+      "total_degree": 4
+    },
+    {
+      "id": "C019",
+      "name": "Alsterbrauerei Hamburg GmbH",
+      "sector": "food_beverage",
+      "subtype": "Brauerei",
+      "size": "small",
+      "district": "Wandsbek",
+      "gls_member": true,
+      "out_degree": 5,
+      "in_degree": 6,
+      "total_degree": 11
+    },
+    {
+      "id": "C020",
+      "name": "Ratsherrn Brauerei Hamburg GmbH",
+      "sector": "food_beverage",
+      "subtype": "Brauerei",
+      "size": "medium",
+      "district": "Wandsbek",
+      "gls_member": true,
+      "out_degree": 5,
+      "in_degree": 5,
+      "total_degree": 10
+    },
+    {
+      "id": "C021",
+      "name": "Nordsee Fischhandel AG",
+      "sector": "food_beverage",
+      "subtype": "Grosshandel",
+      "size": "micro",
+      "district": "Altona",
+      "gls_member": false,
+      "out_degree": 6,
+      "in_degree": 9,
+      "total_degree": 15
+    },
+    {
+      "id": "C022",
+      "name": "Fruchthof Hamburg Großhandel GmbH",
+      "sector": "food_beverage",
+      "subtype": "Grosshandel",
+      "size": "medium",
+      "district": "Hamburg-Nord",
+      "gls_member": false,
+      "out_degree": 8,
+      "in_degree": 10,
+      "total_degree": 18
+    },
+    {
+      "id": "C023",
+      "name": "Fischmarkt Großhandel Möller GmbH",
+      "sector": "food_beverage",
+      "subtype": "Grosshandel",
+      "size": "medium",
+      "district": "Hamburg-Nord",
+      "gls_member": false,
+      "out_degree": 6,
+      "in_degree": 8,
+      "total_degree": 14
+    },
+    {
+      "id": "C024",
+      "name": "Hamburger Kafferösterei Elbgold GmbH",
+      "sector": "food_beverage",
+      "subtype": "Verarbeitung",
+      "size": "medium",
+      "district": "Wandsbek",
+      "gls_member": false,
+      "out_degree": 6,
+      "in_degree": 8,
+      "total_degree": 14
+    },
+    {
+      "id": "C025",
+      "name": "Speicherstadt Kakao GmbH",
+      "sector": "food_beverage",
+      "subtype": "Verarbeitung",
+      "size": "micro",
+      "district": "Hamburg-Nord",
+      "gls_member": false,
+      "out_degree": 5,
+      "in_degree": 5,
+      "total_degree": 10
+    },
+    {
+      "id": "C026",
+      "name": "Hamburger Zuckerwerk GmbH",
+      "sector": "food_beverage",
+      "subtype": "Verarbeitung",
+      "size": "small",
+      "district": "Hamburg-Nord",
+      "gls_member": true,
+      "out_degree": 8,
+      "in_degree": 8,
+      "total_degree": 16
+    },
+    {
+      "id": "C027",
+      "name": "Gewürzhandlung Schuhmann & Co. KG",
+      "sector": "food_beverage",
+      "subtype": "Verarbeitung",
+      "size": "small",
+      "district": "Altona",
+      "gls_member": false,
+      "out_degree": 7,
+      "in_degree": 7,
+      "total_degree": 14
+    },
+    {
+      "id": "C028",
+      "name": "Deichkind Fleischerei GmbH",
+      "sector": "food_beverage",
+      "subtype": "Verarbeitung",
+      "size": "micro",
+      "district": "Altona",
+      "gls_member": true,
+      "out_degree": 5,
+      "in_degree": 5,
+      "total_degree": 10
+    },
+    {
+      "id": "C029",
+      "name": "Elbe Bäckerei Verwaltungs GmbH",
+      "sector": "food_beverage",
+      "subtype": "Backwaren",
+      "size": "small",
+      "district": "Bergedorf",
+      "gls_member": true,
+      "out_degree": 6,
+      "in_degree": 6,
+      "total_degree": 12
+    },
+    {
+      "id": "C030",
+      "name": "Bio-Markt Rahlstedt GmbH",
+      "sector": "food_beverage",
+      "subtype": "Einzelhandel",
+      "size": "small",
+      "district": "Altona",
+      "gls_member": true,
+      "out_degree": 6,
+      "in_degree": 6,
+      "total_degree": 12
+    },
+    {
+      "id": "C031",
+      "name": "Altonaer Weinimport GmbH",
+      "sector": "food_beverage",
+      "subtype": "Einzelhandel",
+      "size": "small",
+      "district": "Altona",
+      "gls_member": true,
+      "out_degree": 5,
+      "in_degree": 5,
+      "total_degree": 10
+    },
+    {
+      "id": "C032",
+      "name": "Gastronomiebedarf Nord GmbH",
+      "sector": "food_beverage",
+      "subtype": "Gastronomie",
+      "size": "medium",
+      "district": "Bergedorf",
+      "gls_member": true,
+      "out_degree": 10,
+      "in_degree": 6,
+      "total_degree": 16
+    },
+    {
+      "id": "C033",
+      "name": "Süsswaren Vertrieb Hanse GmbH",
+      "sector": "food_beverage",
+      "subtype": "Einzelhandel",
+      "size": "small",
+      "district": "Wandsbek",
+      "gls_member": false,
+      "out_degree": 3,
+      "in_degree": 3,
+      "total_degree": 6
+    },
+    {
+      "id": "C034",
+      "name": "Hamburger Milchlieferanten-Verband eG",
+      "sector": "food_beverage",
+      "subtype": "Grosshandel",
+      "size": "medium",
+      "district": "Bergedorf",
+      "gls_member": false,
+      "out_degree": 6,
+      "in_degree": 7,
+      "total_degree": 13
+    },
+    {
+      "id": "C035",
+      "name": "Beiersdorf Nahrung Hamburg GmbH",
+      "sector": "food_beverage",
+      "subtype": "Verarbeitung",
+      "size": "micro",
+      "district": "Wandsbek",
+      "gls_member": false,
+      "out_degree": 3,
+      "in_degree": 3,
+      "total_degree": 6
+    },
+    {
+      "id": "C036",
+      "name": "Windpark Nordsee Betreibergesellschaft GmbH",
+      "sector": "renewable_energy",
+      "subtype": "Windkraft",
+      "size": "small",
+      "district": "Neustadt",
+      "gls_member": false,
+      "out_degree": 6,
+      "in_degree": 7,
+      "total_degree": 13
+    },
+    {
+      "id": "C037",
+      "name": "Elbwind Hamburg GmbH & Co. KG",
+      "sector": "renewable_energy",
+      "subtype": "Windkraft",
+      "size": "small",
+      "district": "Harburg",
+      "gls_member": false,
+      "out_degree": 2,
+      "in_degree": 3,
+      "total_degree": 5
+    },
+    {
+      "id": "C038",
+      "name": "Offshore Wind Hamburg AG",
+      "sector": "renewable_energy",
+      "subtype": "Windkraft",
+      "size": "small",
+      "district": "Harburg",
+      "gls_member": false,
+      "out_degree": 2,
+      "in_degree": 3,
+      "total_degree": 5
+    },
+    {
+      "id": "C039",
+      "name": "Solartech Nord GmbH",
+      "sector": "renewable_energy",
+      "subtype": "Solar",
+      "size": "small",
+      "district": "Hamburg-Mitte",
+      "gls_member": true,
+      "out_degree": 3,
+      "in_degree": 6,
+      "total_degree": 9
+    },
+    {
+      "id": "C040",
+      "name": "HanseSolar AG",
+      "sector": "renewable_energy",
+      "subtype": "Solar",
+      "size": "medium",
+      "district": "Wilhelmsburg",
+      "gls_member": false,
+      "out_degree": 3,
+      "in_degree": 2,
+      "total_degree": 5
+    },
+    {
+      "id": "C041",
+      "name": "Photovoltaik-Service Nord GmbH",
+      "sector": "renewable_energy",
+      "subtype": "Solar",
+      "size": "small",
+      "district": "Hamburg-Mitte",
+      "gls_member": true,
+      "out_degree": 2,
+      "in_degree": 2,
+      "total_degree": 4
+    },
+    {
+      "id": "C042",
+      "name": "Bioenergie Elbe GmbH",
+      "sector": "renewable_energy",
+      "subtype": "Biogas",
+      "size": "small",
+      "district": "Neustadt",
+      "gls_member": false,
+      "out_degree": 2,
+      "in_degree": 2,
+      "total_degree": 4
+    },
+    {
+      "id": "C043",
+      "name": "Elbe Biomasse GmbH",
+      "sector": "renewable_energy",
+      "subtype": "Biogas",
+      "size": "small",
+      "district": "Hamburg-Mitte",
+      "gls_member": false,
+      "out_degree": 2,
+      "in_degree": 2,
+      "total_degree": 4
+    },
+    {
+      "id": "C044",
+      "name": "Hamburger Wärmenetz GmbH",
+      "sector": "renewable_energy",
+      "subtype": "Netz",
+      "size": "micro",
+      "district": "Harburg",
+      "gls_member": false,
+      "out_degree": 11,
+      "in_degree": 9,
+      "total_degree": 20
+    },
+    {
+      "id": "C045",
+      "name": "Smart Energy Hamburg GmbH",
+      "sector": "renewable_energy",
+      "subtype": "Netz",
+      "size": "small",
+      "district": "Neustadt",
+      "gls_member": false,
+      "out_degree": 11,
+      "in_degree": 9,
+      "total_degree": 20
+    },
+    {
+      "id": "C046",
+      "name": "GreenTech Speicher GmbH",
+      "sector": "renewable_energy",
+      "subtype": "Speicher",
+      "size": "small",
+      "district": "Wilhelmsburg",
+      "gls_member": true,
+      "out_degree": 5,
+      "in_degree": 2,
+      "total_degree": 7
+    },
+    {
+      "id": "C047",
+      "name": "Energiewende Hamburg GmbH",
+      "sector": "renewable_energy",
+      "subtype": "Beratung",
+      "size": "small",
+      "district": "Hamburg-Mitte",
+      "gls_member": true,
+      "out_degree": 2,
+      "in_degree": 1,
+      "total_degree": 3
+    },
+    {
+      "id": "C048",
+      "name": "Wasserstoff Hamburg AG",
+      "sector": "renewable_energy",
+      "subtype": "Wasserstoff",
+      "size": "micro",
+      "district": "Harburg",
+      "gls_member": true,
+      "out_degree": 2,
+      "in_degree": 1,
+      "total_degree": 3
+    },
+    {
+      "id": "C049",
+      "name": "Tidal Power Hamburg GmbH",
+      "sector": "renewable_energy",
+      "subtype": "Wasserkraft",
+      "size": "micro",
+      "district": "Harburg",
+      "gls_member": false,
+      "out_degree": 2,
+      "in_degree": 1,
+      "total_degree": 3
+    },
+    {
+      "id": "C050",
+      "name": "SüdWind Consulting GmbH",
+      "sector": "renewable_energy",
+      "subtype": "Beratung",
+      "size": "small",
+      "district": "Hamburg-Mitte",
+      "gls_member": false,
+      "out_degree": 2,
+      "in_degree": 1,
+      "total_degree": 3
+    }
+  ],
+  "edges": [
+    {
+      "from": "C001",
+      "to": "C007",
+      "total_amount_cents": 6620984,
+      "invoice_count": 2
+    },
+    {
+      "from": "C001",
+      "to": "C008",
+      "total_amount_cents": 4251628,
+      "invoice_count": 1
+    },
+    {
+      "from": "C001",
+      "to": "C009",
+      "total_amount_cents": 6108934,
+      "invoice_count": 2
+    },
+    {
+      "from": "C001",
+      "to": "C010",
+      "total_amount_cents": 4714523,
+      "invoice_count": 1
+    },
+    {
+      "from": "C001",
+      "to": "C011",
+      "total_amount_cents": 4679331,
+      "invoice_count": 1
+    },
+    {
+      "from": "C001",
+      "to": "C013",
+      "total_amount_cents": 1304699,
+      "invoice_count": 1
+    },
+    {
+      "from": "C001",
+      "to": "C015",
+      "total_amount_cents": 1830271,
+      "invoice_count": 1
+    },
+    {
+      "from": "C001",
+      "to": "C016",
+      "total_amount_cents": 1586312,
+      "invoice_count": 1
+    },
+    {
+      "from": "C001",
+      "to": "C021",
+      "total_amount_cents": 1864064,
+      "invoice_count": 1
+    },
+    {
+      "from": "C002",
+      "to": "C008",
+      "total_amount_cents": 2904716,
+      "invoice_count": 1
+    },
+    {
+      "from": "C002",
+      "to": "C010",
+      "total_amount_cents": 1848604,
+      "invoice_count": 1
+    },
+    {
+      "from": "C002",
+      "to": "C011",
+      "total_amount_cents": 3384124,
+      "invoice_count": 1
+    },
+    {
+      "from": "C002",
+      "to": "C013",
+      "total_amount_cents": 2627818,
+      "invoice_count": 1
+    },
+    {
+      "from": "C002",
+      "to": "C014",
+      "total_amount_cents": 2948165,
+      "invoice_count": 1
+    },
+    {
+      "from": "C002",
+      "to": "C015",
+      "total_amount_cents": 4547580,
+      "invoice_count": 1
+    },
+    {
+      "from": "C002",
+      "to": "C016",
+      "total_amount_cents": 898956,
+      "invoice_count": 1
+    },
+    {
+      "from": "C002",
+      "to": "C024",
+      "total_amount_cents": 2039126,
+      "invoice_count": 1
+    },
+    {
+      "from": "C003",
+      "to": "C007",
+      "total_amount_cents": 8566421,
+      "invoice_count": 2
+    },
+    {
+      "from": "C003",
+      "to": "C008",
+      "total_amount_cents": 2801539,
+      "invoice_count": 1
+    },
+    {
+      "from": "C003",
+      "to": "C010",
+      "total_amount_cents": 1616736,
+      "invoice_count": 1
+    },
+    {
+      "from": "C003",
+      "to": "C011",
+      "total_amount_cents": 2763752,
+      "invoice_count": 1
+    },
+    {
+      "from": "C003",
+      "to": "C013",
+      "total_amount_cents": 1828052,
+      "invoice_count": 1
+    },
+    {
+      "from": "C003",
+      "to": "C015",
+      "total_amount_cents": 3210178,
+      "invoice_count": 1
+    },
+    {
+      "from": "C003",
+      "to": "C016",
+      "total_amount_cents": 4038956,
+      "invoice_count": 1
+    },
+    {
+      "from": "C004",
+      "to": "C007",
+      "total_amount_cents": 279082,
+      "invoice_count": 1
+    },
+    {
+      "from": "C004",
+      "to": "C008",
+      "total_amount_cents": 2748464,
+      "invoice_count": 1
+    },
+    {
+      "from": "C004",
+      "to": "C009",
+      "total_amount_cents": 4519416,
+      "invoice_count": 1
+    },
+    {
+      "from": "C004",
+      "to": "C010",
+      "total_amount_cents": 1910407,
+      "invoice_count": 1
+    },
+    {
+      "from": "C004",
+      "to": "C011",
+      "total_amount_cents": 4365103,
+      "invoice_count": 1
+    },
+    {
+      "from": "C004",
+      "to": "C012",
+      "total_amount_cents": 3721936,
+      "invoice_count": 1
+    },
+    {
+      "from": "C004",
+      "to": "C013",
+      "total_amount_cents": 1679164,
+      "invoice_count": 1
+    },
+    {
+      "from": "C004",
+      "to": "C014",
+      "total_amount_cents": 711370,
+      "invoice_count": 1
+    },
+    {
+      "from": "C004",
+      "to": "C015",
+      "total_amount_cents": 3867181,
+      "invoice_count": 1
+    },
+    {
+      "from": "C004",
+      "to": "C016",
+      "total_amount_cents": 769924,
+      "invoice_count": 1
+    },
+    {
+      "from": "C005",
+      "to": "C007",
+      "total_amount_cents": 2726455,
+      "invoice_count": 1
+    },
+    {
+      "from": "C005",
+      "to": "C008",
+      "total_amount_cents": 573344,
+      "invoice_count": 1
+    },
+    {
+      "from": "C005",
+      "to": "C009",
+      "total_amount_cents": 8048542,
+      "invoice_count": 2
+    },
+    {
+      "from": "C005",
+      "to": "C011",
+      "total_amount_cents": 2171358,
+      "invoice_count": 1
+    },
+    {
+      "from": "C005",
+      "to": "C013",
+      "total_amount_cents": 1089779,
+      "invoice_count": 1
+    },
+    {
+      "from": "C005",
+      "to": "C014",
+      "total_amount_cents": 4924830,
+      "invoice_count": 1
+    },
+    {
+      "from": "C006",
+      "to": "C007",
+      "total_amount_cents": 5265354,
+      "invoice_count": 2
+    },
+    {
+      "from": "C006",
+      "to": "C009",
+      "total_amount_cents": 3265253,
+      "invoice_count": 1
+    },
+    {
+      "from": "C006",
+      "to": "C011",
+      "total_amount_cents": 4722342,
+      "invoice_count": 1
+    },
+    {
+      "from": "C006",
+      "to": "C012",
+      "total_amount_cents": 2332984,
+      "invoice_count": 1
+    },
+    {
+      "from": "C007",
+      "to": "C001",
+      "total_amount_cents": 614386,
+      "invoice_count": 1
+    },
+    {
+      "from": "C007",
+      "to": "C003",
+      "total_amount_cents": 954453,
+      "invoice_count": 1
+    },
+    {
+      "from": "C007",
+      "to": "C004",
+      "total_amount_cents": 3494047,
+      "invoice_count": 1
+    },
+    {
+      "from": "C007",
+      "to": "C005",
+      "total_amount_cents": 881528,
+      "invoice_count": 1
+    },
+    {
+      "from": "C007",
+      "to": "C006",
+      "total_amount_cents": 975852,
+      "invoice_count": 1
+    },
+    {
+      "from": "C007",
+      "to": "C011",
+      "total_amount_cents": 1371073,
+      "invoice_count": 1
+    },
+    {
+      "from": "C007",
+      "to": "C012",
+      "total_amount_cents": 5883563,
+      "invoice_count": 2
+    },
+    {
+      "from": "C007",
+      "to": "C013",
+      "total_amount_cents": 7854023,
+      "invoice_count": 2
+    },
+    {
+      "from": "C007",
+      "to": "C014",
+      "total_amount_cents": 2137237,
+      "invoice_count": 2
+    },
+    {
+      "from": "C007",
+      "to": "C023",
+      "total_amount_cents": 2510608,
+      "invoice_count": 1
+    },
+    {
+      "from": "C008",
+      "to": "C001",
+      "total_amount_cents": 414743,
+      "invoice_count": 1
+    },
+    {
+      "from": "C008",
+      "to": "C002",
+      "total_amount_cents": 4095856,
+      "invoice_count": 1
+    },
+    {
+      "from": "C008",
+      "to": "C003",
+      "total_amount_cents": 3426975,
+      "invoice_count": 1
+    },
+    {
+      "from": "C008",
+      "to": "C004",
+      "total_amount_cents": 3121225,
+      "invoice_count": 1
+    },
+    {
+      "from": "C008",
+      "to": "C005",
+      "total_amount_cents": 1981808,
+      "invoice_count": 1
+    },
+    {
+      "from": "C008",
+      "to": "C012",
+      "total_amount_cents": 4238173,
+      "invoice_count": 1
+    },
+    {
+      "from": "C008",
+      "to": "C013",
+      "total_amount_cents": 560867,
+      "invoice_count": 1
+    },
+    {
+      "from": "C008",
+      "to": "C014",
+      "total_amount_cents": 4042977,
+      "invoice_count": 1
+    },
+    {
+      "from": "C009",
+      "to": "C001",
+      "total_amount_cents": 1185092,
+      "invoice_count": 1
+    },
+    {
+      "from": "C009",
+      "to": "C004",
+      "total_amount_cents": 4649789,
+      "invoice_count": 1
+    },
+    {
+      "from": "C009",
+      "to": "C005",
+      "total_amount_cents": 1458758,
+      "invoice_count": 1
+    },
+    {
+      "from": "C009",
+      "to": "C006",
+      "total_amount_cents": 4988088,
+      "invoice_count": 1
+    },
+    {
+      "from": "C009",
+      "to": "C012",
+      "total_amount_cents": 783969,
+      "invoice_count": 1
+    },
+    {
+      "from": "C009",
+      "to": "C013",
+      "total_amount_cents": 2956977,
+      "invoice_count": 1
+    },
+    {
+      "from": "C010",
+      "to": "C001",
+      "total_amount_cents": 907482,
+      "invoice_count": 1
+    },
+    {
+      "from": "C010",
+      "to": "C002",
+      "total_amount_cents": 2086073,
+      "invoice_count": 1
+    },
+    {
+      "from": "C010",
+      "to": "C003",
+      "total_amount_cents": 2614650,
+      "invoice_count": 1
+    },
+    {
+      "from": "C010",
+      "to": "C004",
+      "total_amount_cents": 4992108,
+      "invoice_count": 1
+    },
+    {
+      "from": "C010",
+      "to": "C012",
+      "total_amount_cents": 4194805,
+      "invoice_count": 1
+    },
+    {
+      "from": "C010",
+      "to": "C014",
+      "total_amount_cents": 5874102,
+      "invoice_count": 2
+    },
+    {
+      "from": "C011",
+      "to": "C007",
+      "total_amount_cents": 1592321,
+      "invoice_count": 1
+    },
+    {
+      "from": "C011",
+      "to": "C001",
+      "total_amount_cents": 1285109,
+      "invoice_count": 1
+    },
+    {
+      "from": "C011",
+      "to": "C002",
+      "total_amount_cents": 7162146,
+      "invoice_count": 2
+    },
+    {
+      "from": "C011",
+      "to": "C003",
+      "total_amount_cents": 557060,
+      "invoice_count": 1
+    },
+    {
+      "from": "C011",
+      "to": "C004",
+      "total_amount_cents": 2667085,
+      "invoice_count": 1
+    },
+    {
+      "from": "C011",
+      "to": "C005",
+      "total_amount_cents": 3251378,
+      "invoice_count": 1
+    },
+    {
+      "from": "C011",
+      "to": "C006",
+      "total_amount_cents": 1129901,
+      "invoice_count": 1
+    },
+    {
+      "from": "C011",
+      "to": "C022",
+      "total_amount_cents": 2377208,
+      "invoice_count": 1
+    },
+    {
+      "from": "C012",
+      "to": "C007",
+      "total_amount_cents": 1158732,
+      "invoice_count": 1
+    },
+    {
+      "from": "C012",
+      "to": "C008",
+      "total_amount_cents": 3980152,
+      "invoice_count": 1
+    },
+    {
+      "from": "C012",
+      "to": "C009",
+      "total_amount_cents": 1155938,
+      "invoice_count": 1
+    },
+    {
+      "from": "C012",
+      "to": "C010",
+      "total_amount_cents": 1824283,
+      "invoice_count": 1
+    },
+    {
+      "from": "C012",
+      "to": "C004",
+      "total_amount_cents": 3404808,
+      "invoice_count": 1
+    },
+    {
+      "from": "C012",
+      "to": "C006",
+      "total_amount_cents": 2826610,
+      "invoice_count": 1
+    },
+    {
+      "from": "C013",
+      "to": "C007",
+      "total_amount_cents": 4123800,
+      "invoice_count": 1
+    },
+    {
+      "from": "C013",
+      "to": "C008",
+      "total_amount_cents": 1388968,
+      "invoice_count": 1
+    },
+    {
+      "from": "C013",
+      "to": "C009",
+      "total_amount_cents": 3192863,
+      "invoice_count": 1
+    },
+    {
+      "from": "C013",
+      "to": "C001",
+      "total_amount_cents": 4141184,
+      "invoice_count": 1
+    },
+    {
+      "from": "C013",
+      "to": "C002",
+      "total_amount_cents": 3360037,
+      "invoice_count": 2
+    },
+    {
+      "from": "C013",
+      "to": "C003",
+      "total_amount_cents": 1280308,
+      "invoice_count": 1
+    },
+    {
+      "from": "C013",
+      "to": "C004",
+      "total_amount_cents": 615331,
+      "invoice_count": 1
+    },
+    {
+      "from": "C013",
+      "to": "C005",
+      "total_amount_cents": 2703300,
+      "invoice_count": 1
+    },
+    {
+      "from": "C014",
+      "to": "C007",
+      "total_amount_cents": 4091143,
+      "invoice_count": 1
+    },
+    {
+      "from": "C014",
+      "to": "C008",
+      "total_amount_cents": 1261022,
+      "invoice_count": 1
+    },
+    {
+      "from": "C014",
+      "to": "C010",
+      "total_amount_cents": 2493115,
+      "invoice_count": 1
+    },
+    {
+      "from": "C014",
+      "to": "C002",
+      "total_amount_cents": 8666447,
+      "invoice_count": 2
+    },
+    {
+      "from": "C014",
+      "to": "C004",
+      "total_amount_cents": 4134777,
+      "invoice_count": 1
+    },
+    {
+      "from": "C014",
+      "to": "C005",
+      "total_amount_cents": 4923070,
+      "invoice_count": 1
+    },
+    {
+      "from": "C015",
+      "to": "C001",
+      "total_amount_cents": 1530862,
+      "invoice_count": 1
+    },
+    {
+      "from": "C015",
+      "to": "C002",
+      "total_amount_cents": 5637334,
+      "invoice_count": 2
+    },
+    {
+      "from": "C015",
+      "to": "C003",
+      "total_amount_cents": 1105003,
+      "invoice_count": 1
+    },
+    {
+      "from": "C015",
+      "to": "C004",
+      "total_amount_cents": 2431189,
+      "invoice_count": 1
+    },
+    {
+      "from": "C015",
+      "to": "C017",
+      "total_amount_cents": 1633503,
+      "invoice_count": 1
+    },
+    {
+      "from": "C015",
+      "to": "C018",
+      "total_amount_cents": 900081,
+      "invoice_count": 1
+    },
+    {
+      "from": "C016",
+      "to": "C001",
+      "total_amount_cents": 3059353,
+      "invoice_count": 2
+    },
+    {
+      "from": "C016",
+      "to": "C002",
+      "total_amount_cents": 2237550,
+      "invoice_count": 2
+    },
+    {
+      "from": "C016",
+      "to": "C003",
+      "total_amount_cents": 1325043,
+      "invoice_count": 1
+    },
+    {
+      "from": "C016",
+      "to": "C004",
+      "total_amount_cents": 4220674,
+      "invoice_count": 2
+    },
+    {
+      "from": "C017",
+      "to": "C011",
+      "total_amount_cents": 4450059,
+      "invoice_count": 1
+    },
+    {
+      "from": "C017",
+      "to": "C012",
+      "total_amount_cents": 3002859,
+      "invoice_count": 1
+    },
+    {
+      "from": "C017",
+      "to": "C013",
+      "total_amount_cents": 2987879,
+      "invoice_count": 1
+    },
+    {
+      "from": "C018",
+      "to": "C011",
+      "total_amount_cents": 2258002,
+      "invoice_count": 1
+    },
+    {
+      "from": "C018",
+      "to": "C012",
+      "total_amount_cents": 3067097,
+      "invoice_count": 1
+    },
+    {
+      "from": "C018",
+      "to": "C013",
+      "total_amount_cents": 4152698,
+      "invoice_count": 1
+    },
+    {
+      "from": "C019",
+      "to": "C021",
+      "total_amount_cents": 226794,
+      "invoice_count": 1
+    },
+    {
+      "from": "C019",
+      "to": "C022",
+      "total_amount_cents": 1234885,
+      "invoice_count": 1
+    },
+    {
+      "from": "C019",
+      "to": "C023",
+      "total_amount_cents": 1414057,
+      "invoice_count": 1
+    },
+    {
+      "from": "C019",
+      "to": "C034",
+      "total_amount_cents": 1511216,
+      "invoice_count": 2
+    },
+    {
+      "from": "C019",
+      "to": "C032",
+      "total_amount_cents": 868681,
+      "invoice_count": 1
+    },
+    {
+      "from": "C020",
+      "to": "C021",
+      "total_amount_cents": 1438646,
+      "invoice_count": 2
+    },
+    {
+      "from": "C020",
+      "to": "C022",
+      "total_amount_cents": 141515,
+      "invoice_count": 1
+    },
+    {
+      "from": "C020",
+      "to": "C023",
+      "total_amount_cents": 2753019,
+      "invoice_count": 2
+    },
+    {
+      "from": "C020",
+      "to": "C034",
+      "total_amount_cents": 463417,
+      "invoice_count": 1
+    },
+    {
+      "from": "C020",
+      "to": "C032",
+      "total_amount_cents": 517227,
+      "invoice_count": 1
+    },
+    {
+      "from": "C021",
+      "to": "C024",
+      "total_amount_cents": 761422,
+      "invoice_count": 1
+    },
+    {
+      "from": "C021",
+      "to": "C026",
+      "total_amount_cents": 715917,
+      "invoice_count": 1
+    },
+    {
+      "from": "C021",
+      "to": "C027",
+      "total_amount_cents": 387097,
+      "invoice_count": 1
+    },
+    {
+      "from": "C021",
+      "to": "C028",
+      "total_amount_cents": 421431,
+      "invoice_count": 1
+    },
+    {
+      "from": "C021",
+      "to": "C019",
+      "total_amount_cents": 306827,
+      "invoice_count": 1
+    },
+    {
+      "from": "C021",
+      "to": "C020",
+      "total_amount_cents": 132248,
+      "invoice_count": 1
+    },
+    {
+      "from": "C022",
+      "to": "C024",
+      "total_amount_cents": 840486,
+      "invoice_count": 1
+    },
+    {
+      "from": "C022",
+      "to": "C025",
+      "total_amount_cents": 2713383,
+      "invoice_count": 2
+    },
+    {
+      "from": "C022",
+      "to": "C026",
+      "total_amount_cents": 1626467,
+      "invoice_count": 1
+    },
+    {
+      "from": "C022",
+      "to": "C027",
+      "total_amount_cents": 1771424,
+      "invoice_count": 1
+    },
+    {
+      "from": "C022",
+      "to": "C028",
+      "total_amount_cents": 1282563,
+      "invoice_count": 1
+    },
+    {
+      "from": "C022",
+      "to": "C035",
+      "total_amount_cents": 1014424,
+      "invoice_count": 1
+    },
+    {
+      "from": "C022",
+      "to": "C019",
+      "total_amount_cents": 805303,
+      "invoice_count": 1
+    },
+    {
+      "from": "C022",
+      "to": "C020",
+      "total_amount_cents": 359282,
+      "invoice_count": 1
+    },
+    {
+      "from": "C023",
+      "to": "C024",
+      "total_amount_cents": 521080,
+      "invoice_count": 1
+    },
+    {
+      "from": "C023",
+      "to": "C026",
+      "total_amount_cents": 1649803,
+      "invoice_count": 1
+    },
+    {
+      "from": "C023",
+      "to": "C027",
+      "total_amount_cents": 587852,
+      "invoice_count": 2
+    },
+    {
+      "from": "C023",
+      "to": "C035",
+      "total_amount_cents": 844352,
+      "invoice_count": 2
+    },
+    {
+      "from": "C023",
+      "to": "C019",
+      "total_amount_cents": 1515593,
+      "invoice_count": 1
+    },
+    {
+      "from": "C023",
+      "to": "C020",
+      "total_amount_cents": 1252892,
+      "invoice_count": 1
+    },
+    {
+      "from": "C024",
+      "to": "C021",
+      "total_amount_cents": 1123161,
+      "invoice_count": 1
+    },
+    {
+      "from": "C024",
+      "to": "C022",
+      "total_amount_cents": 1669224,
+      "invoice_count": 1
+    },
+    {
+      "from": "C024",
+      "to": "C023",
+      "total_amount_cents": 1765330,
+      "invoice_count": 1
+    },
+    {
+      "from": "C024",
+      "to": "C029",
+      "total_amount_cents": 942535,
+      "invoice_count": 1
+    },
+    {
+      "from": "C024",
+      "to": "C030",
+      "total_amount_cents": 1947632,
+      "invoice_count": 2
+    },
+    {
+      "from": "C024",
+      "to": "C031",
+      "total_amount_cents": 1826896,
+      "invoice_count": 1
+    },
+    {
+      "from": "C025",
+      "to": "C022",
+      "total_amount_cents": 606967,
+      "invoice_count": 1
+    },
+    {
+      "from": "C025",
+      "to": "C034",
+      "total_amount_cents": 1448250,
+      "invoice_count": 1
+    },
+    {
+      "from": "C025",
+      "to": "C029",
+      "total_amount_cents": 619440,
+      "invoice_count": 2
+    },
+    {
+      "from": "C025",
+      "to": "C030",
+      "total_amount_cents": 3213374,
+      "invoice_count": 2
+    },
+    {
+      "from": "C025",
+      "to": "C031",
+      "total_amount_cents": 3345706,
+      "invoice_count": 2
+    },
+    {
+      "from": "C026",
+      "to": "C021",
+      "total_amount_cents": 668060,
+      "invoice_count": 1
+    },
+    {
+      "from": "C026",
+      "to": "C022",
+      "total_amount_cents": 299959,
+      "invoice_count": 1
+    },
+    {
+      "from": "C026",
+      "to": "C023",
+      "total_amount_cents": 745283,
+      "invoice_count": 1
+    },
+    {
+      "from": "C026",
+      "to": "C034",
+      "total_amount_cents": 1412445,
+      "invoice_count": 1
+    },
+    {
+      "from": "C026",
+      "to": "C029",
+      "total_amount_cents": 2620476,
+      "invoice_count": 2
+    },
+    {
+      "from": "C026",
+      "to": "C030",
+      "total_amount_cents": 2555389,
+      "invoice_count": 2
+    },
+    {
+      "from": "C026",
+      "to": "C031",
+      "total_amount_cents": 3132425,
+      "invoice_count": 2
+    },
+    {
+      "from": "C026",
+      "to": "C033",
+      "total_amount_cents": 1357910,
+      "invoice_count": 1
+    },
+    {
+      "from": "C027",
+      "to": "C021",
+      "total_amount_cents": 1979155,
+      "invoice_count": 1
+    },
+    {
+      "from": "C027",
+      "to": "C022",
+      "total_amount_cents": 579192,
+      "invoice_count": 1
+    },
+    {
+      "from": "C027",
+      "to": "C023",
+      "total_amount_cents": 1293508,
+      "invoice_count": 1
+    },
+    {
+      "from": "C027",
+      "to": "C034",
+      "total_amount_cents": 1478487,
+      "invoice_count": 1
+    },
+    {
+      "from": "C027",
+      "to": "C029",
+      "total_amount_cents": 1883953,
+      "invoice_count": 2
+    },
+    {
+      "from": "C027",
+      "to": "C031",
+      "total_amount_cents": 1160447,
+      "invoice_count": 2
+    },
+    {
+      "from": "C027",
+      "to": "C033",
+      "total_amount_cents": 2933242,
+      "invoice_count": 2
+    },
+    {
+      "from": "C028",
+      "to": "C021",
+      "total_amount_cents": 387898,
+      "invoice_count": 1
+    },
+    {
+      "from": "C028",
+      "to": "C022",
+      "total_amount_cents": 1143991,
+      "invoice_count": 1
+    },
+    {
+      "from": "C028",
+      "to": "C034",
+      "total_amount_cents": 1834205,
+      "invoice_count": 1
+    },
+    {
+      "from": "C028",
+      "to": "C029",
+      "total_amount_cents": 2701845,
+      "invoice_count": 2
+    },
+    {
+      "from": "C028",
+      "to": "C030",
+      "total_amount_cents": 3355382,
+      "invoice_count": 2
+    },
+    {
+      "from": "C029",
+      "to": "C024",
+      "total_amount_cents": 1360086,
+      "invoice_count": 1
+    },
+    {
+      "from": "C029",
+      "to": "C025",
+      "total_amount_cents": 1515865,
+      "invoice_count": 1
+    },
+    {
+      "from": "C029",
+      "to": "C026",
+      "total_amount_cents": 609434,
+      "invoice_count": 1
+    },
+    {
+      "from": "C029",
+      "to": "C027",
+      "total_amount_cents": 381871,
+      "invoice_count": 1
+    },
+    {
+      "from": "C029",
+      "to": "C028",
+      "total_amount_cents": 1805066,
+      "invoice_count": 1
+    },
+    {
+      "from": "C029",
+      "to": "C032",
+      "total_amount_cents": 2299040,
+      "invoice_count": 2
+    },
+    {
+      "from": "C030",
+      "to": "C024",
+      "total_amount_cents": 1999538,
+      "invoice_count": 1
+    },
+    {
+      "from": "C030",
+      "to": "C025",
+      "total_amount_cents": 1027242,
+      "invoice_count": 1
+    },
+    {
+      "from": "C030",
+      "to": "C026",
+      "total_amount_cents": 670300,
+      "invoice_count": 1
+    },
+    {
+      "from": "C030",
+      "to": "C028",
+      "total_amount_cents": 1342043,
+      "invoice_count": 1
+    },
+    {
+      "from": "C030",
+      "to": "C035",
+      "total_amount_cents": 1604514,
+      "invoice_count": 1
+    },
+    {
+      "from": "C030",
+      "to": "C032",
+      "total_amount_cents": 1781406,
+      "invoice_count": 1
+    },
+    {
+      "from": "C031",
+      "to": "C024",
+      "total_amount_cents": 1439591,
+      "invoice_count": 1
+    },
+    {
+      "from": "C031",
+      "to": "C025",
+      "total_amount_cents": 429598,
+      "invoice_count": 1
+    },
+    {
+      "from": "C031",
+      "to": "C026",
+      "total_amount_cents": 1080849,
+      "invoice_count": 1
+    },
+    {
+      "from": "C031",
+      "to": "C027",
+      "total_amount_cents": 355806,
+      "invoice_count": 1
+    },
+    {
+      "from": "C031",
+      "to": "C032",
+      "total_amount_cents": 1298805,
+      "invoice_count": 1
+    },
+    {
+      "from": "C032",
+      "to": "C029",
+      "total_amount_cents": 451000,
+      "invoice_count": 1
+    },
+    {
+      "from": "C032",
+      "to": "C030",
+      "total_amount_cents": 143553,
+      "invoice_count": 1
+    },
+    {
+      "from": "C032",
+      "to": "C031",
+      "total_amount_cents": 1451597,
+      "invoice_count": 1
+    },
+    {
+      "from": "C032",
+      "to": "C033",
+      "total_amount_cents": 315926,
+      "invoice_count": 1
+    },
+    {
+      "from": "C032",
+      "to": "C021",
+      "total_amount_cents": 1655679,
+      "invoice_count": 1
+    },
+    {
+      "from": "C032",
+      "to": "C022",
+      "total_amount_cents": 1034068,
+      "invoice_count": 1
+    },
+    {
+      "from": "C032",
+      "to": "C023",
+      "total_amount_cents": 1291956,
+      "invoice_count": 1
+    },
+    {
+      "from": "C032",
+      "to": "C034",
+      "total_amount_cents": 1269172,
+      "invoice_count": 1
+    },
+    {
+      "from": "C032",
+      "to": "C019",
+      "total_amount_cents": 1465921,
+      "invoice_count": 1
+    },
+    {
+      "from": "C032",
+      "to": "C020",
+      "total_amount_cents": 1762342,
+      "invoice_count": 1
+    },
+    {
+      "from": "C033",
+      "to": "C026",
+      "total_amount_cents": 1578439,
+      "invoice_count": 1
+    },
+    {
+      "from": "C033",
+      "to": "C027",
+      "total_amount_cents": 1967653,
+      "invoice_count": 1
+    },
+    {
+      "from": "C033",
+      "to": "C032",
+      "total_amount_cents": 1772279,
+      "invoice_count": 1
+    },
+    {
+      "from": "C034",
+      "to": "C025",
+      "total_amount_cents": 522500,
+      "invoice_count": 1
+    },
+    {
+      "from": "C034",
+      "to": "C026",
+      "total_amount_cents": 1096239,
+      "invoice_count": 1
+    },
+    {
+      "from": "C034",
+      "to": "C027",
+      "total_amount_cents": 2498111,
+      "invoice_count": 2
+    },
+    {
+      "from": "C034",
+      "to": "C028",
+      "total_amount_cents": 3016118,
+      "invoice_count": 2
+    },
+    {
+      "from": "C034",
+      "to": "C019",
+      "total_amount_cents": 983746,
+      "invoice_count": 1
+    },
+    {
+      "from": "C034",
+      "to": "C020",
+      "total_amount_cents": 1658581,
+      "invoice_count": 1
+    },
+    {
+      "from": "C035",
+      "to": "C022",
+      "total_amount_cents": 1284975,
+      "invoice_count": 1
+    },
+    {
+      "from": "C035",
+      "to": "C023",
+      "total_amount_cents": 549999,
+      "invoice_count": 1
+    },
+    {
+      "from": "C035",
+      "to": "C030",
+      "total_amount_cents": 456847,
+      "invoice_count": 1
+    },
+    {
+      "from": "C036",
+      "to": "C044",
+      "total_amount_cents": 4800998,
+      "invoice_count": 1
+    },
+    {
+      "from": "C036",
+      "to": "C045",
+      "total_amount_cents": 4059012,
+      "invoice_count": 1
+    },
+    {
+      "from": "C036",
+      "to": "C047",
+      "total_amount_cents": 7420853,
+      "invoice_count": 1
+    },
+    {
+      "from": "C036",
+      "to": "C048",
+      "total_amount_cents": 14104984,
+      "invoice_count": 1
+    },
+    {
+      "from": "C036",
+      "to": "C049",
+      "total_amount_cents": 5975548,
+      "invoice_count": 1
+    },
+    {
+      "from": "C036",
+      "to": "C050",
+      "total_amount_cents": 3378512,
+      "invoice_count": 1
+    },
+    {
+      "from": "C037",
+      "to": "C044",
+      "total_amount_cents": 7105048,
+      "invoice_count": 2
+    },
+    {
+      "from": "C037",
+      "to": "C045",
+      "total_amount_cents": 7238464,
+      "invoice_count": 1
+    },
+    {
+      "from": "C038",
+      "to": "C044",
+      "total_amount_cents": 11815153,
+      "invoice_count": 2
+    },
+    {
+      "from": "C038",
+      "to": "C045",
+      "total_amount_cents": 4450237,
+      "invoice_count": 1
+    },
+    {
+      "from": "C039",
+      "to": "C044",
+      "total_amount_cents": 9851461,
+      "invoice_count": 1
+    },
+    {
+      "from": "C039",
+      "to": "C045",
+      "total_amount_cents": 1076466,
+      "invoice_count": 1
+    },
+    {
+      "from": "C039",
+      "to": "C015",
+      "total_amount_cents": 1781862,
+      "invoice_count": 1
+    },
+    {
+      "from": "C040",
+      "to": "C044",
+      "total_amount_cents": 9362803,
+      "invoice_count": 1
+    },
+    {
+      "from": "C040",
+      "to": "C045",
+      "total_amount_cents": 9540272,
+      "invoice_count": 2
+    },
+    {
+      "from": "C040",
+      "to": "C019",
+      "total_amount_cents": 390670,
+      "invoice_count": 1
+    },
+    {
+      "from": "C041",
+      "to": "C044",
+      "total_amount_cents": 7991279,
+      "invoice_count": 2
+    },
+    {
+      "from": "C041",
+      "to": "C045",
+      "total_amount_cents": 13287678,
+      "invoice_count": 1
+    },
+    {
+      "from": "C042",
+      "to": "C044",
+      "total_amount_cents": 14569379,
+      "invoice_count": 1
+    },
+    {
+      "from": "C042",
+      "to": "C045",
+      "total_amount_cents": 20793881,
+      "invoice_count": 2
+    },
+    {
+      "from": "C043",
+      "to": "C044",
+      "total_amount_cents": 8527598,
+      "invoice_count": 1
+    },
+    {
+      "from": "C043",
+      "to": "C045",
+      "total_amount_cents": 13822771,
+      "invoice_count": 2
+    },
+    {
+      "from": "C044",
+      "to": "C036",
+      "total_amount_cents": 9357724,
+      "invoice_count": 1
+    },
+    {
+      "from": "C044",
+      "to": "C037",
+      "total_amount_cents": 14393236,
+      "invoice_count": 1
+    },
+    {
+      "from": "C044",
+      "to": "C038",
+      "total_amount_cents": 14335821,
+      "invoice_count": 1
+    },
+    {
+      "from": "C044",
+      "to": "C039",
+      "total_amount_cents": 8147861,
+      "invoice_count": 1
+    },
+    {
+      "from": "C044",
+      "to": "C040",
+      "total_amount_cents": 5713755,
+      "invoice_count": 1
+    },
+    {
+      "from": "C044",
+      "to": "C041",
+      "total_amount_cents": 8466561,
+      "invoice_count": 1
+    },
+    {
+      "from": "C044",
+      "to": "C046",
+      "total_amount_cents": 17772500,
+      "invoice_count": 2
+    },
+    {
+      "from": "C044",
+      "to": "C042",
+      "total_amount_cents": 7924446,
+      "invoice_count": 1
+    },
+    {
+      "from": "C044",
+      "to": "C043",
+      "total_amount_cents": 5332832,
+      "invoice_count": 1
+    },
+    {
+      "from": "C044",
+      "to": "C017",
+      "total_amount_cents": 2132034,
+      "invoice_count": 1
+    },
+    {
+      "from": "C044",
+      "to": "C024",
+      "total_amount_cents": 2546617,
+      "invoice_count": 1
+    },
+    {
+      "from": "C045",
+      "to": "C036",
+      "total_amount_cents": 9814862,
+      "invoice_count": 1
+    },
+    {
+      "from": "C045",
+      "to": "C037",
+      "total_amount_cents": 6355076,
+      "invoice_count": 1
+    },
+    {
+      "from": "C045",
+      "to": "C038",
+      "total_amount_cents": 10887860,
+      "invoice_count": 1
+    },
+    {
+      "from": "C045",
+      "to": "C039",
+      "total_amount_cents": 709073,
+      "invoice_count": 1
+    },
+    {
+      "from": "C045",
+      "to": "C040",
+      "total_amount_cents": 13730629,
+      "invoice_count": 1
+    },
+    {
+      "from": "C045",
+      "to": "C041",
+      "total_amount_cents": 6960587,
+      "invoice_count": 1
+    },
+    {
+      "from": "C045",
+      "to": "C046",
+      "total_amount_cents": 16298059,
+      "invoice_count": 2
+    },
+    {
+      "from": "C045",
+      "to": "C042",
+      "total_amount_cents": 3936069,
+      "invoice_count": 1
+    },
+    {
+      "from": "C045",
+      "to": "C043",
+      "total_amount_cents": 633085,
+      "invoice_count": 1
+    },
+    {
+      "from": "C045",
+      "to": "C011",
+      "total_amount_cents": 2924285,
+      "invoice_count": 1
+    },
+    {
+      "from": "C045",
+      "to": "C021",
+      "total_amount_cents": 1724830,
+      "invoice_count": 1
+    },
+    {
+      "from": "C046",
+      "to": "C044",
+      "total_amount_cents": 7736669,
+      "invoice_count": 1
+    },
+    {
+      "from": "C046",
+      "to": "C045",
+      "total_amount_cents": 2454923,
+      "invoice_count": 1
+    },
+    {
+      "from": "C046",
+      "to": "C036",
+      "total_amount_cents": 10080002,
+      "invoice_count": 1
+    },
+    {
+      "from": "C046",
+      "to": "C037",
+      "total_amount_cents": 5771276,
+      "invoice_count": 1
+    },
+    {
+      "from": "C046",
+      "to": "C038",
+      "total_amount_cents": 10161386,
+      "invoice_count": 1
+    },
+    {
+      "from": "C047",
+      "to": "C036",
+      "total_amount_cents": 3452997,
+      "invoice_count": 1
+    },
+    {
+      "from": "C047",
+      "to": "C039",
+      "total_amount_cents": 5929570,
+      "invoice_count": 1
+    },
+    {
+      "from": "C048",
+      "to": "C036",
+      "total_amount_cents": 716390,
+      "invoice_count": 1
+    },
+    {
+      "from": "C048",
+      "to": "C039",
+      "total_amount_cents": 8881275,
+      "invoice_count": 1
+    },
+    {
+      "from": "C049",
+      "to": "C036",
+      "total_amount_cents": 4409013,
+      "invoice_count": 1
+    },
+    {
+      "from": "C049",
+      "to": "C039",
+      "total_amount_cents": 4320279,
+      "invoice_count": 1
+    },
+    {
+      "from": "C050",
+      "to": "C036",
+      "total_amount_cents": 14378069,
+      "invoice_count": 1
+    },
+    {
+      "from": "C050",
+      "to": "C039",
+      "total_amount_cents": 10156092,
+      "invoice_count": 1
+    }
+  ],
+  "clusters": [
+    {
+      "sector": "port_logistics",
+      "company_count": 18,
+      "company_ids": [
+        "C001",
+        "C002",
+        "C003",
+        "C004",
+        "C005",
+        "C006",
+        "C007",
+        "C008",
+        "C009",
+        "C010",
+        "C011",
+        "C012",
+        "C013",
+        "C014",
+        "C015",
+        "C016",
+        "C017",
+        "C018"
+      ]
+    },
+    {
+      "sector": "food_beverage",
+      "company_count": 17,
+      "company_ids": [
+        "C019",
+        "C020",
+        "C021",
+        "C022",
+        "C023",
+        "C024",
+        "C025",
+        "C026",
+        "C027",
+        "C028",
+        "C029",
+        "C030",
+        "C031",
+        "C032",
+        "C033",
+        "C034",
+        "C035"
+      ]
+    },
+    {
+      "sector": "renewable_energy",
+      "company_count": 15,
+      "company_ids": [
+        "C036",
+        "C037",
+        "C038",
+        "C039",
+        "C040",
+        "C041",
+        "C042",
+        "C043",
+        "C044",
+        "C045",
+        "C046",
+        "C047",
+        "C048",
+        "C049",
+        "C050"
+      ]
+    }
+  ],
+  "connected_components": {
+    "weakly_connected": 1,
+    "strongly_connected": 3,
+    "largest_scc_size": 18
+  },
+  "cycle_census": {
+    "total": 45494,
+    "by_length": {
+      "2": 123,
+      "3": 74,
+      "4": 998,
+      "5": 1728,
+      "6": 11400,
+      "7": 31171
+    }
+  },
+  "netting": {
+    "total_volume_cents": 919905823,
+    "bilateral_savings_cents": 256236329,
+    "bilateral_savings_pct": 27.9,
+    "multilateral_3cycle_savings_cents": 166460116,
+    "combined_savings_pct": 45.9,
+    "fleischman_benchmark_min_pct": 25,
+    "fleischman_benchmark_max_pct": 50,
+    "within_benchmark": true
+  }
+}
