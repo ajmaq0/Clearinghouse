@@ -1,0 +1,179 @@
+/* ClearFlow — GLS Bank Hamburg
+   Warm earth-tone institutional palette
+   Readable at projector scale (65+ audience) */
+
+:root {
+  /* Earth-tone palette */
+  --color-bg:          #faf8f5;     /* warm off-white */
+  --color-surface:     #ffffff;
+  --color-surface-alt: #f5f1eb;     /* warm cream */
+  --color-border:      #e8e0d4;
+  --color-border-dark: #c9bfaf;
+
+  /* GLS green-brown primary */
+  --color-primary:     #4a7c59;     /* GLS institutional green */
+  --color-primary-dk:  #3a6147;
+  --color-primary-lt:  #eef5f1;
+
+  /* Accent: warm amber */
+  --color-accent:      #c97a2f;     /* warm amber */
+  --color-accent-lt:   #fdf3e7;
+
+  /* Semantic */
+  --color-success:     #4a7c59;
+  --color-warning:     #c97a2f;
+  --color-danger:      #b94040;
+  --color-info:        #2c6e8a;
+
+  /* Text */
+  --color-text:        #2d2520;     /* warm near-black */
+  --color-text-muted:  #7a6e64;
+  --color-text-light:  #a89f94;
+
+  /* Typography — projector-readable */
+  --font-family:       'DM Sans', system-ui, sans-serif;
+  --font-size-xs:      0.8125rem;   /* 13px */
+  --font-size-sm:      0.9375rem;   /* 15px */
+  --font-size-base:    1.0625rem;   /* 17px — boosted for projector */
+  --font-size-md:      1.1875rem;   /* 19px */
+  --font-size-lg:      1.375rem;    /* 22px */
+  --font-size-xl:      1.75rem;     /* 28px */
+  --font-size-2xl:     2.25rem;     /* 36px */
+  --font-size-3xl:     3rem;        /* 48px */
+
+  /* Spacing */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+
+  /* Radius */
+  --radius-sm:  6px;
+  --radius-md:  10px;
+  --radius-lg:  16px;
+  --radius-xl:  24px;
+
+  /* Shadow */
+  --shadow-sm:  0 1px 3px rgba(0,0,0,0.07), 0 1px 2px rgba(0,0,0,0.05);
+  --shadow-md:  0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.05);
+  --shadow-lg:  0 8px 24px rgba(0,0,0,0.10), 0 4px 8px rgba(0,0,0,0.06);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  color: var(--color-text);
+  background: var(--color-bg);
+  line-height: 1.55;
+  min-height: 100vh;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+input, select {
+  font-family: inherit;
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+.card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  box-shadow: var(--shadow-sm);
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px var(--space-3);
+  border-radius: 99px;
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.badge-green  { background: var(--color-primary-lt); color: var(--color-primary-dk); }
+.badge-amber  { background: var(--color-accent-lt);  color: var(--color-accent); }
+.badge-red    { background: #fdeaea; color: var(--color-danger); }
+.badge-gray   { background: var(--color-surface-alt); color: var(--color-text-muted); }
+.badge-blue   { background: #e3f0f5; color: var(--color-info); }
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-6);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  border: none;
+  transition: background 0.15s, transform 0.1s;
+}
+.btn:active { transform: translateY(1px); }
+
+.btn-primary {
+  background: var(--color-primary);
+  color: white;
+}
+.btn-primary:hover { background: var(--color-primary-dk); }
+
+.btn-secondary {
+  background: var(--color-surface-alt);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+}
+.btn-secondary:hover { background: var(--color-border); }
+
+.btn-accent {
+  background: var(--color-accent);
+  color: white;
+}
+.btn-accent:hover { background: #b36c28; }
+
+.loading-spinner {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--color-border);
+  border-top-color: var(--color-primary);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.error-banner {
+  background: #fdeaea;
+  border: 1px solid #f5c2c2;
+  border-radius: var(--radius-md);
+  padding: var(--space-4) var(--space-6);
+  color: var(--color-danger);
+  font-size: var(--font-size-sm);
+}

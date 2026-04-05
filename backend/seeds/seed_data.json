@@ -1,0 +1,247 @@
+{
+  "companies": [
+    {
+      "id": "f47ac10b-0001-4000-8000-000000000000",
+      "name": "Hanseatic Spedition GmbH",
+      "sector": "port_logistics",
+      "attributes": {
+        "subtype": "Spedition",
+        "district": "HafenCity",
+        "gls_member": false,
+        "founded": 1996,
+        "employees": 42
+      }
+    },
+    {
+      "id": "f47ac10b-0002-4000-8000-000000000000",
+      "name": "Nord-Zoll Dienstleistungen GmbH",
+      "sector": "port_logistics",
+      "attributes": {
+        "subtype": "Zolldienstleister",
+        "district": "HafenCity",
+        "gls_member": true,
+        "founded": 2013,
+        "employees": 18
+      }
+    },
+    {
+      "id": "f47ac10b-0003-4000-8000-000000000000",
+      "name": "Lagerhaus am Waltershof GmbH",
+      "sector": "port_logistics",
+      "attributes": {
+        "subtype": "Lagerhaus",
+        "district": "Wilhelmsburg",
+        "gls_member": true,
+        "founded": 2010,
+        "employees": 28
+      }
+    },
+    {
+      "id": "f47ac10b-0004-4000-8000-000000000000",
+      "name": "Container Service Hamburg GmbH",
+      "sector": "port_logistics",
+      "attributes": {
+        "subtype": "Spedition",
+        "district": "Hamburg-Mitte",
+        "gls_member": true,
+        "founded": 2004,
+        "employees": 35
+      }
+    },
+    {
+      "id": "f47ac10b-0005-4000-8000-000000000000",
+      "name": "Elbe Logistik AG",
+      "sector": "port_logistics",
+      "attributes": {
+        "subtype": "Spedition",
+        "district": "HafenCity",
+        "gls_member": false,
+        "founded": 2016,
+        "employees": 12
+      }
+    },
+    {
+      "id": "f47ac10b-0006-4000-8000-000000000000",
+      "name": "Speicherstadt Depot GmbH",
+      "sector": "port_logistics",
+      "attributes": {
+        "subtype": "Lagerhaus",
+        "district": "Hammerbrook",
+        "gls_member": true,
+        "founded": 2003,
+        "employees": 9
+      }
+    },
+    {
+      "id": "f47ac10b-0007-4000-8000-000000000000",
+      "name": "Tischlerei Müller GmbH",
+      "sector": "handwerk",
+      "attributes": {
+        "subtype": "Tischler",
+        "district": "Altona",
+        "gls_member": true,
+        "founded": 2008,
+        "employees": 6,
+        "contact_person": "Dirk Müller"
+      }
+    },
+    {
+      "id": "f47ac10b-0008-4000-8000-000000000000",
+      "name": "Keramik Atelier Braun",
+      "sector": "handwerk",
+      "attributes": {
+        "subtype": "Keramik",
+        "district": "Eimsbüttel",
+        "gls_member": true,
+        "founded": 2012,
+        "employees": 4,
+        "contact_person": "Maria Braun"
+      }
+    },
+    {
+      "id": "f47ac10b-0009-4000-8000-000000000000",
+      "name": "Schlosserei Hoffmann GmbH",
+      "sector": "handwerk",
+      "attributes": {
+        "subtype": "Schlosserei",
+        "district": "Harburg",
+        "gls_member": false,
+        "founded": 2001,
+        "employees": 8
+      }
+    },
+    {
+      "id": "f47ac10b-000a-4000-8000-000000000000",
+      "name": "Malerbetrieb Köhler GmbH",
+      "sector": "handwerk",
+      "attributes": {
+        "subtype": "Malerei",
+        "district": "Wandsbek",
+        "gls_member": false,
+        "founded": 2005,
+        "employees": 7
+      }
+    },
+    {
+      "id": "f47ac10b-000b-4000-8000-000000000000",
+      "name": "Elektro Krause GmbH",
+      "sector": "handwerk",
+      "attributes": {
+        "subtype": "Elektro",
+        "district": "Altona",
+        "gls_member": true,
+        "founded": 2009,
+        "employees": 11
+      }
+    },
+    {
+      "id": "f47ac10b-000c-4000-8000-000000000000",
+      "name": "Bäckerei Schreiber GmbH",
+      "sector": "handwerk",
+      "attributes": {
+        "subtype": "Backwaren",
+        "district": "Bergedorf",
+        "gls_member": true,
+        "founded": 2003,
+        "employees": 14
+      }
+    },
+    {
+      "id": "f47ac10b-000d-4000-8000-000000000000",
+      "name": "Dachbau Fischer GmbH",
+      "sector": "handwerk",
+      "attributes": {
+        "subtype": "Dachdeckerei",
+        "district": "Hamburg-Nord",
+        "gls_member": false,
+        "founded": 1998,
+        "employees": 9
+      }
+    },
+    {
+      "id": "f47ac10b-000e-4000-8000-000000000000",
+      "name": "Café am Alster",
+      "sector": "gastronomie",
+      "attributes": {
+        "subtype": "Café",
+        "district": "Hamburg-Nord",
+        "gls_member": true,
+        "founded": 2015,
+        "employees": 8,
+        "contact_person": "Thomas Wendt"
+      }
+    },
+    {
+      "id": "f47ac10b-000f-4000-8000-000000000000",
+      "name": "Speisekammer Hamburg GmbH",
+      "sector": "gastronomie",
+      "attributes": {
+        "subtype": "Catering",
+        "district": "Eimsbüttel",
+        "gls_member": true,
+        "founded": 2011,
+        "employees": 12
+      }
+    },
+    {
+      "id": "f47ac10b-0010-4000-8000-000000000000",
+      "name": "Restaurant Zum Hafen",
+      "sector": "gastronomie",
+      "attributes": {
+        "subtype": "Restaurant",
+        "district": "HafenCity",
+        "gls_member": false,
+        "founded": 2007,
+        "employees": 15
+      }
+    },
+    {
+      "id": "f47ac10b-0011-4000-8000-000000000000",
+      "name": "Fischrestaurant Nordlicht GmbH",
+      "sector": "gastronomie",
+      "attributes": {
+        "subtype": "Restaurant",
+        "district": "Altona",
+        "gls_member": false,
+        "founded": 2014,
+        "employees": 10
+      }
+    },
+    {
+      "id": "f47ac10b-0012-4000-8000-000000000000",
+      "name": "Gastronomiebedarf Nord GmbH",
+      "sector": "gastronomie",
+      "attributes": {
+        "subtype": "Grosshandel",
+        "district": "Bergedorf",
+        "gls_member": true,
+        "founded": 2012,
+        "employees": 22
+      }
+    },
+    {
+      "id": "f47ac10b-0013-4000-8000-000000000000",
+      "name": "Bierkontor Hamburg GmbH",
+      "sector": "gastronomie",
+      "attributes": {
+        "subtype": "Getränkehandel",
+        "district": "Wandsbek",
+        "gls_member": false,
+        "founded": 2000,
+        "employees": 17
+      }
+    },
+    {
+      "id": "f47ac10b-0014-4000-8000-000000000000",
+      "name": "Elbstrand Bar & Grill GmbH",
+      "sector": "gastronomie",
+      "attributes": {
+        "subtype": "Bar",
+        "district": "Altona",
+        "gls_member": false,
+        "founded": 2018,
+        "employees": 7
+      }
+    }
+  ]
+}

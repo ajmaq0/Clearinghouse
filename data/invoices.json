@@ -1,0 +1,7447 @@
+[
+  {
+    "id": "INV-0001",
+    "from_company_id": "C001",
+    "to_company_id": "C007",
+    "issue_date": "2025-12-09",
+    "due_date": "2026-01-23",
+    "payment_terms_days": 45,
+    "amount_cents": 4929296,
+    "currency": "EUR",
+    "status": "paid",
+    "line_items": [
+      {
+        "description": "Versicherungsprämie",
+        "quantity": 5,
+        "unit_price_cents": 107123
+      },
+      {
+        "description": "Lagerhaltungsgebühr",
+        "quantity": 8,
+        "unit_price_cents": 393815
+      },
+      {
+        "description": "Handling Fee",
+        "quantity": 6,
+        "unit_price_cents": 225920
+      }
+    ]
+  },
+  {
+    "id": "INV-0002",
+    "from_company_id": "C007",
+    "to_company_id": "C001",
+    "issue_date": "2025-02-24",
+    "due_date": "2025-04-10",
+    "payment_terms_days": 45,
+    "amount_cents": 614386,
+    "currency": "EUR",
+    "status": "paid",
+    "line_items": [
+      {
+        "description": "Versicherungsprämie",
+        "quantity": 1,
+        "unit_price_cents": 202573
+      },
+      {
+        "description": "Lagerhaltungsgebühr",
+        "quantity": 3,
+        "unit_price_cents": 254511
+      },
+      {
+        "description": "Handling Fee",
+        "quantity": 4,
+        "unit_price_cents": 261982
+      }
+    ]
+  },
+  {
+    "id": "INV-0003",
+    "from_company_id": "C001",
+    "to_company_id": "C007",
+    "issue_date": "2025-12-17",
+    "due_date": "2026-01-16",
+    "payment_terms_days": 30,
+    "amount_cents": 1691688,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Versicherungsprämie",
+        "quantity": 10,
+        "unit_price_cents": 105416
+      },
+      {
+        "description": "Handling Fee",
+        "quantity": 5,
+        "unit_price_cents": 235230
+      }
+    ]
+  },
+  {
+    "id": "INV-0004",
+    "from_company_id": "C001",
+    "to_company_id": "C008",
+    "issue_date": "2025-04-13",
+    "due_date": "2025-07-12",
+    "payment_terms_days": 90,
+    "amount_cents": 4251628,
+    "currency": "EUR",
+    "status": "overdue",
+    "line_items": [
+      {
+        "description": "Einfuhrumsatzsteuer-Vorauszahlung",
+        "quantity": 4,
+        "unit_price_cents": 193043
+      },
+      {
+        "description": "Zollabfertigungsgebühr",
+        "quantity": 6,
+        "unit_price_cents": 386076
+      },
+      {
+        "description": "Dokumentengebühr",
+        "quantity": 6,
+        "unit_price_cents": 445276
+      }
+    ]
+  },
+  {
+    "id": "INV-0005",
+    "from_company_id": "C008",
+    "to_company_id": "C001",
+    "issue_date": "2025-06-01",
+    "due_date": "2025-07-16",
+    "payment_terms_days": 45,
+    "amount_cents": 414743,
+    "currency": "EUR",
+    "status": "overdue",
+    "line_items": [
+      {
+        "description": "Versicherungsprämie",
+        "quantity": 1,
+        "unit_price_cents": 157036
+      },
+      {
+        "description": "Lagerhaltungsgebühr",
+        "quantity": 5,
+        "unit_price_cents": 424168
+      }
+    ]
+  },
+  {
+    "id": "INV-0006",
+    "from_company_id": "C001",
+    "to_company_id": "C009",
+    "issue_date": "2025-09-21",
+    "due_date": "2025-11-20",
+    "payment_terms_days": 60,
+    "amount_cents": 3032568,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Dokumentengebühr",
+        "quantity": 1,
+        "unit_price_cents": 302898
+      },
+      {
+        "description": "Zollabfertigungsgebühr",
+        "quantity": 4,
+        "unit_price_cents": 339960
+      },
+      {
+        "description": "Einfuhrumsatzsteuer-Vorauszahlung",
+        "quantity": 9,
+        "unit_price_cents": 213919
+      }
+    ]
+  },
+  {
+    "id": "INV-0007",
+    "from_company_id": "C009",
+    "to_company_id": "C001",
+    "issue_date": "2025-05-10",
+    "due_date": "2025-07-09",
+    "payment_terms_days": 60,
+    "amount_cents": 1185092,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Dokumentengebühr",
+        "quantity": 8,
+        "unit_price_cents": 31516
+      },
+      {
+        "description": "Zollabfertigungsgebühr",
+        "quantity": 1,
+        "unit_price_cents": 406319
+      }
+    ]
+  },
+  {
+    "id": "INV-0008",
+    "from_company_id": "C001",
+    "to_company_id": "C009",
+    "issue_date": "2025-05-25",
+    "due_date": "2025-07-24",
+    "payment_terms_days": 60,
+    "amount_cents": 3076366,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Dokumentengebühr",
+        "quantity": 3,
+        "unit_price_cents": 264664
+      },
+      {
+        "description": "Zollabfertigungsgebühr",
+        "quantity": 9,
+        "unit_price_cents": 83969
+      }
+    ]
+  },
+  {
+    "id": "INV-0009",
+    "from_company_id": "C001",
+    "to_company_id": "C010",
+    "issue_date": "2025-07-19",
+    "due_date": "2025-10-17",
+    "payment_terms_days": 90,
+    "amount_cents": 4714523,
+    "currency": "EUR",
+    "status": "paid",
+    "line_items": [
+      {
+        "description": "Einfuhrumsatzsteuer-Vorauszahlung",
+        "quantity": 8,
+        "unit_price_cents": 141822
+      }
+    ]
+  },
+  {
+    "id": "INV-0010",
+    "from_company_id": "C010",
+    "to_company_id": "C001",
+    "issue_date": "2025-09-21",
+    "due_date": "2025-11-05",
+    "payment_terms_days": 45,
+    "amount_cents": 907482,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Einfuhrumsatzsteuer-Vorauszahlung",
+        "quantity": 7,
+        "unit_price_cents": 297881
+      }
+    ]
+  },
+  {
+    "id": "INV-0011",
+    "from_company_id": "C002",
+    "to_company_id": "C008",
+    "issue_date": "2025-08-02",
+    "due_date": "2025-09-16",
+    "payment_terms_days": 45,
+    "amount_cents": 2904716,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Dokumentengebühr",
+        "quantity": 6,
+        "unit_price_cents": 24022
+      },
+      {
+        "description": "Zollabfertigungsgebühr",
+        "quantity": 5,
+        "unit_price_cents": 408773
+      },
+      {
+        "description": "Einfuhrumsatzsteuer-Vorauszahlung",
+        "quantity": 2,
+        "unit_price_cents": 11113
+      }
+    ]
+  },
+  {
+    "id": "INV-0012",
+    "from_company_id": "C008",
+    "to_company_id": "C002",
+    "issue_date": "2025-05-04",
+    "due_date": "2025-08-02",
+    "payment_terms_days": 90,
+    "amount_cents": 4095856,
+    "currency": "EUR",
+    "status": "overdue",
+    "line_items": [
+      {
+        "description": "Zollabfertigungsgebühr",
+        "quantity": 10,
+        "unit_price_cents": 49349
+      },
+      {
+        "description": "Dokumentengebühr",
+        "quantity": 4,
+        "unit_price_cents": 80854
+      },
+      {
+        "description": "Einfuhrumsatzsteuer-Vorauszahlung",
+        "quantity": 6,
+        "unit_price_cents": 454873
+      }
+    ]
+  },
+  {
+    "id": "INV-0013",
+    "from_company_id": "C002",
+    "to_company_id": "C010",
+    "issue_date": "2025-04-11",
+    "due_date": "2025-07-10",
+    "payment_terms_days": 90,
+    "amount_cents": 1848604,
+    "currency": "EUR",
+    "status": "paid",
+    "line_items": [
+      {
+        "description": "Versicherungsprämie",
+        "quantity": 8,
+        "unit_price_cents": 250924
+      },
+      {
+        "description": "Handling Fee",
+        "quantity": 10,
+        "unit_price_cents": 304945
+      }
+    ]
+  },
+  {
+    "id": "INV-0014",
+    "from_company_id": "C010",
+    "to_company_id": "C002",
+    "issue_date": "2025-02-26",
+    "due_date": "2025-04-12",
+    "payment_terms_days": 45,
+    "amount_cents": 2086073,
+    "currency": "EUR",
+    "status": "paid",
+    "line_items": [
+      {
+        "description": "Frachtkosten",
+        "quantity": 10,
+        "unit_price_cents": 309230
+      },
+      {
+        "description": "Umschlaggebühr",
+        "quantity": 7,
+        "unit_price_cents": 196349
+      }
+    ]
+  },
+  {
+    "id": "INV-0015",
+    "from_company_id": "C003",
+    "to_company_id": "C007",
+    "issue_date": "2025-07-17",
+    "due_date": "2025-08-16",
+    "payment_terms_days": 30,
+    "amount_cents": 3854610,
+    "currency": "EUR",
+    "status": "paid",
+    "line_items": [
+      {
+        "description": "Speditionsgebühr",
+        "quantity": 7,
+        "unit_price_cents": 444646
+      },
+      {
+        "description": "Umschlaggebühr",
+        "quantity": 10,
+        "unit_price_cents": 453314
+      },
+      {
+        "description": "Frachtkosten",
+        "quantity": 5,
+        "unit_price_cents": 438283
+      }
+    ]
+  },
+  {
+    "id": "INV-0016",
+    "from_company_id": "C007",
+    "to_company_id": "C003",
+    "issue_date": "2025-05-25",
+    "due_date": "2025-06-24",
+    "payment_terms_days": 30,
+    "amount_cents": 954453,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Dokumentengebühr",
+        "quantity": 5,
+        "unit_price_cents": 332356
+      }
+    ]
+  },
+  {
+    "id": "INV-0017",
+    "from_company_id": "C003",
+    "to_company_id": "C007",
+    "issue_date": "2025-10-03",
+    "due_date": "2025-12-02",
+    "payment_terms_days": 60,
+    "amount_cents": 4711811,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Lagerhaltungsgebühr",
+        "quantity": 9,
+        "unit_price_cents": 386172
+      },
+      {
+        "description": "Versicherungsprämie",
+        "quantity": 8,
+        "unit_price_cents": 341610
+      },
+      {
+        "description": "Handling Fee",
+        "quantity": 10,
+        "unit_price_cents": 409194
+      }
+    ]
+  },
+  {
+    "id": "INV-0018",
+    "from_company_id": "C003",
+    "to_company_id": "C008",
+    "issue_date": "2025-06-13",
+    "due_date": "2025-07-28",
+    "payment_terms_days": 45,
+    "amount_cents": 2801539,
+    "currency": "EUR",
+    "status": "paid",
+    "line_items": [
+      {
+        "description": "Zollabfertigungsgebühr",
+        "quantity": 8,
+        "unit_price_cents": 379288
+      }
+    ]
+  },
+  {
+    "id": "INV-0019",
+    "from_company_id": "C008",
+    "to_company_id": "C003",
+    "issue_date": "2025-09-26",
+    "due_date": "2025-10-26",
+    "payment_terms_days": 30,
+    "amount_cents": 3426975,
+    "currency": "EUR",
+    "status": "overdue",
+    "line_items": [
+      {
+        "description": "Frachtkosten",
+        "quantity": 8,
+        "unit_price_cents": 200500
+      },
+      {
+        "description": "Umschlaggebühr",
+        "quantity": 5,
+        "unit_price_cents": 30342
+      },
+      {
+        "description": "Speditionsgebühr",
+        "quantity": 3,
+        "unit_price_cents": 370947
+      }
+    ]
+  },
+  {
+    "id": "INV-0020",
+    "from_company_id": "C003",
+    "to_company_id": "C010",
+    "issue_date": "2025-04-05",
+    "due_date": "2025-06-04",
+    "payment_terms_days": 60,
+    "amount_cents": 1616736,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Zollabfertigungsgebühr",
+        "quantity": 9,
+        "unit_price_cents": 279416
+      }
+    ]
+  },
+  {
+    "id": "INV-0021",
+    "from_company_id": "C010",
+    "to_company_id": "C003",
+    "issue_date": "2025-05-18",
+    "due_date": "2025-06-17",
+    "payment_terms_days": 30,
+    "amount_cents": 2614650,
+    "currency": "EUR",
+    "status": "paid",
+    "line_items": [
+      {
+        "description": "Versicherungsprämie",
+        "quantity": 9,
+        "unit_price_cents": 343785
+      },
+      {
+        "description": "Handling Fee",
+        "quantity": 3,
+        "unit_price_cents": 279600
+      }
+    ]
+  },
+  {
+    "id": "INV-0022",
+    "from_company_id": "C004",
+    "to_company_id": "C007",
+    "issue_date": "2025-05-03",
+    "due_date": "2025-06-17",
+    "payment_terms_days": 45,
+    "amount_cents": 279082,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Lagermiete",
+        "quantity": 4,
+        "unit_price_cents": 239042
+      },
+      {
+        "description": "Speditionsgebühr",
+        "quantity": 4,
+        "unit_price_cents": 125950
+      }
+    ]
+  },
+  {
+    "id": "INV-0023",
+    "from_company_id": "C007",
+    "to_company_id": "C004",
+    "issue_date": "2025-02-05",
+    "due_date": "2025-03-22",
+    "payment_terms_days": 45,
+    "amount_cents": 3494047,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Speditionsgebühr",
+        "quantity": 4,
+        "unit_price_cents": 109647
+      }
+    ]
+  },
+  {
+    "id": "INV-0024",
+    "from_company_id": "C004",
+    "to_company_id": "C008",
+    "issue_date": "2025-04-20",
+    "due_date": "2025-06-19",
+    "payment_terms_days": 60,
+    "amount_cents": 2748464,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Einfuhrumsatzsteuer-Vorauszahlung",
+        "quantity": 8,
+        "unit_price_cents": 487074
+      },
+      {
+        "description": "Dokumentengebühr",
+        "quantity": 9,
+        "unit_price_cents": 336234
+      }
+    ]
+  },
+  {
+    "id": "INV-0025",
+    "from_company_id": "C008",
+    "to_company_id": "C004",
+    "issue_date": "2025-10-13",
+    "due_date": "2025-12-12",
+    "payment_terms_days": 60,
+    "amount_cents": 3121225,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Dokumentengebühr",
+        "quantity": 6,
+        "unit_price_cents": 36931
+      }
+    ]
+  },
+  {
+    "id": "INV-0026",
+    "from_company_id": "C004",
+    "to_company_id": "C009",
+    "issue_date": "2025-08-12",
+    "due_date": "2025-10-11",
+    "payment_terms_days": 60,
+    "amount_cents": 4519416,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Zollabfertigungsgebühr",
+        "quantity": 9,
+        "unit_price_cents": 70049
+      }
+    ]
+  },
+  {
+    "id": "INV-0027",
+    "from_company_id": "C009",
+    "to_company_id": "C004",
+    "issue_date": "2025-10-01",
+    "due_date": "2025-11-30",
+    "payment_terms_days": 60,
+    "amount_cents": 4649789,
+    "currency": "EUR",
+    "status": "overdue",
+    "line_items": [
+      {
+        "description": "Lagerhaltungsgebühr",
+        "quantity": 9,
+        "unit_price_cents": 16092
+      }
+    ]
+  },
+  {
+    "id": "INV-0028",
+    "from_company_id": "C004",
+    "to_company_id": "C010",
+    "issue_date": "2025-04-23",
+    "due_date": "2025-05-23",
+    "payment_terms_days": 30,
+    "amount_cents": 1910407,
+    "currency": "EUR",
+    "status": "overdue",
+    "line_items": [
+      {
+        "description": "Einfuhrumsatzsteuer-Vorauszahlung",
+        "quantity": 3,
+        "unit_price_cents": 39459
+      }
+    ]
+  },
+  {
+    "id": "INV-0029",
+    "from_company_id": "C010",
+    "to_company_id": "C004",
+    "issue_date": "2025-06-27",
+    "due_date": "2025-08-26",
+    "payment_terms_days": 60,
+    "amount_cents": 4992108,
+    "currency": "EUR",
+    "status": "overdue",
+    "line_items": [
+      {
+        "description": "Lagerhaltungsgebühr",
+        "quantity": 5,
+        "unit_price_cents": 446274
+      },
+      {
+        "description": "Versicherungsprämie",
+        "quantity": 8,
+        "unit_price_cents": 80474
+      },
+      {
+        "description": "Handling Fee",
+        "quantity": 4,
+        "unit_price_cents": 433037
+      }
+    ]
+  },
+  {
+    "id": "INV-0030",
+    "from_company_id": "C005",
+    "to_company_id": "C007",
+    "issue_date": "2025-03-11",
+    "due_date": "2025-05-10",
+    "payment_terms_days": 60,
+    "amount_cents": 2726455,
+    "currency": "EUR",
+    "status": "overdue",
+    "line_items": [
+      {
+        "description": "Umschlaggebühr",
+        "quantity": 2,
+        "unit_price_cents": 428037
+      },
+      {
+        "description": "Frachtkosten",
+        "quantity": 3,
+        "unit_price_cents": 88132
+      },
+      {
+        "description": "Speditionsgebühr",
+        "quantity": 2,
+        "unit_price_cents": 368364
+      }
+    ]
+  },
+  {
+    "id": "INV-0031",
+    "from_company_id": "C007",
+    "to_company_id": "C005",
+    "issue_date": "2025-10-13",
+    "due_date": "2025-11-27",
+    "payment_terms_days": 45,
+    "amount_cents": 881528,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Zollabfertigungsgebühr",
+        "quantity": 9,
+        "unit_price_cents": 126765
+      }
+    ]
+  },
+  {
+    "id": "INV-0032",
+    "from_company_id": "C005",
+    "to_company_id": "C008",
+    "issue_date": "2025-11-14",
+    "due_date": "2026-02-12",
+    "payment_terms_days": 90,
+    "amount_cents": 573344,
+    "currency": "EUR",
+    "status": "paid",
+    "line_items": [
+      {
+        "description": "Umschlaggebühr",
+        "quantity": 4,
+        "unit_price_cents": 8534
+      },
+      {
+        "description": "Frachtkosten",
+        "quantity": 6,
+        "unit_price_cents": 221502
+      },
+      {
+        "description": "Speditionsgebühr",
+        "quantity": 1,
+        "unit_price_cents": 170477
+      }
+    ]
+  },
+  {
+    "id": "INV-0033",
+    "from_company_id": "C008",
+    "to_company_id": "C005",
+    "issue_date": "2025-01-13",
+    "due_date": "2025-02-12",
+    "payment_terms_days": 30,
+    "amount_cents": 1981808,
+    "currency": "EUR",
+    "status": "paid",
+    "line_items": [
+      {
+        "description": "Einfuhrumsatzsteuer-Vorauszahlung",
+        "quantity": 5,
+        "unit_price_cents": 208487
+      }
+    ]
+  },
+  {
+    "id": "INV-0034",
+    "from_company_id": "C005",
+    "to_company_id": "C009",
+    "issue_date": "2025-10-31",
+    "due_date": "2025-12-30",
+    "payment_terms_days": 60,
+    "amount_cents": 4381906,
+    "currency": "EUR",
+    "status": "paid",
+    "line_items": [
+      {
+        "description": "Dokumentengebühr",
+        "quantity": 3,
+        "unit_price_cents": 486069
+      }
+    ]
+  },
+  {
+    "id": "INV-0035",
+    "from_company_id": "C009",
+    "to_company_id": "C005",
+    "issue_date": "2025-09-03",
+    "due_date": "2025-11-02",
+    "payment_terms_days": 60,
+    "amount_cents": 1458758,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Dokumentengebühr",
+        "quantity": 7,
+        "unit_price_cents": 368585
+      }
+    ]
+  },
+  {
+    "id": "INV-0036",
+    "from_company_id": "C005",
+    "to_company_id": "C009",
+    "issue_date": "2025-06-16",
+    "due_date": "2025-09-14",
+    "payment_terms_days": 90,
+    "amount_cents": 3666636,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Lagermiete",
+        "quantity": 4,
+        "unit_price_cents": 42901
+      }
+    ]
+  },
+  {
+    "id": "INV-0037",
+    "from_company_id": "C006",
+    "to_company_id": "C007",
+    "issue_date": "2025-04-13",
+    "due_date": "2025-05-13",
+    "payment_terms_days": 30,
+    "amount_cents": 3561071,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Umschlaggebühr",
+        "quantity": 4,
+        "unit_price_cents": 58301
+      },
+      {
+        "description": "Lagermiete",
+        "quantity": 10,
+        "unit_price_cents": 130534
+      }
+    ]
+  },
+  {
+    "id": "INV-0038",
+    "from_company_id": "C007",
+    "to_company_id": "C006",
+    "issue_date": "2025-01-29",
+    "due_date": "2025-02-28",
+    "payment_terms_days": 30,
+    "amount_cents": 975852,
+    "currency": "EUR",
+    "status": "overdue",
+    "line_items": [
+      {
+        "description": "Handling Fee",
+        "quantity": 4,
+        "unit_price_cents": 17541
+      },
+      {
+        "description": "Lagerhaltungsgebühr",
+        "quantity": 9,
+        "unit_price_cents": 22375
+      },
+      {
+        "description": "Versicherungsprämie",
+        "quantity": 9,
+        "unit_price_cents": 190680
+      }
+    ]
+  },
+  {
+    "id": "INV-0039",
+    "from_company_id": "C006",
+    "to_company_id": "C007",
+    "issue_date": "2025-10-03",
+    "due_date": "2025-11-17",
+    "payment_terms_days": 45,
+    "amount_cents": 1704283,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Handling Fee",
+        "quantity": 3,
+        "unit_price_cents": 459065
+      },
+      {
+        "description": "Lagerhaltungsgebühr",
+        "quantity": 6,
+        "unit_price_cents": 154958
+      }
+    ]
+  },
+  {
+    "id": "INV-0040",
+    "from_company_id": "C006",
+    "to_company_id": "C009",
+    "issue_date": "2025-11-06",
+    "due_date": "2026-01-05",
+    "payment_terms_days": 60,
+    "amount_cents": 3265253,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Lagermiete",
+        "quantity": 10,
+        "unit_price_cents": 78918
+      },
+      {
+        "description": "Frachtkosten",
+        "quantity": 10,
+        "unit_price_cents": 319733
+      },
+      {
+        "description": "Umschlaggebühr",
+        "quantity": 7,
+        "unit_price_cents": 443662
+      }
+    ]
+  },
+  {
+    "id": "INV-0041",
+    "from_company_id": "C009",
+    "to_company_id": "C006",
+    "issue_date": "2025-10-09",
+    "due_date": "2025-11-23",
+    "payment_terms_days": 45,
+    "amount_cents": 4988088,
+    "currency": "EUR",
+    "status": "paid",
+    "line_items": [
+      {
+        "description": "Einfuhrumsatzsteuer-Vorauszahlung",
+        "quantity": 4,
+        "unit_price_cents": 327805
+      },
+      {
+        "description": "Dokumentengebühr",
+        "quantity": 10,
+        "unit_price_cents": 376387
+      },
+      {
+        "description": "Zollabfertigungsgebühr",
+        "quantity": 8,
+        "unit_price_cents": 443799
+      }
+    ]
+  },
+  {
+    "id": "INV-0042",
+    "from_company_id": "C007",
+    "to_company_id": "C011",
+    "issue_date": "2025-09-28",
+    "due_date": "2025-11-12",
+    "payment_terms_days": 45,
+    "amount_cents": 1371073,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Lagerhaltungsgebühr",
+        "quantity": 1,
+        "unit_price_cents": 225281
+      },
+      {
+        "description": "Handling Fee",
+        "quantity": 1,
+        "unit_price_cents": 251883
+      }
+    ]
+  },
+  {
+    "id": "INV-0043",
+    "from_company_id": "C011",
+    "to_company_id": "C007",
+    "issue_date": "2025-01-22",
+    "due_date": "2025-03-23",
+    "payment_terms_days": 60,
+    "amount_cents": 1592321,
+    "currency": "EUR",
+    "status": "overdue",
+    "line_items": [
+      {
+        "description": "Einfuhrumsatzsteuer-Vorauszahlung",
+        "quantity": 6,
+        "unit_price_cents": 72085
+      },
+      {
+        "description": "Dokumentengebühr",
+        "quantity": 4,
+        "unit_price_cents": 310146
+      }
+    ]
+  },
+  {
+    "id": "INV-0044",
+    "from_company_id": "C007",
+    "to_company_id": "C012",
+    "issue_date": "2025-10-13",
+    "due_date": "2025-11-12",
+    "payment_terms_days": 30,
+    "amount_cents": 2805653,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Lagerhaltungsgebühr",
+        "quantity": 3,
+        "unit_price_cents": 308719
+      },
+      {
+        "description": "Handling Fee",
+        "quantity": 7,
+        "unit_price_cents": 254845
+      },
+      {
+        "description": "Versicherungsprämie",
+        "quantity": 2,
+        "unit_price_cents": 260003
+      }
+    ]
+  },
+  {
+    "id": "INV-0045",
+    "from_company_id": "C012",
+    "to_company_id": "C007",
+    "issue_date": "2025-11-10",
+    "due_date": "2026-01-09",
+    "payment_terms_days": 60,
+    "amount_cents": 1158732,
+    "currency": "EUR",
+    "status": "paid",
+    "line_items": [
+      {
+        "description": "Umschlaggebühr",
+        "quantity": 3,
+        "unit_price_cents": 430906
+      },
+      {
+        "description": "Speditionsgebühr",
+        "quantity": 2,
+        "unit_price_cents": 38402
+      }
+    ]
+  },
+  {
+    "id": "INV-0046",
+    "from_company_id": "C007",
+    "to_company_id": "C012",
+    "issue_date": "2025-11-06",
+    "due_date": "2025-12-21",
+    "payment_terms_days": 45,
+    "amount_cents": 3077910,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Dokumentengebühr",
+        "quantity": 10,
+        "unit_price_cents": 18154
+      }
+    ]
+  },
+  {
+    "id": "INV-0047",
+    "from_company_id": "C007",
+    "to_company_id": "C013",
+    "issue_date": "2025-06-20",
+    "due_date": "2025-07-20",
+    "payment_terms_days": 30,
+    "amount_cents": 4281437,
+    "currency": "EUR",
+    "status": "paid",
+    "line_items": [
+      {
+        "description": "Handling Fee",
+        "quantity": 7,
+        "unit_price_cents": 64657
+      },
+      {
+        "description": "Lagerhaltungsgebühr",
+        "quantity": 5,
+        "unit_price_cents": 55663
+      }
+    ]
+  },
+  {
+    "id": "INV-0048",
+    "from_company_id": "C013",
+    "to_company_id": "C007",
+    "issue_date": "2025-06-30",
+    "due_date": "2025-08-29",
+    "payment_terms_days": 60,
+    "amount_cents": 4123800,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Frachtkosten",
+        "quantity": 3,
+        "unit_price_cents": 383065
+      },
+      {
+        "description": "Lagermiete",
+        "quantity": 5,
+        "unit_price_cents": 113792
+      }
+    ]
+  },
+  {
+    "id": "INV-0049",
+    "from_company_id": "C007",
+    "to_company_id": "C013",
+    "issue_date": "2025-12-30",
+    "due_date": "2026-02-28",
+    "payment_terms_days": 60,
+    "amount_cents": 3572586,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Handling Fee",
+        "quantity": 4,
+        "unit_price_cents": 48814
+      }
+    ]
+  },
+  {
+    "id": "INV-0050",
+    "from_company_id": "C007",
+    "to_company_id": "C014",
+    "issue_date": "2025-12-08",
+    "due_date": "2026-01-22",
+    "payment_terms_days": 45,
+    "amount_cents": 1653728,
+    "currency": "EUR",
+    "status": "paid",
+    "line_items": [
+      {
+        "description": "Versicherungsprämie",
+        "quantity": 2,
+        "unit_price_cents": 32858
+      },
+      {
+        "description": "Lagerhaltungsgebühr",
+        "quantity": 10,
+        "unit_price_cents": 396842
+      },
+      {
+        "description": "Handling Fee",
+        "quantity": 6,
+        "unit_price_cents": 106549
+      }
+    ]
+  },
+  {
+    "id": "INV-0051",
+    "from_company_id": "C014",
+    "to_company_id": "C007",
+    "issue_date": "2025-10-19",
+    "due_date": "2025-12-03",
+    "payment_terms_days": 45,
+    "amount_cents": 4091143,
+    "currency": "EUR",
+    "status": "paid",
+    "line_items": [
+      {
+        "description": "Speditionsgebühr",
+        "quantity": 6,
+        "unit_price_cents": 464547
+      }
+    ]
+  },
+  {
+    "id": "INV-0052",
+    "from_company_id": "C007",
+    "to_company_id": "C014",
+    "issue_date": "2025-02-14",
+    "due_date": "2025-04-15",
+    "payment_terms_days": 60,
+    "amount_cents": 483509,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Frachtkosten",
+        "quantity": 6,
+        "unit_price_cents": 441073
+      },
+      {
+        "description": "Lagermiete",
+        "quantity": 1,
+        "unit_price_cents": 189423
+      }
+    ]
+  },
+  {
+    "id": "INV-0053",
+    "from_company_id": "C008",
+    "to_company_id": "C012",
+    "issue_date": "2025-07-20",
+    "due_date": "2025-10-18",
+    "payment_terms_days": 90,
+    "amount_cents": 4238173,
+    "currency": "EUR",
+    "status": "paid",
+    "line_items": [
+      {
+        "description": "Zollabfertigungsgebühr",
+        "quantity": 1,
+        "unit_price_cents": 147701
+      }
+    ]
+  },
+  {
+    "id": "INV-0054",
+    "from_company_id": "C012",
+    "to_company_id": "C008",
+    "issue_date": "2025-01-16",
+    "due_date": "2025-03-02",
+    "payment_terms_days": 45,
+    "amount_cents": 3980152,
+    "currency": "EUR",
+    "status": "paid",
+    "line_items": [
+      {
+        "description": "Handling Fee",
+        "quantity": 3,
+        "unit_price_cents": 332380
+      }
+    ]
+  },
+  {
+    "id": "INV-0055",
+    "from_company_id": "C008",
+    "to_company_id": "C013",
+    "issue_date": "2025-08-26",
+    "due_date": "2025-10-10",
+    "payment_terms_days": 45,
+    "amount_cents": 560867,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Lagerhaltungsgebühr",
+        "quantity": 2,
+        "unit_price_cents": 352310
+      }
+    ]
+  },
+  {
+    "id": "INV-0056",
+    "from_company_id": "C013",
+    "to_company_id": "C008",
+    "issue_date": "2025-08-14",
+    "due_date": "2025-09-13",
+    "payment_terms_days": 30,
+    "amount_cents": 1388968,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Lagerhaltungsgebühr",
+        "quantity": 1,
+        "unit_price_cents": 228008
+      },
+      {
+        "description": "Handling Fee",
+        "quantity": 6,
+        "unit_price_cents": 249456
+      }
+    ]
+  },
+  {
+    "id": "INV-0057",
+    "from_company_id": "C008",
+    "to_company_id": "C014",
+    "issue_date": "2025-09-20",
+    "due_date": "2025-11-04",
+    "payment_terms_days": 45,
+    "amount_cents": 4042977,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Lagermiete",
+        "quantity": 2,
+        "unit_price_cents": 371637
+      },
+      {
+        "description": "Speditionsgebühr",
+        "quantity": 7,
+        "unit_price_cents": 211481
+      }
+    ]
+  },
+  {
+    "id": "INV-0058",
+    "from_company_id": "C014",
+    "to_company_id": "C008",
+    "issue_date": "2025-06-19",
+    "due_date": "2025-08-18",
+    "payment_terms_days": 60,
+    "amount_cents": 1261022,
+    "currency": "EUR",
+    "status": "paid",
+    "line_items": [
+      {
+        "description": "Versicherungsprämie",
+        "quantity": 4,
+        "unit_price_cents": 344092
+      },
+      {
+        "description": "Handling Fee",
+        "quantity": 4,
+        "unit_price_cents": 57990
+      },
+      {
+        "description": "Lagerhaltungsgebühr",
+        "quantity": 3,
+        "unit_price_cents": 390383
+      }
+    ]
+  },
+  {
+    "id": "INV-0059",
+    "from_company_id": "C009",
+    "to_company_id": "C012",
+    "issue_date": "2025-12-14",
+    "due_date": "2026-01-13",
+    "payment_terms_days": 30,
+    "amount_cents": 783969,
+    "currency": "EUR",
+    "status": "overdue",
+    "line_items": [
+      {
+        "description": "Lagerhaltungsgebühr",
+        "quantity": 7,
+        "unit_price_cents": 253654
+      },
+      {
+        "description": "Handling Fee",
+        "quantity": 6,
+        "unit_price_cents": 301925
+      },
+      {
+        "description": "Versicherungsprämie",
+        "quantity": 2,
+        "unit_price_cents": 35619
+      }
+    ]
+  },
+  {
+    "id": "INV-0060",
+    "from_company_id": "C012",
+    "to_company_id": "C009",
+    "issue_date": "2025-07-08",
+    "due_date": "2025-10-06",
+    "payment_terms_days": 90,
+    "amount_cents": 1155938,
+    "currency": "EUR",
+    "status": "paid",
+    "line_items": [
+      {
+        "description": "Lagermiete",
+        "quantity": 7,
+        "unit_price_cents": 197044
+      },
+      {
+        "description": "Speditionsgebühr",
+        "quantity": 8,
+        "unit_price_cents": 129431
+      }
+    ]
+  },
+  {
+    "id": "INV-0061",
+    "from_company_id": "C009",
+    "to_company_id": "C013",
+    "issue_date": "2025-09-04",
+    "due_date": "2025-11-03",
+    "payment_terms_days": 60,
+    "amount_cents": 2956977,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Lagerhaltungsgebühr",
+        "quantity": 1,
+        "unit_price_cents": 113515
+      },
+      {
+        "description": "Handling Fee",
+        "quantity": 5,
+        "unit_price_cents": 80903
+      }
+    ]
+  },
+  {
+    "id": "INV-0062",
+    "from_company_id": "C013",
+    "to_company_id": "C009",
+    "issue_date": "2025-08-31",
+    "due_date": "2025-09-30",
+    "payment_terms_days": 30,
+    "amount_cents": 3192863,
+    "currency": "EUR",
+    "status": "paid",
+    "line_items": [
+      {
+        "description": "Zollabfertigungsgebühr",
+        "quantity": 7,
+        "unit_price_cents": 109809
+      }
+    ]
+  },
+  {
+    "id": "INV-0063",
+    "from_company_id": "C010",
+    "to_company_id": "C012",
+    "issue_date": "2025-10-02",
+    "due_date": "2025-12-01",
+    "payment_terms_days": 60,
+    "amount_cents": 4194805,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Versicherungsprämie",
+        "quantity": 5,
+        "unit_price_cents": 179309
+      },
+      {
+        "description": "Handling Fee",
+        "quantity": 8,
+        "unit_price_cents": 10937
+      },
+      {
+        "description": "Lagerhaltungsgebühr",
+        "quantity": 1,
+        "unit_price_cents": 44092
+      }
+    ]
+  },
+  {
+    "id": "INV-0064",
+    "from_company_id": "C012",
+    "to_company_id": "C010",
+    "issue_date": "2025-02-21",
+    "due_date": "2025-05-22",
+    "payment_terms_days": 90,
+    "amount_cents": 1824283,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Umschlaggebühr",
+        "quantity": 6,
+        "unit_price_cents": 144800
+      },
+      {
+        "description": "Speditionsgebühr",
+        "quantity": 4,
+        "unit_price_cents": 157154
+      }
+    ]
+  },
+  {
+    "id": "INV-0065",
+    "from_company_id": "C010",
+    "to_company_id": "C014",
+    "issue_date": "2025-09-05",
+    "due_date": "2025-10-20",
+    "payment_terms_days": 45,
+    "amount_cents": 2924903,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Einfuhrumsatzsteuer-Vorauszahlung",
+        "quantity": 2,
+        "unit_price_cents": 434734
+      },
+      {
+        "description": "Zollabfertigungsgebühr",
+        "quantity": 5,
+        "unit_price_cents": 101485
+      },
+      {
+        "description": "Dokumentengebühr",
+        "quantity": 9,
+        "unit_price_cents": 479566
+      }
+    ]
+  },
+  {
+    "id": "INV-0066",
+    "from_company_id": "C014",
+    "to_company_id": "C010",
+    "issue_date": "2025-10-01",
+    "due_date": "2025-11-30",
+    "payment_terms_days": 60,
+    "amount_cents": 2493115,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Lagermiete",
+        "quantity": 8,
+        "unit_price_cents": 449169
+      },
+      {
+        "description": "Frachtkosten",
+        "quantity": 1,
+        "unit_price_cents": 447172
+      },
+      {
+        "description": "Speditionsgebühr",
+        "quantity": 3,
+        "unit_price_cents": 201565
+      }
+    ]
+  },
+  {
+    "id": "INV-0067",
+    "from_company_id": "C010",
+    "to_company_id": "C014",
+    "issue_date": "2025-08-28",
+    "due_date": "2025-10-12",
+    "payment_terms_days": 45,
+    "amount_cents": 2949199,
+    "currency": "EUR",
+    "status": "overdue",
+    "line_items": [
+      {
+        "description": "Einfuhrumsatzsteuer-Vorauszahlung",
+        "quantity": 9,
+        "unit_price_cents": 41490
+      },
+      {
+        "description": "Zollabfertigungsgebühr",
+        "quantity": 5,
+        "unit_price_cents": 294062
+      }
+    ]
+  },
+  {
+    "id": "INV-0068",
+    "from_company_id": "C011",
+    "to_company_id": "C001",
+    "issue_date": "2025-04-07",
+    "due_date": "2025-05-07",
+    "payment_terms_days": 30,
+    "amount_cents": 1285109,
+    "currency": "EUR",
+    "status": "paid",
+    "line_items": [
+      {
+        "description": "Zollabfertigungsgebühr",
+        "quantity": 6,
+        "unit_price_cents": 142250
+      }
+    ]
+  },
+  {
+    "id": "INV-0069",
+    "from_company_id": "C001",
+    "to_company_id": "C011",
+    "issue_date": "2025-04-19",
+    "due_date": "2025-07-18",
+    "payment_terms_days": 90,
+    "amount_cents": 4679331,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Einfuhrumsatzsteuer-Vorauszahlung",
+        "quantity": 4,
+        "unit_price_cents": 294855
+      },
+      {
+        "description": "Zollabfertigungsgebühr",
+        "quantity": 9,
+        "unit_price_cents": 439321
+      },
+      {
+        "description": "Dokumentengebühr",
+        "quantity": 10,
+        "unit_price_cents": 68072
+      }
+    ]
+  },
+  {
+    "id": "INV-0070",
+    "from_company_id": "C011",
+    "to_company_id": "C002",
+    "issue_date": "2025-01-22",
+    "due_date": "2025-02-21",
+    "payment_terms_days": 30,
+    "amount_cents": 2456938,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Versicherungsprämie",
+        "quantity": 10,
+        "unit_price_cents": 35469
+      },
+      {
+        "description": "Lagerhaltungsgebühr",
+        "quantity": 5,
+        "unit_price_cents": 481958
+      }
+    ]
+  },
+  {
+    "id": "INV-0071",
+    "from_company_id": "C002",
+    "to_company_id": "C011",
+    "issue_date": "2025-02-02",
+    "due_date": "2025-03-04",
+    "payment_terms_days": 30,
+    "amount_cents": 3384124,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Speditionsgebühr",
+        "quantity": 4,
+        "unit_price_cents": 36942
+      }
+    ]
+  },
+  {
+    "id": "INV-0072",
+    "from_company_id": "C011",
+    "to_company_id": "C002",
+    "issue_date": "2025-12-02",
+    "due_date": "2026-01-01",
+    "payment_terms_days": 30,
+    "amount_cents": 4705208,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Handling Fee",
+        "quantity": 2,
+        "unit_price_cents": 248027
+      }
+    ]
+  },
+  {
+    "id": "INV-0073",
+    "from_company_id": "C011",
+    "to_company_id": "C003",
+    "issue_date": "2025-11-18",
+    "due_date": "2026-01-02",
+    "payment_terms_days": 45,
+    "amount_cents": 557060,
+    "currency": "EUR",
+    "status": "overdue",
+    "line_items": [
+      {
+        "description": "Umschlaggebühr",
+        "quantity": 1,
+        "unit_price_cents": 310478
+      },
+      {
+        "description": "Frachtkosten",
+        "quantity": 7,
+        "unit_price_cents": 84882
+      },
+      {
+        "description": "Speditionsgebühr",
+        "quantity": 2,
+        "unit_price_cents": 493811
+      }
+    ]
+  },
+  {
+    "id": "INV-0074",
+    "from_company_id": "C003",
+    "to_company_id": "C011",
+    "issue_date": "2025-02-17",
+    "due_date": "2025-05-18",
+    "payment_terms_days": 90,
+    "amount_cents": 2763752,
+    "currency": "EUR",
+    "status": "paid",
+    "line_items": [
+      {
+        "description": "Lagerhaltungsgebühr",
+        "quantity": 6,
+        "unit_price_cents": 76657
+      }
+    ]
+  },
+  {
+    "id": "INV-0075",
+    "from_company_id": "C011",
+    "to_company_id": "C004",
+    "issue_date": "2025-09-04",
+    "due_date": "2025-10-19",
+    "payment_terms_days": 45,
+    "amount_cents": 2667085,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Einfuhrumsatzsteuer-Vorauszahlung",
+        "quantity": 10,
+        "unit_price_cents": 160818
+      },
+      {
+        "description": "Zollabfertigungsgebühr",
+        "quantity": 2,
+        "unit_price_cents": 426974
+      },
+      {
+        "description": "Dokumentengebühr",
+        "quantity": 2,
+        "unit_price_cents": 289184
+      }
+    ]
+  },
+  {
+    "id": "INV-0076",
+    "from_company_id": "C004",
+    "to_company_id": "C011",
+    "issue_date": "2025-07-24",
+    "due_date": "2025-10-22",
+    "payment_terms_days": 90,
+    "amount_cents": 4365103,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Zollabfertigungsgebühr",
+        "quantity": 1,
+        "unit_price_cents": 29252
+      },
+      {
+        "description": "Einfuhrumsatzsteuer-Vorauszahlung",
+        "quantity": 10,
+        "unit_price_cents": 343151
+      },
+      {
+        "description": "Dokumentengebühr",
+        "quantity": 5,
+        "unit_price_cents": 257362
+      }
+    ]
+  },
+  {
+    "id": "INV-0077",
+    "from_company_id": "C011",
+    "to_company_id": "C005",
+    "issue_date": "2025-03-24",
+    "due_date": "2025-04-23",
+    "payment_terms_days": 30,
+    "amount_cents": 3251378,
+    "currency": "EUR",
+    "status": "paid",
+    "line_items": [
+      {
+        "description": "Frachtkosten",
+        "quantity": 2,
+        "unit_price_cents": 141627
+      },
+      {
+        "description": "Lagermiete",
+        "quantity": 2,
+        "unit_price_cents": 263089
+      },
+      {
+        "description": "Umschlaggebühr",
+        "quantity": 2,
+        "unit_price_cents": 165000
+      }
+    ]
+  },
+  {
+    "id": "INV-0078",
+    "from_company_id": "C005",
+    "to_company_id": "C011",
+    "issue_date": "2025-04-19",
+    "due_date": "2025-06-03",
+    "payment_terms_days": 45,
+    "amount_cents": 2171358,
+    "currency": "EUR",
+    "status": "overdue",
+    "line_items": [
+      {
+        "description": "Versicherungsprämie",
+        "quantity": 2,
+        "unit_price_cents": 439079
+      },
+      {
+        "description": "Handling Fee",
+        "quantity": 3,
+        "unit_price_cents": 77056
+      }
+    ]
+  },
+  {
+    "id": "INV-0079",
+    "from_company_id": "C011",
+    "to_company_id": "C006",
+    "issue_date": "2025-05-31",
+    "due_date": "2025-08-29",
+    "payment_terms_days": 90,
+    "amount_cents": 1129901,
+    "currency": "EUR",
+    "status": "paid",
+    "line_items": [
+      {
+        "description": "Zollabfertigungsgebühr",
+        "quantity": 5,
+        "unit_price_cents": 303656
+      },
+      {
+        "description": "Einfuhrumsatzsteuer-Vorauszahlung",
+        "quantity": 8,
+        "unit_price_cents": 21803
+      }
+    ]
+  },
+  {
+    "id": "INV-0080",
+    "from_company_id": "C006",
+    "to_company_id": "C011",
+    "issue_date": "2025-01-08",
+    "due_date": "2025-02-22",
+    "payment_terms_days": 45,
+    "amount_cents": 4722342,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Versicherungsprämie",
+        "quantity": 5,
+        "unit_price_cents": 350241
+      },
+      {
+        "description": "Handling Fee",
+        "quantity": 1,
+        "unit_price_cents": 172101
+      }
+    ]
+  },
+  {
+    "id": "INV-0081",
+    "from_company_id": "C012",
+    "to_company_id": "C004",
+    "issue_date": "2025-06-07",
+    "due_date": "2025-07-07",
+    "payment_terms_days": 30,
+    "amount_cents": 3404808,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Dokumentengebühr",
+        "quantity": 6,
+        "unit_price_cents": 410825
+      },
+      {
+        "description": "Einfuhrumsatzsteuer-Vorauszahlung",
+        "quantity": 4,
+        "unit_price_cents": 64183
+      }
+    ]
+  },
+  {
+    "id": "INV-0082",
+    "from_company_id": "C004",
+    "to_company_id": "C012",
+    "issue_date": "2025-04-03",
+    "due_date": "2025-05-03",
+    "payment_terms_days": 30,
+    "amount_cents": 3721936,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Dokumentengebühr",
+        "quantity": 1,
+        "unit_price_cents": 498689
+      },
+      {
+        "description": "Einfuhrumsatzsteuer-Vorauszahlung",
+        "quantity": 6,
+        "unit_price_cents": 182899
+      },
+      {
+        "description": "Zollabfertigungsgebühr",
+        "quantity": 7,
+        "unit_price_cents": 48280
+      }
+    ]
+  },
+  {
+    "id": "INV-0083",
+    "from_company_id": "C012",
+    "to_company_id": "C006",
+    "issue_date": "2025-05-01",
+    "due_date": "2025-06-30",
+    "payment_terms_days": 60,
+    "amount_cents": 2826610,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Handling Fee",
+        "quantity": 5,
+        "unit_price_cents": 90232
+      },
+      {
+        "description": "Versicherungsprämie",
+        "quantity": 9,
+        "unit_price_cents": 357716
+      }
+    ]
+  },
+  {
+    "id": "INV-0084",
+    "from_company_id": "C006",
+    "to_company_id": "C012",
+    "issue_date": "2025-12-22",
+    "due_date": "2026-01-21",
+    "payment_terms_days": 30,
+    "amount_cents": 2332984,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Lagerhaltungsgebühr",
+        "quantity": 3,
+        "unit_price_cents": 282898
+      },
+      {
+        "description": "Handling Fee",
+        "quantity": 1,
+        "unit_price_cents": 69195
+      },
+      {
+        "description": "Versicherungsprämie",
+        "quantity": 10,
+        "unit_price_cents": 80757
+      }
+    ]
+  },
+  {
+    "id": "INV-0085",
+    "from_company_id": "C013",
+    "to_company_id": "C001",
+    "issue_date": "2025-01-30",
+    "due_date": "2025-03-16",
+    "payment_terms_days": 45,
+    "amount_cents": 4141184,
+    "currency": "EUR",
+    "status": "overdue",
+    "line_items": [
+      {
+        "description": "Lagermiete",
+        "quantity": 4,
+        "unit_price_cents": 473737
+      },
+      {
+        "description": "Umschlaggebühr",
+        "quantity": 1,
+        "unit_price_cents": 238107
+      }
+    ]
+  },
+  {
+    "id": "INV-0086",
+    "from_company_id": "C001",
+    "to_company_id": "C013",
+    "issue_date": "2025-11-07",
+    "due_date": "2026-01-06",
+    "payment_terms_days": 60,
+    "amount_cents": 1304699,
+    "currency": "EUR",
+    "status": "paid",
+    "line_items": [
+      {
+        "description": "Zollabfertigungsgebühr",
+        "quantity": 10,
+        "unit_price_cents": 290492
+      }
+    ]
+  },
+  {
+    "id": "INV-0087",
+    "from_company_id": "C013",
+    "to_company_id": "C002",
+    "issue_date": "2025-06-28",
+    "due_date": "2025-08-12",
+    "payment_terms_days": 45,
+    "amount_cents": 1774353,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Frachtkosten",
+        "quantity": 6,
+        "unit_price_cents": 71284
+      },
+      {
+        "description": "Lagermiete",
+        "quantity": 9,
+        "unit_price_cents": 286402
+      }
+    ]
+  },
+  {
+    "id": "INV-0088",
+    "from_company_id": "C002",
+    "to_company_id": "C013",
+    "issue_date": "2025-02-06",
+    "due_date": "2025-03-08",
+    "payment_terms_days": 30,
+    "amount_cents": 2627818,
+    "currency": "EUR",
+    "status": "paid",
+    "line_items": [
+      {
+        "description": "Dokumentengebühr",
+        "quantity": 1,
+        "unit_price_cents": 305688
+      },
+      {
+        "description": "Einfuhrumsatzsteuer-Vorauszahlung",
+        "quantity": 7,
+        "unit_price_cents": 168184
+      },
+      {
+        "description": "Zollabfertigungsgebühr",
+        "quantity": 4,
+        "unit_price_cents": 117791
+      }
+    ]
+  },
+  {
+    "id": "INV-0089",
+    "from_company_id": "C013",
+    "to_company_id": "C002",
+    "issue_date": "2025-05-05",
+    "due_date": "2025-07-04",
+    "payment_terms_days": 60,
+    "amount_cents": 1585684,
+    "currency": "EUR",
+    "status": "paid",
+    "line_items": [
+      {
+        "description": "Lagermiete",
+        "quantity": 8,
+        "unit_price_cents": 269091
+      },
+      {
+        "description": "Frachtkosten",
+        "quantity": 3,
+        "unit_price_cents": 328454
+      }
+    ]
+  },
+  {
+    "id": "INV-0090",
+    "from_company_id": "C013",
+    "to_company_id": "C003",
+    "issue_date": "2025-01-26",
+    "due_date": "2025-04-26",
+    "payment_terms_days": 90,
+    "amount_cents": 1280308,
+    "currency": "EUR",
+    "status": "overdue",
+    "line_items": [
+      {
+        "description": "Einfuhrumsatzsteuer-Vorauszahlung",
+        "quantity": 4,
+        "unit_price_cents": 97208
+      },
+      {
+        "description": "Dokumentengebühr",
+        "quantity": 3,
+        "unit_price_cents": 271197
+      },
+      {
+        "description": "Zollabfertigungsgebühr",
+        "quantity": 5,
+        "unit_price_cents": 91348
+      }
+    ]
+  },
+  {
+    "id": "INV-0091",
+    "from_company_id": "C003",
+    "to_company_id": "C013",
+    "issue_date": "2025-06-26",
+    "due_date": "2025-09-24",
+    "payment_terms_days": 90,
+    "amount_cents": 1828052,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Umschlaggebühr",
+        "quantity": 1,
+        "unit_price_cents": 33446
+      },
+      {
+        "description": "Lagermiete",
+        "quantity": 10,
+        "unit_price_cents": 93672
+      }
+    ]
+  },
+  {
+    "id": "INV-0092",
+    "from_company_id": "C013",
+    "to_company_id": "C004",
+    "issue_date": "2025-03-14",
+    "due_date": "2025-04-28",
+    "payment_terms_days": 45,
+    "amount_cents": 615331,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Lagermiete",
+        "quantity": 8,
+        "unit_price_cents": 338734
+      },
+      {
+        "description": "Umschlaggebühr",
+        "quantity": 9,
+        "unit_price_cents": 312211
+      }
+    ]
+  },
+  {
+    "id": "INV-0093",
+    "from_company_id": "C004",
+    "to_company_id": "C013",
+    "issue_date": "2025-03-04",
+    "due_date": "2025-05-03",
+    "payment_terms_days": 60,
+    "amount_cents": 1679164,
+    "currency": "EUR",
+    "status": "overdue",
+    "line_items": [
+      {
+        "description": "Frachtkosten",
+        "quantity": 7,
+        "unit_price_cents": 392440
+      }
+    ]
+  },
+  {
+    "id": "INV-0094",
+    "from_company_id": "C013",
+    "to_company_id": "C005",
+    "issue_date": "2025-12-01",
+    "due_date": "2026-01-15",
+    "payment_terms_days": 45,
+    "amount_cents": 2703300,
+    "currency": "EUR",
+    "status": "overdue",
+    "line_items": [
+      {
+        "description": "Lagerhaltungsgebühr",
+        "quantity": 1,
+        "unit_price_cents": 68915
+      },
+      {
+        "description": "Versicherungsprämie",
+        "quantity": 8,
+        "unit_price_cents": 280707
+      },
+      {
+        "description": "Handling Fee",
+        "quantity": 6,
+        "unit_price_cents": 98324
+      }
+    ]
+  },
+  {
+    "id": "INV-0095",
+    "from_company_id": "C005",
+    "to_company_id": "C013",
+    "issue_date": "2025-07-30",
+    "due_date": "2025-09-28",
+    "payment_terms_days": 60,
+    "amount_cents": 1089779,
+    "currency": "EUR",
+    "status": "overdue",
+    "line_items": [
+      {
+        "description": "Frachtkosten",
+        "quantity": 1,
+        "unit_price_cents": 216384
+      },
+      {
+        "description": "Lagermiete",
+        "quantity": 1,
+        "unit_price_cents": 466758
+      },
+      {
+        "description": "Umschlaggebühr",
+        "quantity": 8,
+        "unit_price_cents": 229386
+      }
+    ]
+  },
+  {
+    "id": "INV-0096",
+    "from_company_id": "C014",
+    "to_company_id": "C002",
+    "issue_date": "2025-06-30",
+    "due_date": "2025-08-29",
+    "payment_terms_days": 60,
+    "amount_cents": 4897369,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Versicherungsprämie",
+        "quantity": 6,
+        "unit_price_cents": 166937
+      },
+      {
+        "description": "Handling Fee",
+        "quantity": 7,
+        "unit_price_cents": 359072
+      }
+    ]
+  },
+  {
+    "id": "INV-0097",
+    "from_company_id": "C002",
+    "to_company_id": "C014",
+    "issue_date": "2025-06-14",
+    "due_date": "2025-07-29",
+    "payment_terms_days": 45,
+    "amount_cents": 2948165,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Einfuhrumsatzsteuer-Vorauszahlung",
+        "quantity": 4,
+        "unit_price_cents": 127347
+      }
+    ]
+  },
+  {
+    "id": "INV-0098",
+    "from_company_id": "C014",
+    "to_company_id": "C002",
+    "issue_date": "2025-11-24",
+    "due_date": "2026-01-23",
+    "payment_terms_days": 60,
+    "amount_cents": 3769078,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Dokumentengebühr",
+        "quantity": 6,
+        "unit_price_cents": 451268
+      }
+    ]
+  },
+  {
+    "id": "INV-0099",
+    "from_company_id": "C014",
+    "to_company_id": "C004",
+    "issue_date": "2025-06-26",
+    "due_date": "2025-08-10",
+    "payment_terms_days": 45,
+    "amount_cents": 4134777,
+    "currency": "EUR",
+    "status": "paid",
+    "line_items": [
+      {
+        "description": "Dokumentengebühr",
+        "quantity": 7,
+        "unit_price_cents": 329412
+      },
+      {
+        "description": "Zollabfertigungsgebühr",
+        "quantity": 4,
+        "unit_price_cents": 89135
+      }
+    ]
+  },
+  {
+    "id": "INV-0100",
+    "from_company_id": "C004",
+    "to_company_id": "C014",
+    "issue_date": "2025-12-25",
+    "due_date": "2026-02-23",
+    "payment_terms_days": 60,
+    "amount_cents": 711370,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Dokumentengebühr",
+        "quantity": 6,
+        "unit_price_cents": 328516
+      },
+      {
+        "description": "Einfuhrumsatzsteuer-Vorauszahlung",
+        "quantity": 4,
+        "unit_price_cents": 95354
+      },
+      {
+        "description": "Zollabfertigungsgebühr",
+        "quantity": 4,
+        "unit_price_cents": 352573
+      }
+    ]
+  },
+  {
+    "id": "INV-0101",
+    "from_company_id": "C014",
+    "to_company_id": "C005",
+    "issue_date": "2025-08-18",
+    "due_date": "2025-09-17",
+    "payment_terms_days": 30,
+    "amount_cents": 4923070,
+    "currency": "EUR",
+    "status": "paid",
+    "line_items": [
+      {
+        "description": "Umschlaggebühr",
+        "quantity": 3,
+        "unit_price_cents": 444116
+      },
+      {
+        "description": "Speditionsgebühr",
+        "quantity": 2,
+        "unit_price_cents": 77337
+      }
+    ]
+  },
+  {
+    "id": "INV-0102",
+    "from_company_id": "C005",
+    "to_company_id": "C014",
+    "issue_date": "2025-05-27",
+    "due_date": "2025-07-26",
+    "payment_terms_days": 60,
+    "amount_cents": 4924830,
+    "currency": "EUR",
+    "status": "paid",
+    "line_items": [
+      {
+        "description": "Frachtkosten",
+        "quantity": 10,
+        "unit_price_cents": 165300
+      }
+    ]
+  },
+  {
+    "id": "INV-0103",
+    "from_company_id": "C015",
+    "to_company_id": "C001",
+    "issue_date": "2025-02-06",
+    "due_date": "2025-03-08",
+    "payment_terms_days": 30,
+    "amount_cents": 1530862,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Lagermiete",
+        "quantity": 4,
+        "unit_price_cents": 244773
+      },
+      {
+        "description": "Speditionsgebühr",
+        "quantity": 10,
+        "unit_price_cents": 271453
+      }
+    ]
+  },
+  {
+    "id": "INV-0104",
+    "from_company_id": "C001",
+    "to_company_id": "C015",
+    "issue_date": "2025-07-04",
+    "due_date": "2025-09-02",
+    "payment_terms_days": 60,
+    "amount_cents": 1830271,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Zollabfertigungsgebühr",
+        "quantity": 8,
+        "unit_price_cents": 478546
+      },
+      {
+        "description": "Dokumentengebühr",
+        "quantity": 4,
+        "unit_price_cents": 195850
+      },
+      {
+        "description": "Einfuhrumsatzsteuer-Vorauszahlung",
+        "quantity": 7,
+        "unit_price_cents": 32075
+      }
+    ]
+  },
+  {
+    "id": "INV-0105",
+    "from_company_id": "C015",
+    "to_company_id": "C002",
+    "issue_date": "2025-03-12",
+    "due_date": "2025-05-11",
+    "payment_terms_days": 60,
+    "amount_cents": 887360,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Speditionsgebühr",
+        "quantity": 1,
+        "unit_price_cents": 107737
+      }
+    ]
+  },
+  {
+    "id": "INV-0106",
+    "from_company_id": "C002",
+    "to_company_id": "C015",
+    "issue_date": "2025-11-17",
+    "due_date": "2026-01-16",
+    "payment_terms_days": 60,
+    "amount_cents": 4547580,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Handling Fee",
+        "quantity": 2,
+        "unit_price_cents": 128670
+      },
+      {
+        "description": "Lagerhaltungsgebühr",
+        "quantity": 3,
+        "unit_price_cents": 265538
+      },
+      {
+        "description": "Versicherungsprämie",
+        "quantity": 1,
+        "unit_price_cents": 463951
+      }
+    ]
+  },
+  {
+    "id": "INV-0107",
+    "from_company_id": "C015",
+    "to_company_id": "C002",
+    "issue_date": "2025-06-19",
+    "due_date": "2025-07-19",
+    "payment_terms_days": 30,
+    "amount_cents": 4749974,
+    "currency": "EUR",
+    "status": "paid",
+    "line_items": [
+      {
+        "description": "Einfuhrumsatzsteuer-Vorauszahlung",
+        "quantity": 10,
+        "unit_price_cents": 379244
+      },
+      {
+        "description": "Zollabfertigungsgebühr",
+        "quantity": 10,
+        "unit_price_cents": 390329
+      },
+      {
+        "description": "Dokumentengebühr",
+        "quantity": 9,
+        "unit_price_cents": 243024
+      }
+    ]
+  },
+  {
+    "id": "INV-0108",
+    "from_company_id": "C015",
+    "to_company_id": "C003",
+    "issue_date": "2025-10-10",
+    "due_date": "2025-12-09",
+    "payment_terms_days": 60,
+    "amount_cents": 1105003,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Umschlaggebühr",
+        "quantity": 6,
+        "unit_price_cents": 277856
+      },
+      {
+        "description": "Speditionsgebühr",
+        "quantity": 5,
+        "unit_price_cents": 217400
+      }
+    ]
+  },
+  {
+    "id": "INV-0109",
+    "from_company_id": "C003",
+    "to_company_id": "C015",
+    "issue_date": "2025-06-03",
+    "due_date": "2025-07-18",
+    "payment_terms_days": 45,
+    "amount_cents": 3210178,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Lagerhaltungsgebühr",
+        "quantity": 10,
+        "unit_price_cents": 334252
+      },
+      {
+        "description": "Versicherungsprämie",
+        "quantity": 3,
+        "unit_price_cents": 399564
+      }
+    ]
+  },
+  {
+    "id": "INV-0110",
+    "from_company_id": "C015",
+    "to_company_id": "C004",
+    "issue_date": "2025-06-24",
+    "due_date": "2025-08-23",
+    "payment_terms_days": 60,
+    "amount_cents": 2431189,
+    "currency": "EUR",
+    "status": "overdue",
+    "line_items": [
+      {
+        "description": "Einfuhrumsatzsteuer-Vorauszahlung",
+        "quantity": 4,
+        "unit_price_cents": 239372
+      },
+      {
+        "description": "Zollabfertigungsgebühr",
+        "quantity": 10,
+        "unit_price_cents": 442359
+      },
+      {
+        "description": "Dokumentengebühr",
+        "quantity": 10,
+        "unit_price_cents": 260161
+      }
+    ]
+  },
+  {
+    "id": "INV-0111",
+    "from_company_id": "C004",
+    "to_company_id": "C015",
+    "issue_date": "2025-12-29",
+    "due_date": "2026-02-27",
+    "payment_terms_days": 60,
+    "amount_cents": 3867181,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Zollabfertigungsgebühr",
+        "quantity": 4,
+        "unit_price_cents": 235063
+      },
+      {
+        "description": "Dokumentengebühr",
+        "quantity": 5,
+        "unit_price_cents": 356772
+      }
+    ]
+  },
+  {
+    "id": "INV-0112",
+    "from_company_id": "C016",
+    "to_company_id": "C001",
+    "issue_date": "2025-09-06",
+    "due_date": "2025-10-21",
+    "payment_terms_days": 45,
+    "amount_cents": 2665866,
+    "currency": "EUR",
+    "status": "paid",
+    "line_items": [
+      {
+        "description": "Lagermiete",
+        "quantity": 7,
+        "unit_price_cents": 367880
+      },
+      {
+        "description": "Frachtkosten",
+        "quantity": 6,
+        "unit_price_cents": 267536
+      },
+      {
+        "description": "Umschlaggebühr",
+        "quantity": 3,
+        "unit_price_cents": 65738
+      }
+    ]
+  },
+  {
+    "id": "INV-0113",
+    "from_company_id": "C001",
+    "to_company_id": "C016",
+    "issue_date": "2025-01-31",
+    "due_date": "2025-05-01",
+    "payment_terms_days": 90,
+    "amount_cents": 1586312,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Speditionsgebühr",
+        "quantity": 4,
+        "unit_price_cents": 396864
+      },
+      {
+        "description": "Lagermiete",
+        "quantity": 1,
+        "unit_price_cents": 407512
+      }
+    ]
+  },
+  {
+    "id": "INV-0114",
+    "from_company_id": "C016",
+    "to_company_id": "C001",
+    "issue_date": "2025-01-01",
+    "due_date": "2025-03-02",
+    "payment_terms_days": 60,
+    "amount_cents": 393487,
+    "currency": "EUR",
+    "status": "paid",
+    "line_items": [
+      {
+        "description": "Einfuhrumsatzsteuer-Vorauszahlung",
+        "quantity": 1,
+        "unit_price_cents": 217497
+      }
+    ]
+  },
+  {
+    "id": "INV-0115",
+    "from_company_id": "C016",
+    "to_company_id": "C002",
+    "issue_date": "2025-05-01",
+    "due_date": "2025-06-15",
+    "payment_terms_days": 45,
+    "amount_cents": 599856,
+    "currency": "EUR",
+    "status": "overdue",
+    "line_items": [
+      {
+        "description": "Speditionsgebühr",
+        "quantity": 6,
+        "unit_price_cents": 232430
+      },
+      {
+        "description": "Umschlaggebühr",
+        "quantity": 6,
+        "unit_price_cents": 124775
+      },
+      {
+        "description": "Lagermiete",
+        "quantity": 5,
+        "unit_price_cents": 430299
+      }
+    ]
+  },
+  {
+    "id": "INV-0116",
+    "from_company_id": "C002",
+    "to_company_id": "C016",
+    "issue_date": "2025-04-01",
+    "due_date": "2025-06-30",
+    "payment_terms_days": 90,
+    "amount_cents": 898956,
+    "currency": "EUR",
+    "status": "paid",
+    "line_items": [
+      {
+        "description": "Umschlaggebühr",
+        "quantity": 7,
+        "unit_price_cents": 223555
+      },
+      {
+        "description": "Frachtkosten",
+        "quantity": 6,
+        "unit_price_cents": 56588
+      },
+      {
+        "description": "Lagermiete",
+        "quantity": 5,
+        "unit_price_cents": 322265
+      }
+    ]
+  },
+  {
+    "id": "INV-0117",
+    "from_company_id": "C016",
+    "to_company_id": "C002",
+    "issue_date": "2025-01-11",
+    "due_date": "2025-02-10",
+    "payment_terms_days": 30,
+    "amount_cents": 1637694,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Umschlaggebühr",
+        "quantity": 7,
+        "unit_price_cents": 49663
+      },
+      {
+        "description": "Speditionsgebühr",
+        "quantity": 1,
+        "unit_price_cents": 326876
+      }
+    ]
+  },
+  {
+    "id": "INV-0118",
+    "from_company_id": "C016",
+    "to_company_id": "C003",
+    "issue_date": "2025-09-20",
+    "due_date": "2025-11-19",
+    "payment_terms_days": 60,
+    "amount_cents": 1325043,
+    "currency": "EUR",
+    "status": "paid",
+    "line_items": [
+      {
+        "description": "Handling Fee",
+        "quantity": 10,
+        "unit_price_cents": 252551
+      },
+      {
+        "description": "Versicherungsprämie",
+        "quantity": 2,
+        "unit_price_cents": 231121
+      }
+    ]
+  },
+  {
+    "id": "INV-0119",
+    "from_company_id": "C003",
+    "to_company_id": "C016",
+    "issue_date": "2025-01-25",
+    "due_date": "2025-02-24",
+    "payment_terms_days": 30,
+    "amount_cents": 4038956,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Handling Fee",
+        "quantity": 2,
+        "unit_price_cents": 193881
+      },
+      {
+        "description": "Lagerhaltungsgebühr",
+        "quantity": 6,
+        "unit_price_cents": 245765
+      }
+    ]
+  },
+  {
+    "id": "INV-0120",
+    "from_company_id": "C016",
+    "to_company_id": "C004",
+    "issue_date": "2025-04-24",
+    "due_date": "2025-06-23",
+    "payment_terms_days": 60,
+    "amount_cents": 2276973,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Dokumentengebühr",
+        "quantity": 5,
+        "unit_price_cents": 58910
+      },
+      {
+        "description": "Zollabfertigungsgebühr",
+        "quantity": 2,
+        "unit_price_cents": 17728
+      },
+      {
+        "description": "Einfuhrumsatzsteuer-Vorauszahlung",
+        "quantity": 1,
+        "unit_price_cents": 124908
+      }
+    ]
+  },
+  {
+    "id": "INV-0121",
+    "from_company_id": "C004",
+    "to_company_id": "C016",
+    "issue_date": "2025-11-04",
+    "due_date": "2025-12-04",
+    "payment_terms_days": 30,
+    "amount_cents": 769924,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Lagerhaltungsgebühr",
+        "quantity": 5,
+        "unit_price_cents": 118450
+      },
+      {
+        "description": "Handling Fee",
+        "quantity": 3,
+        "unit_price_cents": 315546
+      }
+    ]
+  },
+  {
+    "id": "INV-0122",
+    "from_company_id": "C016",
+    "to_company_id": "C004",
+    "issue_date": "2025-10-31",
+    "due_date": "2025-12-15",
+    "payment_terms_days": 45,
+    "amount_cents": 1943701,
+    "currency": "EUR",
+    "status": "paid",
+    "line_items": [
+      {
+        "description": "Umschlaggebühr",
+        "quantity": 5,
+        "unit_price_cents": 314363
+      }
+    ]
+  },
+  {
+    "id": "INV-0123",
+    "from_company_id": "C017",
+    "to_company_id": "C011",
+    "issue_date": "2025-03-13",
+    "due_date": "2025-04-12",
+    "payment_terms_days": 30,
+    "amount_cents": 4450059,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Dokumentengebühr",
+        "quantity": 5,
+        "unit_price_cents": 345654
+      }
+    ]
+  },
+  {
+    "id": "INV-0124",
+    "from_company_id": "C017",
+    "to_company_id": "C012",
+    "issue_date": "2025-02-22",
+    "due_date": "2025-04-08",
+    "payment_terms_days": 45,
+    "amount_cents": 3002859,
+    "currency": "EUR",
+    "status": "overdue",
+    "line_items": [
+      {
+        "description": "Lagerhaltungsgebühr",
+        "quantity": 1,
+        "unit_price_cents": 186939
+      }
+    ]
+  },
+  {
+    "id": "INV-0125",
+    "from_company_id": "C017",
+    "to_company_id": "C013",
+    "issue_date": "2025-10-03",
+    "due_date": "2025-12-02",
+    "payment_terms_days": 60,
+    "amount_cents": 2987879,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Lagerhaltungsgebühr",
+        "quantity": 9,
+        "unit_price_cents": 360262
+      },
+      {
+        "description": "Versicherungsprämie",
+        "quantity": 6,
+        "unit_price_cents": 110028
+      }
+    ]
+  },
+  {
+    "id": "INV-0126",
+    "from_company_id": "C015",
+    "to_company_id": "C017",
+    "issue_date": "2025-01-22",
+    "due_date": "2025-04-22",
+    "payment_terms_days": 90,
+    "amount_cents": 1633503,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Handling Fee",
+        "quantity": 9,
+        "unit_price_cents": 385765
+      },
+      {
+        "description": "Lagerhaltungsgebühr",
+        "quantity": 6,
+        "unit_price_cents": 327094
+      },
+      {
+        "description": "Versicherungsprämie",
+        "quantity": 10,
+        "unit_price_cents": 466224
+      }
+    ]
+  },
+  {
+    "id": "INV-0127",
+    "from_company_id": "C018",
+    "to_company_id": "C011",
+    "issue_date": "2025-08-26",
+    "due_date": "2025-10-10",
+    "payment_terms_days": 45,
+    "amount_cents": 2258002,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Handling Fee",
+        "quantity": 3,
+        "unit_price_cents": 385065
+      },
+      {
+        "description": "Lagerhaltungsgebühr",
+        "quantity": 5,
+        "unit_price_cents": 468989
+      }
+    ]
+  },
+  {
+    "id": "INV-0128",
+    "from_company_id": "C018",
+    "to_company_id": "C012",
+    "issue_date": "2025-02-15",
+    "due_date": "2025-04-16",
+    "payment_terms_days": 60,
+    "amount_cents": 3067097,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Handling Fee",
+        "quantity": 9,
+        "unit_price_cents": 269325
+      },
+      {
+        "description": "Versicherungsprämie",
+        "quantity": 8,
+        "unit_price_cents": 27493
+      }
+    ]
+  },
+  {
+    "id": "INV-0129",
+    "from_company_id": "C018",
+    "to_company_id": "C013",
+    "issue_date": "2025-10-23",
+    "due_date": "2026-01-21",
+    "payment_terms_days": 90,
+    "amount_cents": 4152698,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Einfuhrumsatzsteuer-Vorauszahlung",
+        "quantity": 4,
+        "unit_price_cents": 445904
+      },
+      {
+        "description": "Dokumentengebühr",
+        "quantity": 1,
+        "unit_price_cents": 213840
+      }
+    ]
+  },
+  {
+    "id": "INV-0130",
+    "from_company_id": "C015",
+    "to_company_id": "C018",
+    "issue_date": "2025-12-17",
+    "due_date": "2026-02-15",
+    "payment_terms_days": 60,
+    "amount_cents": 900081,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Dokumentengebühr",
+        "quantity": 9,
+        "unit_price_cents": 432967
+      },
+      {
+        "description": "Einfuhrumsatzsteuer-Vorauszahlung",
+        "quantity": 5,
+        "unit_price_cents": 471121
+      }
+    ]
+  },
+  {
+    "id": "INV-0131",
+    "from_company_id": "C021",
+    "to_company_id": "C024",
+    "issue_date": "2025-11-08",
+    "due_date": "2025-12-23",
+    "payment_terms_days": 45,
+    "amount_cents": 761422,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Qualitätsprüfung",
+        "quantity": 4,
+        "unit_price_cents": 462964
+      }
+    ]
+  },
+  {
+    "id": "INV-0132",
+    "from_company_id": "C024",
+    "to_company_id": "C021",
+    "issue_date": "2025-03-21",
+    "due_date": "2025-06-19",
+    "payment_terms_days": 90,
+    "amount_cents": 1123161,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Logistikkosten",
+        "quantity": 4,
+        "unit_price_cents": 344051
+      },
+      {
+        "description": "Gastronomieausrüstung",
+        "quantity": 7,
+        "unit_price_cents": 30118
+      }
+    ]
+  },
+  {
+    "id": "INV-0133",
+    "from_company_id": "C021",
+    "to_company_id": "C026",
+    "issue_date": "2025-02-13",
+    "due_date": "2025-04-14",
+    "payment_terms_days": 60,
+    "amount_cents": 715917,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Verpackungskosten",
+        "quantity": 8,
+        "unit_price_cents": 256574
+      },
+      {
+        "description": "Transportkosten",
+        "quantity": 7,
+        "unit_price_cents": 122142
+      },
+      {
+        "description": "Warenlieferung Lebensmittel",
+        "quantity": 2,
+        "unit_price_cents": 128905
+      }
+    ]
+  },
+  {
+    "id": "INV-0134",
+    "from_company_id": "C026",
+    "to_company_id": "C021",
+    "issue_date": "2025-02-17",
+    "due_date": "2025-03-19",
+    "payment_terms_days": 30,
+    "amount_cents": 668060,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Qualitätsprüfung",
+        "quantity": 10,
+        "unit_price_cents": 456707
+      }
+    ]
+  },
+  {
+    "id": "INV-0135",
+    "from_company_id": "C021",
+    "to_company_id": "C027",
+    "issue_date": "2025-08-09",
+    "due_date": "2025-10-08",
+    "payment_terms_days": 60,
+    "amount_cents": 387097,
+    "currency": "EUR",
+    "status": "paid",
+    "line_items": [
+      {
+        "description": "Rohstofflieferung",
+        "quantity": 2,
+        "unit_price_cents": 95750
+      },
+      {
+        "description": "Qualitätsprüfung",
+        "quantity": 8,
+        "unit_price_cents": 6349
+      },
+      {
+        "description": "Braudienstleistungen",
+        "quantity": 8,
+        "unit_price_cents": 71755
+      }
+    ]
+  },
+  {
+    "id": "INV-0136",
+    "from_company_id": "C027",
+    "to_company_id": "C021",
+    "issue_date": "2025-12-25",
+    "due_date": "2026-02-23",
+    "payment_terms_days": 60,
+    "amount_cents": 1979155,
+    "currency": "EUR",
+    "status": "paid",
+    "line_items": [
+      {
+        "description": "Beratungsleistungen",
+        "quantity": 8,
+        "unit_price_cents": 101366
+      },
+      {
+        "description": "Gastronomieausrüstung",
+        "quantity": 5,
+        "unit_price_cents": 259773
+      }
+    ]
+  },
+  {
+    "id": "INV-0137",
+    "from_company_id": "C021",
+    "to_company_id": "C028",
+    "issue_date": "2025-01-14",
+    "due_date": "2025-02-13",
+    "payment_terms_days": 30,
+    "amount_cents": 421431,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Beratungsleistungen",
+        "quantity": 4,
+        "unit_price_cents": 482105
+      }
+    ]
+  },
+  {
+    "id": "INV-0138",
+    "from_company_id": "C028",
+    "to_company_id": "C021",
+    "issue_date": "2025-10-26",
+    "due_date": "2025-11-25",
+    "payment_terms_days": 30,
+    "amount_cents": 387898,
+    "currency": "EUR",
+    "status": "paid",
+    "line_items": [
+      {
+        "description": "Warenlieferung Lebensmittel",
+        "quantity": 9,
+        "unit_price_cents": 279876
+      },
+      {
+        "description": "Verpackungskosten",
+        "quantity": 1,
+        "unit_price_cents": 243189
+      }
+    ]
+  },
+  {
+    "id": "INV-0139",
+    "from_company_id": "C022",
+    "to_company_id": "C024",
+    "issue_date": "2025-03-29",
+    "due_date": "2025-06-27",
+    "payment_terms_days": 90,
+    "amount_cents": 840486,
+    "currency": "EUR",
+    "status": "paid",
+    "line_items": [
+      {
+        "description": "Logistikkosten",
+        "quantity": 2,
+        "unit_price_cents": 256863
+      },
+      {
+        "description": "Gastronomieausrüstung",
+        "quantity": 8,
+        "unit_price_cents": 404388
+      },
+      {
+        "description": "Beratungsleistungen",
+        "quantity": 1,
+        "unit_price_cents": 390829
+      }
+    ]
+  },
+  {
+    "id": "INV-0140",
+    "from_company_id": "C024",
+    "to_company_id": "C022",
+    "issue_date": "2025-04-25",
+    "due_date": "2025-05-25",
+    "payment_terms_days": 30,
+    "amount_cents": 1669224,
+    "currency": "EUR",
+    "status": "paid",
+    "line_items": [
+      {
+        "description": "Braudienstleistungen",
+        "quantity": 8,
+        "unit_price_cents": 390969
+      },
+      {
+        "description": "Rohstofflieferung",
+        "quantity": 2,
+        "unit_price_cents": 207773
+      },
+      {
+        "description": "Qualitätsprüfung",
+        "quantity": 10,
+        "unit_price_cents": 60916
+      }
+    ]
+  },
+  {
+    "id": "INV-0141",
+    "from_company_id": "C022",
+    "to_company_id": "C025",
+    "issue_date": "2025-02-27",
+    "due_date": "2025-05-28",
+    "payment_terms_days": 90,
+    "amount_cents": 1626916,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Warenlieferung Lebensmittel",
+        "quantity": 10,
+        "unit_price_cents": 387563
+      }
+    ]
+  },
+  {
+    "id": "INV-0142",
+    "from_company_id": "C025",
+    "to_company_id": "C022",
+    "issue_date": "2025-08-26",
+    "due_date": "2025-10-10",
+    "payment_terms_days": 45,
+    "amount_cents": 606967,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Transportkosten",
+        "quantity": 4,
+        "unit_price_cents": 22133
+      }
+    ]
+  },
+  {
+    "id": "INV-0143",
+    "from_company_id": "C022",
+    "to_company_id": "C025",
+    "issue_date": "2025-12-23",
+    "due_date": "2026-03-23",
+    "payment_terms_days": 90,
+    "amount_cents": 1086467,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Logistikkosten",
+        "quantity": 5,
+        "unit_price_cents": 48090
+      },
+      {
+        "description": "Gastronomieausrüstung",
+        "quantity": 5,
+        "unit_price_cents": 375666
+      },
+      {
+        "description": "Beratungsleistungen",
+        "quantity": 1,
+        "unit_price_cents": 13371
+      }
+    ]
+  },
+  {
+    "id": "INV-0144",
+    "from_company_id": "C022",
+    "to_company_id": "C026",
+    "issue_date": "2025-04-14",
+    "due_date": "2025-07-13",
+    "payment_terms_days": 90,
+    "amount_cents": 1626467,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Verpackungskosten",
+        "quantity": 6,
+        "unit_price_cents": 259249
+      },
+      {
+        "description": "Warenlieferung Lebensmittel",
+        "quantity": 9,
+        "unit_price_cents": 281335
+      },
+      {
+        "description": "Transportkosten",
+        "quantity": 5,
+        "unit_price_cents": 193541
+      }
+    ]
+  },
+  {
+    "id": "INV-0145",
+    "from_company_id": "C026",
+    "to_company_id": "C022",
+    "issue_date": "2025-09-18",
+    "due_date": "2025-11-02",
+    "payment_terms_days": 45,
+    "amount_cents": 299959,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Logistikkosten",
+        "quantity": 5,
+        "unit_price_cents": 332221
+      }
+    ]
+  },
+  {
+    "id": "INV-0146",
+    "from_company_id": "C022",
+    "to_company_id": "C027",
+    "issue_date": "2025-01-25",
+    "due_date": "2025-02-24",
+    "payment_terms_days": 30,
+    "amount_cents": 1771424,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Qualitätsprüfung",
+        "quantity": 10,
+        "unit_price_cents": 392298
+      }
+    ]
+  },
+  {
+    "id": "INV-0147",
+    "from_company_id": "C027",
+    "to_company_id": "C022",
+    "issue_date": "2025-09-29",
+    "due_date": "2025-11-28",
+    "payment_terms_days": 60,
+    "amount_cents": 579192,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Transportkosten",
+        "quantity": 8,
+        "unit_price_cents": 245215
+      },
+      {
+        "description": "Warenlieferung Lebensmittel",
+        "quantity": 3,
+        "unit_price_cents": 168532
+      },
+      {
+        "description": "Verpackungskosten",
+        "quantity": 7,
+        "unit_price_cents": 232835
+      }
+    ]
+  },
+  {
+    "id": "INV-0148",
+    "from_company_id": "C022",
+    "to_company_id": "C028",
+    "issue_date": "2025-06-29",
+    "due_date": "2025-09-27",
+    "payment_terms_days": 90,
+    "amount_cents": 1282563,
+    "currency": "EUR",
+    "status": "overdue",
+    "line_items": [
+      {
+        "description": "Qualitätsprüfung",
+        "quantity": 6,
+        "unit_price_cents": 171590
+      },
+      {
+        "description": "Braudienstleistungen",
+        "quantity": 2,
+        "unit_price_cents": 468129
+      },
+      {
+        "description": "Rohstofflieferung",
+        "quantity": 6,
+        "unit_price_cents": 332286
+      }
+    ]
+  },
+  {
+    "id": "INV-0149",
+    "from_company_id": "C028",
+    "to_company_id": "C022",
+    "issue_date": "2025-02-19",
+    "due_date": "2025-04-05",
+    "payment_terms_days": 45,
+    "amount_cents": 1143991,
+    "currency": "EUR",
+    "status": "overdue",
+    "line_items": [
+      {
+        "description": "Qualitätsprüfung",
+        "quantity": 3,
+        "unit_price_cents": 425336
+      },
+      {
+        "description": "Braudienstleistungen",
+        "quantity": 1,
+        "unit_price_cents": 40351
+      },
+      {
+        "description": "Rohstofflieferung",
+        "quantity": 9,
+        "unit_price_cents": 330108
+      }
+    ]
+  },
+  {
+    "id": "INV-0150",
+    "from_company_id": "C022",
+    "to_company_id": "C035",
+    "issue_date": "2025-08-15",
+    "due_date": "2025-11-13",
+    "payment_terms_days": 90,
+    "amount_cents": 1014424,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Rohstofflieferung",
+        "quantity": 5,
+        "unit_price_cents": 157977
+      }
+    ]
+  },
+  {
+    "id": "INV-0151",
+    "from_company_id": "C035",
+    "to_company_id": "C022",
+    "issue_date": "2025-11-03",
+    "due_date": "2025-12-03",
+    "payment_terms_days": 30,
+    "amount_cents": 1284975,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Rohstofflieferung",
+        "quantity": 8,
+        "unit_price_cents": 348010
+      },
+      {
+        "description": "Braudienstleistungen",
+        "quantity": 9,
+        "unit_price_cents": 155058
+      }
+    ]
+  },
+  {
+    "id": "INV-0152",
+    "from_company_id": "C023",
+    "to_company_id": "C024",
+    "issue_date": "2025-05-15",
+    "due_date": "2025-06-29",
+    "payment_terms_days": 45,
+    "amount_cents": 521080,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Beratungsleistungen",
+        "quantity": 4,
+        "unit_price_cents": 372720
+      },
+      {
+        "description": "Gastronomieausrüstung",
+        "quantity": 6,
+        "unit_price_cents": 75844
+      }
+    ]
+  },
+  {
+    "id": "INV-0153",
+    "from_company_id": "C024",
+    "to_company_id": "C023",
+    "issue_date": "2025-11-23",
+    "due_date": "2026-01-22",
+    "payment_terms_days": 60,
+    "amount_cents": 1765330,
+    "currency": "EUR",
+    "status": "overdue",
+    "line_items": [
+      {
+        "description": "Transportkosten",
+        "quantity": 2,
+        "unit_price_cents": 324158
+      }
+    ]
+  },
+  {
+    "id": "INV-0154",
+    "from_company_id": "C023",
+    "to_company_id": "C026",
+    "issue_date": "2025-03-09",
+    "due_date": "2025-06-07",
+    "payment_terms_days": 90,
+    "amount_cents": 1649803,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Beratungsleistungen",
+        "quantity": 2,
+        "unit_price_cents": 295149
+      }
+    ]
+  },
+  {
+    "id": "INV-0155",
+    "from_company_id": "C026",
+    "to_company_id": "C023",
+    "issue_date": "2025-07-26",
+    "due_date": "2025-09-24",
+    "payment_terms_days": 60,
+    "amount_cents": 745283,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Warenlieferung Lebensmittel",
+        "quantity": 1,
+        "unit_price_cents": 401095
+      },
+      {
+        "description": "Transportkosten",
+        "quantity": 1,
+        "unit_price_cents": 319956
+      },
+      {
+        "description": "Verpackungskosten",
+        "quantity": 5,
+        "unit_price_cents": 316886
+      }
+    ]
+  },
+  {
+    "id": "INV-0156",
+    "from_company_id": "C023",
+    "to_company_id": "C027",
+    "issue_date": "2025-07-15",
+    "due_date": "2025-08-14",
+    "payment_terms_days": 30,
+    "amount_cents": 440192,
+    "currency": "EUR",
+    "status": "paid",
+    "line_items": [
+      {
+        "description": "Qualitätsprüfung",
+        "quantity": 3,
+        "unit_price_cents": 55832
+      }
+    ]
+  },
+  {
+    "id": "INV-0157",
+    "from_company_id": "C027",
+    "to_company_id": "C023",
+    "issue_date": "2025-07-12",
+    "due_date": "2025-08-11",
+    "payment_terms_days": 30,
+    "amount_cents": 1293508,
+    "currency": "EUR",
+    "status": "paid",
+    "line_items": [
+      {
+        "description": "Warenlieferung Lebensmittel",
+        "quantity": 2,
+        "unit_price_cents": 139899
+      },
+      {
+        "description": "Transportkosten",
+        "quantity": 3,
+        "unit_price_cents": 380322
+      },
+      {
+        "description": "Verpackungskosten",
+        "quantity": 3,
+        "unit_price_cents": 484221
+      }
+    ]
+  },
+  {
+    "id": "INV-0158",
+    "from_company_id": "C023",
+    "to_company_id": "C027",
+    "issue_date": "2025-09-07",
+    "due_date": "2025-12-06",
+    "payment_terms_days": 90,
+    "amount_cents": 147660,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Gastronomieausrüstung",
+        "quantity": 9,
+        "unit_price_cents": 346793
+      },
+      {
+        "description": "Logistikkosten",
+        "quantity": 5,
+        "unit_price_cents": 267861
+      }
+    ]
+  },
+  {
+    "id": "INV-0159",
+    "from_company_id": "C023",
+    "to_company_id": "C035",
+    "issue_date": "2025-08-24",
+    "due_date": "2025-10-23",
+    "payment_terms_days": 60,
+    "amount_cents": 277462,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Logistikkosten",
+        "quantity": 9,
+        "unit_price_cents": 309272
+      },
+      {
+        "description": "Beratungsleistungen",
+        "quantity": 9,
+        "unit_price_cents": 375209
+      },
+      {
+        "description": "Gastronomieausrüstung",
+        "quantity": 10,
+        "unit_price_cents": 484974
+      }
+    ]
+  },
+  {
+    "id": "INV-0160",
+    "from_company_id": "C035",
+    "to_company_id": "C023",
+    "issue_date": "2025-10-16",
+    "due_date": "2025-11-30",
+    "payment_terms_days": 45,
+    "amount_cents": 549999,
+    "currency": "EUR",
+    "status": "overdue",
+    "line_items": [
+      {
+        "description": "Beratungsleistungen",
+        "quantity": 4,
+        "unit_price_cents": 173426
+      }
+    ]
+  },
+  {
+    "id": "INV-0161",
+    "from_company_id": "C023",
+    "to_company_id": "C035",
+    "issue_date": "2025-07-09",
+    "due_date": "2025-09-07",
+    "payment_terms_days": 60,
+    "amount_cents": 566890,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Gastronomieausrüstung",
+        "quantity": 10,
+        "unit_price_cents": 236734
+      },
+      {
+        "description": "Beratungsleistungen",
+        "quantity": 4,
+        "unit_price_cents": 472318
+      },
+      {
+        "description": "Logistikkosten",
+        "quantity": 8,
+        "unit_price_cents": 254014
+      }
+    ]
+  },
+  {
+    "id": "INV-0162",
+    "from_company_id": "C034",
+    "to_company_id": "C025",
+    "issue_date": "2025-08-16",
+    "due_date": "2025-09-30",
+    "payment_terms_days": 45,
+    "amount_cents": 522500,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Qualitätsprüfung",
+        "quantity": 5,
+        "unit_price_cents": 323060
+      },
+      {
+        "description": "Braudienstleistungen",
+        "quantity": 8,
+        "unit_price_cents": 137282
+      }
+    ]
+  },
+  {
+    "id": "INV-0163",
+    "from_company_id": "C025",
+    "to_company_id": "C034",
+    "issue_date": "2025-10-23",
+    "due_date": "2025-11-22",
+    "payment_terms_days": 30,
+    "amount_cents": 1448250,
+    "currency": "EUR",
+    "status": "paid",
+    "line_items": [
+      {
+        "description": "Transportkosten",
+        "quantity": 3,
+        "unit_price_cents": 329656
+      },
+      {
+        "description": "Verpackungskosten",
+        "quantity": 6,
+        "unit_price_cents": 360336
+      },
+      {
+        "description": "Warenlieferung Lebensmittel",
+        "quantity": 4,
+        "unit_price_cents": 76572
+      }
+    ]
+  },
+  {
+    "id": "INV-0164",
+    "from_company_id": "C034",
+    "to_company_id": "C026",
+    "issue_date": "2025-07-01",
+    "due_date": "2025-08-15",
+    "payment_terms_days": 45,
+    "amount_cents": 1096239,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Braudienstleistungen",
+        "quantity": 8,
+        "unit_price_cents": 468833
+      },
+      {
+        "description": "Qualitätsprüfung",
+        "quantity": 3,
+        "unit_price_cents": 81030
+      },
+      {
+        "description": "Rohstofflieferung",
+        "quantity": 1,
+        "unit_price_cents": 229501
+      }
+    ]
+  },
+  {
+    "id": "INV-0165",
+    "from_company_id": "C026",
+    "to_company_id": "C034",
+    "issue_date": "2025-09-15",
+    "due_date": "2025-10-15",
+    "payment_terms_days": 30,
+    "amount_cents": 1412445,
+    "currency": "EUR",
+    "status": "paid",
+    "line_items": [
+      {
+        "description": "Transportkosten",
+        "quantity": 7,
+        "unit_price_cents": 381222
+      },
+      {
+        "description": "Verpackungskosten",
+        "quantity": 9,
+        "unit_price_cents": 38824
+      },
+      {
+        "description": "Warenlieferung Lebensmittel",
+        "quantity": 5,
+        "unit_price_cents": 149075
+      }
+    ]
+  },
+  {
+    "id": "INV-0166",
+    "from_company_id": "C034",
+    "to_company_id": "C027",
+    "issue_date": "2025-01-03",
+    "due_date": "2025-03-04",
+    "payment_terms_days": 60,
+    "amount_cents": 620991,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Gastronomieausrüstung",
+        "quantity": 4,
+        "unit_price_cents": 148249
+      },
+      {
+        "description": "Logistikkosten",
+        "quantity": 10,
+        "unit_price_cents": 105226
+      },
+      {
+        "description": "Beratungsleistungen",
+        "quantity": 4,
+        "unit_price_cents": 359713
+      }
+    ]
+  },
+  {
+    "id": "INV-0167",
+    "from_company_id": "C027",
+    "to_company_id": "C034",
+    "issue_date": "2025-04-14",
+    "due_date": "2025-05-14",
+    "payment_terms_days": 30,
+    "amount_cents": 1478487,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Warenlieferung Lebensmittel",
+        "quantity": 8,
+        "unit_price_cents": 175648
+      },
+      {
+        "description": "Transportkosten",
+        "quantity": 4,
+        "unit_price_cents": 281679
+      },
+      {
+        "description": "Verpackungskosten",
+        "quantity": 3,
+        "unit_price_cents": 62565
+      }
+    ]
+  },
+  {
+    "id": "INV-0168",
+    "from_company_id": "C034",
+    "to_company_id": "C027",
+    "issue_date": "2025-06-04",
+    "due_date": "2025-07-19",
+    "payment_terms_days": 45,
+    "amount_cents": 1877120,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Transportkosten",
+        "quantity": 9,
+        "unit_price_cents": 311213
+      },
+      {
+        "description": "Warenlieferung Lebensmittel",
+        "quantity": 4,
+        "unit_price_cents": 409834
+      },
+      {
+        "description": "Verpackungskosten",
+        "quantity": 1,
+        "unit_price_cents": 444839
+      }
+    ]
+  },
+  {
+    "id": "INV-0169",
+    "from_company_id": "C034",
+    "to_company_id": "C028",
+    "issue_date": "2025-05-04",
+    "due_date": "2025-08-02",
+    "payment_terms_days": 90,
+    "amount_cents": 1784131,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Transportkosten",
+        "quantity": 9,
+        "unit_price_cents": 392153
+      },
+      {
+        "description": "Verpackungskosten",
+        "quantity": 7,
+        "unit_price_cents": 366199
+      },
+      {
+        "description": "Warenlieferung Lebensmittel",
+        "quantity": 5,
+        "unit_price_cents": 400507
+      }
+    ]
+  },
+  {
+    "id": "INV-0170",
+    "from_company_id": "C028",
+    "to_company_id": "C034",
+    "issue_date": "2025-01-12",
+    "due_date": "2025-02-26",
+    "payment_terms_days": 45,
+    "amount_cents": 1834205,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Rohstofflieferung",
+        "quantity": 1,
+        "unit_price_cents": 242474
+      },
+      {
+        "description": "Qualitätsprüfung",
+        "quantity": 10,
+        "unit_price_cents": 171846
+      },
+      {
+        "description": "Braudienstleistungen",
+        "quantity": 6,
+        "unit_price_cents": 231814
+      }
+    ]
+  },
+  {
+    "id": "INV-0171",
+    "from_company_id": "C034",
+    "to_company_id": "C028",
+    "issue_date": "2025-09-09",
+    "due_date": "2025-12-08",
+    "payment_terms_days": 90,
+    "amount_cents": 1231987,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Beratungsleistungen",
+        "quantity": 4,
+        "unit_price_cents": 95622
+      }
+    ]
+  },
+  {
+    "id": "INV-0172",
+    "from_company_id": "C024",
+    "to_company_id": "C029",
+    "issue_date": "2025-04-07",
+    "due_date": "2025-07-06",
+    "payment_terms_days": 90,
+    "amount_cents": 942535,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Logistikkosten",
+        "quantity": 6,
+        "unit_price_cents": 49971
+      },
+      {
+        "description": "Beratungsleistungen",
+        "quantity": 4,
+        "unit_price_cents": 6223
+      }
+    ]
+  },
+  {
+    "id": "INV-0173",
+    "from_company_id": "C029",
+    "to_company_id": "C024",
+    "issue_date": "2025-09-01",
+    "due_date": "2025-10-16",
+    "payment_terms_days": 45,
+    "amount_cents": 1360086,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Warenlieferung Lebensmittel",
+        "quantity": 4,
+        "unit_price_cents": 393655
+      },
+      {
+        "description": "Transportkosten",
+        "quantity": 9,
+        "unit_price_cents": 265809
+      }
+    ]
+  },
+  {
+    "id": "INV-0174",
+    "from_company_id": "C024",
+    "to_company_id": "C030",
+    "issue_date": "2025-07-16",
+    "due_date": "2025-10-14",
+    "payment_terms_days": 90,
+    "amount_cents": 1548396,
+    "currency": "EUR",
+    "status": "overdue",
+    "line_items": [
+      {
+        "description": "Gastronomieausrüstung",
+        "quantity": 10,
+        "unit_price_cents": 269258
+      }
+    ]
+  },
+  {
+    "id": "INV-0175",
+    "from_company_id": "C030",
+    "to_company_id": "C024",
+    "issue_date": "2025-03-27",
+    "due_date": "2025-05-26",
+    "payment_terms_days": 60,
+    "amount_cents": 1999538,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Beratungsleistungen",
+        "quantity": 6,
+        "unit_price_cents": 484026
+      },
+      {
+        "description": "Gastronomieausrüstung",
+        "quantity": 7,
+        "unit_price_cents": 38529
+      },
+      {
+        "description": "Logistikkosten",
+        "quantity": 9,
+        "unit_price_cents": 187703
+      }
+    ]
+  },
+  {
+    "id": "INV-0176",
+    "from_company_id": "C024",
+    "to_company_id": "C030",
+    "issue_date": "2025-01-09",
+    "due_date": "2025-02-23",
+    "payment_terms_days": 45,
+    "amount_cents": 399236,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Gastronomieausrüstung",
+        "quantity": 2,
+        "unit_price_cents": 221535
+      }
+    ]
+  },
+  {
+    "id": "INV-0177",
+    "from_company_id": "C024",
+    "to_company_id": "C031",
+    "issue_date": "2025-09-25",
+    "due_date": "2025-10-25",
+    "payment_terms_days": 30,
+    "amount_cents": 1826896,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Qualitätsprüfung",
+        "quantity": 5,
+        "unit_price_cents": 19559
+      },
+      {
+        "description": "Braudienstleistungen",
+        "quantity": 9,
+        "unit_price_cents": 68081
+      },
+      {
+        "description": "Rohstofflieferung",
+        "quantity": 5,
+        "unit_price_cents": 494722
+      }
+    ]
+  },
+  {
+    "id": "INV-0178",
+    "from_company_id": "C031",
+    "to_company_id": "C024",
+    "issue_date": "2025-08-24",
+    "due_date": "2025-11-22",
+    "payment_terms_days": 90,
+    "amount_cents": 1439591,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Verpackungskosten",
+        "quantity": 10,
+        "unit_price_cents": 23650
+      },
+      {
+        "description": "Warenlieferung Lebensmittel",
+        "quantity": 3,
+        "unit_price_cents": 144088
+      },
+      {
+        "description": "Transportkosten",
+        "quantity": 3,
+        "unit_price_cents": 280052
+      }
+    ]
+  },
+  {
+    "id": "INV-0179",
+    "from_company_id": "C025",
+    "to_company_id": "C029",
+    "issue_date": "2025-09-29",
+    "due_date": "2025-11-13",
+    "payment_terms_days": 45,
+    "amount_cents": 312684,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Transportkosten",
+        "quantity": 5,
+        "unit_price_cents": 498108
+      }
+    ]
+  },
+  {
+    "id": "INV-0180",
+    "from_company_id": "C029",
+    "to_company_id": "C025",
+    "issue_date": "2025-01-17",
+    "due_date": "2025-03-03",
+    "payment_terms_days": 45,
+    "amount_cents": 1515865,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Logistikkosten",
+        "quantity": 1,
+        "unit_price_cents": 73557
+      },
+      {
+        "description": "Beratungsleistungen",
+        "quantity": 6,
+        "unit_price_cents": 486513
+      },
+      {
+        "description": "Gastronomieausrüstung",
+        "quantity": 6,
+        "unit_price_cents": 8604
+      }
+    ]
+  },
+  {
+    "id": "INV-0181",
+    "from_company_id": "C025",
+    "to_company_id": "C029",
+    "issue_date": "2025-12-15",
+    "due_date": "2026-01-29",
+    "payment_terms_days": 45,
+    "amount_cents": 306756,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Beratungsleistungen",
+        "quantity": 5,
+        "unit_price_cents": 276057
+      },
+      {
+        "description": "Logistikkosten",
+        "quantity": 5,
+        "unit_price_cents": 343763
+      }
+    ]
+  },
+  {
+    "id": "INV-0182",
+    "from_company_id": "C025",
+    "to_company_id": "C030",
+    "issue_date": "2025-11-08",
+    "due_date": "2025-12-23",
+    "payment_terms_days": 45,
+    "amount_cents": 1389069,
+    "currency": "EUR",
+    "status": "paid",
+    "line_items": [
+      {
+        "description": "Qualitätsprüfung",
+        "quantity": 3,
+        "unit_price_cents": 196366
+      }
+    ]
+  },
+  {
+    "id": "INV-0183",
+    "from_company_id": "C030",
+    "to_company_id": "C025",
+    "issue_date": "2025-11-05",
+    "due_date": "2026-01-04",
+    "payment_terms_days": 60,
+    "amount_cents": 1027242,
+    "currency": "EUR",
+    "status": "overdue",
+    "line_items": [
+      {
+        "description": "Beratungsleistungen",
+        "quantity": 8,
+        "unit_price_cents": 109971
+      },
+      {
+        "description": "Gastronomieausrüstung",
+        "quantity": 1,
+        "unit_price_cents": 489931
+      },
+      {
+        "description": "Logistikkosten",
+        "quantity": 10,
+        "unit_price_cents": 302852
+      }
+    ]
+  },
+  {
+    "id": "INV-0184",
+    "from_company_id": "C025",
+    "to_company_id": "C030",
+    "issue_date": "2025-07-08",
+    "due_date": "2025-08-07",
+    "payment_terms_days": 30,
+    "amount_cents": 1824305,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Braudienstleistungen",
+        "quantity": 5,
+        "unit_price_cents": 247629
+      }
+    ]
+  },
+  {
+    "id": "INV-0185",
+    "from_company_id": "C025",
+    "to_company_id": "C031",
+    "issue_date": "2025-08-04",
+    "due_date": "2025-09-03",
+    "payment_terms_days": 30,
+    "amount_cents": 1666274,
+    "currency": "EUR",
+    "status": "overdue",
+    "line_items": [
+      {
+        "description": "Rohstofflieferung",
+        "quantity": 5,
+        "unit_price_cents": 27225
+      },
+      {
+        "description": "Qualitätsprüfung",
+        "quantity": 3,
+        "unit_price_cents": 334907
+      }
+    ]
+  },
+  {
+    "id": "INV-0186",
+    "from_company_id": "C031",
+    "to_company_id": "C025",
+    "issue_date": "2025-03-31",
+    "due_date": "2025-05-30",
+    "payment_terms_days": 60,
+    "amount_cents": 429598,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Verpackungskosten",
+        "quantity": 3,
+        "unit_price_cents": 90857
+      },
+      {
+        "description": "Warenlieferung Lebensmittel",
+        "quantity": 7,
+        "unit_price_cents": 115357
+      }
+    ]
+  },
+  {
+    "id": "INV-0187",
+    "from_company_id": "C025",
+    "to_company_id": "C031",
+    "issue_date": "2025-03-02",
+    "due_date": "2025-05-31",
+    "payment_terms_days": 90,
+    "amount_cents": 1679432,
+    "currency": "EUR",
+    "status": "overdue",
+    "line_items": [
+      {
+        "description": "Logistikkosten",
+        "quantity": 8,
+        "unit_price_cents": 306428
+      },
+      {
+        "description": "Gastronomieausrüstung",
+        "quantity": 6,
+        "unit_price_cents": 265934
+      }
+    ]
+  },
+  {
+    "id": "INV-0188",
+    "from_company_id": "C026",
+    "to_company_id": "C029",
+    "issue_date": "2025-04-25",
+    "due_date": "2025-06-24",
+    "payment_terms_days": 60,
+    "amount_cents": 1598913,
+    "currency": "EUR",
+    "status": "overdue",
+    "line_items": [
+      {
+        "description": "Braudienstleistungen",
+        "quantity": 3,
+        "unit_price_cents": 206969
+      }
+    ]
+  },
+  {
+    "id": "INV-0189",
+    "from_company_id": "C029",
+    "to_company_id": "C026",
+    "issue_date": "2025-03-29",
+    "due_date": "2025-05-28",
+    "payment_terms_days": 60,
+    "amount_cents": 609434,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Qualitätsprüfung",
+        "quantity": 6,
+        "unit_price_cents": 319560
+      },
+      {
+        "description": "Braudienstleistungen",
+        "quantity": 1,
+        "unit_price_cents": 58033
+      },
+      {
+        "description": "Rohstofflieferung",
+        "quantity": 3,
+        "unit_price_cents": 491926
+      }
+    ]
+  },
+  {
+    "id": "INV-0190",
+    "from_company_id": "C026",
+    "to_company_id": "C029",
+    "issue_date": "2025-10-14",
+    "due_date": "2025-12-13",
+    "payment_terms_days": 60,
+    "amount_cents": 1021563,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Transportkosten",
+        "quantity": 6,
+        "unit_price_cents": 343524
+      }
+    ]
+  },
+  {
+    "id": "INV-0191",
+    "from_company_id": "C026",
+    "to_company_id": "C030",
+    "issue_date": "2025-01-15",
+    "due_date": "2025-02-14",
+    "payment_terms_days": 30,
+    "amount_cents": 1047610,
+    "currency": "EUR",
+    "status": "paid",
+    "line_items": [
+      {
+        "description": "Braudienstleistungen",
+        "quantity": 4,
+        "unit_price_cents": 295121
+      },
+      {
+        "description": "Qualitätsprüfung",
+        "quantity": 1,
+        "unit_price_cents": 493603
+      }
+    ]
+  },
+  {
+    "id": "INV-0192",
+    "from_company_id": "C030",
+    "to_company_id": "C026",
+    "issue_date": "2025-10-21",
+    "due_date": "2025-11-20",
+    "payment_terms_days": 30,
+    "amount_cents": 670300,
+    "currency": "EUR",
+    "status": "paid",
+    "line_items": [
+      {
+        "description": "Logistikkosten",
+        "quantity": 8,
+        "unit_price_cents": 298143
+      },
+      {
+        "description": "Gastronomieausrüstung",
+        "quantity": 3,
+        "unit_price_cents": 79646
+      }
+    ]
+  },
+  {
+    "id": "INV-0193",
+    "from_company_id": "C026",
+    "to_company_id": "C030",
+    "issue_date": "2025-02-24",
+    "due_date": "2025-04-25",
+    "payment_terms_days": 60,
+    "amount_cents": 1507779,
+    "currency": "EUR",
+    "status": "overdue",
+    "line_items": [
+      {
+        "description": "Verpackungskosten",
+        "quantity": 6,
+        "unit_price_cents": 91118
+      },
+      {
+        "description": "Warenlieferung Lebensmittel",
+        "quantity": 4,
+        "unit_price_cents": 275383
+      },
+      {
+        "description": "Transportkosten",
+        "quantity": 2,
+        "unit_price_cents": 101524
+      }
+    ]
+  },
+  {
+    "id": "INV-0194",
+    "from_company_id": "C026",
+    "to_company_id": "C031",
+    "issue_date": "2025-05-14",
+    "due_date": "2025-06-13",
+    "payment_terms_days": 30,
+    "amount_cents": 1217469,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Transportkosten",
+        "quantity": 5,
+        "unit_price_cents": 22099
+      },
+      {
+        "description": "Warenlieferung Lebensmittel",
+        "quantity": 5,
+        "unit_price_cents": 405950
+      }
+    ]
+  },
+  {
+    "id": "INV-0195",
+    "from_company_id": "C031",
+    "to_company_id": "C026",
+    "issue_date": "2025-03-16",
+    "due_date": "2025-05-15",
+    "payment_terms_days": 60,
+    "amount_cents": 1080849,
+    "currency": "EUR",
+    "status": "paid",
+    "line_items": [
+      {
+        "description": "Verpackungskosten",
+        "quantity": 8,
+        "unit_price_cents": 170667
+      },
+      {
+        "description": "Warenlieferung Lebensmittel",
+        "quantity": 8,
+        "unit_price_cents": 468167
+      },
+      {
+        "description": "Transportkosten",
+        "quantity": 2,
+        "unit_price_cents": 210003
+      }
+    ]
+  },
+  {
+    "id": "INV-0196",
+    "from_company_id": "C026",
+    "to_company_id": "C031",
+    "issue_date": "2025-07-20",
+    "due_date": "2025-08-19",
+    "payment_terms_days": 30,
+    "amount_cents": 1914956,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Warenlieferung Lebensmittel",
+        "quantity": 9,
+        "unit_price_cents": 62238
+      },
+      {
+        "description": "Verpackungskosten",
+        "quantity": 5,
+        "unit_price_cents": 225742
+      }
+    ]
+  },
+  {
+    "id": "INV-0197",
+    "from_company_id": "C026",
+    "to_company_id": "C033",
+    "issue_date": "2025-01-04",
+    "due_date": "2025-02-18",
+    "payment_terms_days": 45,
+    "amount_cents": 1357910,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Verpackungskosten",
+        "quantity": 8,
+        "unit_price_cents": 384435
+      },
+      {
+        "description": "Transportkosten",
+        "quantity": 3,
+        "unit_price_cents": 192529
+      }
+    ]
+  },
+  {
+    "id": "INV-0198",
+    "from_company_id": "C033",
+    "to_company_id": "C026",
+    "issue_date": "2025-06-29",
+    "due_date": "2025-08-13",
+    "payment_terms_days": 45,
+    "amount_cents": 1578439,
+    "currency": "EUR",
+    "status": "overdue",
+    "line_items": [
+      {
+        "description": "Verpackungskosten",
+        "quantity": 3,
+        "unit_price_cents": 394354
+      },
+      {
+        "description": "Transportkosten",
+        "quantity": 7,
+        "unit_price_cents": 212348
+      },
+      {
+        "description": "Warenlieferung Lebensmittel",
+        "quantity": 5,
+        "unit_price_cents": 445852
+      }
+    ]
+  },
+  {
+    "id": "INV-0199",
+    "from_company_id": "C027",
+    "to_company_id": "C029",
+    "issue_date": "2025-12-10",
+    "due_date": "2026-02-08",
+    "payment_terms_days": 60,
+    "amount_cents": 929683,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Verpackungskosten",
+        "quantity": 4,
+        "unit_price_cents": 450259
+      },
+      {
+        "description": "Transportkosten",
+        "quantity": 7,
+        "unit_price_cents": 271631
+      }
+    ]
+  },
+  {
+    "id": "INV-0200",
+    "from_company_id": "C029",
+    "to_company_id": "C027",
+    "issue_date": "2025-10-11",
+    "due_date": "2025-12-10",
+    "payment_terms_days": 60,
+    "amount_cents": 381871,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Warenlieferung Lebensmittel",
+        "quantity": 8,
+        "unit_price_cents": 376993
+      },
+      {
+        "description": "Transportkosten",
+        "quantity": 1,
+        "unit_price_cents": 390878
+      }
+    ]
+  },
+  {
+    "id": "INV-0201",
+    "from_company_id": "C027",
+    "to_company_id": "C029",
+    "issue_date": "2025-03-08",
+    "due_date": "2025-04-22",
+    "payment_terms_days": 45,
+    "amount_cents": 954270,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Logistikkosten",
+        "quantity": 1,
+        "unit_price_cents": 203466
+      },
+      {
+        "description": "Beratungsleistungen",
+        "quantity": 1,
+        "unit_price_cents": 223291
+      },
+      {
+        "description": "Gastronomieausrüstung",
+        "quantity": 9,
+        "unit_price_cents": 170138
+      }
+    ]
+  },
+  {
+    "id": "INV-0202",
+    "from_company_id": "C027",
+    "to_company_id": "C031",
+    "issue_date": "2025-05-17",
+    "due_date": "2025-06-16",
+    "payment_terms_days": 30,
+    "amount_cents": 1054654,
+    "currency": "EUR",
+    "status": "overdue",
+    "line_items": [
+      {
+        "description": "Beratungsleistungen",
+        "quantity": 3,
+        "unit_price_cents": 431210
+      },
+      {
+        "description": "Gastronomieausrüstung",
+        "quantity": 5,
+        "unit_price_cents": 314094
+      }
+    ]
+  },
+  {
+    "id": "INV-0203",
+    "from_company_id": "C031",
+    "to_company_id": "C027",
+    "issue_date": "2025-02-26",
+    "due_date": "2025-04-12",
+    "payment_terms_days": 45,
+    "amount_cents": 355806,
+    "currency": "EUR",
+    "status": "overdue",
+    "line_items": [
+      {
+        "description": "Verpackungskosten",
+        "quantity": 9,
+        "unit_price_cents": 106013
+      }
+    ]
+  },
+  {
+    "id": "INV-0204",
+    "from_company_id": "C027",
+    "to_company_id": "C031",
+    "issue_date": "2025-05-26",
+    "due_date": "2025-08-24",
+    "payment_terms_days": 90,
+    "amount_cents": 105793,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Logistikkosten",
+        "quantity": 5,
+        "unit_price_cents": 69702
+      }
+    ]
+  },
+  {
+    "id": "INV-0205",
+    "from_company_id": "C027",
+    "to_company_id": "C033",
+    "issue_date": "2025-03-05",
+    "due_date": "2025-05-04",
+    "payment_terms_days": 60,
+    "amount_cents": 1207736,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Verpackungskosten",
+        "quantity": 1,
+        "unit_price_cents": 406991
+      },
+      {
+        "description": "Transportkosten",
+        "quantity": 4,
+        "unit_price_cents": 14745
+      },
+      {
+        "description": "Warenlieferung Lebensmittel",
+        "quantity": 5,
+        "unit_price_cents": 457101
+      }
+    ]
+  },
+  {
+    "id": "INV-0206",
+    "from_company_id": "C033",
+    "to_company_id": "C027",
+    "issue_date": "2025-08-23",
+    "due_date": "2025-09-22",
+    "payment_terms_days": 30,
+    "amount_cents": 1967653,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Verpackungskosten",
+        "quantity": 9,
+        "unit_price_cents": 99586
+      }
+    ]
+  },
+  {
+    "id": "INV-0207",
+    "from_company_id": "C027",
+    "to_company_id": "C033",
+    "issue_date": "2025-04-03",
+    "due_date": "2025-05-18",
+    "payment_terms_days": 45,
+    "amount_cents": 1725506,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Transportkosten",
+        "quantity": 10,
+        "unit_price_cents": 382262
+      },
+      {
+        "description": "Verpackungskosten",
+        "quantity": 2,
+        "unit_price_cents": 191308
+      }
+    ]
+  },
+  {
+    "id": "INV-0208",
+    "from_company_id": "C028",
+    "to_company_id": "C029",
+    "issue_date": "2025-07-26",
+    "due_date": "2025-09-24",
+    "payment_terms_days": 60,
+    "amount_cents": 1681903,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Gastronomieausrüstung",
+        "quantity": 5,
+        "unit_price_cents": 284240
+      },
+      {
+        "description": "Logistikkosten",
+        "quantity": 2,
+        "unit_price_cents": 212845
+      }
+    ]
+  },
+  {
+    "id": "INV-0209",
+    "from_company_id": "C029",
+    "to_company_id": "C028",
+    "issue_date": "2025-04-04",
+    "due_date": "2025-06-03",
+    "payment_terms_days": 60,
+    "amount_cents": 1805066,
+    "currency": "EUR",
+    "status": "paid",
+    "line_items": [
+      {
+        "description": "Beratungsleistungen",
+        "quantity": 6,
+        "unit_price_cents": 480219
+      },
+      {
+        "description": "Logistikkosten",
+        "quantity": 7,
+        "unit_price_cents": 101498
+      },
+      {
+        "description": "Gastronomieausrüstung",
+        "quantity": 2,
+        "unit_price_cents": 126771
+      }
+    ]
+  },
+  {
+    "id": "INV-0210",
+    "from_company_id": "C028",
+    "to_company_id": "C029",
+    "issue_date": "2025-12-25",
+    "due_date": "2026-01-24",
+    "payment_terms_days": 30,
+    "amount_cents": 1019942,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Qualitätsprüfung",
+        "quantity": 4,
+        "unit_price_cents": 271012
+      },
+      {
+        "description": "Rohstofflieferung",
+        "quantity": 1,
+        "unit_price_cents": 458445
+      },
+      {
+        "description": "Braudienstleistungen",
+        "quantity": 3,
+        "unit_price_cents": 166342
+      }
+    ]
+  },
+  {
+    "id": "INV-0211",
+    "from_company_id": "C028",
+    "to_company_id": "C030",
+    "issue_date": "2025-02-26",
+    "due_date": "2025-04-27",
+    "payment_terms_days": 60,
+    "amount_cents": 1710605,
+    "currency": "EUR",
+    "status": "overdue",
+    "line_items": [
+      {
+        "description": "Beratungsleistungen",
+        "quantity": 7,
+        "unit_price_cents": 393568
+      },
+      {
+        "description": "Logistikkosten",
+        "quantity": 7,
+        "unit_price_cents": 333408
+      }
+    ]
+  },
+  {
+    "id": "INV-0212",
+    "from_company_id": "C030",
+    "to_company_id": "C028",
+    "issue_date": "2025-09-18",
+    "due_date": "2025-11-02",
+    "payment_terms_days": 45,
+    "amount_cents": 1342043,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Qualitätsprüfung",
+        "quantity": 9,
+        "unit_price_cents": 84822
+      },
+      {
+        "description": "Braudienstleistungen",
+        "quantity": 2,
+        "unit_price_cents": 428050
+      },
+      {
+        "description": "Rohstofflieferung",
+        "quantity": 3,
+        "unit_price_cents": 474307
+      }
+    ]
+  },
+  {
+    "id": "INV-0213",
+    "from_company_id": "C028",
+    "to_company_id": "C030",
+    "issue_date": "2025-10-04",
+    "due_date": "2025-12-03",
+    "payment_terms_days": 60,
+    "amount_cents": 1644777,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Braudienstleistungen",
+        "quantity": 8,
+        "unit_price_cents": 183521
+      }
+    ]
+  },
+  {
+    "id": "INV-0214",
+    "from_company_id": "C035",
+    "to_company_id": "C030",
+    "issue_date": "2025-11-29",
+    "due_date": "2025-12-29",
+    "payment_terms_days": 30,
+    "amount_cents": 456847,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Verpackungskosten",
+        "quantity": 2,
+        "unit_price_cents": 472505
+      }
+    ]
+  },
+  {
+    "id": "INV-0215",
+    "from_company_id": "C030",
+    "to_company_id": "C035",
+    "issue_date": "2025-12-08",
+    "due_date": "2026-01-07",
+    "payment_terms_days": 30,
+    "amount_cents": 1604514,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Braudienstleistungen",
+        "quantity": 5,
+        "unit_price_cents": 478483
+      }
+    ]
+  },
+  {
+    "id": "INV-0216",
+    "from_company_id": "C029",
+    "to_company_id": "C032",
+    "issue_date": "2025-07-09",
+    "due_date": "2025-10-07",
+    "payment_terms_days": 90,
+    "amount_cents": 945060,
+    "currency": "EUR",
+    "status": "overdue",
+    "line_items": [
+      {
+        "description": "Verpackungskosten",
+        "quantity": 2,
+        "unit_price_cents": 292163
+      },
+      {
+        "description": "Transportkosten",
+        "quantity": 9,
+        "unit_price_cents": 264104
+      }
+    ]
+  },
+  {
+    "id": "INV-0217",
+    "from_company_id": "C032",
+    "to_company_id": "C029",
+    "issue_date": "2025-01-09",
+    "due_date": "2025-02-23",
+    "payment_terms_days": 45,
+    "amount_cents": 451000,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Transportkosten",
+        "quantity": 2,
+        "unit_price_cents": 490005
+      },
+      {
+        "description": "Warenlieferung Lebensmittel",
+        "quantity": 1,
+        "unit_price_cents": 398662
+      }
+    ]
+  },
+  {
+    "id": "INV-0218",
+    "from_company_id": "C029",
+    "to_company_id": "C032",
+    "issue_date": "2025-09-14",
+    "due_date": "2025-11-13",
+    "payment_terms_days": 60,
+    "amount_cents": 1353980,
+    "currency": "EUR",
+    "status": "overdue",
+    "line_items": [
+      {
+        "description": "Verpackungskosten",
+        "quantity": 3,
+        "unit_price_cents": 320130
+      },
+      {
+        "description": "Transportkosten",
+        "quantity": 8,
+        "unit_price_cents": 183311
+      },
+      {
+        "description": "Warenlieferung Lebensmittel",
+        "quantity": 7,
+        "unit_price_cents": 29551
+      }
+    ]
+  },
+  {
+    "id": "INV-0219",
+    "from_company_id": "C030",
+    "to_company_id": "C032",
+    "issue_date": "2025-11-30",
+    "due_date": "2025-12-30",
+    "payment_terms_days": 30,
+    "amount_cents": 1781406,
+    "currency": "EUR",
+    "status": "overdue",
+    "line_items": [
+      {
+        "description": "Transportkosten",
+        "quantity": 3,
+        "unit_price_cents": 256328
+      },
+      {
+        "description": "Warenlieferung Lebensmittel",
+        "quantity": 3,
+        "unit_price_cents": 34351
+      }
+    ]
+  },
+  {
+    "id": "INV-0220",
+    "from_company_id": "C032",
+    "to_company_id": "C030",
+    "issue_date": "2025-06-24",
+    "due_date": "2025-09-22",
+    "payment_terms_days": 90,
+    "amount_cents": 143553,
+    "currency": "EUR",
+    "status": "overdue",
+    "line_items": [
+      {
+        "description": "Verpackungskosten",
+        "quantity": 3,
+        "unit_price_cents": 340383
+      }
+    ]
+  },
+  {
+    "id": "INV-0221",
+    "from_company_id": "C031",
+    "to_company_id": "C032",
+    "issue_date": "2025-08-20",
+    "due_date": "2025-09-19",
+    "payment_terms_days": 30,
+    "amount_cents": 1298805,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Warenlieferung Lebensmittel",
+        "quantity": 10,
+        "unit_price_cents": 254639
+      },
+      {
+        "description": "Transportkosten",
+        "quantity": 10,
+        "unit_price_cents": 65912
+      },
+      {
+        "description": "Verpackungskosten",
+        "quantity": 6,
+        "unit_price_cents": 474108
+      }
+    ]
+  },
+  {
+    "id": "INV-0222",
+    "from_company_id": "C032",
+    "to_company_id": "C031",
+    "issue_date": "2025-11-20",
+    "due_date": "2026-01-04",
+    "payment_terms_days": 45,
+    "amount_cents": 1451597,
+    "currency": "EUR",
+    "status": "overdue",
+    "line_items": [
+      {
+        "description": "Qualitätsprüfung",
+        "quantity": 7,
+        "unit_price_cents": 26675
+      },
+      {
+        "description": "Braudienstleistungen",
+        "quantity": 3,
+        "unit_price_cents": 387173
+      },
+      {
+        "description": "Rohstofflieferung",
+        "quantity": 2,
+        "unit_price_cents": 123767
+      }
+    ]
+  },
+  {
+    "id": "INV-0223",
+    "from_company_id": "C033",
+    "to_company_id": "C032",
+    "issue_date": "2025-04-15",
+    "due_date": "2025-05-30",
+    "payment_terms_days": 45,
+    "amount_cents": 1772279,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Braudienstleistungen",
+        "quantity": 3,
+        "unit_price_cents": 427904
+      }
+    ]
+  },
+  {
+    "id": "INV-0224",
+    "from_company_id": "C032",
+    "to_company_id": "C033",
+    "issue_date": "2025-02-18",
+    "due_date": "2025-04-04",
+    "payment_terms_days": 45,
+    "amount_cents": 315926,
+    "currency": "EUR",
+    "status": "paid",
+    "line_items": [
+      {
+        "description": "Transportkosten",
+        "quantity": 5,
+        "unit_price_cents": 467676
+      }
+    ]
+  },
+  {
+    "id": "INV-0225",
+    "from_company_id": "C032",
+    "to_company_id": "C021",
+    "issue_date": "2025-06-09",
+    "due_date": "2025-07-24",
+    "payment_terms_days": 45,
+    "amount_cents": 1655679,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Braudienstleistungen",
+        "quantity": 9,
+        "unit_price_cents": 340578
+      },
+      {
+        "description": "Qualitätsprüfung",
+        "quantity": 4,
+        "unit_price_cents": 495347
+      },
+      {
+        "description": "Rohstofflieferung",
+        "quantity": 5,
+        "unit_price_cents": 154576
+      }
+    ]
+  },
+  {
+    "id": "INV-0226",
+    "from_company_id": "C032",
+    "to_company_id": "C022",
+    "issue_date": "2025-11-01",
+    "due_date": "2025-12-01",
+    "payment_terms_days": 30,
+    "amount_cents": 1034068,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Verpackungskosten",
+        "quantity": 6,
+        "unit_price_cents": 110381
+      }
+    ]
+  },
+  {
+    "id": "INV-0227",
+    "from_company_id": "C032",
+    "to_company_id": "C023",
+    "issue_date": "2025-04-22",
+    "due_date": "2025-06-21",
+    "payment_terms_days": 60,
+    "amount_cents": 1291956,
+    "currency": "EUR",
+    "status": "paid",
+    "line_items": [
+      {
+        "description": "Qualitätsprüfung",
+        "quantity": 8,
+        "unit_price_cents": 6595
+      },
+      {
+        "description": "Rohstofflieferung",
+        "quantity": 2,
+        "unit_price_cents": 265862
+      },
+      {
+        "description": "Braudienstleistungen",
+        "quantity": 5,
+        "unit_price_cents": 243588
+      }
+    ]
+  },
+  {
+    "id": "INV-0228",
+    "from_company_id": "C032",
+    "to_company_id": "C034",
+    "issue_date": "2025-10-13",
+    "due_date": "2025-11-12",
+    "payment_terms_days": 30,
+    "amount_cents": 1269172,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Transportkosten",
+        "quantity": 7,
+        "unit_price_cents": 39566
+      },
+      {
+        "description": "Warenlieferung Lebensmittel",
+        "quantity": 5,
+        "unit_price_cents": 452462
+      },
+      {
+        "description": "Verpackungskosten",
+        "quantity": 1,
+        "unit_price_cents": 316054
+      }
+    ]
+  },
+  {
+    "id": "INV-0229",
+    "from_company_id": "C019",
+    "to_company_id": "C021",
+    "issue_date": "2025-02-05",
+    "due_date": "2025-04-06",
+    "payment_terms_days": 60,
+    "amount_cents": 226794,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Qualitätsprüfung",
+        "quantity": 6,
+        "unit_price_cents": 114175
+      },
+      {
+        "description": "Rohstofflieferung",
+        "quantity": 2,
+        "unit_price_cents": 271831
+      },
+      {
+        "description": "Braudienstleistungen",
+        "quantity": 10,
+        "unit_price_cents": 382747
+      }
+    ]
+  },
+  {
+    "id": "INV-0230",
+    "from_company_id": "C021",
+    "to_company_id": "C019",
+    "issue_date": "2025-04-09",
+    "due_date": "2025-05-24",
+    "payment_terms_days": 45,
+    "amount_cents": 306827,
+    "currency": "EUR",
+    "status": "paid",
+    "line_items": [
+      {
+        "description": "Gastronomieausrüstung",
+        "quantity": 10,
+        "unit_price_cents": 79573
+      },
+      {
+        "description": "Logistikkosten",
+        "quantity": 3,
+        "unit_price_cents": 471379
+      },
+      {
+        "description": "Beratungsleistungen",
+        "quantity": 8,
+        "unit_price_cents": 177058
+      }
+    ]
+  },
+  {
+    "id": "INV-0231",
+    "from_company_id": "C019",
+    "to_company_id": "C022",
+    "issue_date": "2025-06-23",
+    "due_date": "2025-08-07",
+    "payment_terms_days": 45,
+    "amount_cents": 1234885,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Verpackungskosten",
+        "quantity": 4,
+        "unit_price_cents": 338163
+      }
+    ]
+  },
+  {
+    "id": "INV-0232",
+    "from_company_id": "C022",
+    "to_company_id": "C019",
+    "issue_date": "2025-10-13",
+    "due_date": "2025-11-27",
+    "payment_terms_days": 45,
+    "amount_cents": 805303,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Verpackungskosten",
+        "quantity": 8,
+        "unit_price_cents": 277582
+      },
+      {
+        "description": "Warenlieferung Lebensmittel",
+        "quantity": 10,
+        "unit_price_cents": 431301
+      }
+    ]
+  },
+  {
+    "id": "INV-0233",
+    "from_company_id": "C019",
+    "to_company_id": "C023",
+    "issue_date": "2025-11-10",
+    "due_date": "2025-12-25",
+    "payment_terms_days": 45,
+    "amount_cents": 1414057,
+    "currency": "EUR",
+    "status": "paid",
+    "line_items": [
+      {
+        "description": "Beratungsleistungen",
+        "quantity": 4,
+        "unit_price_cents": 387583
+      }
+    ]
+  },
+  {
+    "id": "INV-0234",
+    "from_company_id": "C023",
+    "to_company_id": "C019",
+    "issue_date": "2025-03-18",
+    "due_date": "2025-04-17",
+    "payment_terms_days": 30,
+    "amount_cents": 1515593,
+    "currency": "EUR",
+    "status": "paid",
+    "line_items": [
+      {
+        "description": "Gastronomieausrüstung",
+        "quantity": 7,
+        "unit_price_cents": 83812
+      },
+      {
+        "description": "Beratungsleistungen",
+        "quantity": 3,
+        "unit_price_cents": 462025
+      },
+      {
+        "description": "Logistikkosten",
+        "quantity": 3,
+        "unit_price_cents": 486161
+      }
+    ]
+  },
+  {
+    "id": "INV-0235",
+    "from_company_id": "C019",
+    "to_company_id": "C034",
+    "issue_date": "2025-05-04",
+    "due_date": "2025-06-18",
+    "payment_terms_days": 45,
+    "amount_cents": 484078,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Qualitätsprüfung",
+        "quantity": 5,
+        "unit_price_cents": 234101
+      }
+    ]
+  },
+  {
+    "id": "INV-0236",
+    "from_company_id": "C034",
+    "to_company_id": "C019",
+    "issue_date": "2025-08-19",
+    "due_date": "2025-11-17",
+    "payment_terms_days": 90,
+    "amount_cents": 983746,
+    "currency": "EUR",
+    "status": "overdue",
+    "line_items": [
+      {
+        "description": "Beratungsleistungen",
+        "quantity": 6,
+        "unit_price_cents": 232821
+      },
+      {
+        "description": "Logistikkosten",
+        "quantity": 4,
+        "unit_price_cents": 361756
+      }
+    ]
+  },
+  {
+    "id": "INV-0237",
+    "from_company_id": "C019",
+    "to_company_id": "C034",
+    "issue_date": "2025-10-01",
+    "due_date": "2025-11-30",
+    "payment_terms_days": 60,
+    "amount_cents": 1027138,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Qualitätsprüfung",
+        "quantity": 9,
+        "unit_price_cents": 24337
+      },
+      {
+        "description": "Rohstofflieferung",
+        "quantity": 7,
+        "unit_price_cents": 316379
+      },
+      {
+        "description": "Braudienstleistungen",
+        "quantity": 3,
+        "unit_price_cents": 405504
+      }
+    ]
+  },
+  {
+    "id": "INV-0238",
+    "from_company_id": "C019",
+    "to_company_id": "C032",
+    "issue_date": "2025-05-24",
+    "due_date": "2025-08-22",
+    "payment_terms_days": 90,
+    "amount_cents": 868681,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Gastronomieausrüstung",
+        "quantity": 4,
+        "unit_price_cents": 368795
+      },
+      {
+        "description": "Beratungsleistungen",
+        "quantity": 9,
+        "unit_price_cents": 306675
+      }
+    ]
+  },
+  {
+    "id": "INV-0239",
+    "from_company_id": "C032",
+    "to_company_id": "C019",
+    "issue_date": "2025-09-26",
+    "due_date": "2025-11-25",
+    "payment_terms_days": 60,
+    "amount_cents": 1465921,
+    "currency": "EUR",
+    "status": "overdue",
+    "line_items": [
+      {
+        "description": "Braudienstleistungen",
+        "quantity": 6,
+        "unit_price_cents": 449467
+      },
+      {
+        "description": "Rohstofflieferung",
+        "quantity": 10,
+        "unit_price_cents": 21422
+      }
+    ]
+  },
+  {
+    "id": "INV-0240",
+    "from_company_id": "C020",
+    "to_company_id": "C021",
+    "issue_date": "2025-11-26",
+    "due_date": "2026-01-10",
+    "payment_terms_days": 45,
+    "amount_cents": 855723,
+    "currency": "EUR",
+    "status": "paid",
+    "line_items": [
+      {
+        "description": "Logistikkosten",
+        "quantity": 4,
+        "unit_price_cents": 319328
+      }
+    ]
+  },
+  {
+    "id": "INV-0241",
+    "from_company_id": "C021",
+    "to_company_id": "C020",
+    "issue_date": "2025-10-30",
+    "due_date": "2025-12-29",
+    "payment_terms_days": 60,
+    "amount_cents": 132248,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Rohstofflieferung",
+        "quantity": 5,
+        "unit_price_cents": 178795
+      },
+      {
+        "description": "Qualitätsprüfung",
+        "quantity": 2,
+        "unit_price_cents": 368485
+      },
+      {
+        "description": "Braudienstleistungen",
+        "quantity": 2,
+        "unit_price_cents": 364152
+      }
+    ]
+  },
+  {
+    "id": "INV-0242",
+    "from_company_id": "C020",
+    "to_company_id": "C021",
+    "issue_date": "2025-01-04",
+    "due_date": "2025-03-05",
+    "payment_terms_days": 60,
+    "amount_cents": 582923,
+    "currency": "EUR",
+    "status": "paid",
+    "line_items": [
+      {
+        "description": "Qualitätsprüfung",
+        "quantity": 3,
+        "unit_price_cents": 58857
+      }
+    ]
+  },
+  {
+    "id": "INV-0243",
+    "from_company_id": "C020",
+    "to_company_id": "C022",
+    "issue_date": "2025-05-12",
+    "due_date": "2025-07-11",
+    "payment_terms_days": 60,
+    "amount_cents": 141515,
+    "currency": "EUR",
+    "status": "paid",
+    "line_items": [
+      {
+        "description": "Qualitätsprüfung",
+        "quantity": 4,
+        "unit_price_cents": 185814
+      },
+      {
+        "description": "Rohstofflieferung",
+        "quantity": 2,
+        "unit_price_cents": 128006
+      },
+      {
+        "description": "Braudienstleistungen",
+        "quantity": 4,
+        "unit_price_cents": 30687
+      }
+    ]
+  },
+  {
+    "id": "INV-0244",
+    "from_company_id": "C022",
+    "to_company_id": "C020",
+    "issue_date": "2025-06-16",
+    "due_date": "2025-08-15",
+    "payment_terms_days": 60,
+    "amount_cents": 359282,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Warenlieferung Lebensmittel",
+        "quantity": 9,
+        "unit_price_cents": 493826
+      },
+      {
+        "description": "Verpackungskosten",
+        "quantity": 3,
+        "unit_price_cents": 344865
+      }
+    ]
+  },
+  {
+    "id": "INV-0245",
+    "from_company_id": "C020",
+    "to_company_id": "C023",
+    "issue_date": "2025-08-19",
+    "due_date": "2025-10-03",
+    "payment_terms_days": 45,
+    "amount_cents": 1778294,
+    "currency": "EUR",
+    "status": "paid",
+    "line_items": [
+      {
+        "description": "Logistikkosten",
+        "quantity": 10,
+        "unit_price_cents": 15285
+      },
+      {
+        "description": "Beratungsleistungen",
+        "quantity": 9,
+        "unit_price_cents": 330253
+      },
+      {
+        "description": "Gastronomieausrüstung",
+        "quantity": 6,
+        "unit_price_cents": 446878
+      }
+    ]
+  },
+  {
+    "id": "INV-0246",
+    "from_company_id": "C023",
+    "to_company_id": "C020",
+    "issue_date": "2025-01-30",
+    "due_date": "2025-03-01",
+    "payment_terms_days": 30,
+    "amount_cents": 1252892,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Braudienstleistungen",
+        "quantity": 6,
+        "unit_price_cents": 416293
+      }
+    ]
+  },
+  {
+    "id": "INV-0247",
+    "from_company_id": "C020",
+    "to_company_id": "C023",
+    "issue_date": "2025-02-28",
+    "due_date": "2025-03-30",
+    "payment_terms_days": 30,
+    "amount_cents": 974725,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Braudienstleistungen",
+        "quantity": 10,
+        "unit_price_cents": 228774
+      }
+    ]
+  },
+  {
+    "id": "INV-0248",
+    "from_company_id": "C020",
+    "to_company_id": "C034",
+    "issue_date": "2025-03-20",
+    "due_date": "2025-05-04",
+    "payment_terms_days": 45,
+    "amount_cents": 463417,
+    "currency": "EUR",
+    "status": "overdue",
+    "line_items": [
+      {
+        "description": "Verpackungskosten",
+        "quantity": 4,
+        "unit_price_cents": 9257
+      },
+      {
+        "description": "Transportkosten",
+        "quantity": 1,
+        "unit_price_cents": 280930
+      },
+      {
+        "description": "Warenlieferung Lebensmittel",
+        "quantity": 9,
+        "unit_price_cents": 90681
+      }
+    ]
+  },
+  {
+    "id": "INV-0249",
+    "from_company_id": "C034",
+    "to_company_id": "C020",
+    "issue_date": "2025-01-30",
+    "due_date": "2025-03-31",
+    "payment_terms_days": 60,
+    "amount_cents": 1658581,
+    "currency": "EUR",
+    "status": "overdue",
+    "line_items": [
+      {
+        "description": "Beratungsleistungen",
+        "quantity": 1,
+        "unit_price_cents": 269503
+      },
+      {
+        "description": "Gastronomieausrüstung",
+        "quantity": 3,
+        "unit_price_cents": 221709
+      },
+      {
+        "description": "Logistikkosten",
+        "quantity": 4,
+        "unit_price_cents": 140288
+      }
+    ]
+  },
+  {
+    "id": "INV-0250",
+    "from_company_id": "C020",
+    "to_company_id": "C032",
+    "issue_date": "2025-12-26",
+    "due_date": "2026-02-09",
+    "payment_terms_days": 45,
+    "amount_cents": 517227,
+    "currency": "EUR",
+    "status": "overdue",
+    "line_items": [
+      {
+        "description": "Rohstofflieferung",
+        "quantity": 3,
+        "unit_price_cents": 198073
+      },
+      {
+        "description": "Braudienstleistungen",
+        "quantity": 10,
+        "unit_price_cents": 237192
+      },
+      {
+        "description": "Qualitätsprüfung",
+        "quantity": 4,
+        "unit_price_cents": 245026
+      }
+    ]
+  },
+  {
+    "id": "INV-0251",
+    "from_company_id": "C032",
+    "to_company_id": "C020",
+    "issue_date": "2025-06-19",
+    "due_date": "2025-08-03",
+    "payment_terms_days": 45,
+    "amount_cents": 1762342,
+    "currency": "EUR",
+    "status": "paid",
+    "line_items": [
+      {
+        "description": "Rohstofflieferung",
+        "quantity": 4,
+        "unit_price_cents": 272641
+      },
+      {
+        "description": "Qualitätsprüfung",
+        "quantity": 5,
+        "unit_price_cents": 291748
+      }
+    ]
+  },
+  {
+    "id": "INV-0252",
+    "from_company_id": "C036",
+    "to_company_id": "C044",
+    "issue_date": "2025-12-26",
+    "due_date": "2026-02-09",
+    "payment_terms_days": 45,
+    "amount_cents": 4800998,
+    "currency": "EUR",
+    "status": "overdue",
+    "line_items": [
+      {
+        "description": "Netzanbindung",
+        "quantity": 9,
+        "unit_price_cents": 196206
+      },
+      {
+        "description": "Stromerzeugung (Windkraft)",
+        "quantity": 4,
+        "unit_price_cents": 271768
+      },
+      {
+        "description": "Regelenergie",
+        "quantity": 8,
+        "unit_price_cents": 354782
+      }
+    ]
+  },
+  {
+    "id": "INV-0253",
+    "from_company_id": "C044",
+    "to_company_id": "C036",
+    "issue_date": "2025-03-01",
+    "due_date": "2025-03-31",
+    "payment_terms_days": 30,
+    "amount_cents": 9357724,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Systemintegration",
+        "quantity": 4,
+        "unit_price_cents": 139704
+      }
+    ]
+  },
+  {
+    "id": "INV-0254",
+    "from_company_id": "C036",
+    "to_company_id": "C045",
+    "issue_date": "2025-02-20",
+    "due_date": "2025-04-06",
+    "payment_terms_days": 45,
+    "amount_cents": 4059012,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Systemintegration",
+        "quantity": 7,
+        "unit_price_cents": 206800
+      },
+      {
+        "description": "Speichermiete",
+        "quantity": 1,
+        "unit_price_cents": 90727
+      }
+    ]
+  },
+  {
+    "id": "INV-0255",
+    "from_company_id": "C045",
+    "to_company_id": "C036",
+    "issue_date": "2025-11-12",
+    "due_date": "2025-12-27",
+    "payment_terms_days": 45,
+    "amount_cents": 9814862,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Stromerzeugung (Windkraft)",
+        "quantity": 7,
+        "unit_price_cents": 245095
+      },
+      {
+        "description": "Regelenergie",
+        "quantity": 4,
+        "unit_price_cents": 307958
+      }
+    ]
+  },
+  {
+    "id": "INV-0256",
+    "from_company_id": "C037",
+    "to_company_id": "C044",
+    "issue_date": "2025-04-15",
+    "due_date": "2025-06-14",
+    "payment_terms_days": 60,
+    "amount_cents": 2438881,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Batteriemanagement",
+        "quantity": 7,
+        "unit_price_cents": 433241
+      },
+      {
+        "description": "Systemintegration",
+        "quantity": 1,
+        "unit_price_cents": 376204
+      }
+    ]
+  },
+  {
+    "id": "INV-0257",
+    "from_company_id": "C044",
+    "to_company_id": "C037",
+    "issue_date": "2025-02-03",
+    "due_date": "2025-03-20",
+    "payment_terms_days": 45,
+    "amount_cents": 14393236,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Netzanbindung",
+        "quantity": 4,
+        "unit_price_cents": 365288
+      },
+      {
+        "description": "Regelenergie",
+        "quantity": 3,
+        "unit_price_cents": 26743
+      },
+      {
+        "description": "Stromerzeugung (Windkraft)",
+        "quantity": 8,
+        "unit_price_cents": 395487
+      }
+    ]
+  },
+  {
+    "id": "INV-0258",
+    "from_company_id": "C037",
+    "to_company_id": "C044",
+    "issue_date": "2025-07-26",
+    "due_date": "2025-09-09",
+    "payment_terms_days": 45,
+    "amount_cents": 4666167,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Netzanbindung",
+        "quantity": 9,
+        "unit_price_cents": 397587
+      },
+      {
+        "description": "Stromerzeugung (Windkraft)",
+        "quantity": 9,
+        "unit_price_cents": 264438
+      }
+    ]
+  },
+  {
+    "id": "INV-0259",
+    "from_company_id": "C037",
+    "to_company_id": "C045",
+    "issue_date": "2025-10-27",
+    "due_date": "2025-12-26",
+    "payment_terms_days": 60,
+    "amount_cents": 7238464,
+    "currency": "EUR",
+    "status": "overdue",
+    "line_items": [
+      {
+        "description": "Regelenergie",
+        "quantity": 10,
+        "unit_price_cents": 30300
+      }
+    ]
+  },
+  {
+    "id": "INV-0260",
+    "from_company_id": "C045",
+    "to_company_id": "C037",
+    "issue_date": "2025-09-20",
+    "due_date": "2025-11-04",
+    "payment_terms_days": 45,
+    "amount_cents": 6355076,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Batteriemanagement",
+        "quantity": 9,
+        "unit_price_cents": 138222
+      },
+      {
+        "description": "Speichermiete",
+        "quantity": 6,
+        "unit_price_cents": 167746
+      },
+      {
+        "description": "Systemintegration",
+        "quantity": 5,
+        "unit_price_cents": 148468
+      }
+    ]
+  },
+  {
+    "id": "INV-0261",
+    "from_company_id": "C038",
+    "to_company_id": "C044",
+    "issue_date": "2025-10-27",
+    "due_date": "2025-11-26",
+    "payment_terms_days": 30,
+    "amount_cents": 7534611,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Photovoltaik-Wartung",
+        "quantity": 4,
+        "unit_price_cents": 119470
+      }
+    ]
+  },
+  {
+    "id": "INV-0262",
+    "from_company_id": "C044",
+    "to_company_id": "C038",
+    "issue_date": "2025-08-01",
+    "due_date": "2025-08-31",
+    "payment_terms_days": 30,
+    "amount_cents": 14335821,
+    "currency": "EUR",
+    "status": "paid",
+    "line_items": [
+      {
+        "description": "Netzanbindung",
+        "quantity": 5,
+        "unit_price_cents": 403189
+      },
+      {
+        "description": "Regelenergie",
+        "quantity": 5,
+        "unit_price_cents": 279710
+      },
+      {
+        "description": "Stromerzeugung (Windkraft)",
+        "quantity": 9,
+        "unit_price_cents": 410629
+      }
+    ]
+  },
+  {
+    "id": "INV-0263",
+    "from_company_id": "C038",
+    "to_company_id": "C044",
+    "issue_date": "2025-12-11",
+    "due_date": "2026-03-11",
+    "payment_terms_days": 90,
+    "amount_cents": 4280542,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Photovoltaik-Wartung",
+        "quantity": 8,
+        "unit_price_cents": 210692
+      }
+    ]
+  },
+  {
+    "id": "INV-0264",
+    "from_company_id": "C038",
+    "to_company_id": "C045",
+    "issue_date": "2025-07-04",
+    "due_date": "2025-08-03",
+    "payment_terms_days": 30,
+    "amount_cents": 4450237,
+    "currency": "EUR",
+    "status": "paid",
+    "line_items": [
+      {
+        "description": "Photovoltaik-Wartung",
+        "quantity": 8,
+        "unit_price_cents": 294041
+      }
+    ]
+  },
+  {
+    "id": "INV-0265",
+    "from_company_id": "C045",
+    "to_company_id": "C038",
+    "issue_date": "2025-08-02",
+    "due_date": "2025-09-01",
+    "payment_terms_days": 30,
+    "amount_cents": 10887860,
+    "currency": "EUR",
+    "status": "paid",
+    "line_items": [
+      {
+        "description": "Batteriemanagement",
+        "quantity": 8,
+        "unit_price_cents": 364318
+      },
+      {
+        "description": "Systemintegration",
+        "quantity": 2,
+        "unit_price_cents": 30097
+      },
+      {
+        "description": "Speichermiete",
+        "quantity": 6,
+        "unit_price_cents": 326550
+      }
+    ]
+  },
+  {
+    "id": "INV-0266",
+    "from_company_id": "C039",
+    "to_company_id": "C044",
+    "issue_date": "2025-03-03",
+    "due_date": "2025-04-17",
+    "payment_terms_days": 45,
+    "amount_cents": 9851461,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Netzanbindung",
+        "quantity": 1,
+        "unit_price_cents": 480152
+      },
+      {
+        "description": "Stromerzeugung (Windkraft)",
+        "quantity": 4,
+        "unit_price_cents": 465249
+      }
+    ]
+  },
+  {
+    "id": "INV-0267",
+    "from_company_id": "C044",
+    "to_company_id": "C039",
+    "issue_date": "2025-01-14",
+    "due_date": "2025-02-13",
+    "payment_terms_days": 30,
+    "amount_cents": 8147861,
+    "currency": "EUR",
+    "status": "paid",
+    "line_items": [
+      {
+        "description": "Ertragsgutachten",
+        "quantity": 1,
+        "unit_price_cents": 222023
+      },
+      {
+        "description": "Monitoring-Service",
+        "quantity": 6,
+        "unit_price_cents": 155793
+      }
+    ]
+  },
+  {
+    "id": "INV-0268",
+    "from_company_id": "C039",
+    "to_company_id": "C045",
+    "issue_date": "2025-02-15",
+    "due_date": "2025-03-17",
+    "payment_terms_days": 30,
+    "amount_cents": 1076466,
+    "currency": "EUR",
+    "status": "overdue",
+    "line_items": [
+      {
+        "description": "Ertragsgutachten",
+        "quantity": 3,
+        "unit_price_cents": 77943
+      }
+    ]
+  },
+  {
+    "id": "INV-0269",
+    "from_company_id": "C045",
+    "to_company_id": "C039",
+    "issue_date": "2025-01-31",
+    "due_date": "2025-03-17",
+    "payment_terms_days": 45,
+    "amount_cents": 709073,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Photovoltaik-Wartung",
+        "quantity": 6,
+        "unit_price_cents": 452194
+      },
+      {
+        "description": "Monitoring-Service",
+        "quantity": 8,
+        "unit_price_cents": 210819
+      },
+      {
+        "description": "Ertragsgutachten",
+        "quantity": 1,
+        "unit_price_cents": 496828
+      }
+    ]
+  },
+  {
+    "id": "INV-0270",
+    "from_company_id": "C040",
+    "to_company_id": "C044",
+    "issue_date": "2025-04-10",
+    "due_date": "2025-06-09",
+    "payment_terms_days": 60,
+    "amount_cents": 9362803,
+    "currency": "EUR",
+    "status": "overdue",
+    "line_items": [
+      {
+        "description": "Systemintegration",
+        "quantity": 4,
+        "unit_price_cents": 246967
+      },
+      {
+        "description": "Batteriemanagement",
+        "quantity": 7,
+        "unit_price_cents": 73066
+      },
+      {
+        "description": "Speichermiete",
+        "quantity": 10,
+        "unit_price_cents": 37415
+      }
+    ]
+  },
+  {
+    "id": "INV-0271",
+    "from_company_id": "C044",
+    "to_company_id": "C040",
+    "issue_date": "2025-06-05",
+    "due_date": "2025-08-04",
+    "payment_terms_days": 60,
+    "amount_cents": 5713755,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Photovoltaik-Wartung",
+        "quantity": 9,
+        "unit_price_cents": 146248
+      },
+      {
+        "description": "Monitoring-Service",
+        "quantity": 5,
+        "unit_price_cents": 284827
+      },
+      {
+        "description": "Ertragsgutachten",
+        "quantity": 9,
+        "unit_price_cents": 431926
+      }
+    ]
+  },
+  {
+    "id": "INV-0272",
+    "from_company_id": "C040",
+    "to_company_id": "C045",
+    "issue_date": "2025-12-07",
+    "due_date": "2026-01-21",
+    "payment_terms_days": 45,
+    "amount_cents": 3898855,
+    "currency": "EUR",
+    "status": "overdue",
+    "line_items": [
+      {
+        "description": "Monitoring-Service",
+        "quantity": 2,
+        "unit_price_cents": 149533
+      },
+      {
+        "description": "Photovoltaik-Wartung",
+        "quantity": 8,
+        "unit_price_cents": 391280
+      }
+    ]
+  },
+  {
+    "id": "INV-0273",
+    "from_company_id": "C045",
+    "to_company_id": "C040",
+    "issue_date": "2025-04-27",
+    "due_date": "2025-06-26",
+    "payment_terms_days": 60,
+    "amount_cents": 13730629,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Photovoltaik-Wartung",
+        "quantity": 7,
+        "unit_price_cents": 340661
+      },
+      {
+        "description": "Monitoring-Service",
+        "quantity": 6,
+        "unit_price_cents": 7615
+      },
+      {
+        "description": "Ertragsgutachten",
+        "quantity": 8,
+        "unit_price_cents": 353193
+      }
+    ]
+  },
+  {
+    "id": "INV-0274",
+    "from_company_id": "C040",
+    "to_company_id": "C045",
+    "issue_date": "2025-04-09",
+    "due_date": "2025-05-24",
+    "payment_terms_days": 45,
+    "amount_cents": 5641417,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Stromerzeugung (Windkraft)",
+        "quantity": 7,
+        "unit_price_cents": 394079
+      }
+    ]
+  },
+  {
+    "id": "INV-0275",
+    "from_company_id": "C041",
+    "to_company_id": "C044",
+    "issue_date": "2025-10-05",
+    "due_date": "2025-11-19",
+    "payment_terms_days": 45,
+    "amount_cents": 3419121,
+    "currency": "EUR",
+    "status": "paid",
+    "line_items": [
+      {
+        "description": "Stromerzeugung (Windkraft)",
+        "quantity": 1,
+        "unit_price_cents": 492726
+      }
+    ]
+  },
+  {
+    "id": "INV-0276",
+    "from_company_id": "C044",
+    "to_company_id": "C041",
+    "issue_date": "2025-09-19",
+    "due_date": "2025-11-03",
+    "payment_terms_days": 45,
+    "amount_cents": 8466561,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Speichermiete",
+        "quantity": 1,
+        "unit_price_cents": 257281
+      },
+      {
+        "description": "Systemintegration",
+        "quantity": 2,
+        "unit_price_cents": 378997
+      },
+      {
+        "description": "Batteriemanagement",
+        "quantity": 4,
+        "unit_price_cents": 402832
+      }
+    ]
+  },
+  {
+    "id": "INV-0277",
+    "from_company_id": "C041",
+    "to_company_id": "C044",
+    "issue_date": "2025-08-20",
+    "due_date": "2025-10-19",
+    "payment_terms_days": 60,
+    "amount_cents": 4572158,
+    "currency": "EUR",
+    "status": "paid",
+    "line_items": [
+      {
+        "description": "Systemintegration",
+        "quantity": 10,
+        "unit_price_cents": 363968
+      },
+      {
+        "description": "Batteriemanagement",
+        "quantity": 1,
+        "unit_price_cents": 28796
+      },
+      {
+        "description": "Speichermiete",
+        "quantity": 4,
+        "unit_price_cents": 429927
+      }
+    ]
+  },
+  {
+    "id": "INV-0278",
+    "from_company_id": "C041",
+    "to_company_id": "C045",
+    "issue_date": "2025-10-08",
+    "due_date": "2025-11-22",
+    "payment_terms_days": 45,
+    "amount_cents": 13287678,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Speichermiete",
+        "quantity": 7,
+        "unit_price_cents": 383033
+      }
+    ]
+  },
+  {
+    "id": "INV-0279",
+    "from_company_id": "C045",
+    "to_company_id": "C041",
+    "issue_date": "2025-10-02",
+    "due_date": "2025-11-01",
+    "payment_terms_days": 30,
+    "amount_cents": 6960587,
+    "currency": "EUR",
+    "status": "overdue",
+    "line_items": [
+      {
+        "description": "Monitoring-Service",
+        "quantity": 9,
+        "unit_price_cents": 269002
+      },
+      {
+        "description": "Photovoltaik-Wartung",
+        "quantity": 8,
+        "unit_price_cents": 428379
+      },
+      {
+        "description": "Ertragsgutachten",
+        "quantity": 3,
+        "unit_price_cents": 148549
+      }
+    ]
+  },
+  {
+    "id": "INV-0280",
+    "from_company_id": "C044",
+    "to_company_id": "C046",
+    "issue_date": "2025-12-10",
+    "due_date": "2026-03-10",
+    "payment_terms_days": 90,
+    "amount_cents": 6056683,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Speichermiete",
+        "quantity": 2,
+        "unit_price_cents": 148825
+      }
+    ]
+  },
+  {
+    "id": "INV-0281",
+    "from_company_id": "C046",
+    "to_company_id": "C044",
+    "issue_date": "2025-08-22",
+    "due_date": "2025-09-21",
+    "payment_terms_days": 30,
+    "amount_cents": 7736669,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Photovoltaik-Wartung",
+        "quantity": 7,
+        "unit_price_cents": 67693
+      }
+    ]
+  },
+  {
+    "id": "INV-0282",
+    "from_company_id": "C044",
+    "to_company_id": "C046",
+    "issue_date": "2025-08-02",
+    "due_date": "2025-09-01",
+    "payment_terms_days": 30,
+    "amount_cents": 11715817,
+    "currency": "EUR",
+    "status": "overdue",
+    "line_items": [
+      {
+        "description": "Monitoring-Service",
+        "quantity": 9,
+        "unit_price_cents": 38097
+      }
+    ]
+  },
+  {
+    "id": "INV-0283",
+    "from_company_id": "C045",
+    "to_company_id": "C046",
+    "issue_date": "2025-09-03",
+    "due_date": "2025-10-18",
+    "payment_terms_days": 45,
+    "amount_cents": 7417045,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Monitoring-Service",
+        "quantity": 10,
+        "unit_price_cents": 230226
+      }
+    ]
+  },
+  {
+    "id": "INV-0284",
+    "from_company_id": "C046",
+    "to_company_id": "C045",
+    "issue_date": "2025-11-15",
+    "due_date": "2026-01-14",
+    "payment_terms_days": 60,
+    "amount_cents": 2454923,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Systemintegration",
+        "quantity": 10,
+        "unit_price_cents": 160912
+      }
+    ]
+  },
+  {
+    "id": "INV-0285",
+    "from_company_id": "C045",
+    "to_company_id": "C046",
+    "issue_date": "2025-11-12",
+    "due_date": "2026-02-10",
+    "payment_terms_days": 90,
+    "amount_cents": 8881014,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Netzanbindung",
+        "quantity": 9,
+        "unit_price_cents": 200413
+      },
+      {
+        "description": "Regelenergie",
+        "quantity": 3,
+        "unit_price_cents": 380701
+      }
+    ]
+  },
+  {
+    "id": "INV-0286",
+    "from_company_id": "C046",
+    "to_company_id": "C036",
+    "issue_date": "2025-05-03",
+    "due_date": "2025-07-02",
+    "payment_terms_days": 60,
+    "amount_cents": 10080002,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Ertragsgutachten",
+        "quantity": 4,
+        "unit_price_cents": 262376
+      },
+      {
+        "description": "Photovoltaik-Wartung",
+        "quantity": 6,
+        "unit_price_cents": 147644
+      },
+      {
+        "description": "Monitoring-Service",
+        "quantity": 10,
+        "unit_price_cents": 296450
+      }
+    ]
+  },
+  {
+    "id": "INV-0287",
+    "from_company_id": "C046",
+    "to_company_id": "C037",
+    "issue_date": "2025-12-04",
+    "due_date": "2026-02-02",
+    "payment_terms_days": 60,
+    "amount_cents": 5771276,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Regelenergie",
+        "quantity": 8,
+        "unit_price_cents": 178307
+      },
+      {
+        "description": "Netzanbindung",
+        "quantity": 6,
+        "unit_price_cents": 31524
+      }
+    ]
+  },
+  {
+    "id": "INV-0288",
+    "from_company_id": "C046",
+    "to_company_id": "C038",
+    "issue_date": "2025-09-09",
+    "due_date": "2025-10-09",
+    "payment_terms_days": 30,
+    "amount_cents": 10161386,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Systemintegration",
+        "quantity": 9,
+        "unit_price_cents": 413704
+      },
+      {
+        "description": "Speichermiete",
+        "quantity": 3,
+        "unit_price_cents": 13497
+      }
+    ]
+  },
+  {
+    "id": "INV-0289",
+    "from_company_id": "C042",
+    "to_company_id": "C044",
+    "issue_date": "2025-07-22",
+    "due_date": "2025-09-05",
+    "payment_terms_days": 45,
+    "amount_cents": 14569379,
+    "currency": "EUR",
+    "status": "paid",
+    "line_items": [
+      {
+        "description": "Ertragsgutachten",
+        "quantity": 4,
+        "unit_price_cents": 384681
+      },
+      {
+        "description": "Photovoltaik-Wartung",
+        "quantity": 7,
+        "unit_price_cents": 322312
+      },
+      {
+        "description": "Monitoring-Service",
+        "quantity": 5,
+        "unit_price_cents": 431942
+      }
+    ]
+  },
+  {
+    "id": "INV-0290",
+    "from_company_id": "C044",
+    "to_company_id": "C042",
+    "issue_date": "2025-05-16",
+    "due_date": "2025-07-15",
+    "payment_terms_days": 60,
+    "amount_cents": 7924446,
+    "currency": "EUR",
+    "status": "overdue",
+    "line_items": [
+      {
+        "description": "Batteriemanagement",
+        "quantity": 10,
+        "unit_price_cents": 165610
+      },
+      {
+        "description": "Speichermiete",
+        "quantity": 6,
+        "unit_price_cents": 159203
+      },
+      {
+        "description": "Systemintegration",
+        "quantity": 2,
+        "unit_price_cents": 195109
+      }
+    ]
+  },
+  {
+    "id": "INV-0291",
+    "from_company_id": "C042",
+    "to_company_id": "C045",
+    "issue_date": "2025-02-09",
+    "due_date": "2025-05-10",
+    "payment_terms_days": 90,
+    "amount_cents": 14694505,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Speichermiete",
+        "quantity": 4,
+        "unit_price_cents": 279590
+      },
+      {
+        "description": "Batteriemanagement",
+        "quantity": 2,
+        "unit_price_cents": 67496
+      },
+      {
+        "description": "Systemintegration",
+        "quantity": 6,
+        "unit_price_cents": 223756
+      }
+    ]
+  },
+  {
+    "id": "INV-0292",
+    "from_company_id": "C045",
+    "to_company_id": "C042",
+    "issue_date": "2025-06-18",
+    "due_date": "2025-08-17",
+    "payment_terms_days": 60,
+    "amount_cents": 3936069,
+    "currency": "EUR",
+    "status": "overdue",
+    "line_items": [
+      {
+        "description": "Speichermiete",
+        "quantity": 3,
+        "unit_price_cents": 200450
+      },
+      {
+        "description": "Systemintegration",
+        "quantity": 1,
+        "unit_price_cents": 309502
+      }
+    ]
+  },
+  {
+    "id": "INV-0293",
+    "from_company_id": "C042",
+    "to_company_id": "C045",
+    "issue_date": "2025-10-31",
+    "due_date": "2025-12-15",
+    "payment_terms_days": 45,
+    "amount_cents": 6099376,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Photovoltaik-Wartung",
+        "quantity": 5,
+        "unit_price_cents": 184704
+      }
+    ]
+  },
+  {
+    "id": "INV-0294",
+    "from_company_id": "C043",
+    "to_company_id": "C044",
+    "issue_date": "2025-08-31",
+    "due_date": "2025-09-30",
+    "payment_terms_days": 30,
+    "amount_cents": 8527598,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Stromerzeugung (Windkraft)",
+        "quantity": 6,
+        "unit_price_cents": 61760
+      },
+      {
+        "description": "Regelenergie",
+        "quantity": 7,
+        "unit_price_cents": 153257
+      },
+      {
+        "description": "Netzanbindung",
+        "quantity": 5,
+        "unit_price_cents": 492272
+      }
+    ]
+  },
+  {
+    "id": "INV-0295",
+    "from_company_id": "C044",
+    "to_company_id": "C043",
+    "issue_date": "2025-03-29",
+    "due_date": "2025-06-27",
+    "payment_terms_days": 90,
+    "amount_cents": 5332832,
+    "currency": "EUR",
+    "status": "paid",
+    "line_items": [
+      {
+        "description": "Monitoring-Service",
+        "quantity": 8,
+        "unit_price_cents": 272786
+      },
+      {
+        "description": "Photovoltaik-Wartung",
+        "quantity": 6,
+        "unit_price_cents": 264199
+      },
+      {
+        "description": "Ertragsgutachten",
+        "quantity": 2,
+        "unit_price_cents": 210360
+      }
+    ]
+  },
+  {
+    "id": "INV-0296",
+    "from_company_id": "C043",
+    "to_company_id": "C045",
+    "issue_date": "2025-07-16",
+    "due_date": "2025-08-30",
+    "payment_terms_days": 45,
+    "amount_cents": 9739370,
+    "currency": "EUR",
+    "status": "overdue",
+    "line_items": [
+      {
+        "description": "Regelenergie",
+        "quantity": 6,
+        "unit_price_cents": 208048
+      },
+      {
+        "description": "Netzanbindung",
+        "quantity": 9,
+        "unit_price_cents": 401969
+      },
+      {
+        "description": "Stromerzeugung (Windkraft)",
+        "quantity": 2,
+        "unit_price_cents": 95196
+      }
+    ]
+  },
+  {
+    "id": "INV-0297",
+    "from_company_id": "C045",
+    "to_company_id": "C043",
+    "issue_date": "2025-12-14",
+    "due_date": "2026-01-28",
+    "payment_terms_days": 45,
+    "amount_cents": 633085,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Stromerzeugung (Windkraft)",
+        "quantity": 4,
+        "unit_price_cents": 143156
+      }
+    ]
+  },
+  {
+    "id": "INV-0298",
+    "from_company_id": "C043",
+    "to_company_id": "C045",
+    "issue_date": "2025-12-08",
+    "due_date": "2026-01-07",
+    "payment_terms_days": 30,
+    "amount_cents": 4083401,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Systemintegration",
+        "quantity": 1,
+        "unit_price_cents": 242232
+      }
+    ]
+  },
+  {
+    "id": "INV-0299",
+    "from_company_id": "C047",
+    "to_company_id": "C036",
+    "issue_date": "2025-08-04",
+    "due_date": "2025-09-03",
+    "payment_terms_days": 30,
+    "amount_cents": 3452997,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Netzanbindung",
+        "quantity": 5,
+        "unit_price_cents": 68464
+      }
+    ]
+  },
+  {
+    "id": "INV-0300",
+    "from_company_id": "C036",
+    "to_company_id": "C047",
+    "issue_date": "2025-09-08",
+    "due_date": "2025-10-23",
+    "payment_terms_days": 45,
+    "amount_cents": 7420853,
+    "currency": "EUR",
+    "status": "paid",
+    "line_items": [
+      {
+        "description": "Netzanbindung",
+        "quantity": 10,
+        "unit_price_cents": 234982
+      }
+    ]
+  },
+  {
+    "id": "INV-0301",
+    "from_company_id": "C047",
+    "to_company_id": "C039",
+    "issue_date": "2025-01-15",
+    "due_date": "2025-03-16",
+    "payment_terms_days": 60,
+    "amount_cents": 5929570,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Regelenergie",
+        "quantity": 4,
+        "unit_price_cents": 327175
+      }
+    ]
+  },
+  {
+    "id": "INV-0302",
+    "from_company_id": "C048",
+    "to_company_id": "C036",
+    "issue_date": "2025-11-12",
+    "due_date": "2025-12-27",
+    "payment_terms_days": 45,
+    "amount_cents": 716390,
+    "currency": "EUR",
+    "status": "paid",
+    "line_items": [
+      {
+        "description": "Netzanbindung",
+        "quantity": 1,
+        "unit_price_cents": 341400
+      },
+      {
+        "description": "Regelenergie",
+        "quantity": 2,
+        "unit_price_cents": 71418
+      },
+      {
+        "description": "Stromerzeugung (Windkraft)",
+        "quantity": 10,
+        "unit_price_cents": 30233
+      }
+    ]
+  },
+  {
+    "id": "INV-0303",
+    "from_company_id": "C036",
+    "to_company_id": "C048",
+    "issue_date": "2025-06-14",
+    "due_date": "2025-07-14",
+    "payment_terms_days": 30,
+    "amount_cents": 14104984,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Monitoring-Service",
+        "quantity": 10,
+        "unit_price_cents": 280736
+      },
+      {
+        "description": "Photovoltaik-Wartung",
+        "quantity": 4,
+        "unit_price_cents": 27150
+      }
+    ]
+  },
+  {
+    "id": "INV-0304",
+    "from_company_id": "C048",
+    "to_company_id": "C039",
+    "issue_date": "2025-03-31",
+    "due_date": "2025-05-30",
+    "payment_terms_days": 60,
+    "amount_cents": 8881275,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Systemintegration",
+        "quantity": 1,
+        "unit_price_cents": 7651
+      }
+    ]
+  },
+  {
+    "id": "INV-0305",
+    "from_company_id": "C049",
+    "to_company_id": "C036",
+    "issue_date": "2025-08-20",
+    "due_date": "2025-10-04",
+    "payment_terms_days": 45,
+    "amount_cents": 4409013,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Batteriemanagement",
+        "quantity": 6,
+        "unit_price_cents": 101066
+      },
+      {
+        "description": "Systemintegration",
+        "quantity": 1,
+        "unit_price_cents": 339581
+      }
+    ]
+  },
+  {
+    "id": "INV-0306",
+    "from_company_id": "C036",
+    "to_company_id": "C049",
+    "issue_date": "2025-12-14",
+    "due_date": "2026-02-12",
+    "payment_terms_days": 60,
+    "amount_cents": 5975548,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Photovoltaik-Wartung",
+        "quantity": 1,
+        "unit_price_cents": 384283
+      },
+      {
+        "description": "Ertragsgutachten",
+        "quantity": 8,
+        "unit_price_cents": 426311
+      }
+    ]
+  },
+  {
+    "id": "INV-0307",
+    "from_company_id": "C049",
+    "to_company_id": "C039",
+    "issue_date": "2025-09-09",
+    "due_date": "2025-12-08",
+    "payment_terms_days": 90,
+    "amount_cents": 4320279,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Systemintegration",
+        "quantity": 3,
+        "unit_price_cents": 398930
+      }
+    ]
+  },
+  {
+    "id": "INV-0308",
+    "from_company_id": "C050",
+    "to_company_id": "C036",
+    "issue_date": "2025-09-03",
+    "due_date": "2025-12-02",
+    "payment_terms_days": 90,
+    "amount_cents": 14378069,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Systemintegration",
+        "quantity": 3,
+        "unit_price_cents": 487507
+      },
+      {
+        "description": "Batteriemanagement",
+        "quantity": 10,
+        "unit_price_cents": 260515
+      },
+      {
+        "description": "Speichermiete",
+        "quantity": 7,
+        "unit_price_cents": 431759
+      }
+    ]
+  },
+  {
+    "id": "INV-0309",
+    "from_company_id": "C036",
+    "to_company_id": "C050",
+    "issue_date": "2025-07-31",
+    "due_date": "2025-10-29",
+    "payment_terms_days": 90,
+    "amount_cents": 3378512,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Batteriemanagement",
+        "quantity": 1,
+        "unit_price_cents": 279003
+      }
+    ]
+  },
+  {
+    "id": "INV-0310",
+    "from_company_id": "C050",
+    "to_company_id": "C039",
+    "issue_date": "2025-04-22",
+    "due_date": "2025-06-21",
+    "payment_terms_days": 60,
+    "amount_cents": 10156092,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Photovoltaik-Wartung",
+        "quantity": 1,
+        "unit_price_cents": 387367
+      },
+      {
+        "description": "Monitoring-Service",
+        "quantity": 4,
+        "unit_price_cents": 392768
+      }
+    ]
+  },
+  {
+    "id": "INV-0311",
+    "from_company_id": "C001",
+    "to_company_id": "C021",
+    "issue_date": "2025-05-31",
+    "due_date": "2025-06-30",
+    "payment_terms_days": 30,
+    "amount_cents": 1864064,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Einfuhrumsatzsteuer-Vorauszahlung",
+        "quantity": 3,
+        "unit_price_cents": 99550
+      }
+    ]
+  },
+  {
+    "id": "INV-0312",
+    "from_company_id": "C011",
+    "to_company_id": "C022",
+    "issue_date": "2025-09-20",
+    "due_date": "2025-10-20",
+    "payment_terms_days": 30,
+    "amount_cents": 2377208,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Versicherungsprämie",
+        "quantity": 6,
+        "unit_price_cents": 368194
+      },
+      {
+        "description": "Handling Fee",
+        "quantity": 5,
+        "unit_price_cents": 216070
+      },
+      {
+        "description": "Lagerhaltungsgebühr",
+        "quantity": 10,
+        "unit_price_cents": 330716
+      }
+    ]
+  },
+  {
+    "id": "INV-0313",
+    "from_company_id": "C002",
+    "to_company_id": "C024",
+    "issue_date": "2025-10-14",
+    "due_date": "2025-12-13",
+    "payment_terms_days": 60,
+    "amount_cents": 2039126,
+    "currency": "EUR",
+    "status": "overdue",
+    "line_items": [
+      {
+        "description": "Einfuhrumsatzsteuer-Vorauszahlung",
+        "quantity": 2,
+        "unit_price_cents": 436871
+      },
+      {
+        "description": "Zollabfertigungsgebühr",
+        "quantity": 2,
+        "unit_price_cents": 80991
+      }
+    ]
+  },
+  {
+    "id": "INV-0314",
+    "from_company_id": "C007",
+    "to_company_id": "C023",
+    "issue_date": "2025-08-09",
+    "due_date": "2025-10-08",
+    "payment_terms_days": 60,
+    "amount_cents": 2510608,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Umschlaggebühr",
+        "quantity": 6,
+        "unit_price_cents": 394606
+      }
+    ]
+  },
+  {
+    "id": "INV-0315",
+    "from_company_id": "C044",
+    "to_company_id": "C017",
+    "issue_date": "2025-12-23",
+    "due_date": "2026-03-23",
+    "payment_terms_days": 90,
+    "amount_cents": 2132034,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Lagerhaltungsgebühr",
+        "quantity": 1,
+        "unit_price_cents": 117898
+      },
+      {
+        "description": "Handling Fee",
+        "quantity": 1,
+        "unit_price_cents": 255257
+      },
+      {
+        "description": "Versicherungsprämie",
+        "quantity": 1,
+        "unit_price_cents": 179611
+      }
+    ]
+  },
+  {
+    "id": "INV-0316",
+    "from_company_id": "C045",
+    "to_company_id": "C011",
+    "issue_date": "2025-07-18",
+    "due_date": "2025-09-01",
+    "payment_terms_days": 45,
+    "amount_cents": 2924285,
+    "currency": "EUR",
+    "status": "paid",
+    "line_items": [
+      {
+        "description": "Einfuhrumsatzsteuer-Vorauszahlung",
+        "quantity": 8,
+        "unit_price_cents": 124930
+      },
+      {
+        "description": "Zollabfertigungsgebühr",
+        "quantity": 5,
+        "unit_price_cents": 386389
+      }
+    ]
+  },
+  {
+    "id": "INV-0317",
+    "from_company_id": "C039",
+    "to_company_id": "C015",
+    "issue_date": "2025-05-21",
+    "due_date": "2025-07-20",
+    "payment_terms_days": 60,
+    "amount_cents": 1781862,
+    "currency": "EUR",
+    "status": "paid",
+    "line_items": [
+      {
+        "description": "Frachtkosten",
+        "quantity": 4,
+        "unit_price_cents": 262141
+      },
+      {
+        "description": "Lagermiete",
+        "quantity": 1,
+        "unit_price_cents": 48511
+      }
+    ]
+  },
+  {
+    "id": "INV-0318",
+    "from_company_id": "C044",
+    "to_company_id": "C024",
+    "issue_date": "2025-03-10",
+    "due_date": "2025-04-09",
+    "payment_terms_days": 30,
+    "amount_cents": 2546617,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Lagerhaltungsgebühr",
+        "quantity": 9,
+        "unit_price_cents": 151772
+      },
+      {
+        "description": "Handling Fee",
+        "quantity": 9,
+        "unit_price_cents": 255773
+      }
+    ]
+  },
+  {
+    "id": "INV-0319",
+    "from_company_id": "C040",
+    "to_company_id": "C019",
+    "issue_date": "2025-03-21",
+    "due_date": "2025-05-05",
+    "payment_terms_days": 45,
+    "amount_cents": 390670,
+    "currency": "EUR",
+    "status": "outstanding",
+    "line_items": [
+      {
+        "description": "Einfuhrumsatzsteuer-Vorauszahlung",
+        "quantity": 2,
+        "unit_price_cents": 229069
+      }
+    ]
+  },
+  {
+    "id": "INV-0320",
+    "from_company_id": "C045",
+    "to_company_id": "C021",
+    "issue_date": "2025-02-18",
+    "due_date": "2025-04-19",
+    "payment_terms_days": 60,
+    "amount_cents": 1724830,
+    "currency": "EUR",
+    "status": "paid",
+    "line_items": [
+      {
+        "description": "Versicherungsprämie",
+        "quantity": 6,
+        "unit_price_cents": 40326
+      }
+    ]
+  }
+]

@@ -1,0 +1,746 @@
+{
+  "invoices": [
+    {
+      "id": "INV-0001",
+      "from_company_id": "f47ac10b-0001-4000-8000-000000000000",
+      "to_company_id":   "f47ac10b-0002-4000-8000-000000000000",
+      "amount_cents": 3500000,
+      "description": "Frachtabwicklung April 2026",
+      "due_date": "2026-04-30",
+      "status": "pending",
+      "line_items": [
+        { "description": "Speditionsgebühr", "amount_cents": 2100000 },
+        { "description": "Frachtkosten See", "amount_cents": 1400000 }
+      ]
+    },
+    {
+      "id": "INV-0002",
+      "from_company_id": "f47ac10b-0002-4000-8000-000000000000",
+      "to_company_id":   "f47ac10b-0001-4000-8000-000000000000",
+      "amount_cents": 2800000,
+      "description": "Zollabfertigung Containerimport",
+      "due_date": "2026-04-30",
+      "status": "pending",
+      "line_items": [
+        { "description": "Zollabfertigungsgebühr", "amount_cents": 1800000 },
+        { "description": "Dokumentengebühr", "amount_cents": 1000000 }
+      ]
+    },
+    {
+      "id": "INV-0003",
+      "from_company_id": "f47ac10b-0001-4000-8000-000000000000",
+      "to_company_id":   "f47ac10b-0003-4000-8000-000000000000",
+      "amount_cents": 2100000,
+      "description": "Lagereingang Sammelgut Q1",
+      "due_date": "2026-04-20",
+      "status": "pending",
+      "line_items": [
+        { "description": "Lagereingangsgebühr", "amount_cents": 1400000 },
+        { "description": "Handling Fee", "amount_cents": 700000 }
+      ]
+    },
+    {
+      "id": "INV-0004",
+      "from_company_id": "f47ac10b-0003-4000-8000-000000000000",
+      "to_company_id":   "f47ac10b-0001-4000-8000-000000000000",
+      "amount_cents": 1600000,
+      "description": "Warenausgabe Hanseatic März",
+      "due_date": "2026-04-15",
+      "status": "pending",
+      "line_items": [
+        { "description": "Lagermiete", "amount_cents": 1000000 },
+        { "description": "Umschlaggebühr", "amount_cents": 600000 }
+      ]
+    },
+    {
+      "id": "INV-0005",
+      "from_company_id": "f47ac10b-0002-4000-8000-000000000000",
+      "to_company_id":   "f47ac10b-0003-4000-8000-000000000000",
+      "amount_cents": 1800000,
+      "description": "Zolldokumente Lagerbestand",
+      "due_date": "2026-05-10",
+      "status": "pending",
+      "line_items": [
+        { "description": "Einfuhrumsatzsteuer-Vorauszahlung", "amount_cents": 1200000 },
+        { "description": "Zolldeklaration", "amount_cents": 600000 }
+      ]
+    },
+    {
+      "id": "INV-0006",
+      "from_company_id": "f47ac10b-0003-4000-8000-000000000000",
+      "to_company_id":   "f47ac10b-0002-4000-8000-000000000000",
+      "amount_cents": 1400000,
+      "description": "Lagernutzung Zollware",
+      "due_date": "2026-05-15",
+      "status": "pending",
+      "line_items": [
+        { "description": "Lagerhaltungsgebühr", "amount_cents": 1400000 }
+      ]
+    },
+    {
+      "id": "INV-0007",
+      "from_company_id": "f47ac10b-0001-4000-8000-000000000000",
+      "to_company_id":   "f47ac10b-0004-4000-8000-000000000000",
+      "amount_cents": 2500000,
+      "description": "Container-Spedition FCL März",
+      "due_date": "2026-04-25",
+      "status": "pending",
+      "line_items": [
+        { "description": "FCL-Frachtkosten", "amount_cents": 1800000 },
+        { "description": "Hafengebühr THC", "amount_cents": 700000 }
+      ]
+    },
+    {
+      "id": "INV-0008",
+      "from_company_id": "f47ac10b-0004-4000-8000-000000000000",
+      "to_company_id":   "f47ac10b-0001-4000-8000-000000000000",
+      "amount_cents": 1900000,
+      "description": "Frachtkosten Rücktransport",
+      "due_date": "2026-05-01",
+      "status": "pending",
+      "line_items": [
+        { "description": "Frachtkosten", "amount_cents": 1500000 },
+        { "description": "Versicherungsprämie", "amount_cents": 400000 }
+      ]
+    },
+    {
+      "id": "INV-0009",
+      "from_company_id": "f47ac10b-0004-4000-8000-000000000000",
+      "to_company_id":   "f47ac10b-0005-4000-8000-000000000000",
+      "amount_cents": 1700000,
+      "description": "Containertransport Elbe Q1",
+      "due_date": "2026-04-28",
+      "status": "pending",
+      "line_items": [
+        { "description": "Transportkosten", "amount_cents": 1200000 },
+        { "description": "Mautgebühren", "amount_cents": 500000 }
+      ]
+    },
+    {
+      "id": "INV-0010",
+      "from_company_id": "f47ac10b-0005-4000-8000-000000000000",
+      "to_company_id":   "f47ac10b-0004-4000-8000-000000000000",
+      "amount_cents": 1300000,
+      "description": "Weiterleitungsservice Hamburg",
+      "due_date": "2026-05-05",
+      "status": "pending",
+      "line_items": [
+        { "description": "Weiterleitung", "amount_cents": 1000000 },
+        { "description": "Handling", "amount_cents": 300000 }
+      ]
+    },
+    {
+      "id": "INV-0011",
+      "from_company_id": "f47ac10b-0002-4000-8000-000000000000",
+      "to_company_id":   "f47ac10b-0005-4000-8000-000000000000",
+      "amount_cents": 1500000,
+      "description": "Zollabfertigung Elbe-Import",
+      "due_date": "2026-05-20",
+      "status": "pending",
+      "line_items": [
+        { "description": "Zollabfertigung", "amount_cents": 1000000 },
+        { "description": "Zolldokumente", "amount_cents": 500000 }
+      ]
+    },
+    {
+      "id": "INV-0012",
+      "from_company_id": "f47ac10b-0005-4000-8000-000000000000",
+      "to_company_id":   "f47ac10b-0002-4000-8000-000000000000",
+      "amount_cents": 1100000,
+      "description": "Deklarationsdienstleistungen",
+      "due_date": "2026-05-31",
+      "status": "pending",
+      "line_items": [
+        { "description": "Deklarationsgebühr", "amount_cents": 800000 },
+        { "description": "Beratungsgebühr", "amount_cents": 300000 }
+      ]
+    },
+    {
+      "id": "INV-0013",
+      "from_company_id": "f47ac10b-0003-4000-8000-000000000000",
+      "to_company_id":   "f47ac10b-0006-4000-8000-000000000000",
+      "amount_cents": 900000,
+      "description": "Lagerüberlauf Speicherstadt",
+      "due_date": "2026-04-30",
+      "status": "pending",
+      "line_items": [
+        { "description": "Überlauflagerung", "amount_cents": 900000 }
+      ]
+    },
+    {
+      "id": "INV-0014",
+      "from_company_id": "f47ac10b-0006-4000-8000-000000000000",
+      "to_company_id":   "f47ac10b-0003-4000-8000-000000000000",
+      "amount_cents": 700000,
+      "description": "Lagerabruf Waltershof",
+      "due_date": "2026-05-15",
+      "status": "pending",
+      "line_items": [
+        { "description": "Lagerabruf", "amount_cents": 500000 },
+        { "description": "Verwaltungsgebühr", "amount_cents": 200000 }
+      ]
+    },
+    {
+      "id": "INV-0015",
+      "from_company_id": "f47ac10b-0007-4000-8000-000000000000",
+      "to_company_id":   "f47ac10b-0008-4000-8000-000000000000",
+      "amount_cents": 320000,
+      "description": "Holzregale Keramikwerkstatt",
+      "due_date": "2026-04-20",
+      "status": "pending",
+      "line_items": [
+        { "description": "Regalbau nach Maß", "amount_cents": 220000 },
+        { "description": "Montage", "amount_cents": 100000 }
+      ]
+    },
+    {
+      "id": "INV-0016",
+      "from_company_id": "f47ac10b-0008-4000-8000-000000000000",
+      "to_company_id":   "f47ac10b-0007-4000-8000-000000000000",
+      "amount_cents": 250000,
+      "description": "Keramikdekor Bürogestaltung",
+      "due_date": "2026-04-25",
+      "status": "pending",
+      "line_items": [
+        { "description": "Keramikfliesen individuell", "amount_cents": 180000 },
+        { "description": "Verlegeservice", "amount_cents": 70000 }
+      ]
+    },
+    {
+      "id": "INV-0017",
+      "from_company_id": "f47ac10b-0009-4000-8000-000000000000",
+      "to_company_id":   "f47ac10b-000a-4000-8000-000000000000",
+      "amount_cents": 180000,
+      "description": "Metallrahmen Malerbetrieb",
+      "due_date": "2026-04-15",
+      "status": "pending",
+      "line_items": [
+        { "description": "Stahlrahmen gefertigt", "amount_cents": 140000 },
+        { "description": "Lieferung", "amount_cents": 40000 }
+      ]
+    },
+    {
+      "id": "INV-0018",
+      "from_company_id": "f47ac10b-000a-4000-8000-000000000000",
+      "to_company_id":   "f47ac10b-0009-4000-8000-000000000000",
+      "amount_cents": 150000,
+      "description": "Farbarbeiten Schlosserei",
+      "due_date": "2026-04-30",
+      "status": "pending",
+      "line_items": [
+        { "description": "Lackierarbeiten", "amount_cents": 110000 },
+        { "description": "Material", "amount_cents": 40000 }
+      ]
+    },
+    {
+      "id": "INV-0019",
+      "from_company_id": "f47ac10b-000a-4000-8000-000000000000",
+      "to_company_id":   "f47ac10b-000b-4000-8000-000000000000",
+      "amount_cents": 120000,
+      "description": "Malerarbeiten Büro Elektro Krause",
+      "due_date": "2026-03-31",
+      "status": "pending",
+      "line_items": [
+        { "description": "Innenanstrich", "amount_cents": 90000 },
+        { "description": "Grundierung", "amount_cents": 30000 }
+      ]
+    },
+    {
+      "id": "INV-0020",
+      "from_company_id": "f47ac10b-000b-4000-8000-000000000000",
+      "to_company_id":   "f47ac10b-000a-4000-8000-000000000000",
+      "amount_cents": 95000,
+      "description": "Elektroarbeiten Malerbetrieb",
+      "due_date": "2026-04-10",
+      "status": "pending",
+      "line_items": [
+        { "description": "Elektroinstallation", "amount_cents": 75000 },
+        { "description": "Material", "amount_cents": 20000 }
+      ]
+    },
+    {
+      "id": "INV-0021",
+      "from_company_id": "f47ac10b-000b-4000-8000-000000000000",
+      "to_company_id":   "f47ac10b-000c-4000-8000-000000000000",
+      "amount_cents": 85000,
+      "description": "Elektroinstallation Backstube",
+      "due_date": "2026-04-20",
+      "status": "pending",
+      "line_items": [
+        { "description": "Elektroinstallation", "amount_cents": 65000 },
+        { "description": "Sicherheitsprüfung", "amount_cents": 20000 }
+      ]
+    },
+    {
+      "id": "INV-0022",
+      "from_company_id": "f47ac10b-000c-4000-8000-000000000000",
+      "to_company_id":   "f47ac10b-000b-4000-8000-000000000000",
+      "amount_cents": 70000,
+      "description": "Brot & Gebäck Lieferung April",
+      "due_date": "2026-04-30",
+      "status": "pending",
+      "line_items": [
+        { "description": "Brötchenlieferung täglich", "amount_cents": 50000 },
+        { "description": "Kuchen Sonderbestellung", "amount_cents": 20000 }
+      ]
+    },
+    {
+      "id": "INV-0023",
+      "from_company_id": "f47ac10b-0009-4000-8000-000000000000",
+      "to_company_id":   "f47ac10b-000d-4000-8000-000000000000",
+      "amount_cents": 200000,
+      "description": "Metallarbeiten Dachstuhl",
+      "due_date": "2026-04-25",
+      "status": "pending",
+      "line_items": [
+        { "description": "Stahlanker gefertigt", "amount_cents": 150000 },
+        { "description": "Einbau", "amount_cents": 50000 }
+      ]
+    },
+    {
+      "id": "INV-0024",
+      "from_company_id": "f47ac10b-000d-4000-8000-000000000000",
+      "to_company_id":   "f47ac10b-0009-4000-8000-000000000000",
+      "amount_cents": 160000,
+      "description": "Zimmermannsarbeiten Schlosserei",
+      "due_date": "2026-05-05",
+      "status": "pending",
+      "line_items": [
+        { "description": "Holzkonstruktion", "amount_cents": 120000 },
+        { "description": "Material", "amount_cents": 40000 }
+      ]
+    },
+    {
+      "id": "INV-0025",
+      "from_company_id": "f47ac10b-0007-4000-8000-000000000000",
+      "to_company_id":   "f47ac10b-000d-4000-8000-000000000000",
+      "amount_cents": 150000,
+      "description": "Holzschalung Dachbau",
+      "due_date": "2026-04-15",
+      "status": "pending",
+      "line_items": [
+        { "description": "Holzschalung gefertigt", "amount_cents": 120000 },
+        { "description": "Lieferung", "amount_cents": 30000 }
+      ]
+    },
+    {
+      "id": "INV-0026",
+      "from_company_id": "f47ac10b-000d-4000-8000-000000000000",
+      "to_company_id":   "f47ac10b-0007-4000-8000-000000000000",
+      "amount_cents": 120000,
+      "description": "Dachberatung Tischlerei",
+      "due_date": "2026-04-30",
+      "status": "pending",
+      "line_items": [
+        { "description": "Planungsberatung", "amount_cents": 80000 },
+        { "description": "Aufmaß vor Ort", "amount_cents": 40000 }
+      ]
+    },
+    {
+      "id": "INV-0027",
+      "from_company_id": "f47ac10b-000e-4000-8000-000000000000",
+      "to_company_id":   "f47ac10b-000f-4000-8000-000000000000",
+      "amount_cents": 95000,
+      "description": "Café-Catering Abnahme März",
+      "due_date": "2026-03-31",
+      "status": "pending",
+      "line_items": [
+        { "description": "Cateringabnahme", "amount_cents": 95000 }
+      ]
+    },
+    {
+      "id": "INV-0028",
+      "from_company_id": "f47ac10b-000f-4000-8000-000000000000",
+      "to_company_id":   "f47ac10b-000e-4000-8000-000000000000",
+      "amount_cents": 75000,
+      "description": "Lieferservice Café am Alster",
+      "due_date": "2026-04-15",
+      "status": "pending",
+      "line_items": [
+        { "description": "Lieferservice Wochenpauschale", "amount_cents": 75000 }
+      ]
+    },
+    {
+      "id": "INV-0029",
+      "from_company_id": "f47ac10b-000f-4000-8000-000000000000",
+      "to_company_id":   "f47ac10b-0010-4000-8000-000000000000",
+      "amount_cents": 110000,
+      "description": "Restaurant-Lieferung April",
+      "due_date": "2026-04-20",
+      "status": "pending",
+      "line_items": [
+        { "description": "Frischwarenlieferung", "amount_cents": 80000 },
+        { "description": "Tiefkühlware", "amount_cents": 30000 }
+      ]
+    },
+    {
+      "id": "INV-0030",
+      "from_company_id": "f47ac10b-0010-4000-8000-000000000000",
+      "to_company_id":   "f47ac10b-000f-4000-8000-000000000000",
+      "amount_cents": 85000,
+      "description": "Catering-Rückerstattung Überproduktion",
+      "due_date": "2026-05-01",
+      "status": "pending",
+      "line_items": [
+        { "description": "Rückgabe Überproduktion", "amount_cents": 85000 }
+      ]
+    },
+    {
+      "id": "INV-0031",
+      "from_company_id": "f47ac10b-0010-4000-8000-000000000000",
+      "to_company_id":   "f47ac10b-0011-4000-8000-000000000000",
+      "amount_cents": 130000,
+      "description": "Kooperation Fischlieferung",
+      "due_date": "2026-04-25",
+      "status": "pending",
+      "line_items": [
+        { "description": "Frischer Fisch Tagesanlieferung", "amount_cents": 100000 },
+        { "description": "Transport Kühlkette", "amount_cents": 30000 }
+      ]
+    },
+    {
+      "id": "INV-0032",
+      "from_company_id": "f47ac10b-0011-4000-8000-000000000000",
+      "to_company_id":   "f47ac10b-0010-4000-8000-000000000000",
+      "amount_cents": 100000,
+      "description": "Menüplanung Kooperation",
+      "due_date": "2026-05-10",
+      "status": "pending",
+      "line_items": [
+        { "description": "Gemeinsame Menüplanung", "amount_cents": 60000 },
+        { "description": "Rohstoffbeschaffung", "amount_cents": 40000 }
+      ]
+    },
+    {
+      "id": "INV-0033",
+      "from_company_id": "f47ac10b-0012-4000-8000-000000000000",
+      "to_company_id":   "f47ac10b-0013-4000-8000-000000000000",
+      "amount_cents": 280000,
+      "description": "Gastronomieausstattung Bierkontor",
+      "due_date": "2026-04-30",
+      "status": "pending",
+      "line_items": [
+        { "description": "Zapfanlagen", "amount_cents": 180000 },
+        { "description": "Kühltechnik", "amount_cents": 100000 }
+      ]
+    },
+    {
+      "id": "INV-0034",
+      "from_company_id": "f47ac10b-0013-4000-8000-000000000000",
+      "to_company_id":   "f47ac10b-0012-4000-8000-000000000000",
+      "amount_cents": 220000,
+      "description": "Bierlager Gastronomiebedarf",
+      "due_date": "2026-05-15",
+      "status": "pending",
+      "line_items": [
+        { "description": "Bierfässer Lieferung", "amount_cents": 160000 },
+        { "description": "Flaschenbier Sortiment", "amount_cents": 60000 }
+      ]
+    },
+    {
+      "id": "INV-0035",
+      "from_company_id": "f47ac10b-000e-4000-8000-000000000000",
+      "to_company_id":   "f47ac10b-0014-4000-8000-000000000000",
+      "amount_cents": 75000,
+      "description": "Bar-Event-Catering Elbstrand",
+      "due_date": "2026-04-15",
+      "status": "pending",
+      "line_items": [
+        { "description": "Event-Catering", "amount_cents": 75000 }
+      ]
+    },
+    {
+      "id": "INV-0036",
+      "from_company_id": "f47ac10b-0014-4000-8000-000000000000",
+      "to_company_id":   "f47ac10b-000e-4000-8000-000000000000",
+      "amount_cents": 60000,
+      "description": "Elbstrand Getränkelieferung Café",
+      "due_date": "2026-04-30",
+      "status": "pending",
+      "line_items": [
+        { "description": "Craft Beer Sortiment", "amount_cents": 40000 },
+        { "description": "Softdrinks", "amount_cents": 20000 }
+      ]
+    },
+    {
+      "id": "INV-0037",
+      "from_company_id": "f47ac10b-0012-4000-8000-000000000000",
+      "to_company_id":   "f47ac10b-0010-4000-8000-000000000000",
+      "amount_cents": 150000,
+      "description": "Grosshandel Lieferung Restaurant",
+      "due_date": "2026-04-20",
+      "status": "pending",
+      "line_items": [
+        { "description": "Trockenwaren", "amount_cents": 80000 },
+        { "description": "Frischwaren", "amount_cents": 70000 }
+      ]
+    },
+    {
+      "id": "INV-0038",
+      "from_company_id": "f47ac10b-0010-4000-8000-000000000000",
+      "to_company_id":   "f47ac10b-0012-4000-8000-000000000000",
+      "amount_cents": 120000,
+      "description": "Bestellrückgabe Überlieferung",
+      "due_date": "2026-04-30",
+      "status": "pending",
+      "line_items": [
+        { "description": "Rückgabe Überlieferung", "amount_cents": 120000 }
+      ]
+    },
+    {
+      "id": "INV-0039",
+      "from_company_id": "f47ac10b-0013-4000-8000-000000000000",
+      "to_company_id":   "f47ac10b-000f-4000-8000-000000000000",
+      "amount_cents": 100000,
+      "description": "Bierlieferung Speisekammer",
+      "due_date": "2026-05-05",
+      "status": "pending",
+      "line_items": [
+        { "description": "Bier Monatslieferung", "amount_cents": 100000 }
+      ]
+    },
+    {
+      "id": "INV-0040",
+      "from_company_id": "f47ac10b-000f-4000-8000-000000000000",
+      "to_company_id":   "f47ac10b-0013-4000-8000-000000000000",
+      "amount_cents": 80000,
+      "description": "Lagerfläche Bierkontor",
+      "due_date": "2026-05-15",
+      "status": "pending",
+      "line_items": [
+        { "description": "Miete Lagerfläche", "amount_cents": 80000 }
+      ]
+    },
+    {
+      "id": "INV-0041",
+      "from_company_id": "f47ac10b-0007-4000-8000-000000000000",
+      "to_company_id":   "f47ac10b-000e-4000-8000-000000000000",
+      "amount_cents": 180000,
+      "description": "Tischlerarbeiten Café Umbau",
+      "due_date": "2026-04-25",
+      "status": "pending",
+      "line_items": [
+        { "description": "Tresen nach Maß", "amount_cents": 120000 },
+        { "description": "Tische & Stühle Einbau", "amount_cents": 60000 }
+      ]
+    },
+    {
+      "id": "INV-0042",
+      "from_company_id": "f47ac10b-000e-4000-8000-000000000000",
+      "to_company_id":   "f47ac10b-0007-4000-8000-000000000000",
+      "amount_cents": 80000,
+      "description": "Cateringservice Betriebsfeier",
+      "due_date": "2026-05-10",
+      "status": "pending",
+      "line_items": [
+        { "description": "Catering Mitarbeiter-Event", "amount_cents": 80000 }
+      ]
+    },
+    {
+      "id": "INV-0043",
+      "from_company_id": "f47ac10b-000c-4000-8000-000000000000",
+      "to_company_id":   "f47ac10b-000e-4000-8000-000000000000",
+      "amount_cents": 120000,
+      "description": "Bäckerei-Lieferung Café April",
+      "due_date": "2026-04-30",
+      "status": "pending",
+      "line_items": [
+        { "description": "Brötchen täglich", "amount_cents": 70000 },
+        { "description": "Kuchen & Torten", "amount_cents": 50000 }
+      ]
+    },
+    {
+      "id": "INV-0044",
+      "from_company_id": "f47ac10b-000e-4000-8000-000000000000",
+      "to_company_id":   "f47ac10b-000c-4000-8000-000000000000",
+      "amount_cents": 65000,
+      "description": "Kaffeemaschinen-Service",
+      "due_date": "2026-05-05",
+      "status": "pending",
+      "line_items": [
+        { "description": "Espressomaschine Wartung", "amount_cents": 45000 },
+        { "description": "Ersatzteile", "amount_cents": 20000 }
+      ]
+    },
+    {
+      "id": "INV-0045",
+      "from_company_id": "f47ac10b-0001-4000-8000-000000000000",
+      "to_company_id":   "f47ac10b-0012-4000-8000-000000000000",
+      "amount_cents": 800000,
+      "description": "Frachtdienste Großhandel Import",
+      "due_date": "2026-04-25",
+      "status": "pending",
+      "line_items": [
+        { "description": "Importfracht Lebensmittel", "amount_cents": 600000 },
+        { "description": "Zollabwicklung", "amount_cents": 200000 }
+      ]
+    },
+    {
+      "id": "INV-0046",
+      "from_company_id": "f47ac10b-0003-4000-8000-000000000000",
+      "to_company_id":   "f47ac10b-0013-4000-8000-000000000000",
+      "amount_cents": 350000,
+      "description": "Lagerhaltung Bier Import",
+      "due_date": "2026-05-10",
+      "status": "pending",
+      "line_items": [
+        { "description": "Lagerhaltung Kühlware", "amount_cents": 250000 },
+        { "description": "Handling", "amount_cents": 100000 }
+      ]
+    },
+    {
+      "id": "INV-0047",
+      "from_company_id": "f47ac10b-0002-4000-8000-000000000000",
+      "to_company_id":   "f47ac10b-0008-4000-8000-000000000000",
+      "amount_cents": 150000,
+      "description": "Zollabfertigung Keramikimport",
+      "due_date": "2026-04-15",
+      "status": "pending",
+      "line_items": [
+        { "description": "Einfuhrzollabfertigung", "amount_cents": 100000 },
+        { "description": "Einfuhrumsatzsteuer", "amount_cents": 50000 }
+      ]
+    },
+    {
+      "id": "INV-0048",
+      "from_company_id": "f47ac10b-0004-4000-8000-000000000000",
+      "to_company_id":   "f47ac10b-0010-4000-8000-000000000000",
+      "amount_cents": 200000,
+      "description": "Containerlieferung Frischware",
+      "due_date": "2026-04-20",
+      "status": "pending",
+      "line_items": [
+        { "description": "Kühlcontainer Transport", "amount_cents": 150000 },
+        { "description": "Entladung", "amount_cents": 50000 }
+      ]
+    },
+    {
+      "id": "INV-0049",
+      "from_company_id": "f47ac10b-0001-4000-8000-000000000000",
+      "to_company_id":   "f47ac10b-000f-4000-8000-000000000000",
+      "amount_cents": 300000,
+      "description": "Importwaren Lieferung Catering",
+      "due_date": "2026-05-01",
+      "status": "pending",
+      "line_items": [
+        { "description": "Lebensmittelimport Spanien", "amount_cents": 200000 },
+        { "description": "Frachtkosten", "amount_cents": 100000 }
+      ]
+    },
+    {
+      "id": "INV-0050",
+      "from_company_id": "f47ac10b-0005-4000-8000-000000000000",
+      "to_company_id":   "f47ac10b-000e-4000-8000-000000000000",
+      "amount_cents": 120000,
+      "description": "Logistik Café Wochenlieferung",
+      "due_date": "2026-04-28",
+      "status": "pending",
+      "line_items": [
+        { "description": "Kurierdienst wöchentlich", "amount_cents": 120000 }
+      ]
+    },
+    {
+      "id": "INV-0051",
+      "from_company_id": "f47ac10b-0006-4000-8000-000000000000",
+      "to_company_id":   "f47ac10b-0014-4000-8000-000000000000",
+      "amount_cents": 90000,
+      "description": "Lagerfläche Elbstrand",
+      "due_date": "2026-05-05",
+      "status": "pending",
+      "line_items": [
+        { "description": "Monatsmiete Lagerfläche", "amount_cents": 90000 }
+      ]
+    },
+    {
+      "id": "INV-0052",
+      "from_company_id": "f47ac10b-000b-4000-8000-000000000000",
+      "to_company_id":   "f47ac10b-0007-4000-8000-000000000000",
+      "amount_cents": 95000,
+      "description": "Elektroinstallation Werkstatt",
+      "due_date": "2026-03-20",
+      "status": "pending",
+      "line_items": [
+        { "description": "Starkstrominstallation", "amount_cents": 75000 },
+        { "description": "Beleuchtung LED", "amount_cents": 20000 }
+      ]
+    },
+    {
+      "id": "INV-0053",
+      "from_company_id": "f47ac10b-000a-4000-8000-000000000000",
+      "to_company_id":   "f47ac10b-000e-4000-8000-000000000000",
+      "amount_cents": 110000,
+      "description": "Malerarbeiten Café Renovierung",
+      "due_date": "2026-04-10",
+      "status": "pending",
+      "line_items": [
+        { "description": "Innenanstrich Café", "amount_cents": 80000 },
+        { "description": "Fassadenanstrich", "amount_cents": 30000 }
+      ]
+    },
+    {
+      "id": "INV-0054",
+      "from_company_id": "f47ac10b-0009-4000-8000-000000000000",
+      "to_company_id":   "f47ac10b-0007-4000-8000-000000000000",
+      "amount_cents": 80000,
+      "description": "Metallbeschläge Tischlerei",
+      "due_date": "2026-04-20",
+      "status": "pending",
+      "line_items": [
+        { "description": "Scharniere & Beschläge", "amount_cents": 50000 },
+        { "description": "Schlösser & Griffe", "amount_cents": 30000 }
+      ]
+    },
+    {
+      "id": "INV-0055",
+      "from_company_id": "f47ac10b-000d-4000-8000-000000000000",
+      "to_company_id":   "f47ac10b-000e-4000-8000-000000000000",
+      "amount_cents": 180000,
+      "description": "Dachsanierung Café am Alster",
+      "due_date": "2026-05-15",
+      "status": "pending",
+      "line_items": [
+        { "description": "Dachsanierung Arbeitsleistung", "amount_cents": 130000 },
+        { "description": "Material Dachziegel", "amount_cents": 50000 }
+      ]
+    },
+    {
+      "id": "INV-0056",
+      "from_company_id": "f47ac10b-0012-4000-8000-000000000000",
+      "to_company_id":   "f47ac10b-000c-4000-8000-000000000000",
+      "amount_cents": 145000,
+      "description": "Lebensmittel Grosshandel Bäckerei",
+      "due_date": "2026-04-25",
+      "status": "pending",
+      "line_items": [
+        { "description": "Mehl & Backmittel", "amount_cents": 90000 },
+        { "description": "Butter & Eier Großmengen", "amount_cents": 55000 }
+      ]
+    },
+    {
+      "id": "INV-0057",
+      "from_company_id": "f47ac10b-0013-4000-8000-000000000000",
+      "to_company_id":   "f47ac10b-000e-4000-8000-000000000000",
+      "amount_cents": 85000,
+      "description": "Bier Café-Lieferung April",
+      "due_date": "2026-04-30",
+      "status": "pending",
+      "line_items": [
+        { "description": "Fässer Hafenbräu", "amount_cents": 55000 },
+        { "description": "Flaschenbier Sortiment", "amount_cents": 30000 }
+      ]
+    },
+    {
+      "id": "INV-0058",
+      "from_company_id": "f47ac10b-0014-4000-8000-000000000000",
+      "to_company_id":   "f47ac10b-0010-4000-8000-000000000000",
+      "amount_cents": 70000,
+      "description": "Getränkelieferung Restaurant",
+      "due_date": "2026-05-01",
+      "status": "pending",
+      "line_items": [
+        { "description": "Craft Beer Sortiment", "amount_cents": 45000 },
+        { "description": "Softdrinks & Säfte", "amount_cents": 25000 }
+      ]
+    }
+  ]
+}
