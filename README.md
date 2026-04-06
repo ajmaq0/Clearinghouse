@@ -1,6 +1,6 @@
 # ClearFlow Hamburg
 
-Multilateral invoice clearing and netting for Hamburg SMEs, built as a GLS Bank cooperative banking service.
+Multilateral invoice clearing and netting for SMEs, built as a cooperative banking service.
 
 **The problem:** 70% of SMEs could pay on time if they were paid on time. Late payments cascade through supply chains, creating artificial cash-flow crises. ClearFlow breaks the cycle by netting mutual obligations before anyone moves real money.
 
@@ -11,7 +11,7 @@ Multilateral invoice clearing and netting for Hamburg SMEs, built as a GLS Bank 
 3. **Multilateral netting** — find cycles in the residual obligation graph (A owes B, B owes C, C owes A) and reduce each by its minimum edge weight using Johnson's algorithm
 4. **Settle** only the reduced net positions
 
-The demo dataset of 50 Hamburg SMEs and 320 invoices (~16.4M gross) achieves **28.3% netting savings**, within the Fleischman benchmark of 25-50%.
+The demo dataset consists of 50 Hamburg SMEs and 320 invoices (~16.4M gross) achieves **28.3% netting savings**, within the Fleischman benchmark of 25-50%.
 
 ## Tech Stack
 
