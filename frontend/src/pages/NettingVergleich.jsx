@@ -1,10 +1,10 @@
 /**
- * NettingVergleich — Before/After Netting Visualization
+ * NettingVergleich — 4-Stage Netting Waterfall
  *
- * Three-stage step view: Gross → Bilateral → Multilateral
+ * Gross → Bilateral → Netzwerk-Verrechnung → Optimale Verrechnung
  * - EUR amounts and % reduction at each stage (German locale)
- * - Animated progress bar for each stage
- * - Consumes POST /clearing/multilateral API
+ * - Animated progress bars, highlight gap between stage 3 and 4
+ * - Consumes POST /clearing/optimal API (POEA-33)
  * - Mock fallback for demo mode
  * - Large text/numbers readable from 3 meters on projector
  */
@@ -14,11 +14,15 @@ import { formatEur, formatPct } from '../utils/format.js'
 
 // ── Mock fallback ──────────────────────────────────────────────────────────────
 const MOCK_RESULT = {
-  gross_cents:        12_540_000_00,
-  bilateral_cents:     7_320_000_00,
-  multilateral_cents:  4_180_000_00,
-  savings_eur_cents:   3_140_000_00,
-  savings_vs_gross_bps: 6666,
+  gross_cents:                    12_540_000_00,
+  bilateral_cents:                 7_320_000_00,
+  johnson_cents:                   4_180_000_00,
+  optimal_cents:                   3_850_000_00,
+  optimal_savings_cents:           8_690_000_00,
+  optimal_savings_pct:             6930,
+  improvement_over_johnson_cents:    330_000_00,
+  improvement_over_johnson_pct:      789,
+  lp_status:                      'Optimal',
 }
 
 // ── Stage config ───────────────────────────────────────────────────────────────
@@ -27,7 +31,7 @@ function buildStages(data) {
   return [
     {
       key:        'gross',
-      label:      'Brutto',
+      label:      'Bruttoverpflichtungen',
       sub:        'Alle offenen Rechnungen im Netzwerk',
       amount:     gross,
       pct:        100,
@@ -38,8 +42,8 @@ function buildStages(data) {
     },
     {
       key:        'bilateral',
-      label:      'Nach bilateralem Netting',
-      sub:        'Gegenseitige Rechnungen werden verrechnet',
+      label:      'Nach bilateraler Verrechnung',
+      sub:        'Gegenseitige Rechnungen werden direkt verrechnet',
       amount:     data.bilateral_cents,
       pct:        gross > 0 ? Math.round(data.bilateral_cents * 1000 / gross) / 10 : 0,
       reduction:  gross > 0 ? Math.round((gross - data.bilateral_cents) * 10000 / gross) / 100 : 0,
@@ -48,15 +52,27 @@ function buildStages(data) {
       icon:       '⇄',
     },
     {
-      key:        'multilateral',
-      label:      'Nach multilateralem Netting',
-      sub:        'Zyklen im Handelsgraphen reduziert (Johnson-Algorithmus)',
-      amount:     data.multilateral_cents,
-      pct:        gross > 0 ? Math.round(data.multilateral_cents * 1000 / gross) / 10 : 0,
-      reduction:  gross > 0 ? Math.round((gross - data.multilateral_cents) * 10000 / gross) / 100 : 0,
+      key:        'netzwerk',
+      label:      'Nach Netzwerk-Verrechnung',
+      sub:        'Zyklen im Handelsgraphen werden aufgelöst',
+      amount:     data.johnson_cents,
+      pct:        gross > 0 ? Math.round(data.johnson_cents * 1000 / gross) / 10 : 0,
+      reduction:  gross > 0 ? Math.round((gross - data.johnson_cents) * 10000 / gross) / 100 : 0,
       color:      '#4a7c59',
       colorLight: '#eef5f1',
       icon:       '⬡',
+    },
+    {
+      key:        'optimal',
+      label:      'Nach optimaler Verrechnung',
+      sub:        'Mathematische Optimierung — das bestmögliche Ergebnis',
+      amount:     data.optimal_cents,
+      pct:        gross > 0 ? Math.round(data.optimal_cents * 1000 / gross) / 10 : 0,
+      reduction:  gross > 0 ? Math.round((gross - data.optimal_cents) * 10000 / gross) / 100 : 0,
+      color:      '#1a6b3a',
+      colorLight: '#e6f4ec',
+      icon:       '★',
+      isOptimal:  true,
     },
   ]
 }
@@ -94,15 +110,34 @@ function StageCard({ stage, isActive, onClick, animated }) {
     <div
       onClick={onClick}
       style={{
-        border: `2px solid ${isActive ? stage.color : 'var(--color-border)'}`,
+        border: `2px solid ${isActive ? stage.color : (stage.isOptimal ? stage.color + '66' : 'var(--color-border)')}`,
         borderRadius: 'var(--radius-md)',
         padding: 'var(--space-5) var(--space-6)',
         cursor: 'pointer',
-        background: isActive ? stage.colorLight : 'var(--color-surface)',
+        background: isActive ? stage.colorLight : (stage.isOptimal ? stage.colorLight + 'aa' : 'var(--color-surface)'),
         transition: 'all 0.2s',
-        flex: '1 1 220px',
+        flex: '1 1 200px',
+        position: 'relative',
       }}
     >
+      {/* Optimal badge */}
+      {stage.isOptimal && (
+        <div style={{
+          position: 'absolute',
+          top: -12,
+          right: 12,
+          background: stage.color,
+          color: 'white',
+          fontSize: 'var(--font-size-xs)',
+          fontWeight: 700,
+          padding: '2px 10px',
+          borderRadius: 99,
+          letterSpacing: '0.04em',
+        }}>
+          OPTIMAL
+        </div>
+      )}
+
       {/* Icon + Label */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-3)', marginBottom: 'var(--space-3)' }}>
         <span style={{
@@ -167,20 +202,52 @@ function StageCard({ stage, isActive, onClick, animated }) {
 }
 
 // ── Arrow connector ────────────────────────────────────────────────────────────
-function Arrow({ saving }) {
+function Arrow({ saving, highlight }) {
   return (
     <div style={{
       display: 'flex', flexDirection: 'column', alignItems: 'center',
       justifyContent: 'center', gap: 4, padding: '0 var(--space-2)',
-      color: 'var(--color-text-muted)', flexShrink: 0, minWidth: 64,
+      color: highlight ? '#1a6b3a' : 'var(--color-text-muted)',
+      flexShrink: 0, minWidth: 64,
     }}>
       <span style={{ fontSize: '1.6rem', lineHeight: 1 }}>→</span>
       <span style={{
         fontSize: 'var(--font-size-xs)', fontWeight: 700,
-        color: '#4a7c59', whiteSpace: 'nowrap',
+        color: highlight ? '#1a6b3a' : '#4a7c59',
+        whiteSpace: 'nowrap',
       }}>
         −{formatEur(saving)}
       </span>
+    </div>
+  )
+}
+
+// ── Optimization gain callout ──────────────────────────────────────────────────
+function OptimizationGain({ data }) {
+  const gain = data.improvement_over_johnson_cents
+  if (!gain || gain <= 0) return null
+
+  return (
+    <div style={{
+      background: 'linear-gradient(135deg, #e6f4ec 0%, #d4edd9 100%)',
+      border: '2px solid #1a6b3a',
+      borderRadius: 'var(--radius-md)',
+      padding: 'var(--space-4) var(--space-6)',
+      marginBottom: 'var(--space-4)',
+      display: 'flex',
+      alignItems: 'center',
+      gap: 'var(--space-4)',
+      flexWrap: 'wrap',
+    }}>
+      <span style={{ fontSize: '1.8rem' }}>★</span>
+      <div>
+        <div style={{ fontWeight: 800, fontSize: 'var(--font-size-md)', color: '#1a6b3a' }}>
+          Zusätzliche Einsparung durch Optimierung: {formatEur(gain)}
+        </div>
+        <div style={{ fontSize: 'var(--font-size-xs)', color: '#4a7c59', marginTop: 2 }}>
+          Gegenüber einfacher Netzwerk-Verrechnung — nur durch optimale Verrechnung erreichbar
+        </div>
+      </div>
     </div>
   )
 }
@@ -208,13 +275,13 @@ function DetailPanel({ stage, data }) {
         </div>
         <div>
           <div className="kpi-label">Einsparung vs. Brutto</div>
-          <div style={{ fontSize: 'var(--font-size-2xl)', fontWeight: 800, color: '#4a7c59' }}>
+          <div style={{ fontSize: 'var(--font-size-2xl)', fontWeight: 800, color: '#1a6b3a' }}>
             {formatEur(savedFromGross)}
           </div>
         </div>
         <div>
           <div className="kpi-label">Reduktionsquote</div>
-          <div style={{ fontSize: 'var(--font-size-2xl)', fontWeight: 800, color: '#4a7c59' }}>
+          <div style={{ fontSize: 'var(--font-size-2xl)', fontWeight: 800, color: '#1a6b3a' }}>
             {(savedBps / 100).toFixed(1).replace('.', ',')} %
           </div>
         </div>
@@ -222,6 +289,19 @@ function DetailPanel({ stage, data }) {
       <p style={{ marginTop: 'var(--space-4)', fontSize: 'var(--font-size-sm)', color: 'var(--color-text-muted)', lineHeight: 1.6 }}>
         {stage.sub}
       </p>
+      {stage.isOptimal && (
+        <p style={{
+          marginTop: 'var(--space-3)',
+          fontSize: 'var(--font-size-xs)',
+          color: 'var(--color-text-muted)',
+          fontStyle: 'italic',
+          lineHeight: 1.5,
+          borderTop: '1px solid var(--color-border)',
+          paddingTop: 'var(--space-3)',
+        }}>
+          Die optimale Verrechnung nutzt mathematische Optimierung um das bestmögliche Ergebnis zu berechnen — keine heuristische Annäherung.
+        </p>
+      )}
     </div>
   )
 }
@@ -231,11 +311,11 @@ export default function NettingVergleich() {
   const [data,      setData]      = useState(null)
   const [loading,   setLoading]   = useState(true)
   const [usingMock, setUsingMock] = useState(false)
-  const [activeKey, setActiveKey] = useState('multilateral')
+  const [activeKey, setActiveKey] = useState('optimal')
   const [animated,  setAnimated]  = useState(false)
 
   useEffect(() => {
-    clearingApi.multilateral()
+    clearingApi.optimal()
       .then(res => {
         setData(res)
         setUsingMock(false)
@@ -246,7 +326,6 @@ export default function NettingVergleich() {
       })
       .finally(() => {
         setLoading(false)
-        // Trigger bar animation after render
         setTimeout(() => setAnimated(true), 100)
       })
   }, [])
@@ -254,10 +333,11 @@ export default function NettingVergleich() {
   const stages      = data ? buildStages(data) : []
   const activeStage = stages.find(s => s.key === activeKey) || null
 
-  const bilateralSaving    = data ? data.gross_cents - data.bilateral_cents    : 0
-  const multilateralSaving = data ? data.bilateral_cents - data.multilateral_cents : 0
+  const bilateralSaving    = data ? data.gross_cents - data.bilateral_cents          : 0
+  const netzwerkSaving     = data ? data.bilateral_cents - data.johnson_cents        : 0
+  const optimalSaving      = data ? data.johnson_cents - data.optimal_cents          : 0
   const totalSavingBps     = data && data.gross_cents > 0
-    ? Math.round((data.gross_cents - data.multilateral_cents) * 10000 / data.gross_cents)
+    ? Math.round((data.gross_cents - data.optimal_cents) * 10000 / data.gross_cents)
     : 0
 
   return (
@@ -266,7 +346,7 @@ export default function NettingVergleich() {
       <div className="page-header">
         <h1 className="page-title">Netting-Vergleich</h1>
         <p className="page-subtitle">
-          Brutto → Bilateral → Multilateral · Liquiditätseinsparung durch ClearFlow
+          Brutto → Bilateral → Netzwerk → Optimal · Liquiditätseinsparung durch ClearFlow
           {usingMock && (
             <span style={{ color: 'var(--color-warning)', marginLeft: 8 }}>· Demo-Daten</span>
           )}
@@ -281,17 +361,17 @@ export default function NettingVergleich() {
         <>
           {/* Total savings banner */}
           <div className="card" style={{
-            background: 'linear-gradient(135deg, #4a7c59 0%, #2c6e8a 100%)',
+            background: 'linear-gradient(135deg, #1a6b3a 0%, #2c6e8a 100%)',
             color: 'white',
             marginBottom: 'var(--space-6)',
             display: 'flex', gap: 'var(--space-8)', flexWrap: 'wrap', alignItems: 'center',
           }}>
             <div>
               <div style={{ fontSize: 'var(--font-size-xs)', fontWeight: 700, opacity: 0.8, textTransform: 'uppercase', letterSpacing: '0.06em' }}>
-                Gesamteinsparung (multilateral)
+                Gesamteinsparung (optimal)
               </div>
               <div style={{ fontSize: 'clamp(2rem, 5vw, 3.5rem)', fontWeight: 800, lineHeight: 1.1 }}>
-                {formatEur(data.gross_cents - data.multilateral_cents)}
+                {formatEur(data.gross_cents - data.optimal_cents)}
               </div>
             </div>
             <div style={{ width: 1, height: 60, background: 'rgba(255,255,255,0.2)', flexShrink: 0 }} />
@@ -309,13 +389,16 @@ export default function NettingVergleich() {
                 Methode
               </div>
               <div style={{ fontSize: 'var(--font-size-lg)', fontWeight: 700, lineHeight: 1.3 }}>
-                Johnson-Algorithmus<br />
-                <span style={{ fontWeight: 400, fontSize: 'var(--font-size-sm)', opacity: 0.8 }}>Zyklenreduktion im Handelsgraph</span>
+                Optimale Verrechnung<br />
+                <span style={{ fontWeight: 400, fontSize: 'var(--font-size-sm)', opacity: 0.8 }}>Mathematisch garantiertes Optimum</span>
               </div>
             </div>
           </div>
 
-          {/* Three stage cards with arrows */}
+          {/* Optimization gain callout */}
+          <OptimizationGain data={data} />
+
+          {/* Four stage cards with arrows */}
           <div style={{
             display: 'flex', alignItems: 'stretch', gap: 'var(--space-2)',
             flexWrap: 'wrap', marginBottom: 'var(--space-4)',
@@ -329,7 +412,8 @@ export default function NettingVergleich() {
                   animated={animated}
                 />
                 {i === 0 && <Arrow saving={bilateralSaving} />}
-                {i === 1 && <Arrow saving={multilateralSaving} />}
+                {i === 1 && <Arrow saving={netzwerkSaving} />}
+                {i === 2 && <Arrow saving={optimalSaving} highlight />}
               </React.Fragment>
             ))}
           </div>

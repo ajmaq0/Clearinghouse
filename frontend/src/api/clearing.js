@@ -8,4 +8,9 @@ export const clearingApi = {
   getResults:   (id) => api.get(`/clearing/cycles/${id}`),
   // Returns { gross_cents, bilateral_cents, multilateral_cents, savings_eur_cents, savings_vs_gross_bps }
   multilateral: ()   => api.post('/clearing/multilateral', {}),
+  // Returns { gross_cents, bilateral_cents, johnson_cents, optimal_cents,
+  //           optimal_savings_cents, optimal_savings_pct,
+  //           improvement_over_johnson_cents, improvement_over_johnson_pct,
+  //           cleared_edges, lp_status }
+  optimal:      ()   => api.post('/clearing/optimal', {}),
 }
