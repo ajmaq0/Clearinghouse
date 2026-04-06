@@ -261,3 +261,21 @@ class CompanyComparisonOut(BaseModel):
     rows: List[CompanyComparisonRow]
     total_companies: int
     lp_status: str
+
+
+# ── Clearing History Timeline ──────────────────────────────────────────────
+
+class ClearingHistoryEntry(BaseModel):
+    id: str
+    completed_at: datetime
+    netting_type: Optional[str]
+    gross_cents: int
+    net_cents: int
+    savings_pct: float
+    invoice_count: int
+    company_count: int
+
+
+class ClearingHistoryOut(BaseModel):
+    cycles: List[ClearingHistoryEntry]
+    total_cycles: int

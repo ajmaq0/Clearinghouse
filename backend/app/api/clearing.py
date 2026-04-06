@@ -224,6 +224,43 @@ def company_comparison(db: Session = Depends(get_db)):
     )
 
 
+@router.get("/history", response_model=schemas.ClearingHistoryOut)
+def clearing_history(db: Session = Depends(get_db)):
+    """
+    Return a time-series of all completed clearing cycles ordered most-recent first.
+
+    Each entry aggregates from ClearingResult rows:
+      gross_cents, net_cents, savings_pct, invoice_count, company_count.
+    """
+    cycles = (
+        db.query(models.ClearingCycle)
+        .filter(models.ClearingCycle.status == "completed")
+        .order_by(models.ClearingCycle.completed_at.desc())
+        .all()
+    )
+    entries = []
+    for cycle in cycles:
+        gross = sum(r.gross_amount_cents for r in cycle.results)
+        net = sum(r.net_amount_cents for r in cycle.results)
+        invoice_count = sum(r.invoices_count for r in cycle.results)
+        companies = set()
+        for r in cycle.results:
+            companies.add(r.from_company_id)
+            companies.add(r.to_company_id)
+        savings_pct = round((gross - net) / gross * 100, 1) if gross > 0 else 0.0
+        entries.append(schemas.ClearingHistoryEntry(
+            id=cycle.id,
+            completed_at=cycle.completed_at,
+            netting_type=cycle.netting_type,
+            gross_cents=gross,
+            net_cents=net,
+            savings_pct=savings_pct,
+            invoice_count=invoice_count,
+            company_count=len(companies),
+        ))
+    return schemas.ClearingHistoryOut(cycles=entries, total_cycles=len(entries))
+
+
 @router.get("/cycles", response_model=List[schemas.ClearingCycleOut])
 def list_cycles(db: Session = Depends(get_db)):
     return (
