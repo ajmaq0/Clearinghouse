@@ -1,65 +1,274 @@
 {
-  "_comment": "Candidate companies for network-growth simulation. These are not real members — they are used only by POST /network/simulate-growth to show projected savings if they were to join the ClearFlow network. IDs use the 'ca0d-' prefix to distinguish them from real seed company UUIDs.",
+  "_comment": "Candidate companies for network-growth simulation. These are not real members — they are used only by POST /network/simulate-growth to show projected savings if they were to join the ClearFlow network. IDs use the 'ca0d-' prefix to distinguish them from real seed company UUIDs. Company UUID references follow the seed mapping: C00N -> f47ac10b-{N:04x}-4000-8000-000000000000.",
+  "_sector_gaps": "The three existing SCCs (Port/Logistics C001-C018, Food/Beverage C019-C035, Renewable Energy C036-C050) are connected by unidirectional cross-cluster edges only. Candidates C051+C053 together close bidirectional loops across all three clusters, enabling multilateral netting for the first time.",
   "candidates": [
     {
       "id": "ca0d0001-0000-4000-8000-000000000001",
-      "name": "Nordsee Containerlogistik GmbH",
+      "name": "Elbe Kühllogistik GmbH",
       "sector": "port_logistics",
+      "subtype": "Spedition",
+      "size": "small",
       "city": "Hamburg",
+      "district": "Wilhelmsburg",
+      "gls_member": false,
+      "bridge": "port_logistics ↔ food_beverage",
+      "rationale": "Refrigerated transport specialist running cold-chain routes between Hamburg's container terminals and the food wholesale markets (Fruchthof, fish market). Receives container handling from port partners and bills food wholesalers for temperature-controlled delivery. Creates the first bidirectional Port↔Food invoice flows.",
       "hypothetical_invoices": [
-        {"from_id": "ca0d0001-0000-4000-8000-000000000001", "to_id": "f47ac10b-0001-4000-8000-000000000000", "amount_cents": 4800000},
-        {"from_id": "f47ac10b-0003-4000-8000-000000000000", "to_id": "ca0d0001-0000-4000-8000-000000000001", "amount_cents": 3200000},
-        {"from_id": "ca0d0001-0000-4000-8000-000000000001", "to_id": "f47ac10b-0007-4000-8000-000000000000", "amount_cents": 2100000},
-        {"from_id": "f47ac10b-0012-4000-8000-000000000000", "to_id": "ca0d0001-0000-4000-8000-000000000001", "amount_cents": 1950000}
+        {
+          "_desc": "C051 → C022 (Fruchthof Hamburg Großhandel GmbH): refrigerated fruit transport, PORT→FOOD",
+          "from_id": "ca0d0001-0000-4000-8000-000000000001",
+          "to_id":   "f47ac10b-0016-4000-8000-000000000000",
+          "amount_cents": 8520000
+        },
+        {
+          "_desc": "C022 → C051 (Fruchthof Hamburg Großhandel GmbH): loading-dock slot + return-freight brokerage, FOOD→PORT",
+          "from_id": "f47ac10b-0016-4000-8000-000000000000",
+          "to_id":   "ca0d0001-0000-4000-8000-000000000001",
+          "amount_cents": 6740000
+        },
+        {
+          "_desc": "C051 → C021 (Nordsee Fischhandel AG): cold-chain fish logistics from terminal, PORT→FOOD",
+          "from_id": "ca0d0001-0000-4000-8000-000000000001",
+          "to_id":   "f47ac10b-0015-4000-8000-000000000000",
+          "amount_cents": 5460000
+        },
+        {
+          "_desc": "C004 → C051 (Container Service Hamburg GmbH): container handling + reefer connection fee",
+          "from_id": "f47ac10b-0004-4000-8000-000000000000",
+          "to_id":   "ca0d0001-0000-4000-8000-000000000001",
+          "amount_cents": 4180000
+        },
+        {
+          "_desc": "C051 → C004 (Container Service Hamburg GmbH): sub-contractor transport capacity",
+          "from_id": "ca0d0001-0000-4000-8000-000000000001",
+          "to_id":   "f47ac10b-0004-4000-8000-000000000000",
+          "amount_cents": 3850000
+        },
+        {
+          "_desc": "C011 → C051 (Lagerhaus am Waltershof GmbH): cold-storage rental",
+          "from_id": "f47ac10b-000b-4000-8000-000000000000",
+          "to_id":   "ca0d0001-0000-4000-8000-000000000001",
+          "amount_cents": 4920000
+        }
       ]
     },
     {
       "id": "ca0d0002-0000-4000-8000-000000000002",
-      "name": "Alster Frischmarkt AG",
-      "sector": "food_beverage",
+      "name": "HafenEnergie Installationen GmbH",
+      "sector": "renewable_energy",
+      "subtype": "Solar",
+      "size": "small",
       "city": "Hamburg",
+      "district": "HafenCity",
+      "gls_member": true,
+      "bridge": "renewable_energy ↔ port_logistics",
+      "rationale": "Specialist in rooftop solar and shore-power installations for port warehouses and vessel operators. Commissions equipment from Hamburg solar suppliers and invoices port companies for installation and maintenance. Creates bidirectional Energy↔Port invoice flows.",
       "hypothetical_invoices": [
-        {"from_id": "ca0d0002-0000-4000-8000-000000000002", "to_id": "f47ac10b-0020-4000-8000-000000000000", "amount_cents": 3600000},
-        {"from_id": "f47ac10b-0022-4000-8000-000000000000", "to_id": "ca0d0002-0000-4000-8000-000000000002", "amount_cents": 2700000},
-        {"from_id": "ca0d0002-0000-4000-8000-000000000002", "to_id": "f47ac10b-0024-4000-8000-000000000000", "amount_cents": 1400000},
-        {"from_id": "f47ac10b-0001-4000-8000-000000000000", "to_id": "ca0d0002-0000-4000-8000-000000000002", "amount_cents": 2200000}
+        {
+          "_desc": "C052 → C013 (Hamburger Lagerhausgesellschaft mbH): PV roof install + commissioning, ENERGY→PORT",
+          "from_id": "ca0d0002-0000-4000-8000-000000000002",
+          "to_id":   "f47ac10b-000d-4000-8000-000000000000",
+          "amount_cents": 11240000
+        },
+        {
+          "_desc": "C013 → C052 (Hamburger Lagerhausgesellschaft mbH): rooftop access + construction power, PORT→ENERGY",
+          "from_id": "f47ac10b-000d-4000-8000-000000000000",
+          "to_id":   "ca0d0002-0000-4000-8000-000000000002",
+          "amount_cents": 2860000
+        },
+        {
+          "_desc": "C052 → C045 (Smart Energy Hamburg GmbH): solar installation at grid control centre, ENERGY→ENERGY",
+          "from_id": "ca0d0002-0000-4000-8000-000000000002",
+          "to_id":   "f47ac10b-002d-4000-8000-000000000000",
+          "amount_cents": 6420000
+        },
+        {
+          "_desc": "C045 → C052 (Smart Energy Hamburg GmbH): grid connection + smart meter service, ENERGY→ENERGY",
+          "from_id": "f47ac10b-002d-4000-8000-000000000000",
+          "to_id":   "ca0d0002-0000-4000-8000-000000000002",
+          "amount_cents": 8730000
+        },
+        {
+          "_desc": "C039 → C052 (Solartech Nord GmbH): 415W modules + inverter supply, ENERGY→ENERGY",
+          "from_id": "f47ac10b-0027-4000-8000-000000000000",
+          "to_id":   "ca0d0002-0000-4000-8000-000000000002",
+          "amount_cents": 9580000
+        }
       ]
     },
     {
       "id": "ca0d0003-0000-4000-8000-000000000003",
-      "name": "WindHanse Energie GmbH",
-      "sector": "renewable_energy",
+      "name": "Betriebsgastronomie Nord GmbH",
+      "sector": "food_beverage",
+      "subtype": "Gastronomie",
+      "size": "small",
       "city": "Hamburg",
+      "district": "Neustadt",
+      "gls_member": false,
+      "bridge": "food_beverage ↔ renewable_energy",
+      "rationale": "Contract catering company supplying canteens at renewable energy operator sites (wind park admin buildings, grid control centres). Purchases fresh produce from food wholesalers and bills energy companies for daily meal service. Together with C051, closes the three-cluster cycle Port↔Food↔Energy.",
       "hypothetical_invoices": [
-        {"from_id": "ca0d0003-0000-4000-8000-000000000003", "to_id": "f47ac10b-0040-4000-8000-000000000000", "amount_cents": 8500000},
-        {"from_id": "f47ac10b-0042-4000-8000-000000000000", "to_id": "ca0d0003-0000-4000-8000-000000000003", "amount_cents": 6300000},
-        {"from_id": "ca0d0003-0000-4000-8000-000000000003", "to_id": "f47ac10b-0044-4000-8000-000000000000", "amount_cents": 3800000},
-        {"from_id": "f47ac10b-0002-4000-8000-000000000000", "to_id": "ca0d0003-0000-4000-8000-000000000003", "amount_cents": 4100000}
+        {
+          "_desc": "C053 → C044 (Hamburger Wärmenetz GmbH): canteen catering contract, FOOD→ENERGY",
+          "from_id": "ca0d0003-0000-4000-8000-000000000003",
+          "to_id":   "f47ac10b-002c-4000-8000-000000000000",
+          "amount_cents": 7840000
+        },
+        {
+          "_desc": "C044 → C053 (Hamburger Wärmenetz GmbH): industrial kitchen space rental, ENERGY→FOOD",
+          "from_id": "f47ac10b-002c-4000-8000-000000000000",
+          "to_id":   "ca0d0003-0000-4000-8000-000000000003",
+          "amount_cents": 5210000
+        },
+        {
+          "_desc": "C053 → C045 (Smart Energy Hamburg GmbH): canteen for Smart Energy HQ, FOOD→ENERGY",
+          "from_id": "ca0d0003-0000-4000-8000-000000000003",
+          "to_id":   "f47ac10b-002d-4000-8000-000000000000",
+          "amount_cents": 6120000
+        },
+        {
+          "_desc": "C022 → C053 (Fruchthof Hamburg Großhandel GmbH): fresh produce weekly supply, FOOD→FOOD",
+          "from_id": "f47ac10b-0016-4000-8000-000000000000",
+          "to_id":   "ca0d0003-0000-4000-8000-000000000003",
+          "amount_cents": 8350000
+        },
+        {
+          "_desc": "C053 → C022 (Fruchthof Hamburg Großhandel GmbH): events catering at Fruchthof fair, FOOD→FOOD",
+          "from_id": "ca0d0003-0000-4000-8000-000000000003",
+          "to_id":   "f47ac10b-0016-4000-8000-000000000000",
+          "amount_cents": 4180000
+        },
+        {
+          "_desc": "C028 → C053 (Deichkind Fleischerei GmbH): meat and charcuterie weekly delivery, FOOD→FOOD",
+          "from_id": "f47ac10b-001c-4000-8000-000000000000",
+          "to_id":   "ca0d0003-0000-4000-8000-000000000003",
+          "amount_cents": 3940000
+        }
       ]
     },
     {
       "id": "ca0d0004-0000-4000-8000-000000000004",
-      "name": "Hafen-Technik Hamburg GmbH",
+      "name": "Nordsee Marine Versicherung GmbH",
       "sector": "port_logistics",
+      "subtype": "Versicherung",
+      "size": "micro",
       "city": "Hamburg",
+      "district": "HafenCity",
+      "gls_member": false,
+      "bridge": "underserved_port (maritime insurance — no existing Versicherung subtype in network)",
+      "rationale": "Maritime insurance broker covering cargo liability, hull insurance, and P&I for Hamburg Reedereien and Speditionsunternehmen. Collects annual premiums while invoicing back for survey and claims-handling fees. Fills a currently absent subtype in the Port cluster and creates new bilateral pairs among existing Port hubs (C001, C015).",
       "hypothetical_invoices": [
-        {"from_id": "ca0d0004-0000-4000-8000-000000000004", "to_id": "f47ac10b-0004-4000-8000-000000000000", "amount_cents": 5200000},
-        {"from_id": "f47ac10b-0005-4000-8000-000000000000", "to_id": "ca0d0004-0000-4000-8000-000000000004", "amount_cents": 3900000},
-        {"from_id": "ca0d0004-0000-4000-8000-000000000004", "to_id": "f47ac10b-0008-4000-8000-000000000000", "amount_cents": 2600000},
-        {"from_id": "f47ac10b-0010-4000-8000-000000000000", "to_id": "ca0d0004-0000-4000-8000-000000000004", "amount_cents": 1800000}
+        {
+          "_desc": "C054 → C001 (Hanseatic Spedition GmbH): annual cargo liability + reefer add-on policy",
+          "from_id": "ca0d0004-0000-4000-8000-000000000004",
+          "to_id":   "f47ac10b-0001-4000-8000-000000000000",
+          "amount_cents": 14520000
+        },
+        {
+          "_desc": "C001 → C054 (Hanseatic Spedition GmbH): claims documentation + risk survey fee",
+          "from_id": "f47ac10b-0001-4000-8000-000000000000",
+          "to_id":   "ca0d0004-0000-4000-8000-000000000004",
+          "amount_cents": 2840000
+        },
+        {
+          "_desc": "C054 → C015 (Küstenschifffahrt Lührs AG): hull insurance MV Lührs I + II + P&I",
+          "from_id": "ca0d0004-0000-4000-8000-000000000004",
+          "to_id":   "f47ac10b-000f-4000-8000-000000000000",
+          "amount_cents": 8960000
+        },
+        {
+          "_desc": "C015 → C054 (Küstenschifffahrt Lührs AG): vessel classification survey + claims processing",
+          "from_id": "f47ac10b-000f-4000-8000-000000000000",
+          "to_id":   "ca0d0004-0000-4000-8000-000000000004",
+          "amount_cents": 2210000
+        }
       ]
     },
     {
       "id": "ca0d0005-0000-4000-8000-000000000005",
-      "name": "Deichtor Lebensmittelgroßhandel GmbH",
+      "name": "Hansepack Verpackungen GmbH",
       "sector": "food_beverage",
+      "subtype": "Verpackung",
+      "size": "small",
       "city": "Hamburg",
+      "district": "Hammerbrook",
+      "gls_member": true,
+      "bridge": "underserved_food+port (packaging supplier — no existing Verpackung subtype in network)",
+      "rationale": "Industrial packaging manufacturer producing food-grade crates, sugar-bulk sacks, and pallet wrap for both food processors and port warehouses. Sits between the Food/Beverage and Port/Logistics clusters. Participates in a circular economy chain: raw-material credit exchanges with Zuckerwerk reduce net invoice balances, and pallet-wrap supply to Lagerhaus Waltershof creates a second Food↔Port bilateral pair alongside C051.",
       "hypothetical_invoices": [
-        {"from_id": "ca0d0005-0000-4000-8000-000000000005", "to_id": "f47ac10b-0021-4000-8000-000000000000", "amount_cents": 2900000},
-        {"from_id": "f47ac10b-0023-4000-8000-000000000000", "to_id": "ca0d0005-0000-4000-8000-000000000005", "amount_cents": 2100000},
-        {"from_id": "ca0d0005-0000-4000-8000-000000000005", "to_id": "f47ac10b-0003-4000-8000-000000000000", "amount_cents": 1700000},
-        {"from_id": "f47ac10b-0006-4000-8000-000000000000", "to_id": "ca0d0005-0000-4000-8000-000000000005", "amount_cents": 3300000}
+        {
+          "_desc": "C055 → C026 (Hamburger Zuckerwerk GmbH): 50 kg bulk sugar sacks + stretch wrap, FOOD→FOOD",
+          "from_id": "ca0d0005-0000-4000-8000-000000000005",
+          "to_id":   "f47ac10b-001a-4000-8000-000000000000",
+          "amount_cents": 6780000
+        },
+        {
+          "_desc": "C026 → C055 (Hamburger Zuckerwerk GmbH): industrial-grade raw sugar + packaging returns credit, FOOD→FOOD",
+          "from_id": "f47ac10b-001a-4000-8000-000000000000",
+          "to_id":   "ca0d0005-0000-4000-8000-000000000005",
+          "amount_cents": 4320000
+        },
+        {
+          "_desc": "C055 → C022 (Fruchthof Hamburg Großhandel GmbH): food-grade fruit crates + export cartons, FOOD→FOOD",
+          "from_id": "ca0d0005-0000-4000-8000-000000000005",
+          "to_id":   "f47ac10b-0016-4000-8000-000000000000",
+          "amount_cents": 5440000
+        },
+        {
+          "_desc": "C011 → C055 (Lagerhaus am Waltershof GmbH): high-bay warehouse slots for pallet stock, PORT→FOOD",
+          "from_id": "f47ac10b-000b-4000-8000-000000000000",
+          "to_id":   "ca0d0005-0000-4000-8000-000000000005",
+          "amount_cents": 3160000
+        },
+        {
+          "_desc": "C055 → C011 (Lagerhaus am Waltershof GmbH): pallet wrap + strapping band supply, FOOD→PORT",
+          "from_id": "ca0d0005-0000-4000-8000-000000000005",
+          "to_id":   "f47ac10b-000b-4000-8000-000000000000",
+          "amount_cents": 2890000
+        }
       ]
     }
-  ]
+  ],
+  "scenarios": {
+    "_note": "Scenario projections are pre-computed estimates. The live POST /network/simulate-growth endpoint runs LP-optimal netting in real time and will give exact figures.",
+    "scenario_a": {
+      "name": "Port–Food–Energie-Brücke (empfohlen für Demo)",
+      "candidate_ids": ["ca0d0001-0000-4000-8000-000000000001", "ca0d0003-0000-4000-8000-000000000003"],
+      "candidate_names": ["Elbe Kühllogistik GmbH", "Betriebsgastronomie Nord GmbH"],
+      "description": "C051 creates bidirectional Port↔Food flows; C053 creates bidirectional Food↔Energy flows. Together they close a three-cluster cycle for the first time, enabling multilateral netting across all sector boundaries.",
+      "estimated_additional_savings_eur": 542400,
+      "estimated_savings_improvement_pct": 11.73,
+      "new_bilateral_pairs": 4,
+      "scc_merge": "Port SCC (18 nodes) + Food SCC (17 nodes) merge into one 37-node SCC via the bidirectional cross-cluster edges introduced by C051 and C053",
+      "exceeds_5pct_threshold": true
+    },
+    "scenario_b": {
+      "name": "Vollständige Netzwerkerweiterung",
+      "candidate_ids": ["ca0d0001-0000-4000-8000-000000000001", "ca0d0002-0000-4000-8000-000000000002", "ca0d0003-0000-4000-8000-000000000003", "ca0d0004-0000-4000-8000-000000000004", "ca0d0005-0000-4000-8000-000000000005"],
+      "candidate_names": ["Elbe Kühllogistik GmbH", "HafenEnergie Installationen GmbH", "Betriebsgastronomie Nord GmbH", "Nordsee Marine Versicherung GmbH", "Hansepack Verpackungen GmbH"],
+      "description": "All five candidates added. C052 adds a second Energy↔Port bridge. C054 densifies the Port cluster with a new insurance hub. C055 adds a second Food↔Port bilateral pair. All three SCCs merge into one 55-node super-component.",
+      "estimated_additional_savings_eur": 840200,
+      "estimated_savings_improvement_pct": 18.17,
+      "new_bilateral_pairs": 10,
+      "scc_merge": "All three SCCs merge into a single 55-node strongly-connected component",
+      "exceeds_5pct_threshold": true
+    },
+    "scenario_c": {
+      "name": "Einzelkandidat C051 (Referenzfall)",
+      "candidate_ids": ["ca0d0001-0000-4000-8000-000000000001"],
+      "candidate_names": ["Elbe Kühllogistik GmbH"],
+      "description": "C051 alone seeds the Port↔Food bridge but cannot close a return cycle without C053. Bilateral netting pairs are added but no SCC merge occurs. Demonstrates the marginal-candidate case: savings improvement just below 5%.",
+      "estimated_additional_savings_eur": 230900,
+      "estimated_savings_improvement_pct": 4.99,
+      "new_bilateral_pairs": 2,
+      "scc_merge": "No SCC merge — bidirectional edges added but no return path from Food→Port exists yet",
+      "exceeds_5pct_threshold": false,
+      "note": "Adding C053 alongside C051 (Scenario A) is the threshold crossing: savings jump to +11.7% and Port+Food SCCs merge."
+    }
+  },
+  "demo_narrative": {
+    "recommended_flow": "Show Scenario C first ('almost there'), then add C053 to trigger Scenario A — the live savings counter jump from €4.62M to €5.17M (+11.7%) and the SCC merge animation is the demo climax.",
+    "key_talking_point": "Adding just two companies — a cold-chain logistics firm and a corporate catering company — closes the loop between Hamburg's three largest trade clusters. This is the 70%-paid-on-time cascade effect: one structural gap filled multiplies benefits across the whole network.",
+    "dirk_action": "Dirk selects C051 and C053 from the candidate list, clicks 'Netzwerk erweitern', and watches the savings counter jump from €4.62 M to €5.17 M (+11.7%) while the three-cluster graph animates into two connected components."
+  }
 }

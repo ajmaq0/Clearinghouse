@@ -7,6 +7,7 @@ import GlsDashboard from './pages/GlsDashboard.jsx'
 import Clearing from './components/Clearing.jsx'
 import Rechnungen from './components/Rechnungen.jsx'
 import Entdecken from './components/Entdecken.jsx'
+import NetzwerkWachstum from './pages/NetzwerkWachstum.jsx'
 import './styles/global.css'
 import './styles/app.css'
 import './styles/clearing-animation.css'
@@ -20,6 +21,7 @@ const NAV_ITEMS = [
   { id: 'netzwerk',   label: 'Netzwerk',     icon: '⬡' },
   { id: 'admin',      label: 'GLS Admin',    icon: '⊞' },
   { id: 'entdecken',  label: 'Entdecken',    icon: '⊙' },
+  { id: 'wachstum',   label: 'Wachstum',     icon: '⊕' },
 ]
 
 const PAGES = {
@@ -30,6 +32,7 @@ const PAGES = {
   netzwerk:   NetworkExplorer,
   admin:      GlsDashboard,
   entdecken:  Entdecken,
+  wachstum:   NetzwerkWachstum,
 }
 
 export default function App() {
