@@ -10,7 +10,7 @@
  */
 import React, { useEffect, useState } from 'react'
 import { clearingApi } from '../api/clearing.js'
-import { formatEur, formatPct } from '../utils/format.js'
+import { formatEur } from '../utils/format.js'
 
 // ── Mock fallback ──────────────────────────────────────────────────────────────
 const MOCK_RESULT = {
@@ -54,7 +54,7 @@ function buildStages(data) {
     {
       key:        'netzwerk',
       label:      'Nach Netzwerk-Verrechnung',
-      sub:        'Zyklen im Handelsgraphen werden aufgelöst',
+      sub:        'Ketten von Verpflichtungen im Netzwerk werden gefunden und aufgelöst',
       amount:     data.johnson_cents,
       pct:        gross > 0 ? Math.round(data.johnson_cents * 1000 / gross) / 10 : 0,
       reduction:  gross > 0 ? Math.round((gross - data.johnson_cents) * 10000 / gross) / 100 : 0,
@@ -180,7 +180,7 @@ function StageCard({ stage, isActive, onClick, animated }) {
             border: `1px solid ${stage.color}44`,
             borderRadius: 99,
             padding: '2px 10px',
-            fontSize: 'var(--font-size-xs)',
+            fontSize: 'var(--font-size-sm)',
             fontWeight: 700,
           }}>
             −{stage.reduction} %
