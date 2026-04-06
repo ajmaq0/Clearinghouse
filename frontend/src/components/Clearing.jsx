@@ -53,6 +53,104 @@ function normalizeDetail(detail, companyMap) {
   return { gross_cents: grossCents, net_cents: netCents, savings_cents: savingsCents, savings_pct: savingsPct, pairs }
 }
 
+// ── 3-Step Netting Summary ─────────────────────────────────────────────────────
+
+const STEPS = [
+  { key: 'gross',        label: 'Brutto',          icon: '≡',  color: '#c97a2f', colorLight: '#fdf3e7' },
+  { key: 'bilateral',    label: 'Bilateral',        icon: '⇄',  color: '#2c6e8a', colorLight: '#e8f2f7' },
+  { key: 'multilateral', label: 'Multilateral',     icon: '⬡',  color: '#4a7c59', colorLight: '#eef5f1' },
+]
+
+function ThreeStepSummary({ multiData }) {
+  if (!multiData) return null
+
+  const gross  = multiData.gross_cents        ?? 0
+  const bi     = multiData.bilateral_cents    ?? 0
+  const multi  = multiData.multilateral_cents ?? 0
+
+  const steps = [
+    { ...STEPS[0], amount: gross,  pct: 100, savingFromPrev: null },
+    { ...STEPS[1], amount: bi,     pct: gross > 0 ? Math.round(bi * 1000 / gross) / 10 : 0,    savingFromPrev: gross - bi    },
+    { ...STEPS[2], amount: multi,  pct: gross > 0 ? Math.round(multi * 1000 / gross) / 10 : 0, savingFromPrev: bi - multi    },
+  ]
+
+  const totalSavingPct = gross > 0 ? Math.round((gross - multi) * 10000 / gross) / 100 : 0
+
+  return (
+    <div className="card" style={{ marginBottom: 'var(--space-6)', padding: 'var(--space-5) var(--space-6)' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 'var(--space-5)', flexWrap: 'wrap', gap: 'var(--space-4)' }}>
+        <div>
+          <h2 style={{ fontSize: 'var(--font-size-md)', fontWeight: 700 }}>
+            Brutto → Bilateral → Multilateral
+          </h2>
+          <div style={{ fontSize: 'var(--font-size-xs)', color: 'var(--color-text-muted)', marginTop: 2 }}>
+            Drei-Stufen-Netting · Johnson-Algorithmus
+          </div>
+        </div>
+        <div style={{ textAlign: 'right' }}>
+          <div style={{ fontSize: 'var(--font-size-xs)', color: 'var(--color-primary-dk)', fontWeight: 600 }}>
+            Gesamteinsparung
+          </div>
+          <div style={{ fontSize: 'var(--font-size-2xl)', fontWeight: 800, color: '#4a7c59' }}>
+            {formatPct(totalSavingPct)}
+          </div>
+        </div>
+      </div>
+
+      <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-2)', flexWrap: 'wrap' }}>
+        {steps.map((step, i) => (
+          <React.Fragment key={step.key}>
+            <div style={{
+              flex: '1 1 160px', minWidth: 140,
+              background: step.colorLight,
+              border: `1.5px solid ${step.color}44`,
+              borderRadius: 'var(--radius-md)',
+              padding: 'var(--space-4)',
+            }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-2)', marginBottom: 'var(--space-2)' }}>
+                <span style={{
+                  width: 28, height: 28, borderRadius: '50%', background: step.color,
+                  color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  fontSize: '0.9em', flexShrink: 0,
+                }}>
+                  {step.icon}
+                </span>
+                <span style={{ fontWeight: 700, fontSize: 'var(--font-size-sm)', color: step.color }}>
+                  {step.label}
+                </span>
+              </div>
+              <div style={{ fontSize: 'clamp(1.1rem, 2.5vw, 1.6rem)', fontWeight: 800, color: step.color, lineHeight: 1.1, marginBottom: 4 }}>
+                {formatEur(step.amount)}
+              </div>
+              <div style={{ height: 6, background: '#e8e0d4', borderRadius: 99, overflow: 'hidden', marginBottom: 'var(--space-2)' }}>
+                <div style={{ height: '100%', width: `${step.pct}%`, background: step.color, borderRadius: 99 }} />
+              </div>
+              <div style={{ fontSize: 'var(--font-size-xs)', color: step.color, opacity: 0.8 }}>
+                {step.pct} % des Brutto
+              </div>
+              {step.savingFromPrev != null && step.savingFromPrev > 0 && (
+                <div style={{
+                  marginTop: 'var(--space-2)',
+                  background: 'rgba(255,255,255,0.6)',
+                  borderRadius: 'var(--radius-sm)',
+                  padding: '2px 8px',
+                  fontSize: 'var(--font-size-xs)', fontWeight: 700, color: '#4a7c59',
+                  display: 'inline-block',
+                }}>
+                  −{formatEur(step.savingFromPrev)} gespart
+                </div>
+              )}
+            </div>
+            {i < steps.length - 1 && (
+              <div style={{ color: 'var(--color-text-muted)', fontSize: '1.4rem', flexShrink: 0 }}>→</div>
+            )}
+          </React.Fragment>
+        ))}
+      </div>
+    </div>
+  )
+}
+
 /** Horizontal bar chart: Before vs After */
 function NettingBarChart({ grossCents, netCents, savingsCents, savingsPct }) {
   const maxVal = grossCents || 1
@@ -259,8 +357,15 @@ function PairRow({ pair }) {
 }
 
 export default function Clearing() {
-  const [running, setRunning] = useState(false)
-  const [runMsg, setRunMsg]   = useState(null)
+  const [running, setRunning]     = useState(false)
+  const [runMsg, setRunMsg]       = useState(null)
+  const [multiData, setMultiData] = useState(null)
+
+  useEffect(() => {
+    clearingApi.multilateral()
+      .then(data => setMultiData(data))
+      .catch(() => setMultiData(null))
+  }, [])
 
   const { data: companiesRaw } = useApi(() => companiesApi.list(), MOCK_COMPANIES)
 
@@ -314,7 +419,7 @@ export default function Clearing() {
             Clearing
           </h1>
           <p style={{ color: 'var(--color-text-muted)', fontSize: 'var(--font-size-sm)' }}>
-            Bilaterales Netting — Brutto vs. Netto Verpflichtungen
+            Brutto → Bilateral → Multilateral Netting · Verpflichtungsreduktion
           </p>
           {useMock && (
             <div style={{ marginTop: 'var(--space-3)', fontSize: 'var(--font-size-xs)', color: 'var(--color-accent)', fontStyle: 'italic' }}>
@@ -344,6 +449,9 @@ export default function Clearing() {
           {runMsg}
         </div>
       )}
+
+      {/* 3-step summary — always shown when multilateral data available */}
+      {multiData && <ThreeStepSummary multiData={multiData} />}
 
       {loading ? (
         <div style={{ display: 'flex', justifyContent: 'center', padding: 'var(--space-16)' }}>

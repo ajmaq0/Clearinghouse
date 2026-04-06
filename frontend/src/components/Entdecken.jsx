@@ -10,7 +10,8 @@
  * Design: GLS warm earth-tone palette, projector-readable, mobile-responsive.
  * Handoff: all layout uses CSS custom properties from global.css; no inline magic numbers.
  */
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { networkApi } from '../api/network.js'
 import { formatEur } from '../utils/format.js'
 
 // ── Mock data ─────────────────────────────────────────────────────────────────
@@ -116,6 +117,140 @@ const MOCK_FUNDING_GAPS = [
     description: 'Schuldner noch kein GLS-Mitglied — Onboarding würde Factoring-Pipeline öffnen.',
   },
 ]
+
+// ── Network topology stats section ────────────────────────────────────────────
+
+function TopologieStats({ topo }) {
+  if (!topo) return null
+
+  const nodeCount    = topo.nodes?.length ?? 0
+  const edgeCount    = topo.edges?.length ?? 0
+
+  // Cluster breakdown: count nodes per cluster
+  const clusterMap = {}
+  for (const node of (topo.nodes ?? [])) {
+    clusterMap[node.cluster] = (clusterMap[node.cluster] ?? 0) + 1
+  }
+
+  // Top 5 companies by invoice volume
+  const topCompanies = [...(topo.nodes ?? [])]
+    .sort((a, b) => b.total_invoice_volume_cents - a.total_invoice_volume_cents)
+    .slice(0, 5)
+
+  const clusterColors = {
+    'Port & Logistik':       { bg: '#eef5f1', border: '#c8dfd0', color: '#4a7c59' },
+    'Handwerk & Bau':        { bg: '#fdf3e7', border: '#f0c880', color: '#c97a2f' },
+    'Gastronomie & Handel':  { bg: '#e8f2f7', border: '#a8cfe0', color: '#2c6e8a' },
+  }
+
+  return (
+    <div style={{ marginBottom: 'var(--space-10)' }}>
+      <div style={{ marginBottom: 'var(--space-5)' }}>
+        <div style={{ display: 'flex', alignItems: 'baseline', gap: 'var(--space-3)' }}>
+          <span style={{ fontSize: '1.3em' }}>⬡</span>
+          <h2 style={{ fontSize: 'var(--font-size-lg)', fontWeight: 700, color: 'var(--color-text)' }}>
+            Netzwerk-Statistiken
+          </h2>
+        </div>
+        <p style={{ color: 'var(--color-text-muted)', fontSize: 'var(--font-size-sm)', marginTop: 'var(--space-1)', paddingLeft: 'var(--space-8)' }}>
+          Live-Daten aus dem ClearFlow-Handelsgraph
+        </p>
+      </div>
+
+      {/* KPI row */}
+      <div style={{ display: 'flex', gap: 'var(--space-4)', flexWrap: 'wrap', marginBottom: 'var(--space-6)' }}>
+        {[
+          { label: 'Unternehmen', value: nodeCount, icon: '◉', color: 'var(--color-primary)', bg: 'var(--color-primary-lt)', border: '#c8dfd0' },
+          { label: 'Handelsverbindungen', value: edgeCount, icon: '⇄', color: '#2c6e8a', bg: '#e8f2f7', border: '#a8cfe0' },
+          { label: 'Cluster', value: Object.keys(clusterMap).length, icon: '⬢', color: '#c97a2f', bg: '#fdf3e7', border: '#f0c880' },
+        ].map(stat => (
+          <div key={stat.label} className="card" style={{
+            flex: '1 1 160px', minWidth: 140,
+            background: stat.bg, border: `1px solid ${stat.border}`,
+          }}>
+            <div style={{ fontSize: '1.4em', marginBottom: 'var(--space-2)' }}>{stat.icon}</div>
+            <div style={{ fontSize: 'var(--font-size-2xl)', fontWeight: 800, color: stat.color, lineHeight: 1.1 }}>
+              {stat.value}
+            </div>
+            <div style={{ fontSize: 'var(--font-size-xs)', color: stat.color, opacity: 0.8, marginTop: 'var(--space-1)', fontWeight: 600 }}>
+              {stat.label}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Cluster breakdown + top companies */}
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-4)', flexWrap: 'wrap' }}>
+        {/* Cluster breakdown */}
+        <div className="card">
+          <div style={{ fontWeight: 700, fontSize: 'var(--font-size-sm)', marginBottom: 'var(--space-4)', color: 'var(--color-text)' }}>
+            Branchencluster
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-3)' }}>
+            {Object.entries(clusterMap).map(([cluster, count]) => {
+              const pct = nodeCount > 0 ? Math.round((count / nodeCount) * 100) : 0
+              const style = clusterColors[cluster] ?? { bg: '#f5f1eb', border: '#c9bfaf', color: '#7a6e64' }
+              return (
+                <div key={cluster}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 4 }}>
+                    <span style={{
+                      background: style.bg, color: style.color,
+                      border: `1px solid ${style.border}33`,
+                      borderRadius: '99px', padding: '2px 10px',
+                      fontSize: 'var(--font-size-xs)', fontWeight: 600,
+                    }}>{cluster}</span>
+                    <span style={{ fontSize: 'var(--font-size-xs)', color: 'var(--color-text-muted)', fontVariantNumeric: 'tabular-nums' }}>
+                      {count} ({pct} %)
+                    </span>
+                  </div>
+                  <div style={{ height: 6, background: '#e8e0d4', borderRadius: 99, overflow: 'hidden' }}>
+                    <div style={{ height: '100%', width: `${pct}%`, background: style.color, borderRadius: 99, transition: 'width 0.8s ease' }} />
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+        </div>
+
+        {/* Top connected companies */}
+        <div className="card">
+          <div style={{ fontWeight: 700, fontSize: 'var(--font-size-sm)', marginBottom: 'var(--space-4)', color: 'var(--color-text)' }}>
+            Aktivste Unternehmen (nach Volumen)
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-3)' }}>
+            {topCompanies.map((company, i) => {
+              const maxVol = topCompanies[0]?.total_invoice_volume_cents ?? 1
+              const pct = Math.round((company.total_invoice_volume_cents / maxVol) * 100)
+              const style = clusterColors[company.cluster] ?? { color: '#7a6e64', bg: '#f5f1eb', border: '#c9bfaf' }
+              return (
+                <div key={company.id}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-3)', marginBottom: 4 }}>
+                    <span style={{
+                      width: 20, height: 20, borderRadius: '50%', flexShrink: 0,
+                      background: i === 0 ? 'var(--color-primary)' : 'var(--color-surface-alt)',
+                      color: i === 0 ? 'white' : 'var(--color-text-muted)',
+                      display: 'flex', alignItems: 'center', justifyContent: 'center',
+                      fontSize: '0.65em', fontWeight: 700,
+                    }}>{i + 1}</span>
+                    <span style={{ fontSize: 'var(--font-size-xs)', fontWeight: 600, color: 'var(--color-text)', flex: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                      {company.name}
+                    </span>
+                    <span style={{ fontSize: 'var(--font-size-xs)', color: 'var(--color-text-muted)', fontVariantNumeric: 'tabular-nums', whiteSpace: 'nowrap' }}>
+                      {formatEur(company.total_invoice_volume_cents)}
+                    </span>
+                  </div>
+                  <div style={{ height: 4, background: '#e8e0d4', borderRadius: 99, overflow: 'hidden', marginLeft: 28 }}>
+                    <div style={{ height: '100%', width: `${pct}%`, background: style.color, borderRadius: 99 }} />
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
 
 // ── Colour helpers ─────────────────────────────────────────────────────────────
 
@@ -545,6 +680,16 @@ export default function Entdecken() {
   const connections = MOCK_POTENTIAL_CONNECTIONS
   const gaps        = MOCK_FUNDING_GAPS
 
+  const [topo, setTopo]         = useState(null)
+  const [topoLoading, setTopoLoading] = useState(true)
+
+  useEffect(() => {
+    networkApi.topology()
+      .then(data => setTopo(data))
+      .catch(() => setTopo(null))
+      .finally(() => setTopoLoading(false))
+  }, [])
+
   return (
     <div>
       {/* Page header */}
@@ -559,12 +704,21 @@ export default function Entdecken() {
           marginTop: 'var(--space-3)', fontSize: 'var(--font-size-xs)',
           color: 'var(--color-accent)', fontStyle: 'italic',
         }}>
-          Demo-Daten — KI-basierte Analyse des Handelsnetzwerks
+          KI-basierte Analyse des Handelsnetzwerks · Verbindungsdaten live
         </div>
       </div>
 
       {/* Summary KPI bar */}
       <InsightSummaryBar connections={connections} gaps={gaps} />
+
+      {/* Live topology stats */}
+      {topoLoading ? (
+        <div style={{ display: 'flex', justifyContent: 'center', padding: 'var(--space-8)', color: 'var(--color-text-muted)', fontSize: 'var(--font-size-sm)' }}>
+          Lade Netzwerk-Statistiken…
+        </div>
+      ) : (
+        <TopologieStats topo={topo} />
+      )}
 
       {/* Section 1: Potenzielle neue Verbindungen */}
       <div style={{ marginBottom: 'var(--space-10)' }}>
