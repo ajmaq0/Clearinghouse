@@ -172,12 +172,12 @@ function randomIssueDate() {
 
 function formatDate(d) { return d.toISOString().slice(0, 10); }
 
-// Amount in EUR cents; realistic B2B Hamburg SME range
+// Amount in EUR cents; realistic B2B Hamburg SME range (€5,000–€200,000)
 const SECTOR_AMOUNT_RANGES = {
-  port_logistics:    [2_000_00, 50_000_00],   // 2k–50k EUR
-  food_beverage:     [1_000_00, 20_000_00],   // 1k–20k EUR
-  renewable_energy:  [5_000_00, 150_000_00],  // 5k–150k EUR
-  cross_cluster:     [1_500_00, 30_000_00],   // 1.5k–30k EUR
+  port_logistics:    [5_000_00, 100_000_00],  // 5k–100k EUR
+  food_beverage:     [5_000_00, 50_000_00],   // 5k–50k EUR
+  renewable_energy:  [5_000_00, 200_000_00],  // 5k–200k EUR
+  cross_cluster:     [5_000_00, 60_000_00],   // 5k–60k EUR
 };
 
 function randomAmount(sector) {

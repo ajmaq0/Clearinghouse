@@ -6,34 +6,34 @@
       "sector": "port_logistics",
       "attributes": {
         "subtype": "Spedition",
-        "district": "HafenCity",
+        "district": "Hamburg-Mitte",
         "gls_member": false,
         "founded": 1996,
-        "employees": 42
+        "size": "medium"
       }
     },
     {
       "id": "f47ac10b-0002-4000-8000-000000000000",
-      "name": "Nord-Zoll Dienstleistungen GmbH",
+      "name": "Elbe Logistik AG",
       "sector": "port_logistics",
       "attributes": {
-        "subtype": "Zolldienstleister",
+        "subtype": "Spedition",
         "district": "HafenCity",
-        "gls_member": true,
-        "founded": 2013,
-        "employees": 18
+        "gls_member": false,
+        "founded": 2016,
+        "size": "micro"
       }
     },
     {
       "id": "f47ac10b-0003-4000-8000-000000000000",
-      "name": "Lagerhaus am Waltershof GmbH",
+      "name": "Nord-Express Spedition GmbH",
       "sector": "port_logistics",
       "attributes": {
-        "subtype": "Lagerhaus",
-        "district": "Wilhelmsburg",
+        "subtype": "Spedition",
+        "district": "Hamburg-Mitte",
         "gls_member": true,
-        "founded": 2010,
-        "employees": 28
+        "founded": 2007,
+        "size": "medium"
       }
     },
     {
@@ -45,23 +45,119 @@
         "district": "Hamburg-Mitte",
         "gls_member": true,
         "founded": 2004,
-        "employees": 35
+        "size": "small"
       }
     },
     {
       "id": "f47ac10b-0005-4000-8000-000000000000",
-      "name": "Elbe Logistik AG",
+      "name": "Röding Transporte GmbH",
       "sector": "port_logistics",
       "attributes": {
         "subtype": "Spedition",
-        "district": "HafenCity",
+        "district": "Hammerbrook",
         "gls_member": false,
-        "founded": 2016,
-        "employees": 12
+        "founded": 2005,
+        "size": "micro"
       }
     },
     {
       "id": "f47ac10b-0006-4000-8000-000000000000",
+      "name": "Nordsee-Express Spedition GmbH",
+      "sector": "port_logistics",
+      "attributes": {
+        "subtype": "Spedition",
+        "district": "Hamburg-Mitte",
+        "gls_member": false,
+        "founded": 1987,
+        "size": "micro"
+      }
+    },
+    {
+      "id": "f47ac10b-0007-4000-8000-000000000000",
+      "name": "Nord-Zoll Dienstleistungen GmbH",
+      "sector": "port_logistics",
+      "attributes": {
+        "subtype": "Zolldienstleister",
+        "district": "HafenCity",
+        "gls_member": false,
+        "founded": 2013,
+        "size": "medium"
+      }
+    },
+    {
+      "id": "f47ac10b-0008-4000-8000-000000000000",
+      "name": "Weichert Zollabfertigung GmbH",
+      "sector": "port_logistics",
+      "attributes": {
+        "subtype": "Zolldienstleister",
+        "district": "HafenCity",
+        "gls_member": true,
+        "founded": 2000,
+        "size": "medium"
+      }
+    },
+    {
+      "id": "f47ac10b-0009-4000-8000-000000000000",
+      "name": "Hamburger Zollagentur GmbH",
+      "sector": "port_logistics",
+      "attributes": {
+        "subtype": "Zolldienstleister",
+        "district": "Hamburg-Mitte",
+        "gls_member": false,
+        "founded": 1985,
+        "size": "micro"
+      }
+    },
+    {
+      "id": "f47ac10b-000a-4000-8000-000000000000",
+      "name": "Freihafen Customs GmbH",
+      "sector": "port_logistics",
+      "attributes": {
+        "subtype": "Zolldienstleister",
+        "district": "Hamburg-Mitte",
+        "gls_member": true,
+        "founded": 2017,
+        "size": "small"
+      }
+    },
+    {
+      "id": "f47ac10b-000b-4000-8000-000000000000",
+      "name": "Lagerhaus am Waltershof GmbH",
+      "sector": "port_logistics",
+      "attributes": {
+        "subtype": "Lagerhaus",
+        "district": "Wilhelmsburg",
+        "gls_member": true,
+        "founded": 2010,
+        "size": "micro"
+      }
+    },
+    {
+      "id": "f47ac10b-000c-4000-8000-000000000000",
+      "name": "Freihafen Lagerei GmbH",
+      "sector": "port_logistics",
+      "attributes": {
+        "subtype": "Lagerhaus",
+        "district": "Wilhelmsburg",
+        "gls_member": true,
+        "founded": 2020,
+        "size": "small"
+      }
+    },
+    {
+      "id": "f47ac10b-000d-4000-8000-000000000000",
+      "name": "Hamburger Lagerhausgesellschaft mbH",
+      "sector": "port_logistics",
+      "attributes": {
+        "subtype": "Lagerhaus",
+        "district": "Hammerbrook",
+        "gls_member": true,
+        "founded": 1989,
+        "size": "small"
+      }
+    },
+    {
+      "id": "f47ac10b-000e-4000-8000-000000000000",
       "name": "Speicherstadt Depot GmbH",
       "sector": "port_logistics",
       "attributes": {
@@ -69,178 +165,439 @@
         "district": "Hammerbrook",
         "gls_member": true,
         "founded": 2003,
-        "employees": 9
-      }
-    },
-    {
-      "id": "f47ac10b-0007-4000-8000-000000000000",
-      "name": "Tischlerei Müller GmbH",
-      "sector": "handwerk",
-      "attributes": {
-        "subtype": "Tischler",
-        "district": "Altona",
-        "gls_member": true,
-        "founded": 2008,
-        "employees": 6,
-        "contact_person": "Dirk Müller"
-      }
-    },
-    {
-      "id": "f47ac10b-0008-4000-8000-000000000000",
-      "name": "Keramik Atelier Braun",
-      "sector": "handwerk",
-      "attributes": {
-        "subtype": "Keramik",
-        "district": "Eimsbüttel",
-        "gls_member": true,
-        "founded": 2012,
-        "employees": 4,
-        "contact_person": "Maria Braun"
-      }
-    },
-    {
-      "id": "f47ac10b-0009-4000-8000-000000000000",
-      "name": "Schlosserei Hoffmann GmbH",
-      "sector": "handwerk",
-      "attributes": {
-        "subtype": "Schlosserei",
-        "district": "Harburg",
-        "gls_member": false,
-        "founded": 2001,
-        "employees": 8
-      }
-    },
-    {
-      "id": "f47ac10b-000a-4000-8000-000000000000",
-      "name": "Malerbetrieb Köhler GmbH",
-      "sector": "handwerk",
-      "attributes": {
-        "subtype": "Malerei",
-        "district": "Wandsbek",
-        "gls_member": false,
-        "founded": 2005,
-        "employees": 7
-      }
-    },
-    {
-      "id": "f47ac10b-000b-4000-8000-000000000000",
-      "name": "Elektro Krause GmbH",
-      "sector": "handwerk",
-      "attributes": {
-        "subtype": "Elektro",
-        "district": "Altona",
-        "gls_member": true,
-        "founded": 2009,
-        "employees": 11
-      }
-    },
-    {
-      "id": "f47ac10b-000c-4000-8000-000000000000",
-      "name": "Bäckerei Schreiber GmbH",
-      "sector": "handwerk",
-      "attributes": {
-        "subtype": "Backwaren",
-        "district": "Bergedorf",
-        "gls_member": true,
-        "founded": 2003,
-        "employees": 14
-      }
-    },
-    {
-      "id": "f47ac10b-000d-4000-8000-000000000000",
-      "name": "Dachbau Fischer GmbH",
-      "sector": "handwerk",
-      "attributes": {
-        "subtype": "Dachdeckerei",
-        "district": "Hamburg-Nord",
-        "gls_member": false,
-        "founded": 1998,
-        "employees": 9
-      }
-    },
-    {
-      "id": "f47ac10b-000e-4000-8000-000000000000",
-      "name": "Café am Alster",
-      "sector": "gastronomie",
-      "attributes": {
-        "subtype": "Café",
-        "district": "Hamburg-Nord",
-        "gls_member": true,
-        "founded": 2015,
-        "employees": 8,
-        "contact_person": "Thomas Wendt"
+        "size": "micro"
       }
     },
     {
       "id": "f47ac10b-000f-4000-8000-000000000000",
-      "name": "Speisekammer Hamburg GmbH",
-      "sector": "gastronomie",
+      "name": "Küstenschifffahrt Lührs AG",
+      "sector": "port_logistics",
       "attributes": {
-        "subtype": "Catering",
-        "district": "Eimsbüttel",
-        "gls_member": true,
-        "founded": 2011,
-        "employees": 12
+        "subtype": "Reederei",
+        "district": "Wilhelmsburg",
+        "gls_member": false,
+        "founded": 1994,
+        "size": "small"
       }
     },
     {
       "id": "f47ac10b-0010-4000-8000-000000000000",
-      "name": "Restaurant Zum Hafen",
-      "sector": "gastronomie",
+      "name": "Stülcken Reederei GmbH",
+      "sector": "port_logistics",
       "attributes": {
-        "subtype": "Restaurant",
+        "subtype": "Reederei",
         "district": "HafenCity",
-        "gls_member": false,
-        "founded": 2007,
-        "employees": 15
+        "gls_member": true,
+        "founded": 2001,
+        "size": "medium"
       }
     },
     {
       "id": "f47ac10b-0011-4000-8000-000000000000",
-      "name": "Fischrestaurant Nordlicht GmbH",
-      "sector": "gastronomie",
+      "name": "HHLA Terminal Services GmbH",
+      "sector": "port_logistics",
       "attributes": {
-        "subtype": "Restaurant",
-        "district": "Altona",
+        "subtype": "Terminal",
+        "district": "Hamburg-Mitte",
         "gls_member": false,
-        "founded": 2014,
-        "employees": 10
+        "founded": 2017,
+        "size": "micro"
       }
     },
     {
       "id": "f47ac10b-0012-4000-8000-000000000000",
-      "name": "Gastronomiebedarf Nord GmbH",
-      "sector": "gastronomie",
+      "name": "JadeWeserPort Feederdienst GmbH",
+      "sector": "port_logistics",
       "attributes": {
-        "subtype": "Grosshandel",
-        "district": "Bergedorf",
-        "gls_member": true,
-        "founded": 2012,
-        "employees": 22
+        "subtype": "Terminal",
+        "district": "HafenCity",
+        "gls_member": false,
+        "founded": 1985,
+        "size": "medium"
       }
     },
     {
       "id": "f47ac10b-0013-4000-8000-000000000000",
-      "name": "Bierkontor Hamburg GmbH",
-      "sector": "gastronomie",
+      "name": "Alsterbrauerei Hamburg GmbH",
+      "sector": "food_beverage",
       "attributes": {
-        "subtype": "Getränkehandel",
+        "subtype": "Brauerei",
         "district": "Wandsbek",
-        "gls_member": false,
-        "founded": 2000,
-        "employees": 17
+        "gls_member": true,
+        "founded": 1995,
+        "size": "small"
       }
     },
     {
       "id": "f47ac10b-0014-4000-8000-000000000000",
-      "name": "Elbstrand Bar & Grill GmbH",
-      "sector": "gastronomie",
+      "name": "Ratsherrn Brauerei Hamburg GmbH",
+      "sector": "food_beverage",
       "attributes": {
-        "subtype": "Bar",
+        "subtype": "Brauerei",
+        "district": "Wandsbek",
+        "gls_member": true,
+        "founded": 2008,
+        "size": "medium"
+      }
+    },
+    {
+      "id": "f47ac10b-0015-4000-8000-000000000000",
+      "name": "Nordsee Fischhandel AG",
+      "sector": "food_beverage",
+      "attributes": {
+        "subtype": "Grosshandel",
         "district": "Altona",
         "gls_member": false,
+        "founded": 2020,
+        "size": "micro"
+      }
+    },
+    {
+      "id": "f47ac10b-0016-4000-8000-000000000000",
+      "name": "Fruchthof Hamburg Großhandel GmbH",
+      "sector": "food_beverage",
+      "attributes": {
+        "subtype": "Grosshandel",
+        "district": "Hamburg-Nord",
+        "gls_member": false,
+        "founded": 1998,
+        "size": "medium"
+      }
+    },
+    {
+      "id": "f47ac10b-0017-4000-8000-000000000000",
+      "name": "Fischmarkt Großhandel Möller GmbH",
+      "sector": "food_beverage",
+      "attributes": {
+        "subtype": "Grosshandel",
+        "district": "Hamburg-Nord",
+        "gls_member": false,
+        "founded": 1998,
+        "size": "medium"
+      }
+    },
+    {
+      "id": "f47ac10b-0018-4000-8000-000000000000",
+      "name": "Hamburger Kafferösterei Elbgold GmbH",
+      "sector": "food_beverage",
+      "attributes": {
+        "subtype": "Verarbeitung",
+        "district": "Wandsbek",
+        "gls_member": false,
         "founded": 2018,
-        "employees": 7
+        "size": "medium"
+      }
+    },
+    {
+      "id": "f47ac10b-0019-4000-8000-000000000000",
+      "name": "Speicherstadt Kakao GmbH",
+      "sector": "food_beverage",
+      "attributes": {
+        "subtype": "Verarbeitung",
+        "district": "Hamburg-Nord",
+        "gls_member": false,
+        "founded": 2003,
+        "size": "micro"
+      }
+    },
+    {
+      "id": "f47ac10b-001a-4000-8000-000000000000",
+      "name": "Hamburger Zuckerwerk GmbH",
+      "sector": "food_beverage",
+      "attributes": {
+        "subtype": "Verarbeitung",
+        "district": "Hamburg-Nord",
+        "gls_member": true,
+        "founded": 2014,
+        "size": "small"
+      }
+    },
+    {
+      "id": "f47ac10b-001b-4000-8000-000000000000",
+      "name": "Gewürzhandlung Schuhmann & Co. KG",
+      "sector": "food_beverage",
+      "attributes": {
+        "subtype": "Verarbeitung",
+        "district": "Altona",
+        "gls_member": false,
+        "founded": 1986,
+        "size": "small"
+      }
+    },
+    {
+      "id": "f47ac10b-001c-4000-8000-000000000000",
+      "name": "Deichkind Fleischerei GmbH",
+      "sector": "food_beverage",
+      "attributes": {
+        "subtype": "Verarbeitung",
+        "district": "Altona",
+        "gls_member": true,
+        "founded": 2011,
+        "size": "micro"
+      }
+    },
+    {
+      "id": "f47ac10b-001d-4000-8000-000000000000",
+      "name": "Elbe Bäckerei Verwaltungs GmbH",
+      "sector": "food_beverage",
+      "attributes": {
+        "subtype": "Backwaren",
+        "district": "Bergedorf",
+        "gls_member": true,
+        "founded": 2004,
+        "size": "small"
+      }
+    },
+    {
+      "id": "f47ac10b-001e-4000-8000-000000000000",
+      "name": "Bio-Markt Rahlstedt GmbH",
+      "sector": "food_beverage",
+      "attributes": {
+        "subtype": "Einzelhandel",
+        "district": "Altona",
+        "gls_member": true,
+        "founded": 2006,
+        "size": "small"
+      }
+    },
+    {
+      "id": "f47ac10b-001f-4000-8000-000000000000",
+      "name": "Altonaer Weinimport GmbH",
+      "sector": "food_beverage",
+      "attributes": {
+        "subtype": "Einzelhandel",
+        "district": "Altona",
+        "gls_member": true,
+        "founded": 2015,
+        "size": "small"
+      }
+    },
+    {
+      "id": "f47ac10b-0020-4000-8000-000000000000",
+      "name": "Gastronomiebedarf Nord GmbH",
+      "sector": "food_beverage",
+      "attributes": {
+        "subtype": "Gastronomie",
+        "district": "Bergedorf",
+        "gls_member": true,
+        "founded": 2012,
+        "size": "medium"
+      }
+    },
+    {
+      "id": "f47ac10b-0021-4000-8000-000000000000",
+      "name": "Süsswaren Vertrieb Hanse GmbH",
+      "sector": "food_beverage",
+      "attributes": {
+        "subtype": "Einzelhandel",
+        "district": "Wandsbek",
+        "gls_member": false,
+        "founded": 1996,
+        "size": "small"
+      }
+    },
+    {
+      "id": "f47ac10b-0022-4000-8000-000000000000",
+      "name": "Hamburger Milchlieferanten-Verband eG",
+      "sector": "food_beverage",
+      "attributes": {
+        "subtype": "Grosshandel",
+        "district": "Bergedorf",
+        "gls_member": false,
+        "founded": 2004,
+        "size": "medium"
+      }
+    },
+    {
+      "id": "f47ac10b-0023-4000-8000-000000000000",
+      "name": "Beiersdorf Nahrung Hamburg GmbH",
+      "sector": "food_beverage",
+      "attributes": {
+        "subtype": "Verarbeitung",
+        "district": "Wandsbek",
+        "gls_member": false,
+        "founded": 2019,
+        "size": "micro"
+      }
+    },
+    {
+      "id": "f47ac10b-0024-4000-8000-000000000000",
+      "name": "Windpark Nordsee Betreibergesellschaft GmbH",
+      "sector": "renewable_energy",
+      "attributes": {
+        "subtype": "Windkraft",
+        "district": "Neustadt",
+        "gls_member": false,
+        "founded": 1993,
+        "size": "small"
+      }
+    },
+    {
+      "id": "f47ac10b-0025-4000-8000-000000000000",
+      "name": "Elbwind Hamburg GmbH & Co. KG",
+      "sector": "renewable_energy",
+      "attributes": {
+        "subtype": "Windkraft",
+        "district": "Harburg",
+        "gls_member": false,
+        "founded": 2002,
+        "size": "small"
+      }
+    },
+    {
+      "id": "f47ac10b-0026-4000-8000-000000000000",
+      "name": "Offshore Wind Hamburg AG",
+      "sector": "renewable_energy",
+      "attributes": {
+        "subtype": "Windkraft",
+        "district": "Harburg",
+        "gls_member": false,
+        "founded": 1989,
+        "size": "small"
+      }
+    },
+    {
+      "id": "f47ac10b-0027-4000-8000-000000000000",
+      "name": "Solartech Nord GmbH",
+      "sector": "renewable_energy",
+      "attributes": {
+        "subtype": "Solar",
+        "district": "Hamburg-Mitte",
+        "gls_member": true,
+        "founded": 2015,
+        "size": "small"
+      }
+    },
+    {
+      "id": "f47ac10b-0028-4000-8000-000000000000",
+      "name": "HanseSolar AG",
+      "sector": "renewable_energy",
+      "attributes": {
+        "subtype": "Solar",
+        "district": "Wilhelmsburg",
+        "gls_member": false,
+        "founded": 2002,
+        "size": "medium"
+      }
+    },
+    {
+      "id": "f47ac10b-0029-4000-8000-000000000000",
+      "name": "Photovoltaik-Service Nord GmbH",
+      "sector": "renewable_energy",
+      "attributes": {
+        "subtype": "Solar",
+        "district": "Hamburg-Mitte",
+        "gls_member": true,
+        "founded": 2016,
+        "size": "small"
+      }
+    },
+    {
+      "id": "f47ac10b-002a-4000-8000-000000000000",
+      "name": "Bioenergie Elbe GmbH",
+      "sector": "renewable_energy",
+      "attributes": {
+        "subtype": "Biogas",
+        "district": "Neustadt",
+        "gls_member": false,
+        "founded": 2012,
+        "size": "small"
+      }
+    },
+    {
+      "id": "f47ac10b-002b-4000-8000-000000000000",
+      "name": "Elbe Biomasse GmbH",
+      "sector": "renewable_energy",
+      "attributes": {
+        "subtype": "Biogas",
+        "district": "Hamburg-Mitte",
+        "gls_member": false,
+        "founded": 2007,
+        "size": "small"
+      }
+    },
+    {
+      "id": "f47ac10b-002c-4000-8000-000000000000",
+      "name": "Hamburger Wärmenetz GmbH",
+      "sector": "renewable_energy",
+      "attributes": {
+        "subtype": "Netz",
+        "district": "Harburg",
+        "gls_member": false,
+        "founded": 1995,
+        "size": "micro"
+      }
+    },
+    {
+      "id": "f47ac10b-002d-4000-8000-000000000000",
+      "name": "Smart Energy Hamburg GmbH",
+      "sector": "renewable_energy",
+      "attributes": {
+        "subtype": "Netz",
+        "district": "Neustadt",
+        "gls_member": false,
+        "founded": 1998,
+        "size": "small"
+      }
+    },
+    {
+      "id": "f47ac10b-002e-4000-8000-000000000000",
+      "name": "GreenTech Speicher GmbH",
+      "sector": "renewable_energy",
+      "attributes": {
+        "subtype": "Speicher",
+        "district": "Wilhelmsburg",
+        "gls_member": true,
+        "founded": 1988,
+        "size": "small"
+      }
+    },
+    {
+      "id": "f47ac10b-002f-4000-8000-000000000000",
+      "name": "Energiewende Hamburg GmbH",
+      "sector": "renewable_energy",
+      "attributes": {
+        "subtype": "Beratung",
+        "district": "Hamburg-Mitte",
+        "gls_member": true,
+        "founded": 1998,
+        "size": "small"
+      }
+    },
+    {
+      "id": "f47ac10b-0030-4000-8000-000000000000",
+      "name": "Wasserstoff Hamburg AG",
+      "sector": "renewable_energy",
+      "attributes": {
+        "subtype": "Wasserstoff",
+        "district": "Harburg",
+        "gls_member": true,
+        "founded": 2012,
+        "size": "micro"
+      }
+    },
+    {
+      "id": "f47ac10b-0031-4000-8000-000000000000",
+      "name": "Tidal Power Hamburg GmbH",
+      "sector": "renewable_energy",
+      "attributes": {
+        "subtype": "Wasserkraft",
+        "district": "Harburg",
+        "gls_member": false,
+        "founded": 2020,
+        "size": "micro"
+      }
+    },
+    {
+      "id": "f47ac10b-0032-4000-8000-000000000000",
+      "name": "SüdWind Consulting GmbH",
+      "sector": "renewable_energy",
+      "attributes": {
+        "subtype": "Beratung",
+        "district": "Hamburg-Mitte",
+        "gls_member": false,
+        "founded": 2004,
+        "size": "small"
       }
     }
   ]

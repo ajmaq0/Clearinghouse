@@ -6,7 +6,7 @@
     "issue_date": "2025-12-09",
     "due_date": "2026-01-23",
     "payment_terms_days": 45,
-    "amount_cents": 4929296,
+    "amount_cents": 9860064,
     "currency": "EUR",
     "status": "paid",
     "line_items": [
@@ -34,7 +34,7 @@
     "issue_date": "2025-02-24",
     "due_date": "2025-04-10",
     "payment_terms_days": 45,
-    "amount_cents": 614386,
+    "amount_cents": 1320140,
     "currency": "EUR",
     "status": "paid",
     "line_items": [
@@ -62,7 +62,7 @@
     "issue_date": "2025-12-17",
     "due_date": "2026-01-16",
     "payment_terms_days": 30,
-    "amount_cents": 1691688,
+    "amount_cents": 3452299,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -85,7 +85,7 @@
     "issue_date": "2025-04-13",
     "due_date": "2025-07-12",
     "payment_terms_days": 90,
-    "amount_cents": 4251628,
+    "amount_cents": 8518846,
     "currency": "EUR",
     "status": "overdue",
     "line_items": [
@@ -113,7 +113,7 @@
     "issue_date": "2025-06-01",
     "due_date": "2025-07-16",
     "payment_terms_days": 45,
-    "amount_cents": 414743,
+    "amount_cents": 925013,
     "currency": "EUR",
     "status": "overdue",
     "line_items": [
@@ -136,7 +136,7 @@
     "issue_date": "2025-09-21",
     "due_date": "2025-11-20",
     "payment_terms_days": 60,
-    "amount_cents": 3032568,
+    "amount_cents": 6106123,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -164,7 +164,7 @@
     "issue_date": "2025-05-10",
     "due_date": "2025-07-09",
     "payment_terms_days": 60,
-    "amount_cents": 1185092,
+    "amount_cents": 2449661,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -187,7 +187,7 @@
     "issue_date": "2025-05-25",
     "due_date": "2025-07-24",
     "payment_terms_days": 60,
-    "amount_cents": 3076366,
+    "amount_cents": 6192807,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -210,7 +210,7 @@
     "issue_date": "2025-07-19",
     "due_date": "2025-10-17",
     "payment_terms_days": 90,
-    "amount_cents": 4714523,
+    "amount_cents": 9434993,
     "currency": "EUR",
     "status": "paid",
     "line_items": [
@@ -228,7 +228,7 @@
     "issue_date": "2025-09-21",
     "due_date": "2025-11-05",
     "payment_terms_days": 45,
-    "amount_cents": 907482,
+    "amount_cents": 1900224,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -246,7 +246,7 @@
     "issue_date": "2025-08-02",
     "due_date": "2025-09-16",
     "payment_terms_days": 45,
-    "amount_cents": 2904716,
+    "amount_cents": 5853083,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -274,7 +274,7 @@
     "issue_date": "2025-05-04",
     "due_date": "2025-08-02",
     "payment_terms_days": 90,
-    "amount_cents": 4095856,
+    "amount_cents": 8210549,
     "currency": "EUR",
     "status": "overdue",
     "line_items": [
@@ -302,7 +302,7 @@
     "issue_date": "2025-04-11",
     "due_date": "2025-07-10",
     "payment_terms_days": 90,
-    "amount_cents": 1848604,
+    "amount_cents": 3762862,
     "currency": "EUR",
     "status": "paid",
     "line_items": [
@@ -325,7 +325,7 @@
     "issue_date": "2025-02-26",
     "due_date": "2025-04-12",
     "payment_terms_days": 45,
-    "amount_cents": 2086073,
+    "amount_cents": 4232853,
     "currency": "EUR",
     "status": "paid",
     "line_items": [
@@ -348,7 +348,7 @@
     "issue_date": "2025-07-17",
     "due_date": "2025-08-16",
     "payment_terms_days": 30,
-    "amount_cents": 3854610,
+    "amount_cents": 7733082,
     "currency": "EUR",
     "status": "paid",
     "line_items": [
@@ -376,7 +376,7 @@
     "issue_date": "2025-05-25",
     "due_date": "2025-06-24",
     "payment_terms_days": 30,
-    "amount_cents": 954453,
+    "amount_cents": 1993189,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -394,7 +394,7 @@
     "issue_date": "2025-10-03",
     "due_date": "2025-12-02",
     "payment_terms_days": 60,
-    "amount_cents": 4711811,
+    "amount_cents": 9429626,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -422,7 +422,7 @@
     "issue_date": "2025-06-13",
     "due_date": "2025-07-28",
     "payment_terms_days": 45,
-    "amount_cents": 2801539,
+    "amount_cents": 5648879,
     "currency": "EUR",
     "status": "paid",
     "line_items": [
@@ -440,7 +440,7 @@
     "issue_date": "2025-09-26",
     "due_date": "2025-10-26",
     "payment_terms_days": 30,
-    "amount_cents": 3426975,
+    "amount_cents": 6886721,
     "currency": "EUR",
     "status": "overdue",
     "line_items": [
@@ -468,7 +468,7 @@
     "issue_date": "2025-04-05",
     "due_date": "2025-06-04",
     "payment_terms_days": 60,
-    "amount_cents": 1616736,
+    "amount_cents": 3303956,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -486,7 +486,7 @@
     "issue_date": "2025-05-18",
     "due_date": "2025-06-17",
     "payment_terms_days": 30,
-    "amount_cents": 2614650,
+    "amount_cents": 5278995,
     "currency": "EUR",
     "status": "paid",
     "line_items": [
@@ -509,7 +509,7 @@
     "issue_date": "2025-05-03",
     "due_date": "2025-06-17",
     "payment_terms_days": 45,
-    "amount_cents": 279082,
+    "amount_cents": 656517,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -532,7 +532,7 @@
     "issue_date": "2025-02-05",
     "due_date": "2025-03-22",
     "payment_terms_days": 45,
-    "amount_cents": 3494047,
+    "amount_cents": 7019467,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -550,7 +550,7 @@
     "issue_date": "2025-04-20",
     "due_date": "2025-06-19",
     "payment_terms_days": 60,
-    "amount_cents": 2748464,
+    "amount_cents": 5543836,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -573,7 +573,7 @@
     "issue_date": "2025-10-13",
     "due_date": "2025-12-12",
     "payment_terms_days": 60,
-    "amount_cents": 3121225,
+    "amount_cents": 6281591,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -591,7 +591,7 @@
     "issue_date": "2025-08-12",
     "due_date": "2025-10-11",
     "payment_terms_days": 60,
-    "amount_cents": 4519416,
+    "amount_cents": 9048845,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -609,7 +609,7 @@
     "issue_date": "2025-10-01",
     "due_date": "2025-11-30",
     "payment_terms_days": 60,
-    "amount_cents": 4649789,
+    "amount_cents": 9306874,
     "currency": "EUR",
     "status": "overdue",
     "line_items": [
@@ -627,7 +627,7 @@
     "issue_date": "2025-04-23",
     "due_date": "2025-05-23",
     "payment_terms_days": 30,
-    "amount_cents": 1910407,
+    "amount_cents": 3885182,
     "currency": "EUR",
     "status": "overdue",
     "line_items": [
@@ -645,7 +645,7 @@
     "issue_date": "2025-06-27",
     "due_date": "2025-08-26",
     "payment_terms_days": 60,
-    "amount_cents": 4992108,
+    "amount_cents": 9984381,
     "currency": "EUR",
     "status": "overdue",
     "line_items": [
@@ -673,7 +673,7 @@
     "issue_date": "2025-03-11",
     "due_date": "2025-05-10",
     "payment_terms_days": 60,
-    "amount_cents": 2726455,
+    "amount_cents": 5500275,
     "currency": "EUR",
     "status": "overdue",
     "line_items": [
@@ -701,7 +701,7 @@
     "issue_date": "2025-10-13",
     "due_date": "2025-11-27",
     "payment_terms_days": 45,
-    "amount_cents": 881528,
+    "amount_cents": 1848857,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -719,7 +719,7 @@
     "issue_date": "2025-11-14",
     "due_date": "2026-02-12",
     "payment_terms_days": 90,
-    "amount_cents": 573344,
+    "amount_cents": 1238910,
     "currency": "EUR",
     "status": "paid",
     "line_items": [
@@ -747,7 +747,7 @@
     "issue_date": "2025-01-13",
     "due_date": "2025-02-12",
     "payment_terms_days": 30,
-    "amount_cents": 1981808,
+    "amount_cents": 4026496,
     "currency": "EUR",
     "status": "paid",
     "line_items": [
@@ -765,7 +765,7 @@
     "issue_date": "2025-10-31",
     "due_date": "2025-12-30",
     "payment_terms_days": 60,
-    "amount_cents": 4381906,
+    "amount_cents": 8776689,
     "currency": "EUR",
     "status": "paid",
     "line_items": [
@@ -783,7 +783,7 @@
     "issue_date": "2025-09-03",
     "due_date": "2025-11-02",
     "payment_terms_days": 60,
-    "amount_cents": 1458758,
+    "amount_cents": 2991291,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -801,7 +801,7 @@
     "issue_date": "2025-06-16",
     "due_date": "2025-09-14",
     "payment_terms_days": 90,
-    "amount_cents": 3666636,
+    "amount_cents": 7361050,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -819,7 +819,7 @@
     "issue_date": "2025-04-13",
     "due_date": "2025-05-13",
     "payment_terms_days": 30,
-    "amount_cents": 3561071,
+    "amount_cents": 7152120,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -842,7 +842,7 @@
     "issue_date": "2025-01-29",
     "due_date": "2025-02-28",
     "payment_terms_days": 30,
-    "amount_cents": 975852,
+    "amount_cents": 2035542,
     "currency": "EUR",
     "status": "overdue",
     "line_items": [
@@ -870,7 +870,7 @@
     "issue_date": "2025-10-03",
     "due_date": "2025-11-17",
     "payment_terms_days": 45,
-    "amount_cents": 1704283,
+    "amount_cents": 3477226,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -893,7 +893,7 @@
     "issue_date": "2025-11-06",
     "due_date": "2026-01-05",
     "payment_terms_days": 60,
-    "amount_cents": 3265253,
+    "amount_cents": 6566647,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -921,7 +921,7 @@
     "issue_date": "2025-10-09",
     "due_date": "2025-11-23",
     "payment_terms_days": 45,
-    "amount_cents": 4988088,
+    "amount_cents": 9976424,
     "currency": "EUR",
     "status": "paid",
     "line_items": [
@@ -949,7 +949,7 @@
     "issue_date": "2025-09-28",
     "due_date": "2025-11-12",
     "payment_terms_days": 45,
-    "amount_cents": 1371073,
+    "amount_cents": 2817749,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -972,7 +972,7 @@
     "issue_date": "2025-01-22",
     "due_date": "2025-03-23",
     "payment_terms_days": 60,
-    "amount_cents": 1592321,
+    "amount_cents": 3255635,
     "currency": "EUR",
     "status": "overdue",
     "line_items": [
@@ -995,7 +995,7 @@
     "issue_date": "2025-10-13",
     "due_date": "2025-11-12",
     "payment_terms_days": 30,
-    "amount_cents": 2805653,
+    "amount_cents": 5657022,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -1023,7 +1023,7 @@
     "issue_date": "2025-11-10",
     "due_date": "2026-01-09",
     "payment_terms_days": 60,
-    "amount_cents": 1158732,
+    "amount_cents": 2397490,
     "currency": "EUR",
     "status": "paid",
     "line_items": [
@@ -1046,7 +1046,7 @@
     "issue_date": "2025-11-06",
     "due_date": "2025-12-21",
     "payment_terms_days": 45,
-    "amount_cents": 3077910,
+    "amount_cents": 6195863,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -1064,7 +1064,7 @@
     "issue_date": "2025-06-20",
     "due_date": "2025-07-20",
     "payment_terms_days": 30,
-    "amount_cents": 4281437,
+    "amount_cents": 8577843,
     "currency": "EUR",
     "status": "paid",
     "line_items": [
@@ -1087,7 +1087,7 @@
     "issue_date": "2025-06-30",
     "due_date": "2025-08-29",
     "payment_terms_days": 60,
-    "amount_cents": 4123800,
+    "amount_cents": 8265853,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -1110,7 +1110,7 @@
     "issue_date": "2025-12-30",
     "due_date": "2026-02-28",
     "payment_terms_days": 60,
-    "amount_cents": 3572586,
+    "amount_cents": 7174909,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -1128,7 +1128,7 @@
     "issue_date": "2025-12-08",
     "due_date": "2026-01-22",
     "payment_terms_days": 45,
-    "amount_cents": 1653728,
+    "amount_cents": 3377170,
     "currency": "EUR",
     "status": "paid",
     "line_items": [
@@ -1156,7 +1156,7 @@
     "issue_date": "2025-10-19",
     "due_date": "2025-12-03",
     "payment_terms_days": 45,
-    "amount_cents": 4091143,
+    "amount_cents": 8201220,
     "currency": "EUR",
     "status": "paid",
     "line_items": [
@@ -1174,7 +1174,7 @@
     "issue_date": "2025-02-14",
     "due_date": "2025-04-15",
     "payment_terms_days": 60,
-    "amount_cents": 483509,
+    "amount_cents": 1061112,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -1197,7 +1197,7 @@
     "issue_date": "2025-07-20",
     "due_date": "2025-10-18",
     "payment_terms_days": 90,
-    "amount_cents": 4238173,
+    "amount_cents": 8492217,
     "currency": "EUR",
     "status": "paid",
     "line_items": [
@@ -1215,7 +1215,7 @@
     "issue_date": "2025-01-16",
     "due_date": "2025-03-02",
     "payment_terms_days": 45,
-    "amount_cents": 3980152,
+    "amount_cents": 7981551,
     "currency": "EUR",
     "status": "paid",
     "line_items": [
@@ -1233,7 +1233,7 @@
     "issue_date": "2025-08-26",
     "due_date": "2025-10-10",
     "payment_terms_days": 45,
-    "amount_cents": 560867,
+    "amount_cents": 1214216,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -1251,7 +1251,7 @@
     "issue_date": "2025-08-14",
     "due_date": "2025-09-13",
     "payment_terms_days": 30,
-    "amount_cents": 1388968,
+    "amount_cents": 2853166,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -1274,7 +1274,7 @@
     "issue_date": "2025-09-20",
     "due_date": "2025-11-04",
     "payment_terms_days": 45,
-    "amount_cents": 4042977,
+    "amount_cents": 8105892,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -1297,7 +1297,7 @@
     "issue_date": "2025-06-19",
     "due_date": "2025-08-18",
     "payment_terms_days": 60,
-    "amount_cents": 1261022,
+    "amount_cents": 2599939,
     "currency": "EUR",
     "status": "paid",
     "line_items": [
@@ -1325,7 +1325,7 @@
     "issue_date": "2025-12-14",
     "due_date": "2026-01-13",
     "payment_terms_days": 30,
-    "amount_cents": 783969,
+    "amount_cents": 1655772,
     "currency": "EUR",
     "status": "overdue",
     "line_items": [
@@ -1353,7 +1353,7 @@
     "issue_date": "2025-07-08",
     "due_date": "2025-10-06",
     "payment_terms_days": 90,
-    "amount_cents": 1155938,
+    "amount_cents": 2391961,
     "currency": "EUR",
     "status": "paid",
     "line_items": [
@@ -1376,7 +1376,7 @@
     "issue_date": "2025-09-04",
     "due_date": "2025-11-03",
     "payment_terms_days": 60,
-    "amount_cents": 2956977,
+    "amount_cents": 5956517,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -1399,7 +1399,7 @@
     "issue_date": "2025-08-31",
     "due_date": "2025-09-30",
     "payment_terms_days": 30,
-    "amount_cents": 3192863,
+    "amount_cents": 6423374,
     "currency": "EUR",
     "status": "paid",
     "line_items": [
@@ -1417,7 +1417,7 @@
     "issue_date": "2025-10-02",
     "due_date": "2025-12-01",
     "payment_terms_days": 60,
-    "amount_cents": 4194805,
+    "amount_cents": 8406384,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -1445,7 +1445,7 @@
     "issue_date": "2025-02-21",
     "due_date": "2025-05-22",
     "payment_terms_days": 90,
-    "amount_cents": 1824283,
+    "amount_cents": 3714728,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -1468,7 +1468,7 @@
     "issue_date": "2025-09-05",
     "due_date": "2025-10-20",
     "payment_terms_days": 45,
-    "amount_cents": 2924903,
+    "amount_cents": 5893037,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -1496,7 +1496,7 @@
     "issue_date": "2025-10-01",
     "due_date": "2025-11-30",
     "payment_terms_days": 60,
-    "amount_cents": 2493115,
+    "amount_cents": 5038457,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -1524,7 +1524,7 @@
     "issue_date": "2025-08-28",
     "due_date": "2025-10-12",
     "payment_terms_days": 45,
-    "amount_cents": 2949199,
+    "amount_cents": 5941122,
     "currency": "EUR",
     "status": "overdue",
     "line_items": [
@@ -1547,7 +1547,7 @@
     "issue_date": "2025-04-07",
     "due_date": "2025-05-07",
     "payment_terms_days": 30,
-    "amount_cents": 1285109,
+    "amount_cents": 2647611,
     "currency": "EUR",
     "status": "paid",
     "line_items": [
@@ -1565,7 +1565,7 @@
     "issue_date": "2025-04-19",
     "due_date": "2025-07-18",
     "payment_terms_days": 90,
-    "amount_cents": 4679331,
+    "amount_cents": 9365342,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -1593,7 +1593,7 @@
     "issue_date": "2025-01-22",
     "due_date": "2025-02-21",
     "payment_terms_days": 30,
-    "amount_cents": 2456938,
+    "amount_cents": 4966857,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -1616,7 +1616,7 @@
     "issue_date": "2025-02-02",
     "due_date": "2025-03-04",
     "payment_terms_days": 30,
-    "amount_cents": 3384124,
+    "amount_cents": 6801912,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -1634,7 +1634,7 @@
     "issue_date": "2025-12-02",
     "due_date": "2026-01-01",
     "payment_terms_days": 30,
-    "amount_cents": 4705208,
+    "amount_cents": 9416557,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -1652,7 +1652,7 @@
     "issue_date": "2025-11-18",
     "due_date": "2026-01-02",
     "payment_terms_days": 45,
-    "amount_cents": 557060,
+    "amount_cents": 1206681,
     "currency": "EUR",
     "status": "overdue",
     "line_items": [
@@ -1680,7 +1680,7 @@
     "issue_date": "2025-02-17",
     "due_date": "2025-05-18",
     "payment_terms_days": 90,
-    "amount_cents": 2763752,
+    "amount_cents": 5574092,
     "currency": "EUR",
     "status": "paid",
     "line_items": [
@@ -1698,7 +1698,7 @@
     "issue_date": "2025-09-04",
     "due_date": "2025-10-19",
     "payment_terms_days": 45,
-    "amount_cents": 2667085,
+    "amount_cents": 5382773,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -1726,7 +1726,7 @@
     "issue_date": "2025-07-24",
     "due_date": "2025-10-22",
     "payment_terms_days": 90,
-    "amount_cents": 4365103,
+    "amount_cents": 8743433,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -1754,7 +1754,7 @@
     "issue_date": "2025-03-24",
     "due_date": "2025-04-23",
     "payment_terms_days": 30,
-    "amount_cents": 3251378,
+    "amount_cents": 6539185,
     "currency": "EUR",
     "status": "paid",
     "line_items": [
@@ -1782,7 +1782,7 @@
     "issue_date": "2025-04-19",
     "due_date": "2025-06-03",
     "payment_terms_days": 45,
-    "amount_cents": 2171358,
+    "amount_cents": 4401647,
     "currency": "EUR",
     "status": "overdue",
     "line_items": [
@@ -1805,7 +1805,7 @@
     "issue_date": "2025-05-31",
     "due_date": "2025-08-29",
     "payment_terms_days": 90,
-    "amount_cents": 1129901,
+    "amount_cents": 2340429,
     "currency": "EUR",
     "status": "paid",
     "line_items": [
@@ -1828,7 +1828,7 @@
     "issue_date": "2025-01-08",
     "due_date": "2025-02-22",
     "payment_terms_days": 45,
-    "amount_cents": 4722342,
+    "amount_cents": 9450467,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -1851,7 +1851,7 @@
     "issue_date": "2025-06-07",
     "due_date": "2025-07-07",
     "payment_terms_days": 30,
-    "amount_cents": 3404808,
+    "amount_cents": 6842849,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -1874,7 +1874,7 @@
     "issue_date": "2025-04-03",
     "due_date": "2025-05-03",
     "payment_terms_days": 30,
-    "amount_cents": 3721936,
+    "amount_cents": 7470498,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -1902,7 +1902,7 @@
     "issue_date": "2025-05-01",
     "due_date": "2025-06-30",
     "payment_terms_days": 60,
-    "amount_cents": 2826610,
+    "amount_cents": 5698499,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -1925,7 +1925,7 @@
     "issue_date": "2025-12-22",
     "due_date": "2026-01-21",
     "payment_terms_days": 30,
-    "amount_cents": 2332984,
+    "amount_cents": 4721530,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -1953,7 +1953,7 @@
     "issue_date": "2025-01-30",
     "due_date": "2025-03-16",
     "payment_terms_days": 45,
-    "amount_cents": 4141184,
+    "amount_cents": 8300259,
     "currency": "EUR",
     "status": "overdue",
     "line_items": [
@@ -1976,7 +1976,7 @@
     "issue_date": "2025-11-07",
     "due_date": "2026-01-06",
     "payment_terms_days": 60,
-    "amount_cents": 1304699,
+    "amount_cents": 2686385,
     "currency": "EUR",
     "status": "paid",
     "line_items": [
@@ -1994,7 +1994,7 @@
     "issue_date": "2025-06-28",
     "due_date": "2025-08-12",
     "payment_terms_days": 45,
-    "amount_cents": 1774353,
+    "amount_cents": 3615907,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -2017,7 +2017,7 @@
     "issue_date": "2025-02-06",
     "due_date": "2025-03-08",
     "payment_terms_days": 30,
-    "amount_cents": 2627818,
+    "amount_cents": 5305056,
     "currency": "EUR",
     "status": "paid",
     "line_items": [
@@ -2045,7 +2045,7 @@
     "issue_date": "2025-05-05",
     "due_date": "2025-07-04",
     "payment_terms_days": 60,
-    "amount_cents": 1585684,
+    "amount_cents": 3242499,
     "currency": "EUR",
     "status": "paid",
     "line_items": [
@@ -2068,7 +2068,7 @@
     "issue_date": "2025-01-26",
     "due_date": "2025-04-26",
     "payment_terms_days": 90,
-    "amount_cents": 1280308,
+    "amount_cents": 2638110,
     "currency": "EUR",
     "status": "overdue",
     "line_items": [
@@ -2096,7 +2096,7 @@
     "issue_date": "2025-06-26",
     "due_date": "2025-09-24",
     "payment_terms_days": 90,
-    "amount_cents": 1828052,
+    "amount_cents": 3722187,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -2119,7 +2119,7 @@
     "issue_date": "2025-03-14",
     "due_date": "2025-04-28",
     "payment_terms_days": 45,
-    "amount_cents": 615331,
+    "amount_cents": 1322010,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -2142,7 +2142,7 @@
     "issue_date": "2025-03-04",
     "due_date": "2025-05-03",
     "payment_terms_days": 60,
-    "amount_cents": 1679164,
+    "amount_cents": 3427512,
     "currency": "EUR",
     "status": "overdue",
     "line_items": [
@@ -2160,7 +2160,7 @@
     "issue_date": "2025-12-01",
     "due_date": "2026-01-15",
     "payment_terms_days": 45,
-    "amount_cents": 2703300,
+    "amount_cents": 5454447,
     "currency": "EUR",
     "status": "overdue",
     "line_items": [
@@ -2188,7 +2188,7 @@
     "issue_date": "2025-07-30",
     "due_date": "2025-09-28",
     "payment_terms_days": 60,
-    "amount_cents": 1089779,
+    "amount_cents": 2261021,
     "currency": "EUR",
     "status": "overdue",
     "line_items": [
@@ -2216,7 +2216,7 @@
     "issue_date": "2025-06-30",
     "due_date": "2025-08-29",
     "payment_terms_days": 60,
-    "amount_cents": 4897369,
+    "amount_cents": 9796876,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -2239,7 +2239,7 @@
     "issue_date": "2025-06-14",
     "due_date": "2025-07-29",
     "payment_terms_days": 45,
-    "amount_cents": 2948165,
+    "amount_cents": 5939077,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -2257,7 +2257,7 @@
     "issue_date": "2025-11-24",
     "due_date": "2026-01-23",
     "payment_terms_days": 60,
-    "amount_cents": 3769078,
+    "amount_cents": 7563800,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -2275,7 +2275,7 @@
     "issue_date": "2025-06-26",
     "due_date": "2025-08-10",
     "payment_terms_days": 45,
-    "amount_cents": 4134777,
+    "amount_cents": 8287579,
     "currency": "EUR",
     "status": "paid",
     "line_items": [
@@ -2298,7 +2298,7 @@
     "issue_date": "2025-12-25",
     "due_date": "2026-02-23",
     "payment_terms_days": 60,
-    "amount_cents": 711370,
+    "amount_cents": 1512087,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -2326,7 +2326,7 @@
     "issue_date": "2025-08-18",
     "due_date": "2025-09-17",
     "payment_terms_days": 30,
-    "amount_cents": 4923070,
+    "amount_cents": 9847742,
     "currency": "EUR",
     "status": "paid",
     "line_items": [
@@ -2349,7 +2349,7 @@
     "issue_date": "2025-05-27",
     "due_date": "2025-07-26",
     "payment_terms_days": 60,
-    "amount_cents": 4924830,
+    "amount_cents": 9851226,
     "currency": "EUR",
     "status": "paid",
     "line_items": [
@@ -2367,7 +2367,7 @@
     "issue_date": "2025-02-06",
     "due_date": "2025-03-08",
     "payment_terms_days": 30,
-    "amount_cents": 1530862,
+    "amount_cents": 3133997,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -2390,7 +2390,7 @@
     "issue_date": "2025-07-04",
     "due_date": "2025-09-02",
     "payment_terms_days": 60,
-    "amount_cents": 1830271,
+    "amount_cents": 3726578,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -2418,7 +2418,7 @@
     "issue_date": "2025-03-12",
     "due_date": "2025-05-11",
     "payment_terms_days": 60,
-    "amount_cents": 887360,
+    "amount_cents": 1860400,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -2436,7 +2436,7 @@
     "issue_date": "2025-11-17",
     "due_date": "2026-01-16",
     "payment_terms_days": 60,
-    "amount_cents": 4547580,
+    "amount_cents": 9104585,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -2464,7 +2464,7 @@
     "issue_date": "2025-06-19",
     "due_date": "2025-07-19",
     "payment_terms_days": 30,
-    "amount_cents": 4749974,
+    "amount_cents": 9505156,
     "currency": "EUR",
     "status": "paid",
     "line_items": [
@@ -2492,7 +2492,7 @@
     "issue_date": "2025-10-10",
     "due_date": "2025-12-09",
     "payment_terms_days": 60,
-    "amount_cents": 1105003,
+    "amount_cents": 2291152,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -2515,7 +2515,7 @@
     "issue_date": "2025-06-03",
     "due_date": "2025-07-18",
     "payment_terms_days": 45,
-    "amount_cents": 3210178,
+    "amount_cents": 6457643,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -2538,7 +2538,7 @@
     "issue_date": "2025-06-24",
     "due_date": "2025-08-23",
     "payment_terms_days": 60,
-    "amount_cents": 2431189,
+    "amount_cents": 4915896,
     "currency": "EUR",
     "status": "overdue",
     "line_items": [
@@ -2566,7 +2566,7 @@
     "issue_date": "2025-12-29",
     "due_date": "2026-02-27",
     "payment_terms_days": 60,
-    "amount_cents": 3867181,
+    "amount_cents": 7757962,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -2589,7 +2589,7 @@
     "issue_date": "2025-09-06",
     "due_date": "2025-10-21",
     "payment_terms_days": 45,
-    "amount_cents": 2665866,
+    "amount_cents": 5380360,
     "currency": "EUR",
     "status": "paid",
     "line_items": [
@@ -2617,7 +2617,7 @@
     "issue_date": "2025-01-31",
     "due_date": "2025-05-01",
     "payment_terms_days": 90,
-    "amount_cents": 1586312,
+    "amount_cents": 3243743,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -2640,7 +2640,7 @@
     "issue_date": "2025-01-01",
     "due_date": "2025-03-02",
     "payment_terms_days": 60,
-    "amount_cents": 393487,
+    "amount_cents": 882944,
     "currency": "EUR",
     "status": "paid",
     "line_items": [
@@ -2658,7 +2658,7 @@
     "issue_date": "2025-05-01",
     "due_date": "2025-06-15",
     "payment_terms_days": 45,
-    "amount_cents": 599856,
+    "amount_cents": 1291383,
     "currency": "EUR",
     "status": "overdue",
     "line_items": [
@@ -2686,7 +2686,7 @@
     "issue_date": "2025-04-01",
     "due_date": "2025-06-30",
     "payment_terms_days": 90,
-    "amount_cents": 898956,
+    "amount_cents": 1883350,
     "currency": "EUR",
     "status": "paid",
     "line_items": [
@@ -2714,7 +2714,7 @@
     "issue_date": "2025-01-11",
     "due_date": "2025-02-10",
     "payment_terms_days": 30,
-    "amount_cents": 1637694,
+    "amount_cents": 3345437,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -2737,7 +2737,7 @@
     "issue_date": "2025-09-20",
     "due_date": "2025-11-19",
     "payment_terms_days": 60,
-    "amount_cents": 1325043,
+    "amount_cents": 2726647,
     "currency": "EUR",
     "status": "paid",
     "line_items": [
@@ -2760,7 +2760,7 @@
     "issue_date": "2025-01-25",
     "due_date": "2025-02-24",
     "payment_terms_days": 30,
-    "amount_cents": 4038956,
+    "amount_cents": 8097933,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -2783,7 +2783,7 @@
     "issue_date": "2025-04-24",
     "due_date": "2025-06-23",
     "payment_terms_days": 60,
-    "amount_cents": 2276973,
+    "amount_cents": 4610676,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -2811,7 +2811,7 @@
     "issue_date": "2025-11-04",
     "due_date": "2025-12-04",
     "payment_terms_days": 30,
-    "amount_cents": 769924,
+    "amount_cents": 1627974,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -2834,7 +2834,7 @@
     "issue_date": "2025-10-31",
     "due_date": "2025-12-15",
     "payment_terms_days": 45,
-    "amount_cents": 1943701,
+    "amount_cents": 3951076,
     "currency": "EUR",
     "status": "paid",
     "line_items": [
@@ -2852,7 +2852,7 @@
     "issue_date": "2025-03-13",
     "due_date": "2025-04-12",
     "payment_terms_days": 30,
-    "amount_cents": 4450059,
+    "amount_cents": 8911574,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -2870,7 +2870,7 @@
     "issue_date": "2025-02-22",
     "due_date": "2025-04-08",
     "payment_terms_days": 45,
-    "amount_cents": 3002859,
+    "amount_cents": 6047324,
     "currency": "EUR",
     "status": "overdue",
     "line_items": [
@@ -2888,7 +2888,7 @@
     "issue_date": "2025-10-03",
     "due_date": "2025-12-02",
     "payment_terms_days": 60,
-    "amount_cents": 2987879,
+    "amount_cents": 6017677,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -2911,7 +2911,7 @@
     "issue_date": "2025-01-22",
     "due_date": "2025-04-22",
     "payment_terms_days": 90,
-    "amount_cents": 1633503,
+    "amount_cents": 3337141,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -2939,7 +2939,7 @@
     "issue_date": "2025-08-26",
     "due_date": "2025-10-10",
     "payment_terms_days": 45,
-    "amount_cents": 2258002,
+    "amount_cents": 4573130,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -2962,7 +2962,7 @@
     "issue_date": "2025-02-15",
     "due_date": "2025-04-16",
     "payment_terms_days": 60,
-    "amount_cents": 3067097,
+    "amount_cents": 6174462,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -2985,7 +2985,7 @@
     "issue_date": "2025-10-23",
     "due_date": "2026-01-21",
     "payment_terms_days": 90,
-    "amount_cents": 4152698,
+    "amount_cents": 8323048,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -3008,7 +3008,7 @@
     "issue_date": "2025-12-17",
     "due_date": "2026-02-15",
     "payment_terms_days": 60,
-    "amount_cents": 900081,
+    "amount_cents": 1885577,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -3031,7 +3031,7 @@
     "issue_date": "2025-11-08",
     "due_date": "2025-12-23",
     "payment_terms_days": 45,
-    "amount_cents": 761422,
+    "amount_cents": 2066527,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -3049,7 +3049,7 @@
     "issue_date": "2025-03-21",
     "due_date": "2025-06-19",
     "payment_terms_days": 90,
-    "amount_cents": 1123161,
+    "amount_cents": 2923276,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -3072,7 +3072,7 @@
     "issue_date": "2025-02-13",
     "due_date": "2025-04-14",
     "payment_terms_days": 60,
-    "amount_cents": 715917,
+    "amount_cents": 1958751,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -3100,7 +3100,7 @@
     "issue_date": "2025-02-17",
     "due_date": "2025-03-19",
     "payment_terms_days": 30,
-    "amount_cents": 668060,
+    "amount_cents": 1845406,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -3118,7 +3118,7 @@
     "issue_date": "2025-08-09",
     "due_date": "2025-10-08",
     "payment_terms_days": 60,
-    "amount_cents": 387097,
+    "amount_cents": 1179967,
     "currency": "EUR",
     "status": "paid",
     "line_items": [
@@ -3146,7 +3146,7 @@
     "issue_date": "2025-12-25",
     "due_date": "2026-02-23",
     "payment_terms_days": 60,
-    "amount_cents": 1979155,
+    "amount_cents": 4950629,
     "currency": "EUR",
     "status": "paid",
     "line_items": [
@@ -3169,7 +3169,7 @@
     "issue_date": "2025-01-14",
     "due_date": "2025-02-13",
     "payment_terms_days": 30,
-    "amount_cents": 421431,
+    "amount_cents": 1261284,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -3187,7 +3187,7 @@
     "issue_date": "2025-10-26",
     "due_date": "2025-11-25",
     "payment_terms_days": 30,
-    "amount_cents": 387898,
+    "amount_cents": 1181865,
     "currency": "EUR",
     "status": "paid",
     "line_items": [
@@ -3210,7 +3210,7 @@
     "issue_date": "2025-03-29",
     "due_date": "2025-06-27",
     "payment_terms_days": 90,
-    "amount_cents": 840486,
+    "amount_cents": 2253782,
     "currency": "EUR",
     "status": "paid",
     "line_items": [
@@ -3238,7 +3238,7 @@
     "issue_date": "2025-04-25",
     "due_date": "2025-05-25",
     "payment_terms_days": 30,
-    "amount_cents": 1669224,
+    "amount_cents": 4216582,
     "currency": "EUR",
     "status": "paid",
     "line_items": [
@@ -3266,7 +3266,7 @@
     "issue_date": "2025-02-27",
     "due_date": "2025-05-28",
     "payment_terms_days": 90,
-    "amount_cents": 1626916,
+    "amount_cents": 4116379,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -3284,7 +3284,7 @@
     "issue_date": "2025-08-26",
     "due_date": "2025-10-10",
     "payment_terms_days": 45,
-    "amount_cents": 606967,
+    "amount_cents": 1700712,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -3302,7 +3302,7 @@
     "issue_date": "2025-12-23",
     "due_date": "2026-03-23",
     "payment_terms_days": 90,
-    "amount_cents": 1086467,
+    "amount_cents": 2836369,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -3330,7 +3330,7 @@
     "issue_date": "2025-04-14",
     "due_date": "2025-07-13",
     "payment_terms_days": 90,
-    "amount_cents": 1626467,
+    "amount_cents": 4115317,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -3358,7 +3358,7 @@
     "issue_date": "2025-09-18",
     "due_date": "2025-11-02",
     "payment_terms_days": 45,
-    "amount_cents": 299959,
+    "amount_cents": 973588,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -3376,7 +3376,7 @@
     "issue_date": "2025-01-25",
     "due_date": "2025-02-24",
     "payment_terms_days": 30,
-    "amount_cents": 1771424,
+    "amount_cents": 4458635,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -3394,7 +3394,7 @@
     "issue_date": "2025-09-29",
     "due_date": "2025-11-28",
     "payment_terms_days": 60,
-    "amount_cents": 579192,
+    "amount_cents": 1634930,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -3422,7 +3422,7 @@
     "issue_date": "2025-06-29",
     "due_date": "2025-09-27",
     "payment_terms_days": 90,
-    "amount_cents": 1282563,
+    "amount_cents": 3300807,
     "currency": "EUR",
     "status": "overdue",
     "line_items": [
@@ -3450,7 +3450,7 @@
     "issue_date": "2025-02-19",
     "due_date": "2025-04-05",
     "payment_terms_days": 45,
-    "amount_cents": 1143991,
+    "amount_cents": 2972611,
     "currency": "EUR",
     "status": "overdue",
     "line_items": [
@@ -3478,7 +3478,7 @@
     "issue_date": "2025-08-15",
     "due_date": "2025-11-13",
     "payment_terms_days": 90,
-    "amount_cents": 1014424,
+    "amount_cents": 2665740,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -3496,7 +3496,7 @@
     "issue_date": "2025-11-03",
     "due_date": "2025-12-03",
     "payment_terms_days": 30,
-    "amount_cents": 1284975,
+    "amount_cents": 3306520,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -3519,7 +3519,7 @@
     "issue_date": "2025-05-15",
     "due_date": "2025-06-29",
     "payment_terms_days": 45,
-    "amount_cents": 521080,
+    "amount_cents": 1497295,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -3542,7 +3542,7 @@
     "issue_date": "2025-11-23",
     "due_date": "2026-01-22",
     "payment_terms_days": 60,
-    "amount_cents": 1765330,
+    "amount_cents": 4444202,
     "currency": "EUR",
     "status": "overdue",
     "line_items": [
@@ -3560,7 +3560,7 @@
     "issue_date": "2025-03-09",
     "due_date": "2025-06-07",
     "payment_terms_days": 90,
-    "amount_cents": 1649803,
+    "amount_cents": 4170587,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -3578,7 +3578,7 @@
     "issue_date": "2025-07-26",
     "due_date": "2025-09-24",
     "payment_terms_days": 60,
-    "amount_cents": 745283,
+    "amount_cents": 2028303,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -3606,7 +3606,7 @@
     "issue_date": "2025-07-15",
     "due_date": "2025-08-14",
     "payment_terms_days": 30,
-    "amount_cents": 440192,
+    "amount_cents": 1305718,
     "currency": "EUR",
     "status": "paid",
     "line_items": [
@@ -3624,7 +3624,7 @@
     "issue_date": "2025-07-12",
     "due_date": "2025-08-11",
     "payment_terms_days": 30,
-    "amount_cents": 1293508,
+    "amount_cents": 3326729,
     "currency": "EUR",
     "status": "paid",
     "line_items": [
@@ -3652,7 +3652,7 @@
     "issue_date": "2025-09-07",
     "due_date": "2025-12-06",
     "payment_terms_days": 90,
-    "amount_cents": 147660,
+    "amount_cents": 612880,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -3675,7 +3675,7 @@
     "issue_date": "2025-08-24",
     "due_date": "2025-10-23",
     "payment_terms_days": 60,
-    "amount_cents": 277462,
+    "amount_cents": 920305,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -3703,7 +3703,7 @@
     "issue_date": "2025-10-16",
     "due_date": "2025-11-30",
     "payment_terms_days": 45,
-    "amount_cents": 549999,
+    "amount_cents": 1565787,
     "currency": "EUR",
     "status": "overdue",
     "line_items": [
@@ -3721,7 +3721,7 @@
     "issue_date": "2025-07-09",
     "due_date": "2025-09-07",
     "payment_terms_days": 60,
-    "amount_cents": 566890,
+    "amount_cents": 1605792,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -3749,7 +3749,7 @@
     "issue_date": "2025-08-16",
     "due_date": "2025-09-30",
     "payment_terms_days": 45,
-    "amount_cents": 522500,
+    "amount_cents": 1500659,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -3772,7 +3772,7 @@
     "issue_date": "2025-10-23",
     "due_date": "2025-11-22",
     "payment_terms_days": 30,
-    "amount_cents": 1448250,
+    "amount_cents": 3693224,
     "currency": "EUR",
     "status": "paid",
     "line_items": [
@@ -3800,7 +3800,7 @@
     "issue_date": "2025-07-01",
     "due_date": "2025-08-15",
     "payment_terms_days": 45,
-    "amount_cents": 1096239,
+    "amount_cents": 2859512,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -3828,7 +3828,7 @@
     "issue_date": "2025-09-15",
     "due_date": "2025-10-15",
     "payment_terms_days": 30,
-    "amount_cents": 1412445,
+    "amount_cents": 3608421,
     "currency": "EUR",
     "status": "paid",
     "line_items": [
@@ -3856,7 +3856,7 @@
     "issue_date": "2025-01-03",
     "due_date": "2025-03-04",
     "payment_terms_days": 60,
-    "amount_cents": 620991,
+    "amount_cents": 1733927,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -3884,7 +3884,7 @@
     "issue_date": "2025-04-14",
     "due_date": "2025-05-14",
     "payment_terms_days": 30,
-    "amount_cents": 1478487,
+    "amount_cents": 3764838,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -3912,7 +3912,7 @@
     "issue_date": "2025-06-04",
     "due_date": "2025-07-19",
     "payment_terms_days": 45,
-    "amount_cents": 1877120,
+    "amount_cents": 4708967,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -3940,7 +3940,7 @@
     "issue_date": "2025-05-04",
     "due_date": "2025-08-02",
     "payment_terms_days": 90,
-    "amount_cents": 1784131,
+    "amount_cents": 4488731,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -3968,7 +3968,7 @@
     "issue_date": "2025-01-12",
     "due_date": "2025-02-26",
     "payment_terms_days": 45,
-    "amount_cents": 1834205,
+    "amount_cents": 4607326,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -3996,7 +3996,7 @@
     "issue_date": "2025-09-09",
     "due_date": "2025-12-08",
     "payment_terms_days": 90,
-    "amount_cents": 1231987,
+    "amount_cents": 3181022,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -4014,7 +4014,7 @@
     "issue_date": "2025-04-07",
     "due_date": "2025-07-06",
     "payment_terms_days": 90,
-    "amount_cents": 942535,
+    "amount_cents": 2495479,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -4037,7 +4037,7 @@
     "issue_date": "2025-09-01",
     "due_date": "2025-10-16",
     "payment_terms_days": 45,
-    "amount_cents": 1360086,
+    "amount_cents": 3484413,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -4060,7 +4060,7 @@
     "issue_date": "2025-07-16",
     "due_date": "2025-10-14",
     "payment_terms_days": 90,
-    "amount_cents": 1548396,
+    "amount_cents": 3930412,
     "currency": "EUR",
     "status": "overdue",
     "line_items": [
@@ -4078,7 +4078,7 @@
     "issue_date": "2025-03-27",
     "due_date": "2025-05-26",
     "payment_terms_days": 60,
-    "amount_cents": 1999538,
+    "amount_cents": 4998905,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -4106,7 +4106,7 @@
     "issue_date": "2025-01-09",
     "due_date": "2025-02-23",
     "payment_terms_days": 45,
-    "amount_cents": 399236,
+    "amount_cents": 1208718,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -4124,7 +4124,7 @@
     "issue_date": "2025-09-25",
     "due_date": "2025-10-25",
     "payment_terms_days": 30,
-    "amount_cents": 1826896,
+    "amount_cents": 4590016,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -4152,7 +4152,7 @@
     "issue_date": "2025-08-24",
     "due_date": "2025-11-22",
     "payment_terms_days": 90,
-    "amount_cents": 1439591,
+    "amount_cents": 3672716,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -4180,7 +4180,7 @@
     "issue_date": "2025-09-29",
     "due_date": "2025-11-13",
     "payment_terms_days": 45,
-    "amount_cents": 312684,
+    "amount_cents": 1003727,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -4198,7 +4198,7 @@
     "issue_date": "2025-01-17",
     "due_date": "2025-03-03",
     "payment_terms_days": 45,
-    "amount_cents": 1515865,
+    "amount_cents": 3853365,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -4226,7 +4226,7 @@
     "issue_date": "2025-12-15",
     "due_date": "2026-01-29",
     "payment_terms_days": 45,
-    "amount_cents": 306756,
+    "amount_cents": 989686,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -4249,7 +4249,7 @@
     "issue_date": "2025-11-08",
     "due_date": "2025-12-23",
     "payment_terms_days": 45,
-    "amount_cents": 1389069,
+    "amount_cents": 3553058,
     "currency": "EUR",
     "status": "paid",
     "line_items": [
@@ -4267,7 +4267,7 @@
     "issue_date": "2025-11-05",
     "due_date": "2026-01-04",
     "payment_terms_days": 60,
-    "amount_cents": 1027242,
+    "amount_cents": 2696099,
     "currency": "EUR",
     "status": "overdue",
     "line_items": [
@@ -4295,7 +4295,7 @@
     "issue_date": "2025-07-08",
     "due_date": "2025-08-07",
     "payment_terms_days": 30,
-    "amount_cents": 1824305,
+    "amount_cents": 4583879,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -4313,7 +4313,7 @@
     "issue_date": "2025-08-04",
     "due_date": "2025-09-03",
     "payment_terms_days": 30,
-    "amount_cents": 1666274,
+    "amount_cents": 4209596,
     "currency": "EUR",
     "status": "overdue",
     "line_items": [
@@ -4336,7 +4336,7 @@
     "issue_date": "2025-03-31",
     "due_date": "2025-05-30",
     "payment_terms_days": 60,
-    "amount_cents": 429598,
+    "amount_cents": 1280628,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -4359,7 +4359,7 @@
     "issue_date": "2025-03-02",
     "due_date": "2025-05-31",
     "payment_terms_days": 90,
-    "amount_cents": 1679432,
+    "amount_cents": 4240761,
     "currency": "EUR",
     "status": "overdue",
     "line_items": [
@@ -4382,7 +4382,7 @@
     "issue_date": "2025-04-25",
     "due_date": "2025-06-24",
     "payment_terms_days": 60,
-    "amount_cents": 1598913,
+    "amount_cents": 4050057,
     "currency": "EUR",
     "status": "overdue",
     "line_items": [
@@ -4400,7 +4400,7 @@
     "issue_date": "2025-03-29",
     "due_date": "2025-05-28",
     "payment_terms_days": 60,
-    "amount_cents": 609434,
+    "amount_cents": 1706554,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -4428,7 +4428,7 @@
     "issue_date": "2025-10-14",
     "due_date": "2025-12-13",
     "payment_terms_days": 60,
-    "amount_cents": 1021563,
+    "amount_cents": 2682650,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -4446,7 +4446,7 @@
     "issue_date": "2025-01-15",
     "due_date": "2025-02-14",
     "payment_terms_days": 30,
-    "amount_cents": 1047610,
+    "amount_cents": 2744339,
     "currency": "EUR",
     "status": "paid",
     "line_items": [
@@ -4469,7 +4469,7 @@
     "issue_date": "2025-10-21",
     "due_date": "2025-11-20",
     "payment_terms_days": 30,
-    "amount_cents": 670300,
+    "amount_cents": 1850711,
     "currency": "EUR",
     "status": "paid",
     "line_items": [
@@ -4492,7 +4492,7 @@
     "issue_date": "2025-02-24",
     "due_date": "2025-04-25",
     "payment_terms_days": 60,
-    "amount_cents": 1507779,
+    "amount_cents": 3834213,
     "currency": "EUR",
     "status": "overdue",
     "line_items": [
@@ -4520,7 +4520,7 @@
     "issue_date": "2025-05-14",
     "due_date": "2025-06-13",
     "payment_terms_days": 30,
-    "amount_cents": 1217469,
+    "amount_cents": 3146636,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -4543,7 +4543,7 @@
     "issue_date": "2025-03-16",
     "due_date": "2025-05-15",
     "payment_terms_days": 60,
-    "amount_cents": 1080849,
+    "amount_cents": 2823063,
     "currency": "EUR",
     "status": "paid",
     "line_items": [
@@ -4571,7 +4571,7 @@
     "issue_date": "2025-07-20",
     "due_date": "2025-08-19",
     "payment_terms_days": 30,
-    "amount_cents": 1914956,
+    "amount_cents": 4798580,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -4594,7 +4594,7 @@
     "issue_date": "2025-01-04",
     "due_date": "2025-02-18",
     "payment_terms_days": 45,
-    "amount_cents": 1357910,
+    "amount_cents": 3479261,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -4617,7 +4617,7 @@
     "issue_date": "2025-06-29",
     "due_date": "2025-08-13",
     "payment_terms_days": 45,
-    "amount_cents": 1578439,
+    "amount_cents": 4001565,
     "currency": "EUR",
     "status": "overdue",
     "line_items": [
@@ -4645,7 +4645,7 @@
     "issue_date": "2025-12-10",
     "due_date": "2026-02-08",
     "payment_terms_days": 60,
-    "amount_cents": 929683,
+    "amount_cents": 2465039,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -4668,7 +4668,7 @@
     "issue_date": "2025-10-11",
     "due_date": "2025-12-10",
     "payment_terms_days": 60,
-    "amount_cents": 381871,
+    "amount_cents": 1167589,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -4691,7 +4691,7 @@
     "issue_date": "2025-03-08",
     "due_date": "2025-04-22",
     "payment_terms_days": 45,
-    "amount_cents": 954270,
+    "amount_cents": 2523272,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -4719,7 +4719,7 @@
     "issue_date": "2025-05-17",
     "due_date": "2025-06-16",
     "payment_terms_days": 30,
-    "amount_cents": 1054654,
+    "amount_cents": 2761022,
     "currency": "EUR",
     "status": "overdue",
     "line_items": [
@@ -4742,7 +4742,7 @@
     "issue_date": "2025-02-26",
     "due_date": "2025-04-12",
     "payment_terms_days": 45,
-    "amount_cents": 355806,
+    "amount_cents": 1105856,
     "currency": "EUR",
     "status": "overdue",
     "line_items": [
@@ -4760,7 +4760,7 @@
     "issue_date": "2025-05-26",
     "due_date": "2025-08-24",
     "payment_terms_days": 90,
-    "amount_cents": 105793,
+    "amount_cents": 513720,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -4778,7 +4778,7 @@
     "issue_date": "2025-03-05",
     "due_date": "2025-05-04",
     "payment_terms_days": 60,
-    "amount_cents": 1207736,
+    "amount_cents": 3123585,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -4806,7 +4806,7 @@
     "issue_date": "2025-08-23",
     "due_date": "2025-09-22",
     "payment_terms_days": 30,
-    "amount_cents": 1967653,
+    "amount_cents": 4923389,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -4824,7 +4824,7 @@
     "issue_date": "2025-04-03",
     "due_date": "2025-05-18",
     "payment_terms_days": 45,
-    "amount_cents": 1725506,
+    "amount_cents": 4349882,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -4847,7 +4847,7 @@
     "issue_date": "2025-07-26",
     "due_date": "2025-09-24",
     "payment_terms_days": 60,
-    "amount_cents": 1681903,
+    "amount_cents": 4246611,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -4870,7 +4870,7 @@
     "issue_date": "2025-04-04",
     "due_date": "2025-06-03",
     "payment_terms_days": 60,
-    "amount_cents": 1805066,
+    "amount_cents": 4538313,
     "currency": "EUR",
     "status": "paid",
     "line_items": [
@@ -4898,7 +4898,7 @@
     "issue_date": "2025-12-25",
     "due_date": "2026-01-24",
     "payment_terms_days": 30,
-    "amount_cents": 1019942,
+    "amount_cents": 2678810,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -4926,7 +4926,7 @@
     "issue_date": "2025-02-26",
     "due_date": "2025-04-27",
     "payment_terms_days": 60,
-    "amount_cents": 1710605,
+    "amount_cents": 4314590,
     "currency": "EUR",
     "status": "overdue",
     "line_items": [
@@ -4949,7 +4949,7 @@
     "issue_date": "2025-09-18",
     "due_date": "2025-11-02",
     "payment_terms_days": 45,
-    "amount_cents": 1342043,
+    "amount_cents": 3441680,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -4977,7 +4977,7 @@
     "issue_date": "2025-10-04",
     "due_date": "2025-12-03",
     "payment_terms_days": 60,
-    "amount_cents": 1644777,
+    "amount_cents": 4158682,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -4995,7 +4995,7 @@
     "issue_date": "2025-11-29",
     "due_date": "2025-12-29",
     "payment_terms_days": 30,
-    "amount_cents": 456847,
+    "amount_cents": 1345165,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -5013,7 +5013,7 @@
     "issue_date": "2025-12-08",
     "due_date": "2026-01-07",
     "payment_terms_days": 30,
-    "amount_cents": 1604514,
+    "amount_cents": 4063323,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -5031,7 +5031,7 @@
     "issue_date": "2025-07-09",
     "due_date": "2025-10-07",
     "payment_terms_days": 90,
-    "amount_cents": 945060,
+    "amount_cents": 2501459,
     "currency": "EUR",
     "status": "overdue",
     "line_items": [
@@ -5054,7 +5054,7 @@
     "issue_date": "2025-01-09",
     "due_date": "2025-02-23",
     "payment_terms_days": 45,
-    "amount_cents": 451000,
+    "amount_cents": 1331315,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -5077,7 +5077,7 @@
     "issue_date": "2025-09-14",
     "due_date": "2025-11-13",
     "payment_terms_days": 60,
-    "amount_cents": 1353980,
+    "amount_cents": 3469953,
     "currency": "EUR",
     "status": "overdue",
     "line_items": [
@@ -5105,7 +5105,7 @@
     "issue_date": "2025-11-30",
     "due_date": "2025-12-30",
     "payment_terms_days": 30,
-    "amount_cents": 1781406,
+    "amount_cents": 4482276,
     "currency": "EUR",
     "status": "overdue",
     "line_items": [
@@ -5128,7 +5128,7 @@
     "issue_date": "2025-06-24",
     "due_date": "2025-09-22",
     "payment_terms_days": 90,
-    "amount_cents": 143553,
+    "amount_cents": 603152,
     "currency": "EUR",
     "status": "overdue",
     "line_items": [
@@ -5146,7 +5146,7 @@
     "issue_date": "2025-08-20",
     "due_date": "2025-09-19",
     "payment_terms_days": 30,
-    "amount_cents": 1298805,
+    "amount_cents": 3339274,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -5174,7 +5174,7 @@
     "issue_date": "2025-11-20",
     "due_date": "2026-01-04",
     "payment_terms_days": 45,
-    "amount_cents": 1451597,
+    "amount_cents": 3701152,
     "currency": "EUR",
     "status": "overdue",
     "line_items": [
@@ -5202,7 +5202,7 @@
     "issue_date": "2025-04-15",
     "due_date": "2025-05-30",
     "payment_terms_days": 45,
-    "amount_cents": 1772279,
+    "amount_cents": 4460661,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -5220,7 +5220,7 @@
     "issue_date": "2025-02-18",
     "due_date": "2025-04-04",
     "payment_terms_days": 45,
-    "amount_cents": 315926,
+    "amount_cents": 1011404,
     "currency": "EUR",
     "status": "paid",
     "line_items": [
@@ -5238,7 +5238,7 @@
     "issue_date": "2025-06-09",
     "due_date": "2025-07-24",
     "payment_terms_days": 45,
-    "amount_cents": 1655679,
+    "amount_cents": 4184502,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -5266,7 +5266,7 @@
     "issue_date": "2025-11-01",
     "due_date": "2025-12-01",
     "payment_terms_days": 30,
-    "amount_cents": 1034068,
+    "amount_cents": 2712267,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -5284,7 +5284,7 @@
     "issue_date": "2025-04-22",
     "due_date": "2025-06-21",
     "payment_terms_days": 60,
-    "amount_cents": 1291956,
+    "amount_cents": 3323053,
     "currency": "EUR",
     "status": "paid",
     "line_items": [
@@ -5312,7 +5312,7 @@
     "issue_date": "2025-10-13",
     "due_date": "2025-11-12",
     "payment_terms_days": 30,
-    "amount_cents": 1269172,
+    "amount_cents": 3269091,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -5340,7 +5340,7 @@
     "issue_date": "2025-02-05",
     "due_date": "2025-04-06",
     "payment_terms_days": 60,
-    "amount_cents": 226794,
+    "amount_cents": 800301,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -5368,7 +5368,7 @@
     "issue_date": "2025-04-09",
     "due_date": "2025-05-24",
     "payment_terms_days": 45,
-    "amount_cents": 306827,
+    "amount_cents": 989854,
     "currency": "EUR",
     "status": "paid",
     "line_items": [
@@ -5396,7 +5396,7 @@
     "issue_date": "2025-06-23",
     "due_date": "2025-08-07",
     "payment_terms_days": 45,
-    "amount_cents": 1234885,
+    "amount_cents": 3187886,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -5414,7 +5414,7 @@
     "issue_date": "2025-10-13",
     "due_date": "2025-11-27",
     "payment_terms_days": 45,
-    "amount_cents": 805303,
+    "amount_cents": 2170454,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -5437,7 +5437,7 @@
     "issue_date": "2025-11-10",
     "due_date": "2025-12-25",
     "payment_terms_days": 45,
-    "amount_cents": 1414057,
+    "amount_cents": 3612240,
     "currency": "EUR",
     "status": "paid",
     "line_items": [
@@ -5455,7 +5455,7 @@
     "issue_date": "2025-03-18",
     "due_date": "2025-04-17",
     "payment_terms_days": 30,
-    "amount_cents": 1515593,
+    "amount_cents": 3852720,
     "currency": "EUR",
     "status": "paid",
     "line_items": [
@@ -5483,7 +5483,7 @@
     "issue_date": "2025-05-04",
     "due_date": "2025-06-18",
     "payment_terms_days": 45,
-    "amount_cents": 484078,
+    "amount_cents": 1409659,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -5501,7 +5501,7 @@
     "issue_date": "2025-08-19",
     "due_date": "2025-11-17",
     "payment_terms_days": 90,
-    "amount_cents": 983746,
+    "amount_cents": 2593083,
     "currency": "EUR",
     "status": "overdue",
     "line_items": [
@@ -5524,7 +5524,7 @@
     "issue_date": "2025-10-01",
     "due_date": "2025-11-30",
     "payment_terms_days": 60,
-    "amount_cents": 1027138,
+    "amount_cents": 2695854,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -5552,7 +5552,7 @@
     "issue_date": "2025-05-24",
     "due_date": "2025-08-22",
     "payment_terms_days": 90,
-    "amount_cents": 868681,
+    "amount_cents": 2320560,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -5575,7 +5575,7 @@
     "issue_date": "2025-09-26",
     "due_date": "2025-11-25",
     "payment_terms_days": 60,
-    "amount_cents": 1465921,
+    "amount_cents": 3735076,
     "currency": "EUR",
     "status": "overdue",
     "line_items": [
@@ -5598,7 +5598,7 @@
     "issue_date": "2025-11-26",
     "due_date": "2026-01-10",
     "payment_terms_days": 45,
-    "amount_cents": 855723,
+    "amount_cents": 2289869,
     "currency": "EUR",
     "status": "paid",
     "line_items": [
@@ -5616,7 +5616,7 @@
     "issue_date": "2025-10-30",
     "due_date": "2025-12-29",
     "payment_terms_days": 60,
-    "amount_cents": 132248,
+    "amount_cents": 576377,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -5644,7 +5644,7 @@
     "issue_date": "2025-01-04",
     "due_date": "2025-03-05",
     "payment_terms_days": 60,
-    "amount_cents": 582923,
+    "amount_cents": 1643766,
     "currency": "EUR",
     "status": "paid",
     "line_items": [
@@ -5662,7 +5662,7 @@
     "issue_date": "2025-05-12",
     "due_date": "2025-07-11",
     "payment_terms_days": 60,
-    "amount_cents": 141515,
+    "amount_cents": 598325,
     "currency": "EUR",
     "status": "paid",
     "line_items": [
@@ -5690,7 +5690,7 @@
     "issue_date": "2025-06-16",
     "due_date": "2025-08-15",
     "payment_terms_days": 60,
-    "amount_cents": 359282,
+    "amount_cents": 1114090,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -5713,7 +5713,7 @@
     "issue_date": "2025-08-19",
     "due_date": "2025-10-03",
     "payment_terms_days": 45,
-    "amount_cents": 1778294,
+    "amount_cents": 4474906,
     "currency": "EUR",
     "status": "paid",
     "line_items": [
@@ -5741,7 +5741,7 @@
     "issue_date": "2025-01-30",
     "due_date": "2025-03-01",
     "payment_terms_days": 30,
-    "amount_cents": 1252892,
+    "amount_cents": 3230535,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -5759,7 +5759,7 @@
     "issue_date": "2025-02-28",
     "due_date": "2025-03-30",
     "payment_terms_days": 30,
-    "amount_cents": 974725,
+    "amount_cents": 2571718,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -5777,7 +5777,7 @@
     "issue_date": "2025-03-20",
     "due_date": "2025-05-04",
     "payment_terms_days": 45,
-    "amount_cents": 463417,
+    "amount_cents": 1360724,
     "currency": "EUR",
     "status": "overdue",
     "line_items": [
@@ -5805,7 +5805,7 @@
     "issue_date": "2025-01-30",
     "due_date": "2025-03-31",
     "payment_terms_days": 60,
-    "amount_cents": 1658581,
+    "amount_cents": 4191376,
     "currency": "EUR",
     "status": "overdue",
     "line_items": [
@@ -5833,7 +5833,7 @@
     "issue_date": "2025-12-26",
     "due_date": "2026-02-09",
     "payment_terms_days": 45,
-    "amount_cents": 517227,
+    "amount_cents": 1488169,
     "currency": "EUR",
     "status": "overdue",
     "line_items": [
@@ -5861,7 +5861,7 @@
     "issue_date": "2025-06-19",
     "due_date": "2025-08-03",
     "payment_terms_days": 45,
-    "amount_cents": 1762342,
+    "amount_cents": 4437125,
     "currency": "EUR",
     "status": "paid",
     "line_items": [
@@ -5884,7 +5884,7 @@
     "issue_date": "2025-12-26",
     "due_date": "2026-02-09",
     "payment_terms_days": 45,
-    "amount_cents": 4800998,
+    "amount_cents": 6284101,
     "currency": "EUR",
     "status": "overdue",
     "line_items": [
@@ -5912,7 +5912,7 @@
     "issue_date": "2025-03-01",
     "due_date": "2025-03-31",
     "payment_terms_days": 30,
-    "amount_cents": 9357724,
+    "amount_cents": 12412112,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -5930,7 +5930,7 @@
     "issue_date": "2025-02-20",
     "due_date": "2025-04-06",
     "payment_terms_days": 45,
-    "amount_cents": 4059012,
+    "amount_cents": 5286257,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -5953,7 +5953,7 @@
     "issue_date": "2025-11-12",
     "due_date": "2025-12-27",
     "payment_terms_days": 45,
-    "amount_cents": 9814862,
+    "amount_cents": 13026883,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -5976,7 +5976,7 @@
     "issue_date": "2025-04-15",
     "due_date": "2025-06-14",
     "payment_terms_days": 60,
-    "amount_cents": 2438881,
+    "amount_cents": 3107461,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -5999,7 +5999,7 @@
     "issue_date": "2025-02-03",
     "due_date": "2025-03-20",
     "payment_terms_days": 45,
-    "amount_cents": 14393236,
+    "amount_cents": 19184007,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -6027,7 +6027,7 @@
     "issue_date": "2025-07-26",
     "due_date": "2025-09-09",
     "payment_terms_days": 45,
-    "amount_cents": 4666167,
+    "amount_cents": 6102777,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -6050,7 +6050,7 @@
     "issue_date": "2025-10-27",
     "due_date": "2025-12-26",
     "payment_terms_days": 60,
-    "amount_cents": 7238464,
+    "amount_cents": 9562073,
     "currency": "EUR",
     "status": "overdue",
     "line_items": [
@@ -6068,7 +6068,7 @@
     "issue_date": "2025-09-20",
     "due_date": "2025-11-04",
     "payment_terms_days": 45,
-    "amount_cents": 6355076,
+    "amount_cents": 8374068,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -6096,7 +6096,7 @@
     "issue_date": "2025-10-27",
     "due_date": "2025-11-26",
     "payment_terms_days": 30,
-    "amount_cents": 7534611,
+    "amount_cents": 9960339,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -6114,7 +6114,7 @@
     "issue_date": "2025-08-01",
     "due_date": "2025-08-31",
     "payment_terms_days": 30,
-    "amount_cents": 14335821,
+    "amount_cents": 19106794,
     "currency": "EUR",
     "status": "paid",
     "line_items": [
@@ -6142,7 +6142,7 @@
     "issue_date": "2025-12-11",
     "due_date": "2026-03-11",
     "payment_terms_days": 90,
-    "amount_cents": 4280542,
+    "amount_cents": 5584177,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -6160,7 +6160,7 @@
     "issue_date": "2025-07-04",
     "due_date": "2025-08-03",
     "payment_terms_days": 30,
-    "amount_cents": 4450237,
+    "amount_cents": 5812388,
     "currency": "EUR",
     "status": "paid",
     "line_items": [
@@ -6178,7 +6178,7 @@
     "issue_date": "2025-08-02",
     "due_date": "2025-09-01",
     "payment_terms_days": 30,
-    "amount_cents": 10887860,
+    "amount_cents": 14469881,
     "currency": "EUR",
     "status": "paid",
     "line_items": [
@@ -6206,7 +6206,7 @@
     "issue_date": "2025-03-03",
     "due_date": "2025-04-17",
     "payment_terms_days": 45,
-    "amount_cents": 9851461,
+    "amount_cents": 13076103,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -6229,7 +6229,7 @@
     "issue_date": "2025-01-14",
     "due_date": "2025-02-13",
     "payment_terms_days": 30,
-    "amount_cents": 8147861,
+    "amount_cents": 10785054,
     "currency": "EUR",
     "status": "paid",
     "line_items": [
@@ -6252,7 +6252,7 @@
     "issue_date": "2025-02-15",
     "due_date": "2025-03-17",
     "payment_terms_days": 30,
-    "amount_cents": 1076466,
+    "amount_cents": 1275247,
     "currency": "EUR",
     "status": "overdue",
     "line_items": [
@@ -6270,7 +6270,7 @@
     "issue_date": "2025-01-31",
     "due_date": "2025-03-17",
     "payment_terms_days": 45,
-    "amount_cents": 709073,
+    "amount_cents": 781167,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -6298,7 +6298,7 @@
     "issue_date": "2025-04-10",
     "due_date": "2025-06-09",
     "payment_terms_days": 60,
-    "amount_cents": 9362803,
+    "amount_cents": 12418942,
     "currency": "EUR",
     "status": "overdue",
     "line_items": [
@@ -6326,7 +6326,7 @@
     "issue_date": "2025-06-05",
     "due_date": "2025-08-04",
     "payment_terms_days": 60,
-    "amount_cents": 5713755,
+    "amount_cents": 7511602,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -6354,7 +6354,7 @@
     "issue_date": "2025-12-07",
     "due_date": "2026-01-21",
     "payment_terms_days": 45,
-    "amount_cents": 3898855,
+    "amount_cents": 5070874,
     "currency": "EUR",
     "status": "overdue",
     "line_items": [
@@ -6377,7 +6377,7 @@
     "issue_date": "2025-04-27",
     "due_date": "2025-06-26",
     "payment_terms_days": 60,
-    "amount_cents": 13730629,
+    "amount_cents": 18292914,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -6405,7 +6405,7 @@
     "issue_date": "2025-04-09",
     "due_date": "2025-05-24",
     "payment_terms_days": 45,
-    "amount_cents": 5641417,
+    "amount_cents": 7414319,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -6423,7 +6423,7 @@
     "issue_date": "2025-10-05",
     "due_date": "2025-11-19",
     "payment_terms_days": 45,
-    "amount_cents": 3419121,
+    "amount_cents": 4425714,
     "currency": "EUR",
     "status": "paid",
     "line_items": [
@@ -6441,7 +6441,7 @@
     "issue_date": "2025-09-19",
     "due_date": "2025-11-03",
     "payment_terms_days": 45,
-    "amount_cents": 8466561,
+    "amount_cents": 11213651,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -6469,7 +6469,7 @@
     "issue_date": "2025-08-20",
     "due_date": "2025-10-19",
     "payment_terms_days": 60,
-    "amount_cents": 4572158,
+    "amount_cents": 5976351,
     "currency": "EUR",
     "status": "paid",
     "line_items": [
@@ -6497,7 +6497,7 @@
     "issue_date": "2025-10-08",
     "due_date": "2025-11-22",
     "payment_terms_days": 45,
-    "amount_cents": 13287678,
+    "amount_cents": 17697221,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -6515,7 +6515,7 @@
     "issue_date": "2025-10-02",
     "due_date": "2025-11-01",
     "payment_terms_days": 30,
-    "amount_cents": 6960587,
+    "amount_cents": 9188375,
     "currency": "EUR",
     "status": "overdue",
     "line_items": [
@@ -6543,7 +6543,7 @@
     "issue_date": "2025-12-10",
     "due_date": "2026-03-10",
     "payment_terms_days": 90,
-    "amount_cents": 6056683,
+    "amount_cents": 7972780,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -6561,7 +6561,7 @@
     "issue_date": "2025-08-22",
     "due_date": "2025-09-21",
     "payment_terms_days": 30,
-    "amount_cents": 7736669,
+    "amount_cents": 10232072,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -6579,7 +6579,7 @@
     "issue_date": "2025-08-02",
     "due_date": "2025-09-01",
     "payment_terms_days": 30,
-    "amount_cents": 11715817,
+    "amount_cents": 15583341,
     "currency": "EUR",
     "status": "overdue",
     "line_items": [
@@ -6597,7 +6597,7 @@
     "issue_date": "2025-09-03",
     "due_date": "2025-10-18",
     "payment_terms_days": 45,
-    "amount_cents": 7417045,
+    "amount_cents": 9802233,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -6615,7 +6615,7 @@
     "issue_date": "2025-11-15",
     "due_date": "2026-01-14",
     "payment_terms_days": 60,
-    "amount_cents": 2454923,
+    "amount_cents": 3129035,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -6633,7 +6633,7 @@
     "issue_date": "2025-11-12",
     "due_date": "2026-02-10",
     "payment_terms_days": 90,
-    "amount_cents": 8881014,
+    "amount_cents": 11771019,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -6656,7 +6656,7 @@
     "issue_date": "2025-05-03",
     "due_date": "2025-07-02",
     "payment_terms_days": 60,
-    "amount_cents": 10080002,
+    "amount_cents": 13383451,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -6684,7 +6684,7 @@
     "issue_date": "2025-12-04",
     "due_date": "2026-02-02",
     "payment_terms_days": 60,
-    "amount_cents": 5771276,
+    "amount_cents": 7588957,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -6707,7 +6707,7 @@
     "issue_date": "2025-09-09",
     "due_date": "2025-10-09",
     "payment_terms_days": 30,
-    "amount_cents": 10161386,
+    "amount_cents": 13492898,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -6730,7 +6730,7 @@
     "issue_date": "2025-07-22",
     "due_date": "2025-09-05",
     "payment_terms_days": 45,
-    "amount_cents": 14569379,
+    "amount_cents": 19420889,
     "currency": "EUR",
     "status": "paid",
     "line_items": [
@@ -6758,7 +6758,7 @@
     "issue_date": "2025-05-16",
     "due_date": "2025-07-15",
     "payment_terms_days": 60,
-    "amount_cents": 7924446,
+    "amount_cents": 10484599,
     "currency": "EUR",
     "status": "overdue",
     "line_items": [
@@ -6786,7 +6786,7 @@
     "issue_date": "2025-02-09",
     "due_date": "2025-05-10",
     "payment_terms_days": 90,
-    "amount_cents": 14694505,
+    "amount_cents": 19589162,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -6814,7 +6814,7 @@
     "issue_date": "2025-06-18",
     "due_date": "2025-08-17",
     "payment_terms_days": 60,
-    "amount_cents": 3936069,
+    "amount_cents": 5120921,
     "currency": "EUR",
     "status": "overdue",
     "line_items": [
@@ -6837,7 +6837,7 @@
     "issue_date": "2025-10-31",
     "due_date": "2025-12-15",
     "payment_terms_days": 45,
-    "amount_cents": 6099376,
+    "amount_cents": 8030195,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -6855,7 +6855,7 @@
     "issue_date": "2025-08-31",
     "due_date": "2025-09-30",
     "payment_terms_days": 30,
-    "amount_cents": 8527598,
+    "amount_cents": 11295735,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -6883,7 +6883,7 @@
     "issue_date": "2025-03-29",
     "due_date": "2025-06-27",
     "payment_terms_days": 90,
-    "amount_cents": 5332832,
+    "amount_cents": 6999325,
     "currency": "EUR",
     "status": "paid",
     "line_items": [
@@ -6911,7 +6911,7 @@
     "issue_date": "2025-07-16",
     "due_date": "2025-08-30",
     "payment_terms_days": 45,
-    "amount_cents": 9739370,
+    "amount_cents": 12925360,
     "currency": "EUR",
     "status": "overdue",
     "line_items": [
@@ -6939,7 +6939,7 @@
     "issue_date": "2025-12-14",
     "due_date": "2026-01-28",
     "payment_terms_days": 45,
-    "amount_cents": 633085,
+    "amount_cents": 678977,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -6957,7 +6957,7 @@
     "issue_date": "2025-12-08",
     "due_date": "2026-01-07",
     "payment_terms_days": 30,
-    "amount_cents": 4083401,
+    "amount_cents": 5319057,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -6975,7 +6975,7 @@
     "issue_date": "2025-08-04",
     "due_date": "2025-09-03",
     "payment_terms_days": 30,
-    "amount_cents": 3452997,
+    "amount_cents": 4471271,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -6993,7 +6993,7 @@
     "issue_date": "2025-09-08",
     "due_date": "2025-10-23",
     "payment_terms_days": 45,
-    "amount_cents": 7420853,
+    "amount_cents": 9807354,
     "currency": "EUR",
     "status": "paid",
     "line_items": [
@@ -7011,7 +7011,7 @@
     "issue_date": "2025-01-15",
     "due_date": "2025-03-16",
     "payment_terms_days": 60,
-    "amount_cents": 5929570,
+    "amount_cents": 7801835,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -7029,7 +7029,7 @@
     "issue_date": "2025-11-12",
     "due_date": "2025-12-27",
     "payment_terms_days": 45,
-    "amount_cents": 716390,
+    "amount_cents": 791007,
     "currency": "EUR",
     "status": "paid",
     "line_items": [
@@ -7057,7 +7057,7 @@
     "issue_date": "2025-06-14",
     "due_date": "2025-07-14",
     "payment_terms_days": 30,
-    "amount_cents": 14104984,
+    "amount_cents": 18796358,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -7080,7 +7080,7 @@
     "issue_date": "2025-03-31",
     "due_date": "2025-05-30",
     "payment_terms_days": 60,
-    "amount_cents": 8881275,
+    "amount_cents": 11771370,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -7098,7 +7098,7 @@
     "issue_date": "2025-08-20",
     "due_date": "2025-10-04",
     "payment_terms_days": 45,
-    "amount_cents": 4409013,
+    "amount_cents": 5756948,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -7121,7 +7121,7 @@
     "issue_date": "2025-12-14",
     "due_date": "2026-02-12",
     "payment_terms_days": 60,
-    "amount_cents": 5975548,
+    "amount_cents": 7863668,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -7144,7 +7144,7 @@
     "issue_date": "2025-09-09",
     "due_date": "2025-12-08",
     "payment_terms_days": 90,
-    "amount_cents": 4320279,
+    "amount_cents": 5637616,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -7162,7 +7162,7 @@
     "issue_date": "2025-09-03",
     "due_date": "2025-12-02",
     "payment_terms_days": 90,
-    "amount_cents": 14378069,
+    "amount_cents": 19163610,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -7190,7 +7190,7 @@
     "issue_date": "2025-07-31",
     "due_date": "2025-10-29",
     "payment_terms_days": 90,
-    "amount_cents": 3378512,
+    "amount_cents": 4371102,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -7208,7 +7208,7 @@
     "issue_date": "2025-04-22",
     "due_date": "2025-06-21",
     "payment_terms_days": 60,
-    "amount_cents": 10156092,
+    "amount_cents": 13485779,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -7231,7 +7231,7 @@
     "issue_date": "2025-05-31",
     "due_date": "2025-06-30",
     "payment_terms_days": 30,
-    "amount_cents": 1864064,
+    "amount_cents": 3807842,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -7249,7 +7249,7 @@
     "issue_date": "2025-09-20",
     "due_date": "2025-10-20",
     "payment_terms_days": 30,
-    "amount_cents": 2377208,
+    "amount_cents": 4798120,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -7277,7 +7277,7 @@
     "issue_date": "2025-10-14",
     "due_date": "2025-12-13",
     "payment_terms_days": 60,
-    "amount_cents": 2039126,
+    "amount_cents": 4145682,
     "currency": "EUR",
     "status": "overdue",
     "line_items": [
@@ -7300,7 +7300,7 @@
     "issue_date": "2025-08-09",
     "due_date": "2025-10-08",
     "payment_terms_days": 60,
-    "amount_cents": 2510608,
+    "amount_cents": 5055558,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -7318,7 +7318,7 @@
     "issue_date": "2025-12-23",
     "due_date": "2026-03-23",
     "payment_terms_days": 90,
-    "amount_cents": 2132034,
+    "amount_cents": 4324978,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -7346,7 +7346,7 @@
     "issue_date": "2025-07-18",
     "due_date": "2025-09-01",
     "payment_terms_days": 45,
-    "amount_cents": 2924285,
+    "amount_cents": 5853883,
     "currency": "EUR",
     "status": "paid",
     "line_items": [
@@ -7369,7 +7369,7 @@
     "issue_date": "2025-05-21",
     "due_date": "2025-07-20",
     "payment_terms_days": 60,
-    "amount_cents": 1781862,
+    "amount_cents": 3649208,
     "currency": "EUR",
     "status": "paid",
     "line_items": [
@@ -7392,7 +7392,7 @@
     "issue_date": "2025-03-10",
     "due_date": "2025-04-09",
     "payment_terms_days": 30,
-    "amount_cents": 2546617,
+    "amount_cents": 5125050,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -7415,7 +7415,7 @@
     "issue_date": "2025-03-21",
     "due_date": "2025-05-05",
     "payment_terms_days": 45,
-    "amount_cents": 390670,
+    "amount_cents": 964451,
     "currency": "EUR",
     "status": "outstanding",
     "line_items": [
@@ -7433,7 +7433,7 @@
     "issue_date": "2025-02-18",
     "due_date": "2025-04-19",
     "payment_terms_days": 60,
-    "amount_cents": 1724830,
+    "amount_cents": 3539145,
     "currency": "EUR",
     "status": "paid",
     "line_items": [
