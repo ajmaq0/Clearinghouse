@@ -240,3 +240,23 @@ class OptimalNettingResult(BaseModel):
     improvement_over_johnson_pct: float
     cleared_edges: list
     lp_status: str
+
+
+# ── Per-Company Savings Comparison ────────────────────────────────────────
+
+class CompanyComparisonRow(BaseModel):
+    company_id: str
+    company_name: str
+    gross_payable: int         # sum of all outgoing invoices
+    gross_receivable: int      # sum of all incoming invoices
+    bilateral_net: int         # net obligation after bilateral (positive = net payer)
+    multilateral_net: int      # net obligation after Johnson's multilateral
+    optimal_net: int           # net obligation after LP-optimal
+    savings_vs_bilateral_cents: int   # |bilateral_net| - |optimal_net|
+    savings_vs_bilateral_pct: float   # savings as % of |bilateral_net|
+
+
+class CompanyComparisonOut(BaseModel):
+    rows: List[CompanyComparisonRow]
+    total_companies: int
+    lp_status: str
