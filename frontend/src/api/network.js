@@ -22,4 +22,6 @@ export const networkApi = {
   dashboard:       () => api.get('/network/dashboard'),
   topology:        () => api.get('/network/topology'),
   simulateGrowth:  (candidateIds) => api.post('/network/simulate-growth', { candidates: candidateIds }),
+  cascadeSummary:  () => api.get('/network/cascade-summary'),
+  cascade:         (companyId) => api.get(`/network/cascade?company_id=${encodeURIComponent(companyId)}`),
 }

@@ -15,6 +15,242 @@ import { networkApi } from '../api/network.js'
 import { MOCK_POTENTIAL_CONNECTIONS, MOCK_FUNDING_GAPS } from '../mock/fullDataset.js'
 import { formatEur } from '../utils/format.js'
 
+// ── Mock fallback for cascade data ────────────────────────────────────────────
+
+const MOCK_CASCADE_SUMMARY = {
+  companies_with_timing_mismatch: 8,
+  total_blocked_cents: 12_480_000,
+  worst_cascade_chain: ['Alstermühle Bäckerei GmbH', 'Biokontor Hamburg eG', 'Elbe Spedition KG'],
+  avg_days_blocked: 14.0,
+}
+
+// ── ZahlungskaskadeCard ───────────────────────────────────────────────────────
+
+function CascadeChainNode({ name, role, amount_cents, isLast }) {
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      <div style={{
+        background: role === 'blocked' ? '#fdeaea' : role === 'waiting' ? '#fdf3e7' : '#e8f3ec',
+        border: `2px solid ${role === 'blocked' ? '#f5a5a5' : role === 'waiting' ? '#f0c880' : '#c8dfd0'}`,
+        borderRadius: 'var(--radius-md)',
+        padding: 'var(--space-3) var(--space-5)',
+        textAlign: 'center',
+        minWidth: 160,
+      }}>
+        <div style={{
+          fontSize: 'var(--font-size-xs)', fontWeight: 700,
+          color: role === 'blocked' ? '#b94040' : role === 'waiting' ? '#c97a2f' : '#4a7c59',
+          textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 4,
+        }}>
+          {role === 'blocked' ? 'Blockiert' : role === 'waiting' ? 'Wartend' : 'Ausgeglichen'}
+        </div>
+        <div style={{ fontWeight: 700, fontSize: 'var(--font-size-sm)', color: 'var(--color-text)', lineHeight: 1.3 }}>
+          {name}
+        </div>
+        {amount_cents != null && (
+          <div style={{
+            fontSize: 'var(--font-size-xs)', marginTop: 4,
+            color: role === 'blocked' ? '#b94040' : role === 'waiting' ? '#c97a2f' : '#4a7c59',
+            fontWeight: 600,
+          }}>
+            {role === 'blocked' ? 'kann nicht zahlen: ' : role === 'waiting' ? 'wartet auf: ' : 'ausgeglichen: '}
+            {formatEur(amount_cents)}
+          </div>
+        )}
+      </div>
+      {!isLast && (
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '4px 0' }}>
+          <div style={{ width: 2, height: 12, background: '#c9bfaf' }} />
+          <div style={{ fontSize: 10, color: '#c9bfaf' }}>▼</div>
+        </div>
+      )}
+    </div>
+  )
+}
+
+function ZahlungskaskadeCard({ summary }) {
+  const [resolved, setResolved] = useState(false)
+
+  const chain = summary?.worst_cascade_chain ?? []
+  const mismatchCount = summary?.companies_with_timing_mismatch ?? 0
+  const totalBlocked = summary?.total_blocked_cents ?? 0
+
+  if (mismatchCount === 0) return null
+
+  // Build concrete example from worst_cascade_chain
+  const exampleCompanies = chain.slice(0, 3)
+  // Synthetic amounts for illustration based on totalBlocked
+  const exampleAmounts = [
+    Math.round(totalBlocked * 0.18),
+    Math.round(totalBlocked * 0.25),
+  ]
+
+  return (
+    <div style={{ marginBottom: 'var(--space-10)' }}>
+      <div style={{ marginBottom: 'var(--space-5)' }}>
+        <div style={{ display: 'flex', alignItems: 'baseline', gap: 'var(--space-3)' }}>
+          <span style={{ fontSize: '1.3em' }}>⛓</span>
+          <h2 style={{ fontSize: 'var(--font-size-lg)', fontWeight: 700, color: 'var(--color-text)' }}>
+            Zahlungskaskade
+          </h2>
+        </div>
+        <p style={{ color: 'var(--color-text-muted)', fontSize: 'var(--font-size-sm)', marginTop: 'var(--space-1)', paddingLeft: 'var(--space-8)' }}>
+          Wie verspätete Zahlungen das gesamte Netzwerk blockieren — und wie Clearing das löst
+        </p>
+      </div>
+
+      <div className="card" style={{ borderLeft: '4px solid #c97a2f' }}>
+        {/* Headline stat */}
+        <div style={{
+          background: '#fdf3e7', border: '1px solid #f0c880',
+          borderRadius: 'var(--radius-sm)', padding: 'var(--space-4) var(--space-5)',
+          marginBottom: 'var(--space-5)',
+          fontSize: 'var(--font-size-md)', color: '#7a4010', fontWeight: 600, lineHeight: 1.5,
+        }}>
+          <span style={{ fontSize: '1.2em' }}>⚠ </span>
+          <strong>{mismatchCount} Unternehmen</strong> können nicht rechtzeitig zahlen,
+          weil sie selbst auf Zahlungen warten —{' '}
+          <strong>{formatEur(totalBlocked)}</strong> blockiert
+        </div>
+
+        {/* Concrete example */}
+        {exampleCompanies.length >= 2 && (
+          <div style={{ marginBottom: 'var(--space-5)' }}>
+            <div style={{
+              fontSize: 'var(--font-size-xs)', fontWeight: 700, letterSpacing: '0.07em',
+              color: 'var(--color-text-muted)', textTransform: 'uppercase', marginBottom: 'var(--space-3)',
+            }}>
+              Konkretes Beispiel
+            </div>
+            <div style={{
+              background: 'var(--color-surface-alt)', borderRadius: 'var(--radius-sm)',
+              padding: 'var(--space-4)', fontSize: 'var(--font-size-sm)',
+              color: 'var(--color-text)', lineHeight: 1.7,
+              fontStyle: 'italic',
+            }}>
+              {exampleCompanies.length >= 3 ? (
+                <>
+                  <strong>{exampleCompanies[0]}</strong> wartet auf{' '}
+                  <strong style={{ color: '#c97a2f' }}>{formatEur(exampleAmounts[0])}</strong>{' '}
+                  von <strong>{exampleCompanies[1]}</strong> —
+                  kann deshalb <strong style={{ color: '#b94040' }}>{formatEur(exampleAmounts[1])}</strong>{' '}
+                  an <strong>{exampleCompanies[2]}</strong> nicht überweisen.
+                </>
+              ) : (
+                <>
+                  <strong>{exampleCompanies[0]}</strong> wartet auf{' '}
+                  <strong style={{ color: '#c97a2f' }}>{formatEur(exampleAmounts[0])}</strong>{' '}
+                  und kann deshalb <strong style={{ color: '#b94040' }}>{formatEur(exampleAmounts[1])}</strong>{' '}
+                  an <strong>{exampleCompanies[1]}</strong> nicht überweisen.
+                </>
+              )}
+            </div>
+          </div>
+        )}
+
+        {/* Before/after cascade animation */}
+        <div style={{ marginBottom: 'var(--space-5)' }}>
+          <div style={{
+            display: 'flex', gap: 'var(--space-4)', marginBottom: 'var(--space-4)',
+            flexWrap: 'wrap', alignItems: 'center',
+          }}>
+            <div style={{
+              fontSize: 'var(--font-size-xs)', fontWeight: 700, letterSpacing: '0.07em',
+              color: 'var(--color-text-muted)', textTransform: 'uppercase',
+            }}>
+              {resolved ? 'Nach dem Clearing' : 'Vor dem Clearing'}
+            </div>
+            <button
+              onClick={() => setResolved(v => !v)}
+              style={{
+                background: resolved ? 'var(--color-primary)' : '#c97a2f',
+                color: 'white', border: 'none', borderRadius: 'var(--radius-sm)',
+                padding: 'var(--space-1) var(--space-4)',
+                fontSize: 'var(--font-size-xs)', fontWeight: 600, cursor: 'pointer',
+                transition: 'background 0.3s',
+              }}
+            >
+              {resolved ? '← Vorher anzeigen' : 'Clearing simulieren →'}
+            </button>
+          </div>
+
+          {/* Chain visualization */}
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 0 }}>
+            {exampleCompanies.length >= 3 ? (
+              <>
+                <CascadeChainNode
+                  name={exampleCompanies[0]}
+                  role={resolved ? 'resolved' : 'blocked'}
+                  amount_cents={resolved ? null : exampleAmounts[1]}
+                  isLast={false}
+                />
+                <CascadeChainNode
+                  name={exampleCompanies[1]}
+                  role={resolved ? 'resolved' : 'waiting'}
+                  amount_cents={resolved ? null : exampleAmounts[0]}
+                  isLast={false}
+                />
+                <CascadeChainNode
+                  name={exampleCompanies[2]}
+                  role="resolved"
+                  amount_cents={null}
+                  isLast={true}
+                />
+              </>
+            ) : exampleCompanies.length === 2 ? (
+              <>
+                <CascadeChainNode
+                  name={exampleCompanies[0]}
+                  role={resolved ? 'resolved' : 'blocked'}
+                  amount_cents={resolved ? null : exampleAmounts[1]}
+                  isLast={false}
+                />
+                <CascadeChainNode
+                  name={exampleCompanies[1]}
+                  role="resolved"
+                  amount_cents={null}
+                  isLast={true}
+                />
+              </>
+            ) : null}
+          </div>
+        </div>
+
+        {/* Resolution callout */}
+        {resolved && (
+          <div style={{
+            background: 'var(--color-primary-lt)', border: '1px solid #c8dfd0',
+            borderRadius: 'var(--radius-sm)', padding: 'var(--space-4) var(--space-5)',
+            color: 'var(--color-primary-dk)', fontWeight: 600, fontSize: 'var(--font-size-sm)',
+          }}>
+            ✓ Nach dem Clearing: alle {exampleCompanies.length} Unternehmen sind ausgeglichen —{' '}
+            {formatEur(totalBlocked)} Liquidität freigesetzt
+          </div>
+        )}
+
+        {/* Stats row */}
+        <div style={{
+          display: 'flex', gap: 'var(--space-6)', flexWrap: 'wrap',
+          marginTop: 'var(--space-5)',
+          paddingTop: 'var(--space-4)', borderTop: '1px solid var(--color-border)',
+          fontSize: 'var(--font-size-sm)', color: 'var(--color-text-muted)',
+        }}>
+          {chain.length > 0 && (
+            <span>
+              Längste Kaskadenkette:{' '}
+              <strong style={{ color: 'var(--color-text)' }}>{chain.length} Glieder</strong>
+            </span>
+          )}
+          <span>
+            Durchschn. blockiert:{' '}
+            <strong style={{ color: 'var(--color-text)' }}>{(summary?.avg_days_blocked ?? 0).toFixed(0)} Tage</strong>
+          </span>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 // ── Network topology stats section ────────────────────────────────────────────
 
 function TopologieStats({ topo }) {
@@ -577,14 +813,21 @@ export default function Entdecken() {
   const connections = MOCK_POTENTIAL_CONNECTIONS
   const gaps        = MOCK_FUNDING_GAPS
 
-  const [topo, setTopo]         = useState(null)
+  const [topo, setTopo]               = useState(null)
   const [topoLoading, setTopoLoading] = useState(true)
+  const [cascade, setCascade]         = useState(null)
 
   useEffect(() => {
     networkApi.topology()
       .then(data => setTopo(data))
       .catch(() => setTopo(null))
       .finally(() => setTopoLoading(false))
+  }, [])
+
+  useEffect(() => {
+    networkApi.cascadeSummary()
+      .then(data => setCascade(data))
+      .catch(() => setCascade(MOCK_CASCADE_SUMMARY))
   }, [])
 
   return (
@@ -616,6 +859,9 @@ export default function Entdecken() {
       ) : (
         <TopologieStats topo={topo} />
       )}
+
+      {/* Zahlungskaskade section */}
+      <ZahlungskaskadeCard summary={cascade ?? MOCK_CASCADE_SUMMARY} />
 
       {/* Section 1: Potenzielle neue Verbindungen */}
       <div style={{ marginBottom: 'var(--space-10)' }}>
