@@ -2,6 +2,27 @@
 """
 Seed the ClearFlow database from seeds/seed_data.json and seeds/invoices.json.
 Run inside the backend container:  python seeds/seed.py
+
+Auto-detects two formats:
+
+  Flat format (direct output of data/generate.js):
+    seed_data.json  — bare JSON array:
+      [{"id": "C001", "name": ..., "sector": ..., "subtype": ...,
+        "size": ..., "district": ..., "gls_member": bool, "founded": int}, ...]
+    invoices.json   — bare JSON array:
+      [{"from_company_id": "C001", "to_company_id": "C007",
+        "amount_cents": int, "due_date": "YYYY-MM-DD",
+        "line_items": [{"description": ..., "unit_price_cents": int, "quantity": int}]}, ...]
+    When the flat format is detected, C00X IDs are mapped to stable UUIDs:
+      C001 → f47ac10b-0001-4000-8000-000000000000
+
+  Nested format (pre-converted by data/convert_to_backend_seeds.py):
+    seed_data.json  — {"companies": [{"id": "<uuid>", "name": ..., "sector": ...,
+                        "attributes": {"subtype": ..., "district": ...,
+                        "gls_member": bool, "founded": int, "size": ...}}, ...]}
+    invoices.json   — {"invoices": [{"from_company_id": "<uuid>", ...,
+                        "line_items": [{"description": ..., "amount_cents": int,
+                        "quantity": int}]}, ...]}
 """
 import json
 import random
@@ -17,6 +38,112 @@ from app.core.database import engine, Base
 from app import models
 
 SEEDS_DIR = Path(__file__).parent
+
+
+def _cid_to_uuid(cid: str) -> str:
+    """Convert flat-format company ID 'C001' → 'f47ac10b-0001-4000-8000-000000000000'."""
+    n = int(cid[1:])
+    return f"f47ac10b-{n:04x}-4000-8000-000000000000"
+
+
+def _normalize_companies(raw) -> list:
+    """Accept both flat array and nested {companies:[...]} format. Returns list of dicts
+    with top-level: id, name, sector, city, gls_member, district, subtype, size, founded."""
+    if isinstance(raw, dict):
+        if "companies" not in raw:
+            raise ValueError(
+                "seed_data.json: expected a JSON array or an object with a 'companies' key. "
+                f"Found keys: {list(raw.keys())}"
+            )
+        entries = raw["companies"]
+        # Nested format: unpack attributes
+        result = []
+        for c in entries:
+            attrs = c.get("attributes", {})
+            result.append({
+                "id": c["id"],
+                "name": c["name"],
+                "sector": c.get("sector"),
+                "city": c.get("city", "Hamburg"),
+                "gls_member": attrs.get("gls_member", False),
+                "district": attrs.get("district"),
+                "subtype": attrs.get("subtype"),
+                "size": attrs.get("size"),
+                "founded": attrs.get("founded"),
+            })
+        return result
+    elif isinstance(raw, list):
+        # Flat format: convert C00X IDs to UUIDs, attributes are top-level
+        result = []
+        for c in raw:
+            cid = c["id"]
+            uid = _cid_to_uuid(cid) if cid.startswith("C") else cid
+            result.append({
+                "id": uid,
+                "name": c["name"],
+                "sector": c.get("sector"),
+                "city": c.get("city", "Hamburg"),
+                "gls_member": c.get("gls_member", False),
+                "district": c.get("district"),
+                "subtype": c.get("subtype"),
+                "size": c.get("size"),
+                "founded": c.get("founded"),
+            })
+        return result
+    else:
+        raise ValueError(
+            f"seed_data.json: unexpected top-level type '{type(raw).__name__}'. "
+            "Expected a JSON array (flat format) or object with 'companies' key (nested format)."
+        )
+
+
+def _normalize_invoices(raw) -> list:
+    """Accept both flat array and nested {invoices:[...]} format. Returns list of dicts
+    with: from_company_id, to_company_id, amount_cents, description, due_date, line_items.
+    Line items are normalized to use amount_cents (not unit_price_cents)."""
+    if isinstance(raw, dict):
+        if "invoices" not in raw:
+            raise ValueError(
+                "invoices.json: expected a JSON array or an object with an 'invoices' key. "
+                f"Found keys: {list(raw.keys())}"
+            )
+        return raw["invoices"]
+    elif isinstance(raw, list):
+        # Flat format: convert C00X IDs, normalise line_items unit_price_cents → amount_cents
+        result = []
+        for inv in raw:
+            from_id = inv["from_company_id"]
+            to_id = inv["to_company_id"]
+            if from_id.startswith("C"):
+                from_id = _cid_to_uuid(from_id)
+            if to_id.startswith("C"):
+                to_id = _cid_to_uuid(to_id)
+            line_items = []
+            for li in inv.get("line_items", []):
+                qty = li.get("quantity", 1)
+                if "amount_cents" in li:
+                    li_cents = li["amount_cents"]
+                else:
+                    li_cents = li.get("unit_price_cents", 0) * qty
+                line_items.append({
+                    "description": li["description"],
+                    "amount_cents": li_cents,
+                    "quantity": qty,
+                })
+            result.append({
+                "from_company_id": from_id,
+                "to_company_id": to_id,
+                "amount_cents": inv["amount_cents"],
+                "description": inv.get("description"),
+                "due_date": inv.get("due_date"),
+                "line_items": line_items,
+            })
+        return result
+    else:
+        raise ValueError(
+            f"invoices.json: unexpected top-level type '{type(raw).__name__}'. "
+            "Expected a JSON array (flat format) or object with 'invoices' key (nested format)."
+        )
 
 # Reproducible random seed for monthly history generation
 _RNG = random.Random(42)
@@ -43,7 +170,7 @@ _HISTORY_MONTHS = [
 ]
 
 
-def load_json(name: str) -> dict:
+def load_json(name: str):
     with open(SEEDS_DIR / name) as f:
         return json.load(f)
 
@@ -196,29 +323,28 @@ def seed(db: Session):
         print("Database already seeded — skipping.")
         return
 
-    seed_data = load_json("seed_data.json")
-    invoices_data = load_json("invoices.json")
+    companies = _normalize_companies(load_json("seed_data.json"))
+    invoices_list = _normalize_invoices(load_json("invoices.json"))
 
-    for c in seed_data["companies"]:
-        attrs = c.get("attributes", {})
+    for c in companies:
         db.add(models.Company(
             id=c["id"],
             name=c["name"],
             sector=c.get("sector"),
             city=c.get("city", "Hamburg"),
-            gls_member=attrs.get("gls_member", False),
-            district=attrs.get("district"),
-            subtype=attrs.get("subtype"),
-            size=attrs.get("size"),
-            founded=attrs.get("founded"),
+            gls_member=c.get("gls_member", False),
+            district=c.get("district"),
+            subtype=c.get("subtype"),
+            size=c.get("size"),
+            founded=c.get("founded"),
         ))
     db.flush()
-    print(f"  Inserted {len(seed_data['companies'])} companies.")
+    print(f"  Inserted {len(companies)} companies.")
 
-    company_ids = [c["id"] for c in seed_data["companies"]]
+    company_ids = [c["id"] for c in companies]
     seed_history(db, company_ids)
 
-    for inv in invoices_data["invoices"]:
+    for inv in invoices_list:
         invoice = models.Invoice(
             from_company_id=inv["from_company_id"],
             to_company_id=inv["to_company_id"],
@@ -237,7 +363,7 @@ def seed(db: Session):
                 quantity=li.get("quantity", 1),
             ))
     db.flush()
-    print(f"  Inserted {len(invoices_data['invoices'])} confirmed invoices for demo.")
+    print(f"  Inserted {len(invoices_list)} confirmed invoices for demo.")
 
     db.commit()
     print("Seed complete.")
