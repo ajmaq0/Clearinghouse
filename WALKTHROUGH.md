@@ -210,7 +210,7 @@ Detail-Panel erscheint:
 
 ## Was zu sagen:
 
-> „Was Sie hier sehen, ist ein laufendes System — keine Simulation. Die 50 Unternehmen, die 312 Rechnungen, die 42 % — das sind echte Daten aus dem GLS-Hamburger Netzwerk."
+> „Was Sie hier sehen, basiert auf synthetischen Daten, die das Handelsnetzwerk Ihrer Hamburger Kunden modellieren. Die Branchen, die Größenordnungen, die Verflechtungen — das entspricht dem, was wir über den Markt wissen. Im Pilotprojekt würden wir mit echten Rechnungsdaten arbeiten."
 >
 > „Meine Frage an Sie: **Welche Ihrer Kunden würden als nächste von diesem Netzwerk profitieren?** Und: Was müsste ClearFlow zeigen, damit Sie es als GLS-Standard-Tool sehen?"
 

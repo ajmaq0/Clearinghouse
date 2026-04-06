@@ -429,12 +429,64 @@ def cascade_summary(db: Session = Depends(get_db)):
 
     worst_chain = [company_names.get(cid, cid) for cid in chain_ids]
 
-    return {
+    # Compute avg_days_blocked from actual due_date values.
+    # For each mismatch company, find the gap between earliest outgoing
+    # due_date and latest incoming due_date.
+    avg_days_blocked = None
+    if mismatch_ids:
+        outgoing_invs = (
+            db.query(models.Invoice)
+            .filter(
+                models.Invoice.from_company_id.in_(mismatch_ids),
+                models.Invoice.status == "confirmed",
+                models.Invoice.due_date.isnot(None),
+            )
+            .all()
+        )
+        incoming_invs = (
+            db.query(models.Invoice)
+            .filter(
+                models.Invoice.to_company_id.in_(mismatch_ids),
+                models.Invoice.status == "confirmed",
+                models.Invoice.due_date.isnot(None),
+            )
+            .all()
+        )
+
+        # Group by company
+        earliest_outgoing: dict = {}
+        for inv in outgoing_invs:
+            cid = inv.from_company_id
+            if cid in mismatch_ids:
+                if cid not in earliest_outgoing or inv.due_date < earliest_outgoing[cid]:
+                    earliest_outgoing[cid] = inv.due_date
+
+        latest_incoming: dict = {}
+        for inv in incoming_invs:
+            cid = inv.to_company_id
+            if cid in mismatch_ids:
+                if cid not in latest_incoming or inv.due_date > latest_incoming[cid]:
+                    latest_incoming[cid] = inv.due_date
+
+        gaps = []
+        for cid in mismatch_ids:
+            if cid in earliest_outgoing and cid in latest_incoming:
+                gap = (latest_incoming[cid] - earliest_outgoing[cid]).days
+                if gap > 0:
+                    gaps.append(gap)
+
+        if gaps:
+            avg_days_blocked = round(sum(gaps) / len(gaps), 1)
+
+    result = {
         "companies_with_timing_mismatch": len(mismatch_ids),
         "total_blocked_cents": total_blocked,
         "worst_cascade_chain": worst_chain,
-        "avg_days_blocked": 12.0 if mismatch_ids else 0.0,
     }
+    if avg_days_blocked is not None:
+        result["avg_days_blocked"] = avg_days_blocked
+
+    return result
 
 
 @router.get("/cascade")

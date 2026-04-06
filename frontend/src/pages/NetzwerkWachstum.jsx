@@ -18,30 +18,30 @@ import { formatEur, formatPct } from '../utils/format.js'
 
 // ── Cluster colors (shared palette with NetworkExplorer) ──────────────────────
 const CLUSTER_COLORS = {
-  'Port & Logistik':       '#2c6e8a',
-  'Handwerk & Bau':        '#7a5c2c',
-  'Gastronomie & Handel':  '#4a7c59',
+  'Port & Logistik':           '#2c6e8a',
+  'Lebensmittel & Gastronomie': '#7a5c2c',
+  'Erneuerbare Energien':       '#4a7c59',
 }
 const CLUSTER_BG = {
-  'Port & Logistik':       'rgba(44,110,138,0.07)',
-  'Handwerk & Bau':        'rgba(122,92,44,0.07)',
-  'Gastronomie & Handel':  'rgba(74,124,89,0.07)',
+  'Port & Logistik':           'rgba(44,110,138,0.07)',
+  'Lebensmittel & Gastronomie': 'rgba(122,92,44,0.07)',
+  'Erneuerbare Energien':       'rgba(74,124,89,0.07)',
 }
 const DEFAULT_COLOR = '#6e6460'
 function clusterColor(c) { return CLUSTER_COLORS[c] || DEFAULT_COLOR }
 
 // ── Mock base network (same as NetworkExplorer) ───────────────────────────────
 const MOCK_BASE_NODES = [
-  { id: 'A1', name: 'HafenLogistik GmbH',    cluster: 'Port & Logistik',      vol: 980000 },
-  { id: 'A2', name: 'Nordsee Shipping AG',   cluster: 'Port & Logistik',      vol: 720000 },
-  { id: 'A3', name: 'Elbe Import Export',    cluster: 'Port & Logistik',      vol: 540000 },
-  { id: 'A4', name: 'Veddel Logistik KG',    cluster: 'Port & Logistik',      vol: 460000 },
-  { id: 'B1', name: 'Handwerk Hamburg GmbH', cluster: 'Handwerk & Bau',       vol: 620000 },
-  { id: 'B2', name: 'Altonaer Bau KG',       cluster: 'Handwerk & Bau',       vol: 430000 },
-  { id: 'B3', name: 'Wandsbek Technik GmbH', cluster: 'Handwerk & Bau',       vol: 380000 },
-  { id: 'C1', name: 'Bergedorfer Gastro AG', cluster: 'Gastronomie & Handel', vol: 810000 },
-  { id: 'C2', name: 'Eimsbüttel Catering',   cluster: 'Gastronomie & Handel', vol: 490000 },
-  { id: 'C3', name: 'Rahlstedt Frische KG',  cluster: 'Gastronomie & Handel', vol: 350000 },
+  { id: 'A1', name: 'HafenLogistik GmbH',    cluster: 'Port & Logistik',           vol: 980000 },
+  { id: 'A2', name: 'Nordsee Shipping AG',   cluster: 'Port & Logistik',           vol: 720000 },
+  { id: 'A3', name: 'Elbe Import Export',    cluster: 'Port & Logistik',           vol: 540000 },
+  { id: 'A4', name: 'Veddel Logistik KG',    cluster: 'Port & Logistik',           vol: 460000 },
+  { id: 'B1', name: 'Handwerk Hamburg GmbH', cluster: 'Lebensmittel & Gastronomie', vol: 620000 },
+  { id: 'B2', name: 'Altonaer Bau KG',       cluster: 'Lebensmittel & Gastronomie', vol: 430000 },
+  { id: 'B3', name: 'Wandsbek Technik GmbH', cluster: 'Lebensmittel & Gastronomie', vol: 380000 },
+  { id: 'C1', name: 'Bergedorfer Gastro AG', cluster: 'Erneuerbare Energien',       vol: 810000 },
+  { id: 'C2', name: 'Eimsbüttel Catering',   cluster: 'Erneuerbare Energien',       vol: 490000 },
+  { id: 'C3', name: 'Rahlstedt Frische KG',  cluster: 'Erneuerbare Energien',       vol: 350000 },
 ]
 const MOCK_BASE_EDGES = [
   { source: 'A1', target: 'A2', amt: 320000 },
@@ -61,33 +61,9 @@ const MOCK_BASE_EDGES = [
 const MOCK_CANDIDATES = [
   {
     id: 'cand1',
-    name: 'Geesthacht Energie GmbH',
-    sector: 'Erneuerbare',
-    district: 'Bergedorf',
-    cluster: 'Handwerk & Bau',
-    expected_connections: 3,
-    is_bridge: true,
-    savings_pct_delta: 1.9,
-    savings_cents_delta: 2_900_000,
-    connects_to: ['B1', 'A3'],
-  },
-  {
-    id: 'cand2',
-    name: 'Bio-Markt Altona eG',
-    sector: 'Lebensmittel',
-    district: 'Altona',
-    cluster: 'Gastronomie & Handel',
-    expected_connections: 2,
-    is_bridge: false,
-    savings_pct_delta: 0.9,
-    savings_cents_delta: 1_380_000,
-    connects_to: ['C1', 'C3'],
-  },
-  {
-    id: 'cand3',
-    name: 'Hamburger Recycling GmbH',
-    sector: 'Umwelt',
-    district: 'Mitte',
+    name: 'Elbe Kühllogistik GmbH',
+    sector: 'Spedition',
+    district: 'Wilhelmsburg',
     cluster: 'Port & Logistik',
     expected_connections: 4,
     is_bridge: true,
@@ -96,11 +72,23 @@ const MOCK_CANDIDATES = [
     connects_to: ['A1', 'A2', 'B1'],
   },
   {
-    id: 'cand4',
-    name: 'Wandse Metallbau KG',
-    sector: 'Handwerk',
-    district: 'Wandsbek',
-    cluster: 'Handwerk & Bau',
+    id: 'cand2',
+    name: 'HafenEnergie Installationen GmbH',
+    sector: 'Solar',
+    district: 'HafenCity',
+    cluster: 'Erneuerbare Energien',
+    expected_connections: 3,
+    is_bridge: true,
+    savings_pct_delta: 1.9,
+    savings_cents_delta: 2_900_000,
+    connects_to: ['C1', 'A3'],
+  },
+  {
+    id: 'cand3',
+    name: 'Betriebsgastronomie Nord GmbH',
+    sector: 'Gastronomie',
+    district: 'Neustadt',
+    cluster: 'Lebensmittel & Gastronomie',
     expected_connections: 3,
     is_bridge: true,
     savings_pct_delta: 1.7,
@@ -108,16 +96,28 @@ const MOCK_CANDIDATES = [
     connects_to: ['B1', 'B3', 'C1'],
   },
   {
+    id: 'cand4',
+    name: 'Nordsee Marine Versicherung GmbH',
+    sector: 'Versicherung',
+    district: 'HafenCity',
+    cluster: 'Port & Logistik',
+    expected_connections: 2,
+    is_bridge: false,
+    savings_pct_delta: 0.9,
+    savings_cents_delta: 1_380_000,
+    connects_to: ['A1', 'A4'],
+  },
+  {
     id: 'cand5',
-    name: 'Eppendorfer Gastro AG',
-    sector: 'Gastronomie',
-    district: 'Nord',
-    cluster: 'Gastronomie & Handel',
+    name: 'Hansepack Verpackungen GmbH',
+    sector: 'Verpackung',
+    district: 'Hammerbrook',
+    cluster: 'Lebensmittel & Gastronomie',
     expected_connections: 2,
     is_bridge: false,
     savings_pct_delta: 0.8,
     savings_cents_delta: 1_220_000,
-    connects_to: ['C1', 'C2'],
+    connects_to: ['B1', 'B2'],
   },
 ]
 
@@ -199,7 +199,7 @@ export default function NetzwerkWachstum() {
       svg.call(zoom.transform, d3.zoomIdentity.translate(width / 2, height / 2).scale(0.88))
 
       // Cluster angular positions
-      const clusters    = ['Port & Logistik', 'Handwerk & Bau', 'Gastronomie & Handel']
+      const clusters    = ['Port & Logistik', 'Lebensmittel & Gastronomie', 'Erneuerbare Energien']
       const clusterAngle = {}
       clusters.forEach((c, i) => { clusterAngle[c] = (2 * Math.PI * i) / clusters.length })
       const CR = Math.min(width, height) * 0.27

@@ -16,12 +16,9 @@ import './styles/network-explorer.css'
 const NAV_ITEMS = [
   { id: 'uebersicht', label: 'Übersicht',    icon: '◈' },
   { id: 'rechnungen', label: 'Rechnungen',   icon: '≡' },
-  { id: 'clearing',   label: 'Clearing',     icon: '⇄' },
-  { id: 'vergleich',  label: 'Vergleich',    icon: '→' },
-  { id: 'netzwerk',   label: 'Netzwerk',     icon: '⬡' },
-  { id: 'admin',      label: 'GLS Admin',    icon: '⊞' },
+  { id: 'vergleich',  label: 'Vergleich',    icon: '⇄' },
   { id: 'entdecken',  label: 'Entdecken',    icon: '⊙' },
-  { id: 'wachstum',   label: 'Wachstum',     icon: '⊕' },
+  { id: 'admin',      label: 'GLS Admin',    icon: '⊞' },
 ]
 
 const PAGES = {
