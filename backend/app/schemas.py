@@ -202,6 +202,11 @@ class TopologyNode(BaseModel):
     total_invoice_volume_cents: int = 0
     net_position_cents: int = 0
     component_id: int = 0
+    gls_member: Optional[bool] = None
+    district: Optional[str] = None
+    subtype: Optional[str] = None
+    size: Optional[str] = None
+    founded: Optional[int] = None
 
 
 class TopologyEdge(BaseModel):

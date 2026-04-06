@@ -141,6 +141,11 @@ def network_topology(db: Session = Depends(get_db)):
             total_invoice_volume_cents=volume_map.get(c.id, 0),
             net_position_cents=net_pos_map.get(c.id, 0),
             component_id=comp_map.get(c.id, 0),
+            gls_member=c.gls_member,
+            district=c.district,
+            subtype=c.subtype,
+            size=c.size,
+            founded=c.founded,
         ))
 
     edges = [

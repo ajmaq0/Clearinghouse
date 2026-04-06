@@ -30,11 +30,17 @@ def seed(db: Session):
     invoices_data = load_json("invoices.json")
 
     for c in seed_data["companies"]:
+        attrs = c.get("attributes", {})
         db.add(models.Company(
             id=c["id"],
             name=c["name"],
             sector=c.get("sector"),
             city=c.get("city", "Hamburg"),
+            gls_member=attrs.get("gls_member", False),
+            district=attrs.get("district"),
+            subtype=attrs.get("subtype"),
+            size=attrs.get("size"),
+            founded=attrs.get("founded"),
         ))
     db.flush()
     print(f"  Inserted {len(seed_data['companies'])} companies.")

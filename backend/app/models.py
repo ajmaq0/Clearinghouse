@@ -1,7 +1,7 @@
 import uuid
 from datetime import date, datetime
 from sqlalchemy import (
-    Column, Date, DateTime, Enum, ForeignKey,
+    Boolean, Column, Date, DateTime, Enum, ForeignKey,
     Index, Integer, String, Text
 )
 from sqlalchemy.dialects.postgresql import UUID
@@ -21,6 +21,11 @@ class Company(Base):
     name = Column(String(255), nullable=False, unique=True)
     sector = Column(String(100))
     city = Column(String(100), default="Hamburg")
+    gls_member = Column(Boolean, default=False)
+    district = Column(String(100))
+    subtype = Column(String(100))
+    size = Column(String(50))
+    founded = Column(Integer)
     created_at = Column(DateTime(timezone=True), server_default=func.now())
 
     invoices_sent = relationship("Invoice", foreign_keys="Invoice.from_company_id", back_populates="from_company")
