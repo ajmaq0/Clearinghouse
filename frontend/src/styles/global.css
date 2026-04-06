@@ -19,6 +19,15 @@
   --color-accent:      #c97a2f;     /* warm amber */
   --color-accent-lt:   #fdf3e7;
 
+  /* Role-specific header/accent — bank defaults */
+  --header-bg:         #2d5237;     /* dark GLS green */
+  --header-text:       #ffffff;
+  --header-muted:      rgba(255,255,255,0.65);
+  --header-active-bg:  rgba(255,255,255,0.18);
+  --header-hover-bg:   rgba(255,255,255,0.10);
+  --accent-color:      #4a7c59;
+  --logo-color:        #ffffff;
+
   /* Semantic */
   --color-success:     #4a7c59;
   --color-warning:     #c97a2f;
@@ -63,6 +72,23 @@
   --shadow-sm:  0 1px 3px rgba(0,0,0,0.07), 0 1px 2px rgba(0,0,0,0.05);
   --shadow-md:  0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.05);
   --shadow-lg:  0 8px 24px rgba(0,0,0,0.10), 0 4px 8px rgba(0,0,0,0.06);
+}
+
+/* SME role overrides */
+body.role-sme {
+  --header-bg:        #3d3830;     /* warm charcoal */
+  --header-text:      #ffffff;
+  --header-muted:     rgba(255,255,255,0.60);
+  --header-active-bg: rgba(212,165,116,0.25);
+  --header-hover-bg:  rgba(255,255,255,0.08);
+  --accent-color:     #D4A574;
+  --logo-color:       #D4A574;
+  --color-primary:    #8B9E6B;
+  --color-primary-dk: #6e7e54;
+  --color-primary-lt: #f2f5ec;
+  --color-accent:     #C4956A;
+  --color-accent-lt:  #fdf5ee;
+  font-family: 'DM Sans', system-ui, sans-serif;
 }
 
 *, *::before, *::after {

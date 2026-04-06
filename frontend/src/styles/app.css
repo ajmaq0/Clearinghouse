@@ -13,14 +13,16 @@
 .app-header {
   display: flex;
   align-items: center;
-  gap: var(--space-6);
-  padding: var(--space-4) var(--space-8);
-  background: var(--color-surface);
-  border-bottom: 2px solid var(--color-border);
-  box-shadow: var(--shadow-sm);
+  gap: var(--space-5);
+  padding: 0 var(--space-8);
+  background: var(--header-bg);
+  border-bottom: none;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.18);
   position: sticky;
   top: 0;
   z-index: 100;
+  height: 64px;
+  transition: background 0.25s;
 }
 
 .app-header-brand {
@@ -31,30 +33,31 @@
 }
 
 .app-logo {
-  width: 40px;
-  height: 40px;
-  background: var(--color-primary);
-  color: white;
+  width: 36px;
+  height: 36px;
+  background: rgba(255,255,255,0.15);
+  color: var(--logo-color, white);
   border-radius: var(--radius-md);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1rem;
+  font-size: 0.875rem;
   font-weight: 800;
   letter-spacing: -0.5px;
   flex-shrink: 0;
+  border: 1px solid rgba(255,255,255,0.20);
 }
 
 .app-title {
-  font-size: var(--font-size-lg);
+  font-size: var(--font-size-md);
   font-weight: 700;
-  color: var(--color-text);
+  color: var(--header-text);
   line-height: 1.2;
 }
 
 .app-subtitle {
   font-size: var(--font-size-xs);
-  color: var(--color-text-muted);
+  color: var(--header-muted);
   display: none;
 }
 
@@ -62,6 +65,106 @@
   .app-subtitle { display: inline; }
 }
 
+/* --- Role toggle (segmented pill) --------------------- */
+.role-toggle {
+  display: flex;
+  align-items: center;
+  background: rgba(0,0,0,0.25);
+  border-radius: 99px;
+  padding: 3px;
+  gap: 0;
+  flex-shrink: 0;
+}
+
+.role-toggle-divider {
+  width: 1px;
+  height: 16px;
+  background: rgba(255,255,255,0.15);
+}
+
+.role-toggle-sme-wrap {
+  position: relative;
+}
+
+.role-toggle-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 5px 14px;
+  border: none;
+  background: transparent;
+  border-radius: 99px;
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  color: var(--header-muted);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+  white-space: nowrap;
+}
+
+.role-toggle-btn:hover {
+  color: var(--header-text);
+  background: var(--header-hover-bg);
+}
+
+.role-toggle-btn--active {
+  background: var(--header-active-bg);
+  color: var(--header-text);
+}
+
+.role-toggle-caret {
+  font-size: 0.7em;
+  margin-left: 2px;
+}
+
+/* --- Company dropdown --------------------------------- */
+.company-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  min-width: 240px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  z-index: 200;
+  overflow: hidden;
+}
+
+.company-dropdown-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  padding: var(--space-3) var(--space-5);
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.12s;
+}
+
+.company-dropdown-item:hover {
+  background: var(--color-surface-alt);
+}
+
+.company-dropdown-item--active {
+  background: var(--color-primary-lt);
+}
+
+.company-dropdown-name {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.company-dropdown-sector {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  margin-top: 1px;
+}
+
+/* --- Nav ---------------------------------------------- */
 .app-nav {
   display: flex;
   gap: var(--space-1);
@@ -73,30 +176,82 @@
   display: flex;
   align-items: center;
   gap: var(--space-2);
-  padding: var(--space-2) var(--space-5);
+  padding: var(--space-2) var(--space-4);
   border: none;
   background: transparent;
   border-radius: var(--radius-md);
   font-size: var(--font-size-sm);
   font-weight: 500;
-  color: var(--color-text-muted);
+  color: var(--header-muted);
   transition: background 0.15s, color 0.15s;
 }
 
 .nav-btn:hover {
-  background: var(--color-surface-alt);
-  color: var(--color-text);
+  background: var(--header-hover-bg);
+  color: var(--header-text);
 }
 
 .nav-btn--active {
-  background: var(--color-primary-lt);
-  color: var(--color-primary-dk);
+  background: var(--header-active-bg);
+  color: var(--header-text);
   font-weight: 700;
 }
 
 .nav-icon {
   font-size: 1em;
   line-height: 1;
+}
+
+/* --- Identity badge ----------------------------------- */
+.app-identity-badge {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.identity-bank {
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  color: var(--header-muted);
+}
+
+.identity-sme {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.identity-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--accent-color, #D4A574);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.identity-sme-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.identity-sme-name {
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  color: var(--header-text);
+  line-height: 1.2;
+}
+
+.identity-sme-sub {
+  font-size: 0.7rem;
+  color: var(--header-muted);
+  line-height: 1.2;
 }
 
 .app-header-badge {
