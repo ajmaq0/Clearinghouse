@@ -489,6 +489,230 @@ def cascade_summary(db: Session = Depends(get_db)):
     return result
 
 
+# ── Matching hints ────────────────────────────────────────────────────────────
+
+# German/English stop-words to skip during keyword extraction
+_STOP_WORDS = {
+    "und", "oder", "für", "von", "der", "die", "das", "des", "dem", "den",
+    "ein", "eine", "einer", "eines", "einem", "einen",
+    "an", "auf", "in", "zu", "mit", "bei", "nach", "aus", "über", "unter",
+    "the", "and", "for", "of", "a", "an", "to", "in", "at", "by", "from",
+    "per", "je", "nr", "nr.", "st.", "stk", "stück",
+}
+
+
+def _keywords(text: str) -> set:
+    """Extract lowercase alphabetic tokens (≥4 chars) from a description."""
+    if not text:
+        return set()
+    tokens = set()
+    for tok in text.lower().split():
+        tok = tok.strip(".,;:()[]\"'")
+        if len(tok) >= 4 and tok.isalpha() and tok not in _STOP_WORDS:
+            tokens.add(tok)
+    return tokens
+
+
+def _similarity(kw_a: set, kw_b: set) -> float:
+    """Jaccard similarity between two keyword sets."""
+    if not kw_a or not kw_b:
+        return 0.0
+    return len(kw_a & kw_b) / len(kw_a | kw_b)
+
+
+# ── Demo mock data ─────────────────────────────────────────────────────────────
+
+_DEMO_HINTS = {
+    "supplier_matches": [
+        {
+            "need_description": "Weizenmehl Type 550 (25 kg Säcke)",
+            "supplier_name": "Norddeutsche Mühle GmbH",
+            "supplier_id": "demo-supplier-1",
+            "similarity": 0.82,
+        },
+        {
+            "need_description": "Mehl und Getreideverarbeitung",
+            "supplier_name": "HansaMühl AG",
+            "supplier_id": "demo-supplier-2",
+            "similarity": 0.74,
+        },
+        {
+            "need_description": "Transportlogistik & Mehllieferung",
+            "supplier_name": "Elbe Logistik KG",
+            "supplier_id": "demo-supplier-3",
+            "similarity": 0.61,
+        },
+    ],
+    "buyer_matches": [
+        {
+            "supply_description": "Handwerkliche Backwaren und Brötchen",
+            "buyer_name": "Kantine Hafen Hamburg GmbH",
+            "buyer_id": "demo-buyer-1",
+            "similarity": 0.77,
+        },
+        {
+            "supply_description": "Brot und Gebäck — Tagesproduktion",
+            "buyer_name": "HafenCafé Betrieb UG",
+            "buyer_id": "demo-buyer-2",
+            "similarity": 0.69,
+        },
+    ],
+    "structural_opportunities": [
+        {
+            "description": "Gemeinsamer Mehlbezug mit 3 weiteren Bäckereien möglich",
+            "estimated_volume_cents": 480000,
+        },
+        {
+            "description": "Sammellieferung Transport → 4 Betriebe auf gleicher Route",
+            "estimated_volume_cents": 210000,
+        },
+    ],
+}
+
+
+@router.get("/matching-hints")
+def matching_hints(
+    company_id: str,
+    demo: bool = False,
+    db: Session = Depends(get_db),
+):
+    """
+    Return supplier matches, buyer matches, and structural opportunities for a company.
+
+    Keyword-overlap matching on invoice line_item descriptions across all companies.
+    Supports ?demo=true for a mock response (useful when DB has sparse data).
+    """
+    if demo:
+        return _DEMO_HINTS
+
+    company = db.get(models.Company, company_id)
+    if not company:
+        raise HTTPException(status_code=404, detail="Company not found")
+
+    # Collect all invoices with their line items (confirmed + pending)
+    all_invoices = (
+        db.query(models.Invoice)
+        .filter(models.Invoice.status.in_(["confirmed", "pending"]))
+        .all()
+    )
+
+    # Build per-company outgoing and incoming description sets
+    # outgoing[cid] = list of (description, amount_cents) for invoices sent BY that company
+    # incoming[cid] = list of (description, amount_cents) for invoices received BY that company
+    outgoing: dict = defaultdict(list)
+    incoming: dict = defaultdict(list)
+
+    for inv in all_invoices:
+        descs = []
+        if inv.line_items:
+            for li in inv.line_items:
+                if li.description:
+                    descs.append((li.description, li.amount_cents or 0))
+        elif inv.description:
+            descs.append((inv.description, inv.amount_cents))
+
+        for desc, amt in descs:
+            outgoing[inv.from_company_id].append((desc, amt))
+            incoming[inv.to_company_id].append((desc, amt))
+
+    # Target company's needs = what it pays FOR (outgoing descriptions)
+    # Target company's supply = what it sells (incoming descriptions from its payers' perspective)
+    my_outgoing = outgoing.get(company_id, [])
+    my_incoming = incoming.get(company_id, [])
+
+    my_out_kw = {desc: _keywords(desc) for desc, _ in my_outgoing}
+    my_in_kw = {desc: _keywords(desc) for desc, _ in my_incoming}
+
+    # --- Supplier matches ---
+    # Find other companies whose OUTGOING descriptions overlap with MY outgoing descriptions
+    # (i.e., they supply something I also need)
+    supplier_matches = []
+    seen_suppliers: set = set()
+
+    all_other_companies = set(outgoing.keys()) - {company_id}
+    for other_cid in all_other_companies:
+        best_desc = None
+        best_sim = 0.0
+        for other_desc, _ in outgoing[other_cid]:
+            other_kw = _keywords(other_desc)
+            for my_desc, my_kw in my_out_kw.items():
+                sim = _similarity(my_kw, other_kw)
+                if sim > best_sim:
+                    best_sim = sim
+                    best_desc = my_desc
+
+        if best_sim >= 0.2 and other_cid not in seen_suppliers:
+            seen_suppliers.add(other_cid)
+            other_company = db.get(models.Company, other_cid)
+            supplier_matches.append({
+                "need_description": best_desc,
+                "supplier_name": other_company.name if other_company else other_cid,
+                "supplier_id": other_cid,
+                "similarity": round(best_sim, 2),
+            })
+
+    supplier_matches.sort(key=lambda x: x["similarity"], reverse=True)
+
+    # --- Buyer matches ---
+    # Find companies whose INCOMING descriptions overlap with MY incoming descriptions
+    # (i.e., they buy something I also sell)
+    buyer_matches = []
+    seen_buyers: set = set()
+
+    all_other_receivers = set(incoming.keys()) - {company_id}
+    for other_cid in all_other_receivers:
+        best_desc = None
+        best_sim = 0.0
+        for other_desc, _ in incoming[other_cid]:
+            other_kw = _keywords(other_desc)
+            for my_desc, my_kw in my_in_kw.items():
+                sim = _similarity(my_kw, other_kw)
+                if sim > best_sim:
+                    best_sim = sim
+                    best_desc = my_desc
+
+        if best_sim >= 0.2 and other_cid not in seen_buyers:
+            seen_buyers.add(other_cid)
+            other_company = db.get(models.Company, other_cid)
+            buyer_matches.append({
+                "supply_description": best_desc,
+                "buyer_name": other_company.name if other_company else other_cid,
+                "buyer_id": other_cid,
+                "similarity": round(best_sim, 2),
+            })
+
+    buyer_matches.sort(key=lambda x: x["similarity"], reverse=True)
+
+    # --- Structural opportunities ---
+    # Find keyword clusters across all companies' descriptions; flag high-volume ones
+    keyword_volumes: dict = defaultdict(int)
+    keyword_companies: dict = defaultdict(set)
+
+    for cid, descs in outgoing.items():
+        for desc, amt in descs:
+            for kw in _keywords(desc):
+                keyword_volumes[kw] += amt
+                keyword_companies[kw].add(cid)
+
+    structural_opportunities = []
+    for kw, vol in sorted(keyword_volumes.items(), key=lambda x: -x[1]):
+        companies_involved = keyword_companies[kw]
+        n = len(companies_involved)
+        if n >= 2 and company_id in companies_involved and vol > 0:
+            structural_opportunities.append({
+                "description": f"Gemeinschaftspotenzial '{kw}': {n} Unternehmen, mögliche Bündelung",
+                "estimated_volume_cents": vol,
+            })
+        if len(structural_opportunities) >= 5:
+            break
+
+    return {
+        "supplier_matches": supplier_matches[:10],
+        "buyer_matches": buyer_matches[:10],
+        "structural_opportunities": structural_opportunities,
+    }
+
+
 @router.get("/cascade")
 def company_cascade(company_id: str, db: Session = Depends(get_db)):
     """
