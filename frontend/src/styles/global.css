@@ -74,6 +74,11 @@
   --shadow-lg:  0 8px 24px rgba(0,0,0,0.10), 0 4px 8px rgba(0,0,0,0.06);
 }
 
+/* Role switch transition */
+body {
+  transition: background-color 0.18s, color 0.18s;
+}
+
 /* SME role overrides */
 body.role-sme {
   --header-bg:        #3d3830;     /* warm charcoal */

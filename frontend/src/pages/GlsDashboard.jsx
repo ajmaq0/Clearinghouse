@@ -52,7 +52,7 @@ function KpiCard({ label, value, sub, color }) {
  * nodes: [{ id, name, throughput_cents, net_cents, gls_member?, district?, subtype? }]
  * edges: [{ source, target, net_cents, gross }]  (gross=true means dashed/gross flow)
  */
-function TradeNetworkGraph({ nodes, edges, height = 480, highlightGls = false }) {
+function TradeNetworkGraph({ nodes, edges, height = 480, highlightGls = false, onNodeClick }) {
   const svgRef    = useRef(null)
   const [tooltip, setTooltip] = useState(null)   // { x, y, node }
 
@@ -166,7 +166,7 @@ function TradeNetworkGraph({ nodes, edges, height = 480, highlightGls = false })
       .attr('opacity', d => highlightGls && !d.gls_member ? 0.4 : 1)
       .text(d => d.name.length > 22 ? d.name.slice(0, 20) + '…' : d.name)
 
-    // Tooltip on hover
+    // Tooltip on hover + drill-in click
     nodeG
       .on('mouseenter', (e, d) => {
         const rect = svgRef.current.getBoundingClientRect()
@@ -177,6 +177,9 @@ function TradeNetworkGraph({ nodes, edges, height = 480, highlightGls = false })
         setTooltip({ x: e.clientX - rect.left + 12, y: e.clientY - rect.top - 10, node: d })
       })
       .on('mouseleave', () => setTooltip(null))
+      .on('click', (e, d) => {
+        if (onNodeClick) { e.stopPropagation(); onNodeClick(d) }
+      })
 
     // Tick
     sim.on('tick', () => {
@@ -187,7 +190,7 @@ function TradeNetworkGraph({ nodes, edges, height = 480, highlightGls = false })
     })
 
     return () => sim.stop()
-  }, [nodes, edges, height, highlightGls])
+  }, [nodes, edges, height, highlightGls, onNodeClick])
 
   return (
     <div style={{ position: 'relative' }}>
@@ -233,6 +236,11 @@ function TradeNetworkGraph({ nodes, edges, height = 480, highlightGls = false })
           <div style={{ color: 'var(--color-text-muted)', fontSize: 'var(--font-size-xs)' }}>
             Durchsatz: {formatEur(tooltip.node.throughput_cents)}
           </div>
+          {onNodeClick && (
+            <div style={{ marginTop: 6, fontSize: 'var(--font-size-xs)', color: 'var(--color-primary)', fontWeight: 600 }}>
+              ↗ Klicken für Unternehmensansicht
+            </div>
+          )}
         </div>
       )}
     </div>
@@ -241,7 +249,7 @@ function TradeNetworkGraph({ nodes, edges, height = 480, highlightGls = false })
 
 // ── GlsDashboard ─────────────────────────────────────────────────────────────
 
-export default function GlsDashboard() {
+export default function GlsDashboard({ onDrillIn }) {
   const [running,      setRunning]      = useState(false)
   const [runMsg,       setRunMsg]       = useState(null)
   const [refreshKey,   setRefreshKey]   = useState(0)
@@ -614,7 +622,13 @@ export default function GlsDashboard() {
               <span className="loading-spinner" />
             </div>
           ) : (
-            <TradeNetworkGraph nodes={graphNodes} edges={graphEdges} height={460} highlightGls={highlightGls} />
+            <TradeNetworkGraph
+              nodes={graphNodes}
+              edges={graphEdges}
+              height={460}
+              highlightGls={highlightGls}
+              onNodeClick={onDrillIn ? (node) => onDrillIn(node.id) : undefined}
+            />
           )}
           <div style={{
             padding: 'var(--space-3) var(--space-6)',

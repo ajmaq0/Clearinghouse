@@ -92,6 +92,52 @@ URL: `clearflow.poeticte.ch` · Fallback Demo-Modus: URL + `?demo=true`
 
 ---
 
+<div style="page-break-after: always;"></div>
+
+---
+
+# ACT 2b — Die Bäckerei-Perspektive · 3 Minuten
+
+**Seite:** Klick auf **⊞ GLS Admin** (fünfter Tab) — Netzwerkgraph sichtbar
+
+## Was zu sagen:
+
+> „Die bisherige Ansicht war die der GLS Bank — das Gesamtnetzwerk aus Bankperspektive. Jetzt machen wir etwas, das ich sehr gerne zeige: **Wir wechseln die Perspektive.**"
+
+**Demo-Moment: Auf den Knoten „Alstermühle" im Netzwerkgraph klicken**
+
+> „Ich klicke hier auf Alstermühle Bäckerei GmbH — einen GLS-Kunden im Lebensmittelsektor."
+
+*→ Die Oberfläche wechselt in den SME-Modus: Header wird warm-dunkel, Avatar erscheint rechts oben, Navigation wechselt auf 4 Tabs.*
+
+> „Sehen Sie? Die gesamte Oberfläche passt sich an. Wir sehen jetzt dieselbe Plattform — aber aus der Sicht der Bäckerei."
+
+**Zeigen: Übersicht-Tab (SME)**
+
+> „Alstermühle sieht ihre **eigenen** Rechnungen, ihre **eigene** Clearing-Ersparnis, ihre direkten Handelspartner."
+
+**Zeigen: KPI-Kacheln**
+
+> „Sie hat derzeit **2 offene Rechnungen**, **1.500 € Nettoverpflichtung** nach Clearing — und eine Einsparung von **20 %** gegenüber der Brutto-Zahlung."
+
+**Zeigen: Clearing-Tab (SME)**
+
+> „Im Clearing-Tab sieht die Bäckerei genau, wie ihre Position im Netzwerk aussieht. **Kein Bankkonto, kein Telefon** — die Transparenz ist direkt in der Plattform."
+
+**Zurückwechseln:** Klick auf „⊞ GLS-Ansicht" im Segmentpicker (links oben im Header)
+
+> „Und mit einem Klick kommen wir zurück — die Bank behält die Kontrolle über das gesamte Netzwerk."
+
+---
+
+**⚠ Fallback:** Falls der Klick auf den Knoten nicht reagiert → manuell auf „◈ Unternehmen" im Header-Picker klicken und Alstermühle aus dem Dropdown wählen. Gleicher Effekt.
+
+---
+
+<div style="page-break-after: always;"></div>
+
+---
+
 # ACT 3 — Das Clearing · 7 Minuten
 
 **Seite:** Klick auf **→ Vergleich** (vierter Tab — „Netting-Vergleich")

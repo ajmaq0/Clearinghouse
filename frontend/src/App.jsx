@@ -85,9 +85,17 @@ function AppShell() {
 
   const activeCompany = MOCK_COMPANIES.find(c => c.id === companyId) || DEFAULT_SME_COMPANY
 
+  function handleDrillIn(companyId) {
+    setRole('sme')
+    setCompanyId(companyId)
+    setPage('sme-uebersicht')
+  }
+
   let PageComponent
+  let pageProps = {}
   if (role === 'bank') {
     PageComponent = GLS_PAGES[page] || GLS_PAGES['uebersicht']
+    if (page === 'admin') pageProps = { onDrillIn: handleDrillIn }
   } else {
     PageComponent = SME_PAGES[page] || SME_PAGES['sme-uebersicht']
   }
@@ -97,7 +105,9 @@ function AppShell() {
       <header className="app-header">
         {/* Brand / Logo */}
         <div className="app-header-brand">
-          <span className="app-logo">CF</span>
+          <span className="app-logo" style={{ color: role === 'sme' ? 'var(--accent-color)' : 'var(--logo-color)' }}>
+            {role === 'sme' ? 'C' : 'CF'}
+          </span>
           <span className="app-title">ClearFlow</span>
         </div>
 
@@ -172,7 +182,7 @@ function AppShell() {
       </header>
 
       <main className="app-main">
-        <PageComponent />
+        <PageComponent {...pageProps} />
       </main>
     </div>
   )
