@@ -18,10 +18,6 @@ depends_on: Union[str, Sequence[str], None] = None
 
 
 def upgrade() -> None:
-    # Enums
-    op.execute("CREATE TYPE invoice_status AS ENUM ('pending', 'confirmed', 'cleared')")
-    op.execute("CREATE TYPE clearing_cycle_status AS ENUM ('open', 'running', 'completed')")
-
     # companies
     op.create_table(
         "companies",
@@ -38,7 +34,7 @@ def upgrade() -> None:
         sa.Column("id", UUID(as_uuid=False), primary_key=True),
         sa.Column(
             "status",
-            sa.Enum("open", "running", "completed", name="clearing_cycle_status", create_type=False),
+            sa.Enum("open", "running", "completed", name="clearing_cycle_status"),
             nullable=False,
             server_default="open",
         ),
@@ -57,7 +53,7 @@ def upgrade() -> None:
         sa.Column("due_date", sa.Date),
         sa.Column(
             "status",
-            sa.Enum("pending", "confirmed", "cleared", name="invoice_status", create_type=False),
+            sa.Enum("pending", "confirmed", "cleared", name="invoice_status"),
             nullable=False,
             server_default="pending",
         ),
