@@ -57,6 +57,25 @@ def run_multilateral_clearing(db: Session = Depends(get_db)):
     )
 
 
+@router.post("/optimal", response_model=schemas.OptimalNettingResult, status_code=200)
+def run_optimal_clearing(db: Session = Depends(get_db)):
+    """
+    Compute LP-optimal netting and compare against bilateral + Johnson's.
+    Returns all three results side by side for the comparison visualization.
+    Does not persist state or change invoice statuses.
+    """
+    from app.netting_lp import run_optimal
+    confirmed_count = (
+        db.query(models.Invoice)
+        .filter(models.Invoice.status == "confirmed")
+        .count()
+    )
+    if confirmed_count == 0:
+        raise HTTPException(status_code=422, detail="No confirmed invoices to net")
+
+    return run_optimal(db)
+
+
 @router.get("/cycles", response_model=List[schemas.ClearingCycleOut])
 def list_cycles(db: Session = Depends(get_db)):
     return (

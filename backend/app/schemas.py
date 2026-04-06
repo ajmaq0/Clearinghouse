@@ -220,3 +220,18 @@ class TopologyOut(BaseModel):
     edges: List[TopologyEdge]
     gaps: List[ClusterGap]
     clusters: List[str]
+
+
+# ── LP-Optimal Netting ─────────────────────────────────────────────────────
+
+class OptimalNettingResult(BaseModel):
+    gross_cents: int
+    bilateral_cents: int
+    johnson_cents: int
+    optimal_cents: int
+    optimal_savings_cents: int
+    optimal_savings_pct: float
+    improvement_over_johnson_cents: int
+    improvement_over_johnson_pct: float
+    cleared_edges: list
+    lp_status: str
