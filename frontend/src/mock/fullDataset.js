@@ -348,6 +348,23 @@ export const MOCK_POTENTIAL_CONNECTIONS = [
   },
 ]
 
+// ── Clearing history timeline ─────────────────────────────────────────────────
+// 8 monthly cycles, savings_pct in 28–47 % range with upward trend
+
+export const MOCK_CLEARING_HISTORY = {
+  total_cycles: 8,
+  cycles: [
+    { id: 'cyc-h8', completed_at: '2026-04-05T08:00:00Z', netting_type: 'optimal',   gross_cents: 84_230_000, net_cents: 48_853_400, savings_pct: 42.0, invoice_count: 312, company_count: 50 },
+    { id: 'cyc-h7', completed_at: '2026-03-06T08:00:00Z', netting_type: 'optimal',   gross_cents: 81_200_000, net_cents: 47_502_000, savings_pct: 41.5, invoice_count: 271, company_count: 44 },
+    { id: 'cyc-h6', completed_at: '2026-02-06T08:00:00Z', netting_type: 'bilateral', gross_cents: 78_900_000, net_cents: 48_707_100, savings_pct: 38.3, invoice_count: 258, company_count: 42 },
+    { id: 'cyc-h5', completed_at: '2026-01-09T08:00:00Z', netting_type: 'bilateral', gross_cents: 80_400_000, net_cents: 51_456_000, savings_pct: 36.0, invoice_count: 269, company_count: 43 },
+    { id: 'cyc-h4', completed_at: '2025-12-05T08:00:00Z', netting_type: 'bilateral', gross_cents: 83_600_000, net_cents: 55_176_000, savings_pct: 34.0, invoice_count: 278, company_count: 44 },
+    { id: 'cyc-h3', completed_at: '2025-11-07T08:00:00Z', netting_type: 'bilateral', gross_cents: 77_500_000, net_cents: 52_772_500, savings_pct: 31.9, invoice_count: 255, company_count: 40 },
+    { id: 'cyc-h2', completed_at: '2025-10-03T08:00:00Z', netting_type: 'bilateral', gross_cents: 79_100_000, net_cents: 55_370_000, savings_pct: 30.0, invoice_count: 261, company_count: 41 },
+    { id: 'cyc-h1', completed_at: '2025-09-05T08:00:00Z', netting_type: 'bilateral', gross_cents: 74_200_000, net_cents: 53_424_000, savings_pct: 28.0, invoice_count: 247, company_count: 38 },
+  ],
+}
+
 // ── Funding gaps (Entdecken) ──────────────────────────────────────────────────
 
 export const MOCK_FUNDING_GAPS = [

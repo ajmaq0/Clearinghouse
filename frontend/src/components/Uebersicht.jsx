@@ -6,6 +6,7 @@ import { companiesApi } from '../api/companies.js'
 import { invoicesApi } from '../api/invoices.js'
 import { MOCK_NETWORK_STATS, MOCK_COMPANIES, MOCK_INVOICES } from '../mock/data.js'
 import { formatEur, formatPct, formatHours } from '../utils/format.js'
+import ClearingVerlauf from './ClearingVerlauf.jsx'
 
 function StatCard({ label, value, sub, accent }) {
   return (
@@ -283,6 +284,9 @@ export default function Uebersicht() {
           {companies?.length > 0 && invoices?.length > 0 && (
             <MiniNetworkGraph companies={companies} invoices={invoices} />
           )}
+
+          {/* Clearing history chart */}
+          <ClearingVerlauf />
         </>
       )}
     </div>

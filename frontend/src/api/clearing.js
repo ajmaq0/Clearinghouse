@@ -16,4 +16,6 @@ export const clearingApi = {
   optimal:      ()   => api.post('/clearing/optimal', {}),
   // Returns { rows: CompanyComparisonRow[], total_companies, lp_status }
   companyComparison: () => api.get('/clearing/company-comparison'),
+  // Returns { cycles: ClearingHistoryEntry[], total_cycles }
+  history: () => api.get('/clearing/history'),
 }
