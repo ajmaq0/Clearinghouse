@@ -16,25 +16,8 @@ import { networkApi } from '../api/network.js'
 import { clearingApi } from '../api/clearing.js'
 import { companiesApi } from '../api/companies.js'
 import { invoicesApi } from '../api/invoices.js'
-import { MOCK_COMPANIES, MOCK_INVOICES, MOCK_CLEARING_RESULT } from '../mock/data.js'
+import { MOCK_COMPANIES, MOCK_INVOICES, MOCK_CLEARING_RESULT, MOCK_ADMIN_DASHBOARD } from '../mock/fullDataset.js'
 import { formatEur, formatPct } from '../utils/format.js'
-
-// ── Mock fallback for admin dashboard ────────────────────────────────────────
-
-const MOCK_ADMIN_DASHBOARD = {
-  latest_cycle: null,
-  total_gross_cents: 84_230_000,
-  total_net_cents:   54_749_500,
-  savings_bps:       3500,
-  savings_percent:   35.0,
-  company_positions: [
-    { company_id: 'c1', company_name: 'Hamburger Hafen GmbH',       receivable_cents: 1_240_000, payable_cents:   870_000, net_cents:   370_000 },
-    { company_id: 'c2', company_name: 'Elbe Spedition KG',           receivable_cents:         0, payable_cents: 1_240_000, net_cents: -1_240_000 },
-    { company_id: 'c4', company_name: 'Alstermühle Bäckerei GmbH',  receivable_cents:         0, payable_cents:   150_000, net_cents:  -150_000 },
-    { company_id: 'c5', company_name: 'Biokontor Hamburg eG',        receivable_cents:   150_000, payable_cents:         0, net_cents:   150_000 },
-    { company_id: 'c7', company_name: 'Lagerhaus Veddel GmbH',       receivable_cents:   870_000, payable_cents:         0, net_cents:   870_000 },
-  ],
-}
 
 // ── KPI Card ─────────────────────────────────────────────────────────────────
 

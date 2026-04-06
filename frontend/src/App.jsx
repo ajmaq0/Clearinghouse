@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { isDemoMode } from './hooks/useApi.js'
 import Uebersicht from './components/Uebersicht.jsx'
 import NetworkExplorer from './pages/NetworkExplorer.jsx'
 import NettingVergleich from './pages/NettingVergleich.jsx'
@@ -33,6 +34,7 @@ const PAGES = {
 
 export default function App() {
   const [page, setPage] = useState('uebersicht')
+  const demoMode = isDemoMode()
   const Page = PAGES[page] || Uebersicht
 
   return (
@@ -56,7 +58,10 @@ export default function App() {
           ))}
         </nav>
         <div className="app-header-badge">
-          <span className="badge badge-green">Live Demo</span>
+          {demoMode
+            ? <span className="badge badge-amber" title="Backend wird ignoriert — Demo-Datensatz aktiv">Demo-Modus</span>
+            : <span className="badge badge-green">Live Demo</span>
+          }
         </div>
       </header>
 

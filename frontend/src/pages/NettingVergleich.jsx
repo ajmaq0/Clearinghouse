@@ -10,21 +10,9 @@
  */
 import React, { useEffect, useState } from 'react'
 import { clearingApi } from '../api/clearing.js'
+import { useApi } from '../hooks/useApi.js'
+import { MOCK_NETTING_OPTIMAL } from '../mock/fullDataset.js'
 import { formatEur } from '../utils/format.js'
-
-// ── Mock fallback — values derived from actual seed data (50 companies, 320 invoices)
-// Real API produces these numbers; mock used only when backend unavailable
-const MOCK_RESULT = {
-  gross_cents:                  1_636_341_787,
-  bilateral_cents:                711_721_961,
-  johnson_cents:                  574_878_953,
-  optimal_cents:                  449_752_456,
-  optimal_savings_cents:        1_186_589_331,
-  optimal_savings_pct:               7250,
-  improvement_over_johnson_cents:  125_126_497,
-  improvement_over_johnson_pct:       2177,
-  lp_status:                      'Optimal',
-}
 
 // ── Stage config ───────────────────────────────────────────────────────────────
 function buildStages(data) {
@@ -309,27 +297,17 @@ function DetailPanel({ stage, data }) {
 
 // ── Main component ─────────────────────────────────────────────────────────────
 export default function NettingVergleich() {
-  const [data,      setData]      = useState(null)
-  const [loading,   setLoading]   = useState(true)
-  const [usingMock, setUsingMock] = useState(false)
   const [activeKey, setActiveKey] = useState('optimal')
   const [animated,  setAnimated]  = useState(false)
 
+  const { data, loading, useMock: usingMock } = useApi(
+    () => clearingApi.optimal(),
+    MOCK_NETTING_OPTIMAL
+  )
+
   useEffect(() => {
-    clearingApi.optimal()
-      .then(res => {
-        setData(res)
-        setUsingMock(false)
-      })
-      .catch(() => {
-        setData(MOCK_RESULT)
-        setUsingMock(true)
-      })
-      .finally(() => {
-        setLoading(false)
-        setTimeout(() => setAnimated(true), 100)
-      })
-  }, [])
+    if (!loading) setTimeout(() => setAnimated(true), 100)
+  }, [loading])
 
   const stages      = data ? buildStages(data) : []
   const activeStage = stages.find(s => s.key === activeKey) || null

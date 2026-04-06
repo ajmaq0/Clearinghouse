@@ -1,10 +1,23 @@
 import { useState, useEffect, useCallback } from 'react'
 
 /**
- * Generic data-fetching hook.
+ * Returns true when ?demo=true is present in the URL.
+ * Demo mode forces mock data regardless of backend availability.
+ */
+export function isDemoMode() {
+  return new URLSearchParams(window.location.search).get('demo') === 'true'
+}
+
+/**
+ * Generic data-fetching hook with unified mock fallback.
+ *
+ * Behaviour:
+ *  - ?demo=true  → skip real API, return mockData immediately
+ *  - API failure → fall back to mockData (all environments)
+ *  - API success → return live data
  *
  * @param {Function} fetchFn   - async function that returns data
- * @param {any}      mockData  - fallback mock value when API fails in dev
+ * @param {any}      mockData  - fallback value (null = no fallback)
  * @param {Array}    deps      - effect dependencies
  */
 export function useApi(fetchFn, mockData = null, deps = []) {
@@ -16,12 +29,21 @@ export function useApi(fetchFn, mockData = null, deps = []) {
   const load = useCallback(async () => {
     setLoading(true)
     setError(null)
+
+    // Demo mode: bypass backend entirely
+    if (isDemoMode() && mockData !== null) {
+      setData(mockData)
+      setUseMock(true)
+      setLoading(false)
+      return
+    }
+
     try {
       const result = await fetchFn()
       setData(result)
       setUseMock(false)
     } catch (err) {
-      if (mockData !== null && import.meta.env.MODE === 'development') {
+      if (mockData !== null) {
         console.warn('[ClearFlow] API unavailable, using mock data:', err.message)
         setData(mockData)
         setUseMock(true)
