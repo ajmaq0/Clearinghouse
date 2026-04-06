@@ -224,6 +224,147 @@ def company_comparison(db: Session = Depends(get_db)):
     )
 
 
+_DEMO_COMPANY_POSITION = {
+    "company_id": "demo-company-1",
+    "company_name": "Alstermühle Bäckerei GmbH",
+    "gross_payable": 4_200_000,
+    "gross_receivable": 3_150_000,
+    "bilateral_net": 1_050_000,
+    "optimal_net": 630_000,
+    "savings_cents": 420_000,
+    "savings_pct": 40.0,
+    "counterparties": [
+        {"company_name": "Norddeutsche Mühle GmbH", "net_amount": 980_000},
+        {"company_name": "Elbe Logistik KG", "net_amount": -420_000},
+        {"company_name": "HafenCafé Betrieb UG", "net_amount": -310_000},
+        {"company_name": "Kantine Hafen Hamburg GmbH", "net_amount": 210_000},
+        {"company_name": "HansaMühl AG", "net_amount": 590_000},
+    ],
+}
+
+
+@router.get("/company-position")
+def company_position(
+    company_id: str,
+    demo: bool = False,
+    db: Session = Depends(get_db),
+):
+    """
+    Return single-company clearing position with bilateral and LP-optimal netting.
+
+    Supports ?demo=true for mock data (Alstermühle Bäckerei persona).
+    """
+    if demo:
+        return _DEMO_COMPANY_POSITION
+
+    company = db.get(models.Company, company_id)
+    if not company:
+        raise HTTPException(status_code=404, detail="Company not found")
+
+    invoices = (
+        db.query(models.Invoice)
+        .filter(
+            models.Invoice.status == "confirmed",
+            (models.Invoice.from_company_id == company_id)
+            | (models.Invoice.to_company_id == company_id),
+        )
+        .all()
+    )
+
+    # ── Gross positions ────────────────────────────────────────────────────
+    gross_payable = sum(inv.amount_cents for inv in invoices if inv.from_company_id == company_id)
+    gross_receivable = sum(inv.amount_cents for inv in invoices if inv.to_company_id == company_id)
+
+    # ── Per-counterparty gross flows ───────────────────────────────────────
+    out_to: Dict[str, int] = defaultdict(int)   # money I owe to each counterparty
+    in_from: Dict[str, int] = defaultdict(int)  # money each counterparty owes me
+
+    for inv in invoices:
+        if inv.from_company_id == company_id:
+            out_to[inv.to_company_id] += inv.amount_cents
+        else:
+            in_from[inv.from_company_id] += inv.amount_cents
+
+    all_counterparty_ids = set(out_to) | set(in_from)
+
+    # ── Bilateral netting per counterparty ────────────────────────────────
+    # net_amount > 0: I owe them; < 0: they owe me
+    counterparty_bilateral: Dict[str, int] = {}
+    for cid in all_counterparty_ids:
+        counterparty_bilateral[cid] = out_to.get(cid, 0) - in_from.get(cid, 0)
+
+    bilateral_net = sum(counterparty_bilateral.values())
+
+    # ── LP-optimal netting (full network, then extract this company's pos) ─
+    from app.netting_lp import run_optimal
+
+    optimal_net = bilateral_net  # default if no invoices beyond this company
+    try:
+        all_confirmed = (
+            db.query(models.Invoice)
+            .filter(models.Invoice.status == "confirmed")
+            .all()
+        )
+        if all_confirmed:
+            lp = run_optimal(db)
+            # Build full gross flow and cleared map
+            full_gross_flow: Dict[str, Dict[str, int]] = defaultdict(lambda: defaultdict(int))
+            for inv in all_confirmed:
+                full_gross_flow[inv.from_company_id][inv.to_company_id] += inv.amount_cents
+
+            cleared_map: Dict[tuple, int] = {}
+            for edge in lp.get("cleared_edges", []):
+                cleared_map[(edge["from_id"], edge["to_id"])] = edge["cleared_cents"]
+
+            # This company's optimal net = sum of residual flows involving it
+            opt_out = 0
+            opt_in = 0
+            for a, targets in full_gross_flow.items():
+                for b, gross_amt in targets.items():
+                    cleared = cleared_map.get((a, b), 0)
+                    residual = gross_amt - cleared
+                    if a == company_id:
+                        opt_out += residual
+                    if b == company_id:
+                        opt_in += residual
+            optimal_net = opt_out - opt_in
+    except Exception:
+        pass  # fall back to bilateral_net if LP unavailable
+
+    savings_cents = abs(bilateral_net) - abs(optimal_net)
+    savings_pct = round(savings_cents / abs(bilateral_net) * 100, 1) if bilateral_net != 0 else 0.0
+
+    # ── Load counterparty names ────────────────────────────────────────────
+    cp_companies = (
+        db.query(models.Company)
+        .filter(models.Company.id.in_(all_counterparty_ids))
+        .all()
+    )
+    cp_names = {c.id: c.name for c in cp_companies}
+
+    counterparties = [
+        {
+            "company_name": cp_names.get(cid, cid),
+            "net_amount": amt,
+        }
+        for cid, amt in sorted(
+            counterparty_bilateral.items(), key=lambda x: abs(x[1]), reverse=True
+        )
+    ]
+
+    return {
+        "company_id": company_id,
+        "company_name": company.name,
+        "gross_payable": gross_payable,
+        "gross_receivable": gross_receivable,
+        "bilateral_net": bilateral_net,
+        "optimal_net": optimal_net,
+        "savings_cents": max(0, savings_cents),
+        "savings_pct": max(0.0, savings_pct),
+        "counterparties": counterparties,
+    }
+
+
 @router.get("/history", response_model=schemas.ClearingHistoryOut)
 def clearing_history(db: Session = Depends(get_db)):
     """
