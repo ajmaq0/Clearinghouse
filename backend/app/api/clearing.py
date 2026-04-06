@@ -28,6 +28,33 @@ def run_clearing(db: Session = Depends(get_db)):
     return _build_detail(cycle)
 
 
+@router.post("/run-optimal", response_model=schemas.ClearingCycleDetailOut, status_code=201)
+def run_optimal_clearing_persist(db: Session = Depends(get_db)):
+    """
+    Run LP-optimal netting and persist all results.
+
+    Creates a ClearingCycle with netting_type='optimal', ClearingResult rows
+    per company pair, NetPosition rows per company, and marks invoices as cleared.
+    """
+    from app.netting_lp import run_optimal_persist
+    confirmed_count = (
+        db.query(models.Invoice)
+        .filter(models.Invoice.status == "confirmed")
+        .count()
+    )
+    if confirmed_count == 0:
+        raise HTTPException(status_code=422, detail="No confirmed invoices to net")
+
+    run_optimal_persist(db)
+
+    cycle = (
+        db.query(models.ClearingCycle)
+        .order_by(models.ClearingCycle.completed_at.desc())
+        .first()
+    )
+    return _build_detail(cycle)
+
+
 @router.post("/multilateral", response_model=schemas.MultilateralNettingResult, status_code=200)
 def run_multilateral_clearing(db: Session = Depends(get_db)):
     """

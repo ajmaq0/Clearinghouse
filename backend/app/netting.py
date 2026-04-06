@@ -191,7 +191,7 @@ def run_bilateral(db: Session) -> Tuple[int, int]:
     now = datetime.now(timezone.utc)
 
     # Create the clearing cycle
-    cycle = models.ClearingCycle(status="completed", completed_at=now)
+    cycle = models.ClearingCycle(status="completed", completed_at=now, netting_type="bilateral")
     db.add(cycle)
     db.flush()
 

@@ -402,7 +402,7 @@ export default function Clearing() {
     setRunning(true)
     setRunMsg(null)
     try {
-      await clearingApi.run()
+      await clearingApi.runOptimal()
       setRunMsg('Clearing erfolgreich gestartet!')
       reloadCycles()
     } catch (e) {

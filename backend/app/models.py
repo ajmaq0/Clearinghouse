@@ -42,6 +42,11 @@ class ClearingCycle(Base):
         nullable=False,
         default="open",
     )
+    netting_type = Column(
+        Enum("bilateral", "multilateral", "optimal", name="clearing_netting_type"),
+        nullable=True,
+        default="bilateral",
+    )
     started_at = Column(DateTime(timezone=True), server_default=func.now())
     completed_at = Column(DateTime(timezone=True))
 

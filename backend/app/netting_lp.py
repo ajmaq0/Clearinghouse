@@ -163,6 +163,102 @@ def run_optimal(db: Session) -> dict:
     }
 
 
+def run_optimal_persist(db: Session) -> tuple:
+    """
+    Run LP-optimal netting and persist all results.
+
+    Creates ClearingCycle (netting_type="optimal"), ClearingResult rows per
+    company pair, NetPosition rows per company, and marks invoices as cleared.
+
+    Returns (gross_cents, total_residual_cents).
+    Raises ValueError if there are no confirmed invoices.
+    """
+    from collections import defaultdict
+    from datetime import datetime, timezone
+    from app import models
+
+    invoices = (
+        db.query(models.Invoice)
+        .filter(models.Invoice.status == "confirmed")
+        .all()
+    )
+
+    if not invoices:
+        raise ValueError("No confirmed invoices to net")
+
+    lp = run_optimal(db)
+
+    # Build per-pair cleared map from LP edges: (from_id, to_id) -> cleared_cents
+    cleared_map: Dict[tuple, int] = {}
+    for edge in lp["cleared_edges"]:
+        cleared_map[(edge["from_id"], edge["to_id"])] = edge["cleared_cents"]
+
+    # Build per-pair aggregate: gross, invoice count
+    pair_gross: Dict[tuple, int] = defaultdict(int)
+    pair_count: Dict[tuple, int] = defaultdict(int)
+    for inv in invoices:
+        key = (inv.from_company_id, inv.to_company_id)
+        pair_gross[key] += inv.amount_cents
+        pair_count[key] += 1
+
+    gross_total = sum(inv.amount_cents for inv in invoices)
+
+    # Per-company receivable/payable based on LP residuals
+    receivable: Dict[str, int] = defaultdict(int)
+    payable: Dict[str, int] = defaultdict(int)
+
+    pair_results = []
+    for (from_id, to_id), gross in pair_gross.items():
+        cleared = cleared_map.get((from_id, to_id), 0)
+        residual = gross - cleared
+        pair_results.append((from_id, to_id, gross, residual, pair_count[(from_id, to_id)]))
+        if residual > 0:
+            payable[from_id] += residual
+            receivable[to_id] += residual
+
+    now = datetime.now(timezone.utc)
+
+    cycle = models.ClearingCycle(
+        status="completed",
+        completed_at=now,
+        netting_type="optimal",
+    )
+    db.add(cycle)
+    db.flush()
+
+    for from_id, to_id, gross, residual, inv_count in pair_results:
+        db.add(models.ClearingResult(
+            clearing_cycle_id=cycle.id,
+            from_company_id=from_id,
+            to_company_id=to_id,
+            gross_amount_cents=gross,
+            net_amount_cents=residual,
+            invoices_count=inv_count,
+        ))
+
+    all_participants = set(receivable.keys()) | set(payable.keys())
+    for company_id in all_participants:
+        rec = receivable[company_id]
+        pay = payable[company_id]
+        db.add(models.NetPosition(
+            company_id=company_id,
+            clearing_cycle_id=cycle.id,
+            receivable_cents=rec,
+            payable_cents=pay,
+            net_cents=rec - pay,
+        ))
+
+    for inv in invoices:
+        inv.status = "cleared"
+        inv.clearing_cycle_id = cycle.id
+
+    db.commit()
+    db.refresh(cycle)
+
+    total_residual = sum(r[3] for r in pair_results)
+    return gross_total, total_residual
+
+
 def _empty_result() -> dict:
     return {
         "gross_cents": 0,

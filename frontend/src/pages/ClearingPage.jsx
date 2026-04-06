@@ -59,7 +59,7 @@ export default function ClearingPage() {
     setRunStatus('running')
     setAnimDone(false)
     try {
-      const result = await clearingApi.run()
+      const result = await clearingApi.runOptimal()
       setCycleData(result)
       setRunStatus('done')
     } catch {

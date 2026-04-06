@@ -108,6 +108,7 @@ class ClearingResultOut(BaseModel):
 class ClearingCycleOut(BaseModel):
     id: str
     status: str
+    netting_type: Optional[str] = "bilateral"
     started_at: datetime
     completed_at: Optional[datetime]
 
