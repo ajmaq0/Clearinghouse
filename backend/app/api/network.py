@@ -55,20 +55,11 @@ def network_dashboard(db: Session = Depends(get_db)):
 
 # Map raw sector values → cluster label (3 clusters)
 SECTOR_TO_CLUSTER = {
-    "port_logistics": "Port & Logistik",
-    "logistik":       "Port & Logistik",
-    "handwerk":       "Handwerk & Bau",
-    "bau":            "Handwerk & Bau",
-    "gastronomie":    "Gastronomie & Handel",
-    "handel":         "Gastronomie & Handel",
-    "lebensmittel":   "Gastronomie & Handel",
-    "technik":        "Port & Logistik",
-    "it":             "Handwerk & Bau",
-    "textil":         "Gastronomie & Handel",
-    "chemie":         "Port & Logistik",
-    "dienstleist.":   "Gastronomie & Handel",
+    "port_logistics":   "Port & Logistik",
+    "food_beverage":    "Lebensmittel & Gastronomie",
+    "renewable_energy": "Erneuerbare Energien",
 }
-FALLBACK_CLUSTERS = ["Port & Logistik", "Handwerk & Bau", "Gastronomie & Handel"]
+FALLBACK_CLUSTERS = ["Port & Logistik", "Lebensmittel & Gastronomie", "Erneuerbare Energien"]
 
 
 def _sector_cluster(sector: str) -> str:
