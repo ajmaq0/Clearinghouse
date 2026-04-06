@@ -408,3 +408,114 @@ export const MOCK_FUNDING_GAPS = [
     description: 'Schuldner noch kein GLS-Mitglied — Onboarding würde Factoring-Pipeline öffnen.',
   },
 ]
+
+// ── SME Company Positions — keyed by companyId ───────────────────────────────
+
+export const MOCK_COMPANY_POSITIONS = {
+  c1: {
+    company_id: 'c1', company_name: 'Hamburger Hafen GmbH',
+    open_invoice_count: 3, confirmed_invoice_count: 2,
+    gross_payable_cents:     870_000,
+    gross_receivable_cents: 1_240_000,
+    net_after_clearing_cents: 290_000,
+    savings_cents:            580_000,
+    savings_pct:               40.2,
+    days_until_clearing:        24,
+    counterparties: [
+      { company_id: 'c2', name: 'Elbe Spedition KG',       net_cents: -870_000 },
+      { company_id: 'c7', name: 'Lagerhaus Veddel GmbH',   net_cents:  870_000 },
+      { company_id: 'c3', name: 'Nordsee Zolldienstl. AG', net_cents:  290_000 },
+    ],
+  },
+  c4: {
+    company_id: 'c4', company_name: 'Alstermühle Bäckerei GmbH',
+    open_invoice_count: 2, confirmed_invoice_count: 1,
+    gross_payable_cents:     150_000,
+    gross_receivable_cents:        0,
+    net_after_clearing_cents: 120_000,
+    savings_cents:             30_000,
+    savings_pct:               20.0,
+    days_until_clearing:        24,
+    counterparties: [
+      { company_id: 'c5', name: 'Biokontor Hamburg eG', net_cents: -150_000 },
+    ],
+  },
+  c5: {
+    company_id: 'c5', company_name: 'Biokontor Hamburg eG',
+    open_invoice_count: 2, confirmed_invoice_count: 2,
+    gross_payable_cents:          0,
+    gross_receivable_cents:  150_000,
+    net_after_clearing_cents: 120_000,
+    savings_cents:             30_000,
+    savings_pct:               20.0,
+    days_until_clearing:        24,
+    counterparties: [
+      { company_id: 'c4', name: 'Alstermühle Bäckerei GmbH', net_cents: 150_000 },
+    ],
+  },
+  default: {
+    company_id: null, company_name: 'Unbekannt',
+    open_invoice_count: 0, confirmed_invoice_count: 0,
+    gross_payable_cents: 0, gross_receivable_cents: 0,
+    net_after_clearing_cents: 0, savings_cents: 0, savings_pct: 0,
+    days_until_clearing: 24, counterparties: [],
+  },
+}
+
+// ── SME Matching Hints — keyed by companyId ───────────────────────────────────
+
+export const MOCK_MATCHING_HINTS = {
+  c4: {
+    company_id: 'c4',
+    supplier_matches: [
+      {
+        id: 'sm-c4-1',
+        partner: { id: 'c5', name: 'Biokontor Hamburg eG', sector: 'Lebensmittel', gls_member: true },
+        similarity_score: 91,
+        shared_customers: 3,
+        estimated_monthly_volume_cents: 82_000,
+        reason: 'Gleicher Sektor, gemeinsame Großabnehmer in Hamburg-Nord — Clearing könnte monatlich ~82 % Netto einsparen.',
+        match_type: 'bilateral',
+      },
+      {
+        id: 'sm-c4-2',
+        partner: { id: 'c1', name: 'Hamburger Hafen GmbH', sector: 'Port/Logistik', gls_member: true },
+        similarity_score: 64,
+        shared_customers: 1,
+        estimated_monthly_volume_cents: 45_000,
+        reason: 'Hafen-Logistik-Kette berührt Lebensmittelimporte — Potenzial für trilaterales Netting.',
+        match_type: 'multilateral',
+      },
+      {
+        id: 'sm-c4-3',
+        partner: { id: 'c8', name: 'Solar HH Technik AG', sector: 'Erneuerbare', gls_member: true },
+        similarity_score: 55,
+        shared_customers: 0,
+        estimated_monthly_volume_cents: 28_000,
+        reason: 'Energiekosten-Quersubventionierung möglich: Bäckerei ↔ Solar-Anbieter über GLS-Netz.',
+        match_type: 'new_connection',
+      },
+    ],
+    business_opportunities: [
+      {
+        id: 'bo-c4-1',
+        title: 'Sektor-Cluster Lebensmittel',
+        description: '4 weitere GLS-Mitglieder im Lebensmittelsektor ohne aktive Clearing-Verbindung zu Ihnen. Potenzial: bis zu 40 % Netto-Reduktion.',
+        opportunity_cents: 320_000,
+        action: 'Cluster beitreten',
+      },
+      {
+        id: 'bo-c4-2',
+        title: 'Frühzahlungs-Rabatt',
+        description: 'Biokontor Hamburg bietet 1,5 % Skonto bei 10 Tagen — nutzen Sie GLS-Liquiditätsreserven.',
+        opportunity_cents: 2_250,
+        action: 'Angebot ansehen',
+      },
+    ],
+  },
+  default: {
+    company_id: null,
+    supplier_matches: [],
+    business_opportunities: [],
+  },
+}

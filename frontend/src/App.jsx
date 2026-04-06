@@ -9,6 +9,10 @@ import Clearing from './components/Clearing.jsx'
 import Rechnungen from './components/Rechnungen.jsx'
 import Entdecken from './components/Entdecken.jsx'
 import NetzwerkWachstum from './pages/NetzwerkWachstum.jsx'
+import SmeUebersicht from './pages/sme/SmeUebersicht.jsx'
+import SmeRechnungen from './pages/sme/SmeRechnungen.jsx'
+import SmeClearing from './pages/sme/SmeClearing.jsx'
+import SmeEntdecken from './pages/sme/SmeEntdecken.jsx'
 import { MOCK_COMPANIES } from './mock/fullDataset.js'
 import './styles/global.css'
 import './styles/app.css'
@@ -40,24 +44,11 @@ const GLS_PAGES = {
   wachstum:   NetzwerkWachstum,
 }
 
-// SME pages will be wired in POEA-77; placeholder until then
-function SmePlaceholder({ tabId }) {
-  return (
-    <div style={{ padding: '3rem', textAlign: 'center', color: 'var(--color-text-muted)' }}>
-      <div style={{ fontSize: '2rem', marginBottom: '1rem' }}>◈</div>
-      <div style={{ fontSize: 'var(--font-size-lg)', fontWeight: 700, marginBottom: '0.5rem' }}>
-        {tabId}
-      </div>
-      <div style={{ fontSize: 'var(--font-size-sm)' }}>SME-Ansicht wird in POEA-77 implementiert.</div>
-    </div>
-  )
-}
-
 const SME_PAGES = {
-  'sme-uebersicht': (props) => <SmePlaceholder tabId="Übersicht (SME)" {...props} />,
-  'sme-rechnungen': (props) => <SmePlaceholder tabId="Rechnungen (SME)" {...props} />,
-  'sme-clearing':   (props) => <SmePlaceholder tabId="Clearing (SME)" {...props} />,
-  'sme-entdecken':  (props) => <SmePlaceholder tabId="Entdecken (SME)" {...props} />,
+  'sme-uebersicht': SmeUebersicht,
+  'sme-rechnungen': SmeRechnungen,
+  'sme-clearing':   SmeClearing,
+  'sme-entdecken':  SmeEntdecken,
 }
 
 const DEFAULT_SME_COMPANY = MOCK_COMPANIES.find(c => c.id === 'c4') || MOCK_COMPANIES[0]
