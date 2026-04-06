@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import Uebersicht from './components/Uebersicht.jsx'
 import NetworkExplorer from './pages/NetworkExplorer.jsx'
+import NettingVergleich from './pages/NettingVergleich.jsx'
 import GlsDashboard from './pages/GlsDashboard.jsx'
 import Clearing from './components/Clearing.jsx'
 import Rechnungen from './components/Rechnungen.jsx'
@@ -14,6 +15,7 @@ const NAV_ITEMS = [
   { id: 'uebersicht', label: 'Übersicht',    icon: '◈' },
   { id: 'rechnungen', label: 'Rechnungen',   icon: '≡' },
   { id: 'clearing',   label: 'Clearing',     icon: '⇄' },
+  { id: 'vergleich',  label: 'Vergleich',    icon: '→' },
   { id: 'netzwerk',   label: 'Netzwerk',     icon: '⬡' },
   { id: 'admin',      label: 'GLS Admin',    icon: '⊞' },
   { id: 'entdecken',  label: 'Entdecken',    icon: '⊙' },
@@ -23,6 +25,7 @@ const PAGES = {
   uebersicht: Uebersicht,
   rechnungen: Rechnungen,
   clearing:   Clearing,
+  vergleich:  NettingVergleich,
   netzwerk:   NetworkExplorer,
   admin:      GlsDashboard,
   entdecken:  Entdecken,
