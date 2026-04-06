@@ -1,5 +1,6 @@
 from typing import List, Optional
 from fastapi import APIRouter, Depends, HTTPException, Query
+from sqlalchemy import or_
 from sqlalchemy.orm import Session
 from app.core.database import get_db
 from app import models, schemas
@@ -10,6 +11,7 @@ router = APIRouter(prefix="/invoices", tags=["invoices"])
 @router.get("", response_model=List[schemas.InvoiceOut])
 def list_invoices(
     status: Optional[str] = Query(None),
+    company_id: Optional[str] = Query(None),
     from_company_id: Optional[str] = Query(None),
     to_company_id: Optional[str] = Query(None),
     db: Session = Depends(get_db),
@@ -17,6 +19,13 @@ def list_invoices(
     q = db.query(models.Invoice)
     if status:
         q = q.filter(models.Invoice.status == status)
+    if company_id:
+        q = q.filter(
+            or_(
+                models.Invoice.from_company_id == company_id,
+                models.Invoice.to_company_id == company_id,
+            )
+        )
     if from_company_id:
         q = q.filter(models.Invoice.from_company_id == from_company_id)
     if to_company_id:
