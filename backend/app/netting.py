@@ -1,18 +1,15 @@
 """
-Bilateral netting engine.
+Bilateral and multilateral netting engine.
 
-For each unordered pair (A, B):
+Bilateral — for each unordered pair (A, B):
   flow_A_to_B = sum of confirmed invoices where from=A, to=B
   flow_B_to_A = sum of confirmed invoices where from=B, to=A
   gross       = flow_A_to_B + flow_B_to_A
   net         = |flow_A_to_B - flow_B_to_A|
 
-  If flow_A_to_B > flow_B_to_A: A still owes B (flow_A_to_B - flow_B_to_A) cents.
-  If flow_B_to_A > flow_A_to_B: B still owes A (flow_B_to_A - flow_A_to_B) cents.
-  If equal: fully offset.
-
-One ClearingResult row is created per pair that has any invoices.
-One NetPosition row is created per company that appears in any invoice.
+Multilateral — after bilateral netting, find and reduce cycles in the
+remaining directed net-obligation graph using Johnson's algorithm (1975).
+Each cycle is reduced by the minimum edge weight in that circuit.
 
 All arithmetic is integer (EUR cents). No floating point anywhere.
 """
@@ -22,6 +19,104 @@ from datetime import datetime, timezone
 from typing import Dict, List, Tuple
 from sqlalchemy.orm import Session
 from app import models
+
+
+# ---------------------------------------------------------------------------
+# Johnson's algorithm — elementary circuit enumeration
+# ---------------------------------------------------------------------------
+
+def _johnson_cycles(adj: Dict[str, Dict[str, int]]) -> List[List[str]]:
+    """
+    Find all simple (elementary) cycles in a directed weighted graph.
+
+    adj: {node: {neighbor: weight, ...}, ...}  — only positive-weight edges.
+    Returns a list of cycles; each cycle is an ordered list of node IDs
+    representing the path (the first node is implicitly repeated at the end).
+
+    Johnson, D. B. (1975). Finding all the elementary circuits of a directed
+    graph. SIAM Journal on Computing, 4(1), 77-84.
+    """
+    all_nodes: List[str] = sorted(
+        set(adj.keys()) | {v for nbrs in adj.values() for v in nbrs}
+    )
+    idx: Dict[str, int] = {n: i for i, n in enumerate(all_nodes)}
+
+    blocked: set = set()
+    B: Dict[str, set] = defaultdict(set)
+    stack: List[str] = []
+    cycles: List[List[str]] = []
+
+    def _unblock(u: str) -> None:
+        blocked.discard(u)
+        for w in list(B[u]):
+            B[u].discard(w)
+            if w in blocked:
+                _unblock(w)
+
+    def _circuit(v: str, start: str, s_idx: int) -> bool:
+        found = False
+        stack.append(v)
+        blocked.add(v)
+        for w in adj.get(v, {}):
+            if idx.get(w, -1) < s_idx:
+                continue  # restrict to subgraph with index >= s_idx
+            if w == start:
+                cycles.append(list(stack))
+                found = True
+            elif w not in blocked:
+                if _circuit(w, start, s_idx):
+                    found = True
+        if found:
+            _unblock(v)
+        else:
+            for w in adj.get(v, {}):
+                if idx.get(w, -1) >= s_idx:
+                    B[w].add(v)
+        stack.pop()
+        return found
+
+    for i, s in enumerate(all_nodes):
+        blocked.clear()
+        B.clear()
+        _circuit(s, s, i)
+
+    return cycles
+
+
+def _reduce_cycles(adj: Dict[str, Dict[str, int]]) -> Dict[str, Dict[str, int]]:
+    """
+    Iteratively find cycles and reduce each by the minimum edge weight until
+    no more cycles remain.  Modifies and returns a copy of adj.
+    """
+    # Work on a mutable copy
+    graph: Dict[str, Dict[str, int]] = {a: dict(b) for a, b in adj.items()}
+
+    for _ in range(10_000):  # safety cap
+        cycles = _johnson_cycles(graph)
+        if not cycles:
+            break
+
+        improved = False
+        for cycle in cycles:
+            n = len(cycle)
+            min_w = min(
+                graph.get(cycle[i], {}).get(cycle[(i + 1) % n], 0)
+                for i in range(n)
+            )
+            if min_w <= 0:
+                continue
+            improved = True
+            for i in range(n):
+                u, v = cycle[i], cycle[(i + 1) % n]
+                graph[u][v] -= min_w
+                if graph[u][v] == 0:
+                    del graph[u][v]
+                    if not graph[u]:
+                        del graph[u]
+        if not improved:
+            break
+
+    return graph
 
 
 def run_bilateral(db: Session) -> Tuple[int, int]:
@@ -133,3 +228,66 @@ def run_bilateral(db: Session) -> Tuple[int, int]:
     db.refresh(cycle)
 
     return gross_total, net_total
+
+
+# ---------------------------------------------------------------------------
+# Multilateral netting — pure computation, no DB writes
+# ---------------------------------------------------------------------------
+
+def run_multilateral(db: Session) -> Tuple[int, int, int]:
+    """
+    Compute multilateral netting over all 'confirmed' invoices.
+
+    Steps:
+      1. Gross obligations — sum of all confirmed invoice amounts.
+      2. Bilateral netting — net opposing flows for each company pair.
+      3. Multilateral netting — reduce cycles in the bilateral residual graph
+         using Johnson's algorithm; each cycle is reduced by its minimum edge.
+
+    Returns (gross_cents, bilateral_net_cents, multilateral_net_cents).
+    Does NOT modify invoice status or write any rows to the database.
+    """
+    invoices = (
+        db.query(models.Invoice)
+        .filter(models.Invoice.status == "confirmed")
+        .all()
+    )
+
+    if not invoices:
+        return 0, 0, 0
+
+    gross_total = sum(inv.amount_cents for inv in invoices)
+
+    # Build raw directional flows
+    raw: Dict[str, Dict[str, int]] = defaultdict(lambda: defaultdict(int))
+    for inv in invoices:
+        raw[inv.from_company_id][inv.to_company_id] += inv.amount_cents
+
+    all_companies = set(raw.keys()) | {b for a_map in raw.values() for b in a_map}
+
+    # Bilateral netting: collapse opposing flows into a single net direction
+    net_flow: Dict[str, Dict[str, int]] = defaultdict(lambda: defaultdict(int))
+    visited_pairs: set = set()
+    for a in all_companies:
+        for b in all_companies:
+            if a == b or (a, b) in visited_pairs or (b, a) in visited_pairs:
+                continue
+            visited_pairs.add((a, b))
+            a_to_b = raw[a][b]
+            b_to_a = raw[b][a]
+            diff = a_to_b - b_to_a
+            if diff > 0:
+                net_flow[a][b] = diff
+            elif diff < 0:
+                net_flow[b][a] = -diff
+
+    bilateral_net = sum(v for row in net_flow.values() for v in row.values())
+
+    # Multilateral netting: reduce cycles in the residual graph
+    adj: Dict[str, Dict[str, int]] = {
+        a: dict(b_map) for a, b_map in net_flow.items() if b_map
+    }
+    residual = _reduce_cycles(adj)
+    multilateral_net = sum(v for row in residual.values() for v in row.values())
+
+    return gross_total, bilateral_net, multilateral_net

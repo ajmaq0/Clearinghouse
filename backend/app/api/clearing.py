@@ -27,6 +27,36 @@ def run_clearing(db: Session = Depends(get_db)):
     return _build_detail(cycle)
 
 
+@router.post("/multilateral", response_model=schemas.MultilateralNettingResult, status_code=200)
+def run_multilateral_clearing(db: Session = Depends(get_db)):
+    """
+    Compute multilateral netting over all confirmed invoices.
+
+    Returns gross obligations, bilateral-netted obligations, and
+    multilateral-netted obligations (after cycle reduction via Johnson's
+    algorithm).  Does not persist any state or change invoice statuses.
+    """
+    confirmed_count = (
+        db.query(models.Invoice)
+        .filter(models.Invoice.status == "confirmed")
+        .count()
+    )
+    if confirmed_count == 0:
+        raise HTTPException(status_code=422, detail="No confirmed invoices to net")
+
+    gross, bilateral, multilateral = netting.run_multilateral(db)
+    savings = bilateral - multilateral
+    savings_vs_gross_bps = ((gross - multilateral) * 10_000 // gross) if gross > 0 else 0
+
+    return schemas.MultilateralNettingResult(
+        gross_cents=gross,
+        bilateral_cents=bilateral,
+        multilateral_cents=multilateral,
+        savings_eur_cents=savings,
+        savings_vs_gross_bps=savings_vs_gross_bps,
+    )
+
+
 @router.get("/cycles", response_model=List[schemas.ClearingCycleOut])
 def list_cycles(db: Session = Depends(get_db)):
     return (

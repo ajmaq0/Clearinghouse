@@ -72,6 +72,14 @@ class ClearingRunRequest(BaseModel):
     pass  # bilateral is the only supported mode
 
 
+class MultilateralNettingResult(BaseModel):
+    gross_cents: int
+    bilateral_cents: int
+    multilateral_cents: int
+    savings_eur_cents: int       # bilateral_cents - multilateral_cents
+    savings_vs_gross_bps: int   # (gross - multilateral) / gross * 10_000
+
+
 class NetPositionOut(BaseModel):
     id: str
     company_id: str
