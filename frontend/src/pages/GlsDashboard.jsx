@@ -246,6 +246,38 @@ export default function GlsDashboard() {
   const [runMsg,       setRunMsg]       = useState(null)
   const [refreshKey,   setRefreshKey]   = useState(0)
   const [highlightGls, setHighlightGls] = useState(false)
+  const [downloading,  setDownloading]  = useState(false)
+
+  // ?demo=true — use static pre-built PDF
+  const isDemo = new URLSearchParams(window.location.search).get('demo') === 'true'
+
+  async function handleDownloadReport() {
+    setDownloading(true)
+    try {
+      let blob, filename
+      if (isDemo) {
+        const today = new Date().toISOString().slice(0, 10)
+        filename = `ClearFlow_Bericht_${today}.pdf`
+        const res = await fetch('/demo_report.pdf')
+        if (!res.ok) throw new Error('Demo-PDF nicht gefunden')
+        blob = await res.blob()
+      } else {
+        ;({ blob, filename } = await clearingApi.downloadReportPdf())
+      }
+      const url = URL.createObjectURL(blob)
+      const a = document.createElement('a')
+      a.href = url
+      a.download = filename
+      document.body.appendChild(a)
+      a.click()
+      a.remove()
+      URL.revokeObjectURL(url)
+    } catch (e) {
+      alert(`Fehler beim PDF-Export: ${e.message}`)
+    } finally {
+      setDownloading(false)
+    }
+  }
 
   const { data: dashboard, loading: dashLoading, useMock: dashMock, reload: reloadDash } = useApi(
     () => networkApi.dashboard(),
@@ -437,11 +469,28 @@ export default function GlsDashboard() {
             </div>
           )}
         </div>
-        <button className="btn btn-primary" onClick={handleRunClearing} disabled={running} style={{ minWidth: 200 }}>
-          {running
-            ? <><span className="loading-spinner" style={{ width: 16, height: 16 }} /> Clearing läuft…</>
-            : '⇄ Clearing starten'}
-        </button>
+        <div style={{ display: 'flex', gap: 'var(--space-3)', flexWrap: 'wrap' }}>
+          <button
+            className="btn"
+            onClick={handleDownloadReport}
+            disabled={downloading}
+            style={{
+              minWidth: 200,
+              background: 'white',
+              border: '1.5px solid var(--color-primary)',
+              color: 'var(--color-primary)',
+            }}
+          >
+            {downloading
+              ? <><span className="loading-spinner" style={{ width: 16, height: 16 }} /> PDF wird erstellt…</>
+              : '↓ Bericht herunterladen'}
+          </button>
+          <button className="btn btn-primary" onClick={handleRunClearing} disabled={running} style={{ minWidth: 200 }}>
+            {running
+              ? <><span className="loading-spinner" style={{ width: 16, height: 16 }} /> Clearing läuft…</>
+              : '⇄ Clearing starten'}
+          </button>
+        </div>
       </div>
 
       {runMsg && (

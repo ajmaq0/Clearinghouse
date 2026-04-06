@@ -1,5 +1,7 @@
 import { api } from './client.js'
 
+const BASE_URL = import.meta.env.VITE_API_BASE_URL || '/api'
+
 export const clearingApi = {
   run:          ()   => api.post('/clearing/run', {}),
   runOptimal:   ()   => api.post('/clearing/run-optimal', {}),
@@ -18,4 +20,18 @@ export const clearingApi = {
   companyComparison: () => api.get('/clearing/company-comparison'),
   // Returns { cycles: ClearingHistoryEntry[], total_cycles }
   history: () => api.get('/clearing/history'),
+  // Returns structured report data (network stats, clearing results, top-5 companies)
+  getReport: () => api.get('/clearing/report'),
+  // Fetches PDF blob — returns { blob, filename }
+  downloadReportPdf: async () => {
+    const today = new Date().toISOString().slice(0, 10)
+    const filename = `ClearFlow_Bericht_${today}.pdf`
+    const res = await fetch(`${BASE_URL}/clearing/report/pdf`)
+    if (!res.ok) {
+      const text = await res.text().catch(() => '')
+      throw new Error(`API error ${res.status}: ${text}`)
+    }
+    const blob = await res.blob()
+    return { blob, filename }
+  },
 }
