@@ -13,4 +13,6 @@ export const clearingApi = {
   //           improvement_over_johnson_cents, improvement_over_johnson_pct,
   //           cleared_edges, lp_status }
   optimal:      ()   => api.post('/clearing/optimal', {}),
+  // Returns { rows: CompanyComparisonRow[], total_companies, lp_status }
+  companyComparison: () => api.get('/clearing/company-comparison'),
 }

@@ -5,6 +5,7 @@ import { clearingApi } from '../api/clearing.js'
 import { companiesApi } from '../api/companies.js'
 import { MOCK_CLEARING_RESULT, MOCK_COMPANIES } from '../mock/data.js'
 import { formatEur, formatPct } from '../utils/format.js'
+import UnternehmensVergleich from './UnternehmensVergleich.jsx'
 
 /**
  * Normalize the real API ClearingCycleDetailOut into the shape that
@@ -529,6 +530,9 @@ export default function Clearing() {
           Noch kein Clearing durchgeführt. Klicken Sie auf „Clearing starten".
         </div>
       )}
+
+      {/* UnternehmensVergleich — per-company bilateral vs optimal savings */}
+      <UnternehmensVergleich />
     </div>
   )
 }
