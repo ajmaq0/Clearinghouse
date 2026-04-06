@@ -397,6 +397,20 @@ export default function NettingVergleich() {
             ))}
           </div>
 
+          {/* Stage 3 → 4 explanation — visible without clicking */}
+          <p style={{
+            fontSize: 'var(--font-size-xs)',
+            color: '#1a6b3a',
+            background: '#f0faf4',
+            border: '1px solid #1a6b3a33',
+            borderRadius: 'var(--radius-md)',
+            padding: 'var(--space-2) var(--space-4)',
+            marginBottom: 'var(--space-2)',
+            lineHeight: 1.5,
+          }}>
+            <strong>Stufe 3 → 4:</strong> Bilaterale und zirkuläre Schulden werden verrechnet — die optimale Verrechnung findet zusätzlich partielle Verrechnungen über das gesamte Netzwerk.
+          </p>
+
           <p style={{ fontSize: 'var(--font-size-xs)', color: 'var(--color-text-muted)', marginBottom: 'var(--space-4)' }}>
             Auf eine Stufe klicken für Details
           </p>
