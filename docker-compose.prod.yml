@@ -1,0 +1,74 @@
+version: "3.9"
+
+# Production deployment for clearflow.poeticte.ch
+# Usage:
+#   docker compose -f docker-compose.prod.yml up -d --build
+#
+# Required env vars (set in .env or export before running):
+#   POSTGRES_PASSWORD  - override default in production
+#
+# The frontend container (nginx) is the only public-facing service (port 80).
+# It proxies /api/* requests to the api container on the internal network.
+
+services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: clearflow
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-clearflow}
+      POSTGRES_DB: clearflow
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U clearflow"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  migrate:
+    build:
+      context: ./backend
+    command: alembic upgrade head
+    environment:
+      DATABASE_URL: postgresql://clearflow:${POSTGRES_PASSWORD:-clearflow}@db:5432/clearflow
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: "no"
+
+  seed:
+    build:
+      context: ./backend
+    command: python seeds/seed.py
+    environment:
+      DATABASE_URL: postgresql://clearflow:${POSTGRES_PASSWORD:-clearflow}@db:5432/clearflow
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+    restart: "no"
+
+  api:
+    build:
+      context: ./backend
+    restart: unless-stopped
+    environment:
+      DATABASE_URL: postgresql://clearflow:${POSTGRES_PASSWORD:-clearflow}@db:5432/clearflow
+    depends_on:
+      db:
+        condition: service_healthy
+      migrate:
+        condition: service_completed_successfully
+    # No host port — only reachable via the frontend nginx proxy
+
+  frontend:
+    build:
+      context: ./frontend
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    depends_on:
+      - api
+
+volumes:
+  pgdata:
