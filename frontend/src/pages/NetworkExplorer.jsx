@@ -1,198 +1,228 @@
 /**
- * NetworkExplorer — D3 force-directed graph with pan/zoom
+ * NetworkExplorer — Network topology view for GLS Hamburg SME network
  *
  * Features:
- * - D3 force simulation (charge + link + center)
- * - Pan & zoom via d3.zoom
- * - Click a node → highlight its invoice links, show tooltip panel
- * - Tooltip: company name, sector, net position in EUR
- * - Color nodes by sector
- * - Link width proportional to invoice amount
+ * - D3.js force-directed graph consuming /network/topology API
+ * - Nodes colored by industry cluster (3 clusters)
+ * - Connected components shown with convex hull backgrounds
+ * - Inter-cluster gaps highlighted with dashed arc annotations
+ * - Click/hover: company name, cluster, total invoice volume
+ * - Large text/nodes for projector readability
  */
-import React, { useEffect, useRef, useState, useCallback } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import * as d3 from 'd3'
 import { networkApi } from '../api/network.js'
-import { companiesApi } from '../api/companies.js'
-import { invoicesApi } from '../api/invoices.js'
 import '../styles/network-explorer.css'
 
-// ---- Mock data ----------------------------------------
+// ── Cluster color palette ──────────────────────────────────────────────────
+const CLUSTER_COLORS = {
+  'Port & Logistik':       '#2c6e8a',
+  'Handwerk & Bau':        '#7a5c2c',
+  'Gastronomie & Handel':  '#4a7c59',
+}
+const CLUSTER_COLORS_LIGHT = {
+  'Port & Logistik':       'rgba(44,110,138,0.12)',
+  'Handwerk & Bau':        'rgba(122,92,44,0.12)',
+  'Gastronomie & Handel':  'rgba(74,124,89,0.12)',
+}
+const DEFAULT_COLOR = '#6e6460'
+
+function clusterColor(cluster)      { return CLUSTER_COLORS[cluster]      || DEFAULT_COLOR }
+function clusterColorLight(cluster) { return CLUSTER_COLORS_LIGHT[cluster] || 'rgba(110,100,96,0.1)' }
+
+// ── Mock fallback data (used when API unavailable) ─────────────────────────
 const MOCK_NODES = [
-  { id: 'MUL', name: 'Müller Logistik GmbH',     sector: 'Logistik',    netPosition:  142000 },
-  { id: 'SCH', name: 'Schreiber & Co. KG',        sector: 'Handel',      netPosition:   98500 },
-  { id: 'HAF', name: 'Hafentechnik Hamburg AG',   sector: 'Technik',     netPosition:  -67200 },
-  { id: 'NOR', name: 'Nordsee Fisch GmbH',        sector: 'Lebensmittel',netPosition:   55000 },
-  { id: 'ELB', name: 'Elbe Import Export',        sector: 'Handel',      netPosition:  -44800 },
-  { id: 'ALT', name: 'Altonaer Maschinenbau',     sector: 'Technik',     netPosition:   31000 },
-  { id: 'HAR', name: 'Harburg Textil GmbH',       sector: 'Textil',      netPosition:  -28000 },
-  { id: 'BER', name: 'Bergedorfer Bäckerei KG',   sector: 'Lebensmittel',netPosition:   19500 },
-  { id: 'EIM', name: 'Eimsbüttel Design GmbH',    sector: 'Dienstleist.', netPosition:  -12000 },
-  { id: 'WAN', name: 'Wandsbek Bau GmbH',         sector: 'Bau',         netPosition:   88000 },
-  { id: 'OHL', name: 'Ohlsdorf Chemie AG',        sector: 'Chemie',      netPosition:  -55000 },
-  { id: 'POP', name: 'Poppenbüttel IT GmbH',      sector: 'IT',          netPosition:   42000 },
+  { id: 'A1', name: 'HafenLogistik GmbH',    sector: 'port_logistics', cluster: 'Port & Logistik',      total_invoice_volume_cents: 980000, net_position_cents:  142000, component_id: 0 },
+  { id: 'A2', name: 'Nordsee Shipping AG',   sector: 'port_logistics', cluster: 'Port & Logistik',      total_invoice_volume_cents: 720000, net_position_cents:  -67200, component_id: 0 },
+  { id: 'A3', name: 'Elbe Import Export',    sector: 'port_logistics', cluster: 'Port & Logistik',      total_invoice_volume_cents: 540000, net_position_cents:   55000, component_id: 0 },
+  { id: 'B1', name: 'Handwerk Hamburg GmbH', sector: 'handwerk',       cluster: 'Handwerk & Bau',       total_invoice_volume_cents: 620000, net_position_cents:   88000, component_id: 1 },
+  { id: 'B2', name: 'Altonaer Bau KG',      sector: 'handwerk',       cluster: 'Handwerk & Bau',       total_invoice_volume_cents: 430000, net_position_cents:  -44800, component_id: 1 },
+  { id: 'B3', name: 'Wandsbek Technik GmbH', sector: 'handwerk',       cluster: 'Handwerk & Bau',       total_invoice_volume_cents: 380000, net_position_cents:   31000, component_id: 2 },
+  { id: 'C1', name: 'Bergedorfer Gastro AG', sector: 'gastronomie',    cluster: 'Gastronomie & Handel', total_invoice_volume_cents: 810000, net_position_cents:   98500, component_id: 3 },
+  { id: 'C2', name: 'Eimsbüttel Catering',   sector: 'gastronomie',    cluster: 'Gastronomie & Handel', total_invoice_volume_cents: 490000, net_position_cents:  -28000, component_id: 3 },
+  { id: 'C3', name: 'Rahlstedt Frische KG',  sector: 'gastronomie',    cluster: 'Gastronomie & Handel', total_invoice_volume_cents: 350000, net_position_cents:   19500, component_id: 3 },
 ]
-
-const MOCK_LINKS = [
-  { source: 'MUL', target: 'SCH', amount: 45000 },
-  { source: 'SCH', target: 'MUL', amount: 30000 },
-  { source: 'SCH', target: 'HAF', amount: 62000 },
-  { source: 'HAF', target: 'SCH', amount: 62000 },
-  { source: 'NOR', target: 'ELB', amount: 28000 },
-  { source: 'ELB', target: 'NOR', amount: 15000 },
-  { source: 'ALT', target: 'MUL', amount: 38000 },
-  { source: 'MUL', target: 'ALT', amount: 22000 },
-  { source: 'HAR', target: 'NOR', amount: 19000 },
-  { source: 'ELB', target: 'HAF', amount: 33000 },
-  { source: 'HAF', target: 'ALT', amount: 41000 },
-  { source: 'ALT', target: 'HAR', amount: 27000 },
-  { source: 'BER', target: 'SCH', amount: 14000 },
-  { source: 'EIM', target: 'POP', amount: 22000 },
-  { source: 'POP', target: 'WAN', amount: 35000 },
-  { source: 'WAN', target: 'OHL', amount: 48000 },
-  { source: 'OHL', target: 'MUL', amount: 29000 },
-  { source: 'NOR', target: 'BER', amount: 11000 },
+const MOCK_EDGES = [
+  { source: 'A1', target: 'A2', total_amount_cents: 320000 },
+  { source: 'A2', target: 'A3', total_amount_cents: 210000 },
+  { source: 'A3', target: 'A1', total_amount_cents: 180000 },
+  { source: 'B1', target: 'B2', total_amount_cents: 270000 },
+  { source: 'B2', target: 'B1', total_amount_cents: 140000 },
+  { source: 'C1', target: 'C2', total_amount_cents: 300000 },
+  { source: 'C2', target: 'C3', total_amount_cents: 190000 },
+  { source: 'C3', target: 'C1', total_amount_cents: 110000 },
 ]
+const MOCK_GAPS = [
+  { cluster_a: 'Port & Logistik', cluster_b: 'Handwerk & Bau' },
+  { cluster_a: 'Handwerk & Bau',  cluster_b: 'Gastronomie & Handel' },
+]
+const MOCK_CLUSTERS = ['Port & Logistik', 'Handwerk & Bau', 'Gastronomie & Handel']
 
-const SECTOR_COLORS = {
-  'Logistik':    '#4a7c59',
-  'Handel':      '#c97a2f',
-  'Technik':     '#2c6e8a',
-  'Lebensmittel':'#7a9e3e',
-  'Textil':      '#8a5c9e',
-  'Dienstleist.':'#9e7a2c',
-  'Bau':         '#6e4a2c',
-  'Chemie':      '#2c7a8a',
-  'IT':          '#5c6e9e',
-}
-
-function sectorColor(sector) {
-  return SECTOR_COLORS[sector] || '#7a6e64'
-}
-
-function formatEur(v) {
-  if (Math.abs(v) >= 1_000_000) return (v / 1_000_000).toFixed(2).replace('.', ',') + ' Mio €'
-  if (Math.abs(v) >= 1_000)     return (v / 1_000).toFixed(0) + ' Tsd €'
+// ── Helpers ────────────────────────────────────────────────────────────────
+function formatEur(cents) {
+  const v = cents / 100
+  if (Math.abs(v) >= 1_000_000) return (v / 1_000_000).toFixed(1).replace('.', ',') + ' Mio €'
+  if (Math.abs(v) >= 1_000)     return Math.round(v / 1_000) + ' Tsd €'
   return v.toLocaleString('de-DE') + ' €'
 }
 
-const NODE_R = 18
-const LINK_SCALE = d3.scaleLinear().domain([10000, 80000]).range([1.5, 5]).clamp(true)
+// Compute convex hull of node positions for one component/cluster group
+function hullPoints(nodes) {
+  if (nodes.length === 0) return null
+  if (nodes.length === 1) {
+    const { x, y } = nodes[0]
+    const r = 48
+    return [[x - r, y - r], [x + r, y - r], [x + r, y + r], [x - r, y + r]]
+  }
+  if (nodes.length === 2) {
+    const dx = nodes[1].x - nodes[0].x, dy = nodes[1].y - nodes[0].y
+    const len = Math.sqrt(dx * dx + dy * dy) || 1
+    const nx = -dy / len * 40, ny = dx / len * 40
+    return [
+      [nodes[0].x + nx, nodes[0].y + ny],
+      [nodes[1].x + nx, nodes[1].y + ny],
+      [nodes[1].x - nx, nodes[1].y - ny],
+      [nodes[0].x - nx, nodes[0].y - ny],
+    ]
+  }
+  return d3.polygonHull(nodes.map(n => [n.x, n.y]))
+}
 
+const NODE_R_BASE = 24
+const VOL_SCALE   = d3.scaleSqrt().domain([0, 2_000_000_00]).range([NODE_R_BASE, 42]).clamp(true)
+const LINK_SCALE  = d3.scaleLinear().domain([50_000_00, 5_000_000_00]).range([2, 7]).clamp(true)
+
+// ── Component ──────────────────────────────────────────────────────────────
 export default function NetworkExplorer() {
   const svgRef    = useRef(null)
   const simRef    = useRef(null)
-  const [selected, setSelected] = useState(null)   // selected node id
-  const [stats, setStats]       = useState(null)
-  const [graphNodes, setGraphNodes] = useState(MOCK_NODES)
-  const [graphLinks, setGraphLinks] = useState(MOCK_LINKS)
+  const nodesRef  = useRef([])
+  const [selected, setSelected] = useState(null)
+  const [hovered,  setHovered]  = useState(null)
+  const [topology, setTopology] = useState(null)
+  const [usingMock, setUsingMock] = useState(false)
 
+  // Load topology from API
   useEffect(() => {
-    networkApi.stats()
-      .then(setStats)
-      .catch(() => setStats({ totalCompanies: 50, totalInvoices: 312 }))
-  }, [])
-
-  // Try to load real companies + invoices; fall back to mock
-  useEffect(() => {
-    Promise.all([companiesApi.list(), invoicesApi.list()])
-      .then(([companies, invoicesRaw]) => {
-        const invoices = Array.isArray(invoicesRaw) ? invoicesRaw : (invoicesRaw?.items || [])
-        if (!companies?.length || !invoices?.length) return
-        const nodes = companies.map(c => ({
-          id: c.id,
-          name: c.name,
-          sector: c.sector || 'Sonstiges',
-          netPosition: c.net_position_cents || 0,
-        }))
-        const nodeIds = new Set(nodes.map(n => n.id))
-        const links = invoices
-          .filter(inv => {
-            const src = inv.from_company?.id || inv.from_company
-            const tgt = inv.to_company?.id   || inv.to_company
-            return nodeIds.has(src) && nodeIds.has(tgt)
-          })
-          .map(inv => ({
-            source: inv.from_company?.id || inv.from_company,
-            target: inv.to_company?.id   || inv.to_company,
-            amount: inv.total_amount_cents || 0,
-          }))
-        setGraphNodes(nodes)
-        setGraphLinks(links)
+    networkApi.topology()
+      .then(data => {
+        if (data?.nodes?.length) {
+          setTopology(data)
+        } else {
+          setTopology({ nodes: MOCK_NODES, edges: MOCK_EDGES, gaps: MOCK_GAPS, clusters: MOCK_CLUSTERS })
+          setUsingMock(true)
+        }
       })
-      .catch(() => { /* keep mock */ })
+      .catch(() => {
+        setTopology({ nodes: MOCK_NODES, edges: MOCK_EDGES, gaps: MOCK_GAPS, clusters: MOCK_CLUSTERS })
+        setUsingMock(true)
+      })
   }, [])
 
-  // Build D3 simulation
+  // Build D3 simulation when topology loads
   useEffect(() => {
-    const svg = d3.select(svgRef.current)
+    if (!topology || !svgRef.current) return
+
+    const { nodes: rawNodes, edges: rawEdges, gaps, clusters } = topology
+
+    const svg    = d3.select(svgRef.current)
     svg.selectAll('*').remove()
 
-    const width  = svgRef.current.clientWidth  || 800
-    const height = svgRef.current.clientHeight || 500
+    const width  = svgRef.current.clientWidth  || 900
+    const height = svgRef.current.clientHeight || 580
 
     // Deep-copy so D3 can mutate
-    const nodes = graphNodes.map(n => ({ ...n }))
-    const links = graphLinks.map(l => ({ ...l }))
+    const nodes = rawNodes.map(n => ({ ...n }))
+    const links = rawEdges.map(l => ({ ...l }))
+    nodesRef.current = nodes
 
-    // Arrow markers per sector
+    // Defs: drop-shadow filter for hull
     const defs = svg.append('defs')
-    Object.entries(SECTOR_COLORS).forEach(([sector, color]) => {
-      defs.append('marker')
-        .attr('id', `arrow-${sector.replace(/\W/g, '_')}`)
-        .attr('viewBox', '0 -5 10 10')
-        .attr('refX', NODE_R + 10)
-        .attr('refY', 0)
-        .attr('markerWidth', 5)
-        .attr('markerHeight', 5)
-        .attr('orient', 'auto')
-        .append('path').attr('d', 'M0,-5L10,0L0,5').attr('fill', color)
-    })
-    defs.append('marker')
-      .attr('id', 'arrow-default')
-      .attr('viewBox', '0 -5 10 10')
-      .attr('refX', NODE_R + 10)
-      .attr('refY', 0)
-      .attr('markerWidth', 5)
-      .attr('markerHeight', 5)
-      .attr('orient', 'auto')
-      .append('path').attr('d', 'M0,-5L10,0L0,5').attr('fill', '#7a6e64')
+    defs.append('filter').attr('id', 'hull-shadow')
+      .append('feDropShadow')
+        .attr('dx', 0).attr('dy', 2).attr('stdDeviation', 6)
+        .attr('flood-color', '#000').attr('flood-opacity', 0.08)
 
     // Root group (zoom target)
     const root = svg.append('g').attr('class', 'zoom-root')
 
     // Zoom
     const zoom = d3.zoom()
-      .scaleExtent([0.3, 3])
+      .scaleExtent([0.2, 3])
       .on('zoom', e => root.attr('transform', e.transform))
     svg.call(zoom)
-    svg.call(zoom.transform, d3.zoomIdentity.translate(width / 2, height / 2).scale(0.85))
+    svg.call(zoom.transform, d3.zoomIdentity.translate(width / 2, height / 2).scale(0.9))
 
-    // Simulation
+    // ── Force simulation ──────────────────────────────────────────────────
+    // Cluster-aware: add a weak positioning force that pulls clusters apart
+    const clusterList = clusters.length ? clusters : MOCK_CLUSTERS
+    const clusterAngle = {}
+    clusterList.forEach((c, i) => {
+      clusterAngle[c] = (2 * Math.PI * i) / clusterList.length
+    })
+    const CLUSTER_RADIUS = Math.min(width, height) * 0.28
+
     const sim = d3.forceSimulation(nodes)
-      .force('link', d3.forceLink(links).id(d => d.id).distance(140).strength(0.4))
-      .force('charge', d3.forceManyBody().strength(-400))
+      .force('link', d3.forceLink(links).id(d => d.id).distance(120).strength(0.3))
+      .force('charge', d3.forceManyBody().strength(-350))
       .force('center', d3.forceCenter(0, 0))
-      .force('collision', d3.forceCollide(NODE_R + 12))
+      .force('collision', d3.forceCollide(d => VOL_SCALE(d.total_invoice_volume_cents) + 14))
+      .force('cluster-x', d3.forceX(d => CLUSTER_RADIUS * Math.cos(clusterAngle[d.cluster] || 0)).strength(0.12))
+      .force('cluster-y', d3.forceY(d => CLUSTER_RADIUS * Math.sin(clusterAngle[d.cluster] || 0)).strength(0.12))
     simRef.current = sim
 
-    // Links
-    const linkSel = root.append('g')
-      .attr('class', 'links')
-      .selectAll('line')
+    // ── Gap annotations (dashed arcs between cluster centroids) ──────────
+    const gapLayer = root.append('g').attr('class', 'gap-layer')
+    const hullLayer = root.append('g').attr('class', 'hull-layer')
+    const linkLayer = root.append('g').attr('class', 'link-layer')
+    const nodeLayer = root.append('g').attr('class', 'node-layer')
+
+    // We'll draw gap lines after simulation warms up, updated on tick
+    const gapLines = gapLayer.selectAll('g.gap')
+      .data(gaps)
+      .join('g').attr('class', 'gap')
+
+    gapLines.append('line')
+      .attr('stroke', '#e05a3a')
+      .attr('stroke-width', 2.5)
+      .attr('stroke-dasharray', '8,6')
+      .attr('stroke-opacity', 0.7)
+
+    gapLines.append('text')
+      .attr('text-anchor', 'middle')
+      .attr('fill', '#e05a3a')
+      .attr('font-size', '11')
+      .attr('font-weight', '700')
+      .attr('pointer-events', 'none')
+      .text('GAP')
+
+    // ── Convex hull backgrounds per connected component ───────────────────
+    // Group nodes by component_id
+    const componentGroups = d3.group(nodes, d => d.component_id)
+    const hullPaths = hullLayer.selectAll('path.hull')
+      .data([...componentGroups.entries()])
+      .join('path')
+        .attr('class', 'hull')
+        .attr('fill', ([, members]) => clusterColorLight(members[0]?.cluster || ''))
+        .attr('stroke', ([, members]) => clusterColor(members[0]?.cluster || ''))
+        .attr('stroke-width', 1.5)
+        .attr('stroke-dasharray', '4,3')
+        .attr('stroke-opacity', 0.5)
+        .attr('filter', 'url(#hull-shadow)')
+
+    // ── Links ─────────────────────────────────────────────────────────────
+    const linkSel = linkLayer.selectAll('line')
       .data(links)
       .join('line')
-        .attr('stroke', d => sectorColor(nodes.find(n => n.id === (d.source?.id || d.source))?.sector))
-        .attr('stroke-width', d => LINK_SCALE(d.amount))
-        .attr('stroke-opacity', 0.55)
-        .attr('marker-end', d => {
-          const sNode = nodes.find(n => n.id === (d.source?.id || d.source))
-          return `url(#arrow-${(sNode?.sector || 'default').replace(/\W/g, '_')})`
+        .attr('stroke', d => {
+          const srcNode = nodes.find(n => n.id === (d.source?.id || d.source))
+          return clusterColor(srcNode?.cluster || '')
         })
+        .attr('stroke-width', d => LINK_SCALE(d.total_amount_cents))
+        .attr('stroke-opacity', 0.45)
 
-    // Node groups
-    const nodeSel = root.append('g')
-      .attr('class', 'nodes')
-      .selectAll('g')
+    // ── Nodes ─────────────────────────────────────────────────────────────
+    const nodeSel = nodeLayer.selectAll('g.node-group')
       .data(nodes)
       .join('g')
         .attr('class', 'node-group')
@@ -207,73 +237,129 @@ export default function NetworkExplorer() {
           e.stopPropagation()
           setSelected(prev => prev === d.id ? null : d.id)
         })
+        .on('mouseenter', (e, d) => setHovered(d.id))
+        .on('mouseleave', ()      => setHovered(null))
 
     nodeSel.append('circle')
-      .attr('r', NODE_R)
-      .attr('fill', d => sectorColor(d.sector))
-      .attr('fill-opacity', 0.15)
-      .attr('stroke', d => sectorColor(d.sector))
-      .attr('stroke-width', 2.5)
+      .attr('r', d => VOL_SCALE(d.total_invoice_volume_cents))
+      .attr('fill', d => clusterColor(d.cluster))
+      .attr('fill-opacity', 0.18)
+      .attr('stroke', d => clusterColor(d.cluster))
+      .attr('stroke-width', 3)
 
+    // Short company name label (first word, max 8 chars) — large for projector
     nodeSel.append('text')
       .attr('text-anchor', 'middle')
       .attr('dominant-baseline', 'middle')
-      .attr('font-size', '9')
-      .attr('font-weight', '700')
-      .attr('fill', d => sectorColor(d.sector))
-      .text(d => (d.name || d.id).split(' ')[0].slice(0, 6))
+      .attr('font-size', '11')
+      .attr('font-weight', '800')
+      .attr('fill', d => clusterColor(d.cluster))
+      .attr('pointer-events', 'none')
+      .text(d => (d.name || d.id).split(' ')[0].slice(0, 8))
 
     // Deselect on canvas click
-    svg.on('click', () => setSelected(null))
+    svg.on('click', () => { setSelected(null); setHovered(null) })
+
+    // ── Cluster centroid helpers ──────────────────────────────────────────
+    function clusterCentroid(clusterName) {
+      const members = nodes.filter(n => n.cluster === clusterName)
+      if (!members.length) return { x: 0, y: 0 }
+      const x = members.reduce((s, n) => s + (n.x || 0), 0) / members.length
+      const y = members.reduce((s, n) => s + (n.y || 0), 0) / members.length
+      return { x, y }
+    }
 
     sim.on('tick', () => {
+      // Links
       linkSel
         .attr('x1', d => d.source.x)
         .attr('y1', d => d.source.y)
         .attr('x2', d => d.target.x)
         .attr('y2', d => d.target.y)
+
+      // Nodes
       nodeSel.attr('transform', d => `translate(${d.x},${d.y})`)
+
+      // Convex hulls per connected component
+      hullPaths.attr('d', ([, members]) => {
+        const pts = hullPoints(members.filter(n => n.x != null))
+        if (!pts) return ''
+        if (pts.length < 3) return ''
+        // expand hull outward by 36px
+        const cx = pts.reduce((s, p) => s + p[0], 0) / pts.length
+        const cy = pts.reduce((s, p) => s + p[1], 0) / pts.length
+        const expanded = pts.map(([px, py]) => {
+          const dx = px - cx, dy = py - cy
+          const len = Math.sqrt(dx * dx + dy * dy) || 1
+          return [px + (dx / len) * 36, py + (dy / len) * 36]
+        })
+        return 'M' + expanded.join('L') + 'Z'
+      })
+
+      // Gap annotations between cluster centroids
+      gapLines.select('line').each(function(gap) {
+        const ca = clusterCentroid(gap.cluster_a)
+        const cb = clusterCentroid(gap.cluster_b)
+        d3.select(this)
+          .attr('x1', ca.x).attr('y1', ca.y)
+          .attr('x2', cb.x).attr('y2', cb.y)
+      })
+      gapLines.select('text').each(function(gap) {
+        const ca = clusterCentroid(gap.cluster_a)
+        const cb = clusterCentroid(gap.cluster_b)
+        d3.select(this)
+          .attr('x', (ca.x + cb.x) / 2)
+          .attr('y', (ca.y + cb.y) / 2 - 8)
+      })
     })
 
     return () => { sim.stop(); svg.on('click', null) }
-  }, [graphNodes, graphLinks])
+  }, [topology])
 
-  // Highlight selected node and its links
+  // Highlight on select/hover
   useEffect(() => {
     const svg = d3.select(svgRef.current)
-    if (!selected) {
-      svg.selectAll('.node-group circle').attr('fill-opacity', 0.15).attr('stroke-width', 2.5)
-      svg.selectAll('.links line').attr('stroke-opacity', 0.55)
+    const active = selected || hovered
+    if (!active) {
+      svg.selectAll('.node-group circle').attr('fill-opacity', 0.18).attr('stroke-width', 3)
+      svg.selectAll('.link-layer line').attr('stroke-opacity', 0.45)
       return
     }
     svg.selectAll('.node-group').each(function(d) {
-      const isSelected = d.id === selected
+      const isActive = d.id === active
       d3.select(this).select('circle')
-        .attr('fill-opacity', isSelected ? 0.35 : 0.10)
-        .attr('stroke-width',  isSelected ? 4 : 1.5)
+        .attr('fill-opacity', isActive ? 0.40 : 0.10)
+        .attr('stroke-width',  isActive ? 5    : 2)
     })
-    svg.selectAll('.links line').attr('stroke-opacity', d => {
+    svg.selectAll('.link-layer line').attr('stroke-opacity', d => {
       const sid = d.source?.id || d.source
       const tid = d.target?.id || d.target
-      return (sid === selected || tid === selected) ? 0.9 : 0.12
+      return (sid === active || tid === active) ? 0.85 : 0.08
     })
-  }, [selected])
+  }, [selected, hovered])
 
-  const selectedNode = selected ? graphNodes.find(n => n.id === selected) : null
-  const selectedLinks = selected
-    ? graphLinks.filter(l => {
-        const src = l.source?.id || l.source
-        const tgt = l.target?.id || l.target
-        return src === selected || tgt === selected
+  const nodes   = topology?.nodes   || []
+  const edges   = topology?.edges   || []
+  const gaps    = topology?.gaps    || []
+  const clusters = topology?.clusters || []
+
+  const activeId   = selected || hovered
+  const activeNode = activeId ? nodes.find(n => n.id === activeId) : null
+  const activeLinks = activeId
+    ? edges.filter(l => {
+        const s = l.source?.id || l.source
+        const t = l.target?.id || l.target
+        return s === activeId || t === activeId
       })
     : []
 
   return (
     <div>
       <div className="page-header">
-        <h1 className="page-title">Netzwerk-Explorer</h1>
+        <h1 className="page-title">Netzwerk-Topologie</h1>
         <p className="page-subtitle">
-          Handels- und Rechnungsbeziehungen zwischen Hamburger KMUs · {stats ? `${stats.totalCompanies} Unternehmen` : '…'}
+          {nodes.length} Hamburger KMUs · {clusters.length} Branchencluster · {gaps.length} fehlende Verbindungen (Gaps)
+          {usingMock && <span style={{ color: 'var(--color-warning)', marginLeft: 8 }}>· Demo-Daten</span>}
         </p>
       </div>
 
@@ -283,61 +369,91 @@ export default function NetworkExplorer() {
           <div className="network-hint">
             Scrollen zum Zoomen · Ziehen zum Verschieben · Knoten anklicken
           </div>
-          <svg
-            ref={svgRef}
-            className="network-svg"
-            width="100%"
-            height="500"
-          />
+          <svg ref={svgRef} className="network-svg" width="100%" height="580" />
         </div>
 
         {/* Sidebar */}
         <div className="network-sidebar">
-          {/* Sector legend */}
+          {/* Cluster legend */}
           <div className="card">
-            <h3 className="toolbar-title" style={{ marginBottom: 'var(--space-4)' }}>Sektoren</h3>
-            {Object.entries(SECTOR_COLORS).map(([sector, color]) => (
-              <div key={sector} style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-3)', marginBottom: 'var(--space-2)' }}>
+            <h3 className="toolbar-title" style={{ marginBottom: 'var(--space-4)' }}>Branchencluster</h3>
+            {clusters.map(c => (
+              <div key={c} style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-3)', marginBottom: 'var(--space-3)' }}>
                 <span style={{
-                  width: 12, height: 12, borderRadius: '50%',
-                  background: color, flexShrink: 0,
-                  border: `2px solid ${color}`,
+                  width: 14, height: 14, borderRadius: '50%',
+                  background: clusterColor(c), flexShrink: 0,
                 }} />
-                <span style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-text-muted)' }}>{sector}</span>
+                <span style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-text)', fontWeight: 600 }}>{c}</span>
               </div>
             ))}
+
+            {gaps.length > 0 && (
+              <>
+                <div style={{ borderTop: '1px solid var(--color-border)', margin: 'var(--space-4) 0' }} />
+                <h3 className="toolbar-title" style={{ marginBottom: 'var(--space-3)', color: '#e05a3a' }}>
+                  Strukturelle Gaps
+                </h3>
+                {gaps.map((g, i) => (
+                  <div key={i} style={{
+                    display: 'flex', alignItems: 'center', gap: 'var(--space-2)',
+                    marginBottom: 'var(--space-2)',
+                    padding: 'var(--space-2) var(--space-3)',
+                    background: 'rgba(224,90,58,0.07)',
+                    borderRadius: 'var(--radius-sm)',
+                    borderLeft: '3px solid #e05a3a',
+                  }}>
+                    <span style={{ fontSize: 'var(--font-size-xs)', color: 'var(--color-text-muted)' }}>
+                      {g.cluster_a} ↔ {g.cluster_b}
+                    </span>
+                  </div>
+                ))}
+              </>
+            )}
           </div>
 
-          {/* Selected node detail */}
-          {selectedNode ? (
+          {/* Selected/hovered node detail */}
+          {activeNode ? (
             <div className="card network-detail-card">
-              <h3 style={{ fontSize: 'var(--font-size-md)', fontWeight: 700, marginBottom: 'var(--space-3)', color: sectorColor(selectedNode.sector) }}>
-                {selectedNode.name}
+              <h3 style={{
+                fontSize: 'var(--font-size-md)', fontWeight: 700,
+                marginBottom: 'var(--space-2)',
+                color: clusterColor(activeNode.cluster),
+              }}>
+                {activeNode.name}
               </h3>
-              <div style={{ marginBottom: 'var(--space-3)' }}>
-                <span className="badge badge-gray">{selectedNode.sector}</span>
+              <div style={{ marginBottom: 'var(--space-3)', display: 'flex', gap: 'var(--space-2)', flexWrap: 'wrap' }}>
+                <span className="badge badge-gray">{activeNode.cluster}</span>
+                <span className="badge badge-gray">{activeNode.sector}</span>
               </div>
-              <div style={{ marginBottom: 'var(--space-4)' }}>
-                <div className="kpi-label">Netto-Position</div>
-                <div style={{
-                  fontSize: 'var(--font-size-xl)',
-                  fontWeight: 800,
-                  color: selectedNode.netPosition >= 0 ? 'var(--color-success)' : 'var(--color-danger)',
-                }}>
-                  {selectedNode.netPosition >= 0 ? '+' : ''}{formatEur(selectedNode.netPosition)}
+
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-3)', marginBottom: 'var(--space-4)' }}>
+                <div>
+                  <div className="kpi-label">Rechnungsvolumen</div>
+                  <div style={{ fontSize: 'var(--font-size-lg)', fontWeight: 800, color: 'var(--color-text)' }}>
+                    {formatEur(activeNode.total_invoice_volume_cents)}
+                  </div>
+                </div>
+                <div>
+                  <div className="kpi-label">Netto-Position</div>
+                  <div style={{
+                    fontSize: 'var(--font-size-lg)', fontWeight: 800,
+                    color: activeNode.net_position_cents >= 0 ? 'var(--color-success)' : 'var(--color-danger)',
+                  }}>
+                    {activeNode.net_position_cents >= 0 ? '+' : ''}{formatEur(activeNode.net_position_cents)}
+                  </div>
                 </div>
               </div>
 
               <div className="kpi-label" style={{ marginBottom: 'var(--space-2)' }}>
-                Rechnungsbeziehungen ({selectedLinks.length})
+                Rechnungsbeziehungen ({activeLinks.length})
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-2)' }}>
-                {selectedLinks.map((l, i) => {
+                {activeLinks.slice(0, 8).map((l, i) => {
                   const src = l.source?.id || l.source
                   const tgt = l.target?.id || l.target
-                  const isOut = src === selected
-                  const other = isOut ? tgt : src
-                  const otherNode = graphNodes.find(n => n.id === other)
+                  const isOut = src === activeId
+                  const otherId = isOut ? tgt : src
+                  const other = nodes.find(n => n.id === otherId)
                   return (
                     <div key={i} style={{
                       display: 'flex', alignItems: 'center', gap: 'var(--space-2)',
@@ -346,23 +462,28 @@ export default function NetworkExplorer() {
                       borderRadius: 'var(--radius-sm)',
                       fontSize: 'var(--font-size-xs)',
                     }}>
-                      <span style={{ color: isOut ? 'var(--color-danger)' : 'var(--color-success)', fontWeight: 700 }}>
+                      <span style={{ color: isOut ? 'var(--color-danger)' : 'var(--color-success)', fontWeight: 700, fontSize: 14 }}>
                         {isOut ? '→' : '←'}
                       </span>
-                      <span style={{ flex: 1, color: 'var(--color-text)' }}>{otherNode?.name || other}</span>
+                      <span style={{ flex: 1, color: 'var(--color-text)' }}>{other?.name || otherId}</span>
                       <span style={{ fontWeight: 700, color: 'var(--color-text-muted)' }}>
-                        {formatEur(l.amount)}
+                        {formatEur(l.total_amount_cents)}
                       </span>
                     </div>
                   )
                 })}
+                {activeLinks.length > 8 && (
+                  <div style={{ fontSize: 'var(--font-size-xs)', color: 'var(--color-text-muted)', textAlign: 'center' }}>
+                    + {activeLinks.length - 8} weitere
+                  </div>
+                )}
               </div>
             </div>
           ) : (
             <div className="card" style={{ textAlign: 'center', padding: 'var(--space-8)', color: 'var(--color-text-muted)' }}>
               <div style={{ fontSize: '2rem', marginBottom: 'var(--space-3)', opacity: 0.3 }}>⬡</div>
               <p style={{ fontSize: 'var(--font-size-sm)' }}>
-                Klicken Sie auf ein Unternehmen, um Details und Rechnungsbeziehungen anzuzeigen.
+                Klicken oder hovern Sie auf ein Unternehmen, um Details anzuzeigen.
               </p>
             </div>
           )}
