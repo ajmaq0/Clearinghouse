@@ -169,6 +169,18 @@ _HISTORY_MONTHS = [
     (2026, 6, 30),
 ]
 
+# Netting type and target savings % per month.
+# Months 1–2 are bilateral (~33–35%). Month 3 switches to optimal and
+# savings step up visibly (~55%), then build to ~70% by June.
+_HISTORY_NETTING = [
+    ("bilateral", None),   # Jan — ~33–35%, computed naturally
+    ("bilateral", None),   # Feb — ~33–35%, computed naturally
+    ("optimal",   55.0),   # Mar — first optimal cycle, visible step up
+    ("optimal",   63.0),   # Apr — ~63%
+    ("optimal",   67.0),   # May — ~67%
+    ("optimal",   70.0),   # Jun — ~70%
+]
+
 
 def load_json(name: str):
     with open(SEEDS_DIR / name) as f:
@@ -256,10 +268,112 @@ def _run_bilateral_at(db: Session, invoices: list, completed_at: datetime) -> No
     db.flush()
 
 
+def _run_optimal_at(
+    db: Session, invoices: list, completed_at: datetime, target_savings_pct: float
+) -> None:
+    """
+    Persist an 'optimal'-type clearing cycle for the given Invoice ORM objects.
+
+    Computes bilateral pair flows first, then scales each net obligation down so
+    that aggregate savings reach target_savings_pct, simulating LP-optimal netting
+    without running the actual LP solver.  Does NOT modify real invoice amounts.
+    """
+    if not invoices:
+        return
+
+    flows = defaultdict(lambda: defaultdict(lambda: [0, 0]))
+    for inv in invoices:
+        flows[inv.from_company_id][inv.to_company_id][0] += inv.amount_cents
+        flows[inv.from_company_id][inv.to_company_id][1] += 1
+
+    all_companies = set(flows.keys()) | {b for a_map in flows.values() for b in a_map}
+    pair_results = []
+    visited_pairs: set = set()
+
+    for a in all_companies:
+        for b in all_companies:
+            if a >= b or (a, b) in visited_pairs:
+                continue
+            visited_pairs.add((a, b))
+            a_to_b_cents, a_to_b_count = flows[a][b]
+            b_to_a_cents, b_to_a_count = flows[b][a]
+            gross_pair = a_to_b_cents + b_to_a_cents
+            inv_count = a_to_b_count + b_to_a_count
+            if gross_pair == 0:
+                continue
+            raw_net = abs(a_to_b_cents - b_to_a_cents)
+            if a_to_b_cents >= b_to_a_cents:
+                payer, payee = a, b
+            else:
+                payer, payee = b, a
+            pair_results.append((payer, payee, gross_pair, raw_net, inv_count))
+
+    total_gross = sum(r[2] for r in pair_results)
+    total_bilateral_net = sum(r[3] for r in pair_results)
+
+    # Scale net amounts so aggregate savings hit target_savings_pct
+    target_net = int(total_gross * (1.0 - target_savings_pct / 100.0))
+    scale = (target_net / total_bilateral_net) if total_bilateral_net > 0 else 1.0
+    # Clamp: never make things worse than bilateral
+    scale = min(scale, 1.0)
+
+    adjusted = [
+        (payer, payee, gross_pair, max(0, int(net_cents * scale)), inv_count)
+        for payer, payee, gross_pair, net_cents, inv_count in pair_results
+    ]
+
+    receivable: dict = defaultdict(int)
+    payable: dict = defaultdict(int)
+    for payer, payee, _gross, net_cents, _ in adjusted:
+        if net_cents > 0:
+            payable[payer] += net_cents
+            receivable[payee] += net_cents
+
+    cycle = models.ClearingCycle(
+        status="completed",
+        started_at=completed_at,
+        completed_at=completed_at,
+        netting_type="optimal",
+    )
+    db.add(cycle)
+    db.flush()
+
+    for payer, payee, gross_pair, net_cents, inv_count in adjusted:
+        db.add(models.ClearingResult(
+            clearing_cycle_id=cycle.id,
+            from_company_id=payer,
+            to_company_id=payee,
+            gross_amount_cents=gross_pair,
+            net_amount_cents=net_cents,
+            invoices_count=inv_count,
+        ))
+
+    for company_id in set(receivable.keys()) | set(payable.keys()):
+        rec = receivable[company_id]
+        pay = payable[company_id]
+        db.add(models.NetPosition(
+            company_id=company_id,
+            clearing_cycle_id=cycle.id,
+            receivable_cents=rec,
+            payable_cents=pay,
+            net_cents=rec - pay,
+        ))
+
+    for inv in invoices:
+        inv.status = "cleared"
+        inv.clearing_cycle_id = cycle.id
+
+    db.flush()
+
+
 def seed_history(db: Session, company_ids: list) -> None:
     """
-    Generate 6 monthly batches of invoices (Jan–Jun 2026) and run bilateral
-    clearing on each so the demo starts with a populated history timeline.
+    Generate 6 monthly batches of invoices (Jan–Jun 2026) and run clearing on
+    each so the demo starts with a populated history timeline.
+
+    Months 1–2 use bilateral netting (~33–35% savings).
+    Month 3 switches to optimal netting (visible step-up to ~55%), and months
+    4–6 build further (~63–70%), telling a coherent bilateral→optimal story.
     """
     if db.query(models.ClearingCycle).count() > 0:
         print("  Clearing history already present — skipping history seed.")
@@ -268,7 +382,7 @@ def seed_history(db: Session, company_ids: list) -> None:
     n_companies = len(company_ids)
     total_invoices = 0
 
-    for year, month, day in _HISTORY_MONTHS:
+    for (year, month, day), (netting_type, savings_pct) in zip(_HISTORY_MONTHS, _HISTORY_NETTING):
         n_invoices = _RNG.randint(18, 28)
         batch = []
 
@@ -310,9 +424,12 @@ def seed_history(db: Session, company_ids: list) -> None:
             batch.append(inv)
 
         completed_at = datetime(year, month, day, 18, 0, 0, tzinfo=timezone.utc)
-        _run_bilateral_at(db, batch, completed_at)
+        if netting_type == "bilateral":
+            _run_bilateral_at(db, batch, completed_at)
+        else:
+            _run_optimal_at(db, batch, completed_at, savings_pct)
         total_invoices += len(batch)
-        print(f"  Month {year}-{month:02d}: {len(batch)} invoices cleared.")
+        print(f"  Month {year}-{month:02d}: {len(batch)} invoices cleared ({netting_type}).")
 
     db.commit()
     print(f"  History seed complete — {len(_HISTORY_MONTHS)} cycles, {total_invoices} invoices.")

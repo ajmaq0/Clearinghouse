@@ -1,10 +1,27 @@
+import json
 from collections import defaultdict
+from pathlib import Path
 from typing import List
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from sqlalchemy import func
 from app.core.database import get_db
 from app import models, schemas
+
+# Load candidate companies once at import time.
+# File lives at data/candidate_companies.json relative to the project root.
+# We walk up from this file to find it.
+_CANDIDATES_PATH = Path(__file__).parent.parent.parent.parent / "data" / "candidate_companies.json"
+
+def _load_candidates() -> dict:
+    """Return dict keyed by candidate id."""
+    if not _CANDIDATES_PATH.exists():
+        return {}
+    with open(_CANDIDATES_PATH) as f:
+        raw = json.load(f)
+    return {c["id"]: c for c in raw.get("candidates", [])}
+
+_CANDIDATES: dict = _load_candidates()
 
 router = APIRouter(prefix="/network", tags=["network"])
 
@@ -175,4 +192,166 @@ def network_topology(db: Session = Depends(get_db)):
         edges=edges,
         gaps=gaps,
         clusters=all_clusters,
+    )
+
+
+def _lp_savings_pct(gross_flow: dict) -> tuple:
+    """
+    Run LP-optimal netting in-memory on a gross_flow dict.
+
+    gross_flow: {from_id: {to_id: amount_cents}}
+
+    Returns (gross_cents, optimal_savings_pct).
+    Does NOT touch the database.
+    """
+    import numpy as np
+    from scipy.optimize import linprog
+
+    all_companies = sorted(
+        set(gross_flow.keys()) | {b for a_map in gross_flow.values() for b in a_map}
+    )
+    if not all_companies:
+        return 0, 0.0
+
+    company_idx = {c: i for i, c in enumerate(all_companies)}
+    n = len(all_companies)
+
+    edges = []
+    for a in gross_flow:
+        for b, cap in gross_flow[a].items():
+            if cap > 0:
+                edges.append((company_idx[a], company_idx[b], cap))
+
+    if not edges:
+        return 0, 0.0
+
+    m = len(edges)
+    gross_total = sum(e[2] for e in edges)
+
+    c_obj = -np.ones(m)
+
+    A_rows = []
+    for i in range(n):
+        row = np.zeros(m)
+        for e_idx, (src, tgt, _cap) in enumerate(edges):
+            if src == i:
+                row[e_idx] = 1.0
+            elif tgt == i:
+                row[e_idx] = -1.0
+        A_rows.append(row)
+
+    A_ub = np.array(A_rows)
+    b_ub = np.zeros(n)
+    bounds = [(0, cap) for (_s, _t, cap) in edges]
+
+    result = linprog(c_obj, A_ub=A_ub, b_ub=b_ub, bounds=bounds, method="highs")
+    if not result.success:
+        # Fallback: bilateral savings estimate (~33%)
+        return gross_total, 33.0
+
+    cleared = int(np.sum(np.round(result.x)))
+    savings_pct = round(cleared / gross_total * 100, 1) if gross_total > 0 else 0.0
+    return gross_total, savings_pct
+
+
+def _count_new_cycles(base_flow: dict, extra_flow: dict) -> int:
+    """
+    Count how many additional directed cycles (length ≥ 3) become reachable
+    when extra_flow edges are added to base_flow.  Uses simple DFS cycle detection.
+    Only counts cycles that include at least one candidate node.
+    """
+    combined = defaultdict(set)
+    for src, targets in base_flow.items():
+        for tgt in targets:
+            combined[src].add(tgt)
+    candidate_nodes = set()
+    for src, targets in extra_flow.items():
+        for tgt in targets:
+            combined[src].add(tgt)
+            candidate_nodes.add(src)
+            candidate_nodes.add(tgt)
+
+    # For each candidate node, count simple cycles through it (capped at 20)
+    cycles_found = 0
+    for start in candidate_nodes:
+        stack = [(start, [start], {start})]
+        while stack and cycles_found < 20:
+            node, path, visited = stack.pop()
+            for nb in combined.get(node, []):
+                if nb == start and len(path) >= 3:
+                    cycles_found += 1
+                elif nb not in visited and len(path) < 6:
+                    stack.append((nb, path + [nb], visited | {nb}))
+    return min(cycles_found, 20)
+
+
+@router.post("/simulate-growth", response_model=schemas.GrowthSimulateResult)
+def simulate_growth(
+    req: schemas.GrowthSimulateRequest,
+    db: Session = Depends(get_db),
+):
+    """
+    Simulate adding candidate companies to the network.
+
+    Temporarily injects their hypothetical invoice flows into the LP-optimal
+    netting graph and returns current vs projected savings.  Does NOT modify
+    any real invoice or company data.
+    """
+    if not _CANDIDATES:
+        raise HTTPException(status_code=503, detail="Candidate data not loaded (data/candidate_companies.json missing)")
+
+    unknown = [cid for cid in req.candidate_ids if cid not in _CANDIDATES]
+    if unknown:
+        raise HTTPException(status_code=422, detail=f"Unknown candidate IDs: {unknown}")
+
+    # Build current gross_flow from confirmed invoices in DB
+    invoices = (
+        db.query(models.Invoice)
+        .filter(models.Invoice.status == "confirmed")
+        .all()
+    )
+
+    base_flow: dict = defaultdict(lambda: defaultdict(int))
+    for inv in invoices:
+        base_flow[inv.from_company_id][inv.to_company_id] += inv.amount_cents
+
+    # Current savings (pure real data)
+    current_gross, current_savings_pct = _lp_savings_pct(base_flow)
+
+    # Build extra flows from selected candidates
+    extra_flow: dict = defaultdict(lambda: defaultdict(int))
+    candidate_names = []
+    for cid in req.candidate_ids:
+        cand = _CANDIDATES[cid]
+        candidate_names.append(cand["name"])
+        for inv in cand.get("hypothetical_invoices", []):
+            extra_flow[inv["from_id"]][inv["to_id"]] += inv["amount_cents"]
+
+    # Projected: combine base + extra
+    projected_flow: dict = defaultdict(lambda: defaultdict(int))
+    for src, targets in base_flow.items():
+        for tgt, amt in targets.items():
+            projected_flow[src][tgt] += amt
+    for src, targets in extra_flow.items():
+        for tgt, amt in targets.items():
+            projected_flow[src][tgt] += amt
+
+    projected_gross, projected_savings_pct = _lp_savings_pct(projected_flow)
+
+    current_cleared = int(current_gross * current_savings_pct / 100)
+    projected_cleared = int(projected_gross * projected_savings_pct / 100)
+    delta_savings_cents = projected_cleared - current_cleared
+
+    # Count new invoice connections (edges) added by candidates
+    new_connections = sum(len(targets) for targets in extra_flow.values())
+
+    new_cycles = _count_new_cycles(base_flow, extra_flow)
+
+    return schemas.GrowthSimulateResult(
+        current_savings_pct=current_savings_pct,
+        projected_savings_pct=projected_savings_pct,
+        delta_savings_cents=max(0, delta_savings_cents),
+        new_connections=new_connections,
+        new_cycles_found=new_cycles,
+        candidate_names=candidate_names,
     )

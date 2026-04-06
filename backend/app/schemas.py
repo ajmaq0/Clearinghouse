@@ -279,3 +279,18 @@ class ClearingHistoryEntry(BaseModel):
 class ClearingHistoryOut(BaseModel):
     cycles: List[ClearingHistoryEntry]
     total_cycles: int
+
+
+# ── Network Growth Simulation ──────────────────────────────────────────────
+
+class GrowthSimulateRequest(BaseModel):
+    candidate_ids: List[str] = Field(..., min_length=1, description="IDs from candidate_companies.json to include in simulation")
+
+
+class GrowthSimulateResult(BaseModel):
+    current_savings_pct: float
+    projected_savings_pct: float
+    delta_savings_cents: int
+    new_connections: int
+    new_cycles_found: int
+    candidate_names: List[str]

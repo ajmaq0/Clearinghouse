@@ -1,0 +1,65 @@
+{
+  "_comment": "Candidate companies for network-growth simulation. These are not real members — they are used only by POST /network/simulate-growth to show projected savings if they were to join the ClearFlow network. IDs use the 'ca0d-' prefix to distinguish them from real seed company UUIDs.",
+  "candidates": [
+    {
+      "id": "ca0d0001-0000-4000-8000-000000000001",
+      "name": "Nordsee Containerlogistik GmbH",
+      "sector": "port_logistics",
+      "city": "Hamburg",
+      "hypothetical_invoices": [
+        {"from_id": "ca0d0001-0000-4000-8000-000000000001", "to_id": "f47ac10b-0001-4000-8000-000000000000", "amount_cents": 4800000},
+        {"from_id": "f47ac10b-0003-4000-8000-000000000000", "to_id": "ca0d0001-0000-4000-8000-000000000001", "amount_cents": 3200000},
+        {"from_id": "ca0d0001-0000-4000-8000-000000000001", "to_id": "f47ac10b-0007-4000-8000-000000000000", "amount_cents": 2100000},
+        {"from_id": "f47ac10b-0012-4000-8000-000000000000", "to_id": "ca0d0001-0000-4000-8000-000000000001", "amount_cents": 1950000}
+      ]
+    },
+    {
+      "id": "ca0d0002-0000-4000-8000-000000000002",
+      "name": "Alster Frischmarkt AG",
+      "sector": "food_beverage",
+      "city": "Hamburg",
+      "hypothetical_invoices": [
+        {"from_id": "ca0d0002-0000-4000-8000-000000000002", "to_id": "f47ac10b-0020-4000-8000-000000000000", "amount_cents": 3600000},
+        {"from_id": "f47ac10b-0022-4000-8000-000000000000", "to_id": "ca0d0002-0000-4000-8000-000000000002", "amount_cents": 2700000},
+        {"from_id": "ca0d0002-0000-4000-8000-000000000002", "to_id": "f47ac10b-0024-4000-8000-000000000000", "amount_cents": 1400000},
+        {"from_id": "f47ac10b-0001-4000-8000-000000000000", "to_id": "ca0d0002-0000-4000-8000-000000000002", "amount_cents": 2200000}
+      ]
+    },
+    {
+      "id": "ca0d0003-0000-4000-8000-000000000003",
+      "name": "WindHanse Energie GmbH",
+      "sector": "renewable_energy",
+      "city": "Hamburg",
+      "hypothetical_invoices": [
+        {"from_id": "ca0d0003-0000-4000-8000-000000000003", "to_id": "f47ac10b-0040-4000-8000-000000000000", "amount_cents": 8500000},
+        {"from_id": "f47ac10b-0042-4000-8000-000000000000", "to_id": "ca0d0003-0000-4000-8000-000000000003", "amount_cents": 6300000},
+        {"from_id": "ca0d0003-0000-4000-8000-000000000003", "to_id": "f47ac10b-0044-4000-8000-000000000000", "amount_cents": 3800000},
+        {"from_id": "f47ac10b-0002-4000-8000-000000000000", "to_id": "ca0d0003-0000-4000-8000-000000000003", "amount_cents": 4100000}
+      ]
+    },
+    {
+      "id": "ca0d0004-0000-4000-8000-000000000004",
+      "name": "Hafen-Technik Hamburg GmbH",
+      "sector": "port_logistics",
+      "city": "Hamburg",
+      "hypothetical_invoices": [
+        {"from_id": "ca0d0004-0000-4000-8000-000000000004", "to_id": "f47ac10b-0004-4000-8000-000000000000", "amount_cents": 5200000},
+        {"from_id": "f47ac10b-0005-4000-8000-000000000000", "to_id": "ca0d0004-0000-4000-8000-000000000004", "amount_cents": 3900000},
+        {"from_id": "ca0d0004-0000-4000-8000-000000000004", "to_id": "f47ac10b-0008-4000-8000-000000000000", "amount_cents": 2600000},
+        {"from_id": "f47ac10b-0010-4000-8000-000000000000", "to_id": "ca0d0004-0000-4000-8000-000000000004", "amount_cents": 1800000}
+      ]
+    },
+    {
+      "id": "ca0d0005-0000-4000-8000-000000000005",
+      "name": "Deichtor Lebensmittelgroßhandel GmbH",
+      "sector": "food_beverage",
+      "city": "Hamburg",
+      "hypothetical_invoices": [
+        {"from_id": "ca0d0005-0000-4000-8000-000000000005", "to_id": "f47ac10b-0021-4000-8000-000000000000", "amount_cents": 2900000},
+        {"from_id": "f47ac10b-0023-4000-8000-000000000000", "to_id": "ca0d0005-0000-4000-8000-000000000005", "amount_cents": 2100000},
+        {"from_id": "ca0d0005-0000-4000-8000-000000000005", "to_id": "f47ac10b-0003-4000-8000-000000000000", "amount_cents": 1700000},
+        {"from_id": "f47ac10b-0006-4000-8000-000000000000", "to_id": "ca0d0005-0000-4000-8000-000000000005", "amount_cents": 3300000}
+      ]
+    }
+  ]
+}
