@@ -12,16 +12,17 @@ import React, { useEffect, useState } from 'react'
 import { clearingApi } from '../api/clearing.js'
 import { formatEur } from '../utils/format.js'
 
-// ── Mock fallback ──────────────────────────────────────────────────────────────
+// ── Mock fallback — values derived from actual seed data (50 companies, 320 invoices)
+// Real API produces these numbers; mock used only when backend unavailable
 const MOCK_RESULT = {
-  gross_cents:                    12_540_000_00,
-  bilateral_cents:                 7_320_000_00,
-  johnson_cents:                   4_180_000_00,
-  optimal_cents:                   3_850_000_00,
-  optimal_savings_cents:           8_690_000_00,
-  optimal_savings_pct:             6930,
-  improvement_over_johnson_cents:    330_000_00,
-  improvement_over_johnson_pct:      789,
+  gross_cents:                  1_636_341_787,
+  bilateral_cents:                711_721_961,
+  johnson_cents:                  574_878_953,
+  optimal_cents:                  449_752_456,
+  optimal_savings_cents:        1_186_589_331,
+  optimal_savings_pct:               7250,
+  improvement_over_johnson_cents:  125_126_497,
+  improvement_over_johnson_pct:       2177,
   lp_status:                      'Optimal',
 }
 
