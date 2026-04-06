@@ -66,10 +66,10 @@ function KpiCard({ label, value, sub, color }) {
 
 /**
  * D3 force graph.
- * nodes: [{ id, name, throughput_cents, net_cents }]
+ * nodes: [{ id, name, throughput_cents, net_cents, gls_member?, district?, subtype? }]
  * edges: [{ source, target, net_cents, gross }]  (gross=true means dashed/gross flow)
  */
-function TradeNetworkGraph({ nodes, edges, height = 480 }) {
+function TradeNetworkGraph({ nodes, edges, height = 480, highlightGls = false }) {
   const svgRef    = useRef(null)
   const [tooltip, setTooltip] = useState(null)   // { x, y, node }
 
@@ -121,7 +121,7 @@ function TradeNetworkGraph({ nodes, edges, height = 480 }) {
       .force('link', d3.forceLink(simEdges).id(d => d.id).distance(d => 130 + rScale(d.source) + rScale(d.target)).strength(0.5))
       .force('charge', d3.forceManyBody().strength(-250))
       .force('center', d3.forceCenter(W / 2, H / 2))
-      .force('collision', d3.forceCollide(d => rScale(d) + 10))
+      .force('collision', d3.forceCollide(d => rScale(d) + (highlightGls && d.gls_member ? 14 : 10)))
 
     // Links
     const link = g.append('g').selectAll('line')
@@ -141,10 +141,22 @@ function TradeNetworkGraph({ nodes, edges, height = 480 }) {
         .on('drag',  (e, d) => { d.fx = e.x; d.fy = e.y })
         .on('end',   (e, d) => { if (!e.active) sim.alphaTarget(0); d.fx = null; d.fy = null }))
 
+    // GLS member outer ring (rendered below the main circle)
+    nodeG.append('circle')
+      .attr('r', d => highlightGls && d.gls_member ? rScale(d) + 6 : 0)
+      .attr('fill', 'none')
+      .attr('stroke', '#e6b800')
+      .attr('stroke-width', 3)
+      .attr('stroke-opacity', d => highlightGls && d.gls_member ? 0.9 : 0)
+
+    // Main node circle
     nodeG.append('circle')
       .attr('r', rScale)
-      .attr('fill', d => d.net_cents > 0 ? '#4a7c59' : d.net_cents < 0 ? '#c97a2f' : '#7a6e64')
-      .attr('fill-opacity', 0.85)
+      .attr('fill', d => {
+        if (highlightGls && !d.gls_member) return '#7a6e64'
+        return d.net_cents > 0 ? '#4a7c59' : d.net_cents < 0 ? '#c97a2f' : '#7a6e64'
+      })
+      .attr('fill-opacity', d => highlightGls && !d.gls_member ? 0.35 : 0.85)
       .attr('stroke', 'white')
       .attr('stroke-width', 2.5)
 
@@ -157,16 +169,18 @@ function TradeNetworkGraph({ nodes, edges, height = 480 }) {
       .attr('fill', 'white')
       .attr('font-weight', 700)
       .attr('pointer-events', 'none')
+      .attr('opacity', d => highlightGls && !d.gls_member ? 0.5 : 1)
       .text(d => d.name.split(' ')[0].slice(0, 6))
 
     // Full name label below node
     nodeG.append('text')
       .attr('text-anchor', 'middle')
-      .attr('dy', d => rScale(d) + 14)
+      .attr('dy', d => rScale(d) + (highlightGls && d.gls_member ? 20 : 14))
       .attr('font-size', 10)
       .attr('font-family', 'DM Sans, sans-serif')
       .attr('fill', 'var(--color-text-muted)')
       .attr('pointer-events', 'none')
+      .attr('opacity', d => highlightGls && !d.gls_member ? 0.4 : 1)
       .text(d => d.name.length > 22 ? d.name.slice(0, 20) + '…' : d.name)
 
     // Tooltip on hover
@@ -190,7 +204,7 @@ function TradeNetworkGraph({ nodes, edges, height = 480 }) {
     })
 
     return () => sim.stop()
-  }, [nodes, edges, height])
+  }, [nodes, edges, height, highlightGls])
 
   return (
     <div style={{ position: 'relative' }}>
@@ -201,10 +215,34 @@ function TradeNetworkGraph({ nodes, edges, height = 480 }) {
           background: 'white', border: '1px solid var(--color-border)',
           borderRadius: 'var(--radius-md)', padding: 'var(--space-3) var(--space-4)',
           boxShadow: 'var(--shadow-md)', pointerEvents: 'none', zIndex: 10,
-          fontSize: 'var(--font-size-sm)', lineHeight: 1.6, minWidth: 180,
+          fontSize: 'var(--font-size-sm)', lineHeight: 1.6, minWidth: 200,
         }}>
-          <div style={{ fontWeight: 700, marginBottom: 2 }}>{tooltip.node.name}</div>
-          <div style={{ color: 'var(--color-text-muted)', fontSize: 'var(--font-size-xs)' }}>
+          <div style={{ fontWeight: 700, marginBottom: 4, display: 'flex', alignItems: 'center', gap: 6 }}>
+            {tooltip.node.name}
+            {tooltip.node.gls_member && (
+              <span style={{
+                fontSize: 10, fontWeight: 700, padding: '1px 6px',
+                background: '#fef3c7', color: '#92400e',
+                borderRadius: 10, border: '1px solid #e6b800',
+              }}>GLS-Kunde</span>
+            )}
+          </div>
+          {tooltip.node.sector && (
+            <div style={{ color: 'var(--color-text-muted)', fontSize: 'var(--font-size-xs)' }}>
+              Sektor: {tooltip.node.sector}
+            </div>
+          )}
+          {tooltip.node.subtype && (
+            <div style={{ color: 'var(--color-text-muted)', fontSize: 'var(--font-size-xs)' }}>
+              Typ: {tooltip.node.subtype}
+            </div>
+          )}
+          {tooltip.node.district && (
+            <div style={{ color: 'var(--color-text-muted)', fontSize: 'var(--font-size-xs)' }}>
+              Stadtteil: {tooltip.node.district}
+            </div>
+          )}
+          <div style={{ color: 'var(--color-text-muted)', fontSize: 'var(--font-size-xs)', marginTop: 4, borderTop: '1px solid var(--color-border)', paddingTop: 4 }}>
             Netto: <strong style={{ color: tooltip.node.net_cents >= 0 ? 'var(--color-primary)' : 'var(--color-danger)' }}>
               {tooltip.node.net_cents >= 0 ? '+' : ''}{formatEur(tooltip.node.net_cents)}
             </strong>
@@ -221,9 +259,10 @@ function TradeNetworkGraph({ nodes, edges, height = 480 }) {
 // ── GlsDashboard ─────────────────────────────────────────────────────────────
 
 export default function GlsDashboard() {
-  const [running,    setRunning]    = useState(false)
-  const [runMsg,     setRunMsg]     = useState(null)
-  const [refreshKey, setRefreshKey] = useState(0)
+  const [running,      setRunning]      = useState(false)
+  const [runMsg,       setRunMsg]       = useState(null)
+  const [refreshKey,   setRefreshKey]   = useState(0)
+  const [highlightGls, setHighlightGls] = useState(false)
 
   const { data: dashboard, loading: dashLoading, useMock: dashMock, reload: reloadDash } = useApi(
     () => networkApi.dashboard(),
@@ -238,6 +277,35 @@ export default function GlsDashboard() {
     [],
     [refreshKey]
   )
+
+  const { data: topologyRaw } = useApi(() => networkApi.topology(), { nodes: [], edges: [], gaps: [], clusters: [] })
+
+  // Build GLS info lookup: company_id → { gls_member, district, subtype, sector }
+  // Prefers topology API data; falls back to companies list (which includes mock gls_member)
+  const glsMap = useMemo(() => {
+    const map = {}
+    // Seed from companies list (mock-compatible)
+    const cos = Array.isArray(companiesRaw) ? companiesRaw : []
+    cos.forEach(c => {
+      map[c.id] = {
+        gls_member: c.gls_member ?? false,
+        district:   c.district   ?? null,
+        subtype:    c.subtype    ?? null,
+        sector:     c.sector     ?? null,
+      }
+    })
+    // Override with richer topology data when available
+    const tNodes = topologyRaw?.nodes ?? []
+    tNodes.forEach(n => {
+      map[n.id] = {
+        gls_member: n.gls_member ?? map[n.id]?.gls_member ?? false,
+        district:   n.district   ?? map[n.id]?.district   ?? null,
+        subtype:    n.subtype    ?? map[n.id]?.subtype    ?? null,
+        sector:     n.sector     ?? map[n.id]?.sector     ?? null,
+      }
+    })
+    return map
+  }, [topologyRaw, companiesRaw])
 
   const latestCycleId = Array.isArray(cycles) && cycles.length > 0 ? cycles[0]?.id : null
 
@@ -264,11 +332,16 @@ export default function GlsDashboard() {
     // Start with companies that have positions
     const nodeMap = {}
     positions.forEach(pos => {
+      const gls = glsMap[pos.company_id] ?? {}
       nodeMap[pos.company_id] = {
         id:               pos.company_id,
         name:             pos.company_name,
         throughput_cents: pos.receivable_cents + pos.payable_cents,
         net_cents:        pos.net_cents,
+        gls_member:       gls.gls_member ?? false,
+        district:         gls.district   ?? null,
+        subtype:          gls.subtype    ?? null,
+        sector:           gls.sector     ?? null,
       }
     })
     // Add remaining companies from invoice flows (with zero positions)
@@ -280,18 +353,20 @@ export default function GlsDashboard() {
       const toCo   = companyMap[toId]   ?? inv.to_company
       const amt    = inv.amount_cents    ?? inv.total_amount_cents ?? 0
       if (fromId && !nodeMap[fromId]) {
-        nodeMap[fromId] = { id: fromId, name: typeof fromCo === 'object' ? fromCo.name : fromId, throughput_cents: amt, net_cents: 0 }
+        const gls = glsMap[fromId] ?? {}
+        nodeMap[fromId] = { id: fromId, name: typeof fromCo === 'object' ? fromCo.name : fromId, throughput_cents: amt, net_cents: 0, gls_member: gls.gls_member ?? false, district: gls.district ?? null, subtype: gls.subtype ?? null, sector: gls.sector ?? null }
       } else if (fromId) {
         nodeMap[fromId].throughput_cents += amt
       }
       if (toId && !nodeMap[toId]) {
-        nodeMap[toId] = { id: toId, name: typeof toCo === 'object' ? toCo.name : toId, throughput_cents: amt, net_cents: 0 }
+        const gls = glsMap[toId] ?? {}
+        nodeMap[toId] = { id: toId, name: typeof toCo === 'object' ? toCo.name : toId, throughput_cents: amt, net_cents: 0, gls_member: gls.gls_member ?? false, district: gls.district ?? null, subtype: gls.subtype ?? null, sector: gls.sector ?? null }
       } else if (toId) {
         nodeMap[toId].throughput_cents += amt
       }
     })
     return Object.values(nodeMap)
-  }, [dashboard, invoicesRaw, companyMap])
+  }, [dashboard, invoicesRaw, companyMap, glsMap])
 
   // Build graph edges — prefer net flows from latest clearing, fall back to gross invoice flows
   const graphEdges = useMemo(() => {
@@ -451,7 +526,7 @@ export default function GlsDashboard() {
           <div style={{
             padding: 'var(--space-4) var(--space-6)',
             borderBottom: '1px solid var(--color-border)',
-            display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+            display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 'var(--space-3)',
           }}>
             <div>
               <span style={{ fontWeight: 700, fontSize: 'var(--font-size-sm)' }}>Handelsnetzwerk Hamburg</span>
@@ -459,15 +534,47 @@ export default function GlsDashboard() {
                 {latestCycleId ? 'Netto-Verpflichtungen nach Clearing' : 'Brutto-Handelsflüsse (vor Clearing)'}
               </span>
             </div>
-            <div style={{ display: 'flex', gap: 'var(--space-4)', fontSize: 'var(--font-size-xs)', color: 'var(--color-text-muted)' }}>
-              <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
-                <span style={{ width: 10, height: 10, borderRadius: '50%', background: '#4a7c59', display: 'inline-block' }} />
-                Forderungen (netto)
-              </span>
-              <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
-                <span style={{ width: 10, height: 10, borderRadius: '50%', background: '#c97a2f', display: 'inline-block' }} />
-                Verbindlichkeiten (netto)
-              </span>
+            <div style={{ display: 'flex', gap: 'var(--space-4)', alignItems: 'center', flexWrap: 'wrap' }}>
+              {/* GLS-Kunden hervorheben toggle */}
+              <button
+                onClick={() => setHighlightGls(v => !v)}
+                style={{
+                  display: 'flex', alignItems: 'center', gap: 6,
+                  padding: '4px 12px', borderRadius: 20, cursor: 'pointer',
+                  fontSize: 'var(--font-size-xs)', fontWeight: 600,
+                  border: highlightGls ? '2px solid #e6b800' : '2px solid var(--color-border)',
+                  background: highlightGls ? '#fef9e7' : 'transparent',
+                  color: highlightGls ? '#92400e' : 'var(--color-text-muted)',
+                  transition: 'all 0.15s',
+                }}
+              >
+                <span style={{
+                  width: 12, height: 12, borderRadius: '50%',
+                  border: '2.5px solid #e6b800',
+                  display: 'inline-block', background: highlightGls ? '#fef3c7' : 'transparent',
+                }} />
+                GLS-Kunden hervorheben
+              </button>
+              {/* Legend */}
+              <div style={{ display: 'flex', gap: 'var(--space-4)', fontSize: 'var(--font-size-xs)', color: 'var(--color-text-muted)' }}>
+                <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+                  <span style={{ width: 10, height: 10, borderRadius: '50%', background: '#4a7c59', display: 'inline-block' }} />
+                  Forderungen
+                </span>
+                <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+                  <span style={{ width: 10, height: 10, borderRadius: '50%', background: '#c97a2f', display: 'inline-block' }} />
+                  Verbindlichkeiten
+                </span>
+                {highlightGls && (
+                  <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+                    <span style={{
+                      width: 12, height: 12, borderRadius: '50%',
+                      border: '2.5px solid #e6b800', display: 'inline-block',
+                    }} />
+                    GLS-Kunde
+                  </span>
+                )}
+              </div>
             </div>
           </div>
           {dashLoading ? (
@@ -475,7 +582,7 @@ export default function GlsDashboard() {
               <span className="loading-spinner" />
             </div>
           ) : (
-            <TradeNetworkGraph nodes={graphNodes} edges={graphEdges} height={460} />
+            <TradeNetworkGraph nodes={graphNodes} edges={graphEdges} height={460} highlightGls={highlightGls} />
           )}
           <div style={{
             padding: 'var(--space-3) var(--space-6)',
@@ -544,6 +651,13 @@ export default function GlsDashboard() {
           <strong style={{ color: 'var(--color-primary)' }}>●</strong> Grün = Nettoempfänger (Forderungen überwiegen)
           &nbsp;&nbsp;
           <strong style={{ color: 'var(--color-accent)' }}>●</strong> Orange = Nettozahler (Verbindlichkeiten überwiegen)
+        </div>
+        <div>
+          <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5 }}>
+            <span style={{ width: 12, height: 12, borderRadius: '50%', border: '2.5px solid #e6b800', display: 'inline-block' }} />
+            <strong style={{ color: 'var(--color-text)' }}>Goldener Ring</strong>
+          </span>{' '}
+          = GLS-Kunde (sichtbar bei „GLS-Kunden hervorheben")
         </div>
       </div>
     </div>
