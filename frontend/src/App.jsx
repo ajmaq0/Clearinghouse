@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { RoleProvider, useRole } from './hooks/RoleContext.jsx'
 import { isDemoMode } from './hooks/useApi.js'
+import { useCompanies, getDefaultSmeCompany } from './hooks/useCompanies.js'
 import Uebersicht from './components/Uebersicht.jsx'
 import NetworkExplorer from './pages/NetworkExplorer.jsx'
 import NettingVergleich from './pages/NettingVergleich.jsx'
@@ -13,7 +14,6 @@ import SmeUebersicht from './pages/sme/SmeUebersicht.jsx'
 import SmeRechnungen from './pages/sme/SmeRechnungen.jsx'
 import SmeClearing from './pages/sme/SmeClearing.jsx'
 import SmeEntdecken from './pages/sme/SmeEntdecken.jsx'
-import { MOCK_COMPANIES } from './mock/fullDataset.js'
 import './styles/global.css'
 import './styles/app.css'
 import './styles/clearing-animation.css'
@@ -51,11 +51,11 @@ const SME_PAGES = {
   'sme-entdecken':  SmeEntdecken,
 }
 
-const DEFAULT_SME_COMPANY = MOCK_COMPANIES.find(c => c.id === 'f47ac10b-001d-4000-8000-000000000000') || MOCK_COMPANIES[0]
-
 function AppShell() {
   const { role, companyId, setRole, setCompanyId } = useRole()
   const demoMode = isDemoMode()
+  const { companies } = useCompanies()
+  const defaultSmeCompany = getDefaultSmeCompany(companies)
 
   const [page, setPage] = useState('uebersicht')
   const [showCompanyMenu, setShowCompanyMenu] = useState(false)
@@ -73,7 +73,7 @@ function AppShell() {
   function handleRoleSwitch(newRole) {
     if (newRole === role) return
     if (newRole === 'sme' && !companyId) {
-      setCompanyId(DEFAULT_SME_COMPANY.id)
+      setCompanyId(defaultSmeCompany.id)
     }
     setRole(newRole)
     setPage(newRole === 'bank' ? 'uebersicht' : 'sme-uebersicht')
@@ -85,7 +85,7 @@ function AppShell() {
     setMobileNavOpen(false)
   }
 
-  const activeCompany = MOCK_COMPANIES.find(c => c.id === companyId) || DEFAULT_SME_COMPANY
+  const activeCompany = companies.find(c => c.id === companyId) || defaultSmeCompany
 
   function handleDrillIn(companyId) {
     setRole('sme')
@@ -135,7 +135,7 @@ function AppShell() {
             </button>
             {role === 'sme' && showCompanyMenu && (
               <div className="company-dropdown">
-                {MOCK_COMPANIES.map(c => (
+                {companies.map(c => (
                   <button
                     key={c.id}
                     className={`company-dropdown-item${c.id === companyId ? ' company-dropdown-item--active' : ''}`}
@@ -220,7 +220,7 @@ function AppShell() {
               </button>
               {role === 'sme' && showCompanyMenu && (
                 <div className="company-dropdown">
-                  {MOCK_COMPANIES.map(c => (
+                  {companies.map(c => (
                     <button
                       key={c.id}
                       className={`company-dropdown-item${c.id === companyId ? ' company-dropdown-item--active' : ''}`}
