@@ -1,4 +1,4 @@
-# ClearFlow Hamburg — Demo-Walkthrough für Ela
+# ClearFlow Hamburg — Demo-Walkthrough
 ## Präsentation bei Dirk Grah · 28. April 2026
 
 **Gesamtdauer: ca. 25 Minuten**
@@ -283,4 +283,4 @@ Follow-up bis:
 
 ---
 
-*Erstellt für Ela · ClearFlow Hamburg Sprint · April 2026*
+*ClearFlow Hamburg Sprint · April 2026*

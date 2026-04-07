@@ -1,7 +1,7 @@
 /**
  * NetzwerkWachstum — Network Growth Simulator
  *
- * Lets Ela toggle candidate companies on/off and see savings impact in real time.
+ * Lets the presenter toggle candidate companies on/off and see savings impact in real time.
  * - D3.js force-directed graph (same cluster layout as NetworkExplorer)
  * - Sidebar with 5 candidate companies as toggleable cards
  * - Candidate nodes: dashed borders, lighter colors, "+" icon
