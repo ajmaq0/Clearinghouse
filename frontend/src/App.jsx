@@ -59,6 +59,7 @@ function AppShell() {
 
   const [page, setPage] = useState('uebersicht')
   const [showCompanyMenu, setShowCompanyMenu] = useState(false)
+  const [mobileNavOpen, setMobileNavOpen] = useState(false)
 
   // Sync body class for CSS variable switching
   useEffect(() => {
@@ -81,6 +82,7 @@ function AppShell() {
   function handleNav(id) {
     setPage(id)
     setShowCompanyMenu(false)
+    setMobileNavOpen(false)
   }
 
   const activeCompany = MOCK_COMPANIES.find(c => c.id === companyId) || DEFAULT_SME_COMPANY
@@ -179,7 +181,88 @@ function AppShell() {
             <span className="badge badge-amber" title="Demo-Datensatz aktiv" style={{ marginLeft: '0.5rem' }}>Demo</span>
           )}
         </div>
+
+        {/* Hamburger button — visible only at <900px */}
+        <button
+          className="nav-hamburger"
+          onClick={() => setMobileNavOpen(v => !v)}
+          aria-label={mobileNavOpen ? 'Navigation schließen' : 'Navigation öffnen'}
+          aria-expanded={mobileNavOpen}
+        >
+          <span className="nav-hamburger-line" style={{ transform: mobileNavOpen ? 'rotate(45deg) translate(4px,4px)' : undefined }} />
+          <span className="nav-hamburger-line" style={{ opacity: mobileNavOpen ? 0 : 1 }} />
+          <span className="nav-hamburger-line" style={{ transform: mobileNavOpen ? 'rotate(-45deg) translate(4px,-4px)' : undefined }} />
+        </button>
       </header>
+
+      {/* Mobile nav drawer */}
+      {mobileNavOpen && (
+        <div className="mobile-nav-drawer">
+          {/* Role toggle */}
+          <div className="role-toggle">
+            <button
+              className={`role-toggle-btn${role === 'bank' ? ' role-toggle-btn--active' : ''}`}
+              onClick={() => handleRoleSwitch('bank')}
+            >
+              <span>⊞</span> GLS-Ansicht
+            </button>
+            <div className="role-toggle-divider" />
+            <div className="role-toggle-sme-wrap">
+              <button
+                className={`role-toggle-btn${role === 'sme' ? ' role-toggle-btn--active' : ''}`}
+                onClick={() => {
+                  handleRoleSwitch('sme')
+                  if (role === 'sme') setShowCompanyMenu(v => !v)
+                }}
+              >
+                <span>◈</span> Unternehmen
+                {role === 'sme' && <span className="role-toggle-caret">▾</span>}
+              </button>
+              {role === 'sme' && showCompanyMenu && (
+                <div className="company-dropdown">
+                  {MOCK_COMPANIES.map(c => (
+                    <button
+                      key={c.id}
+                      className={`company-dropdown-item${c.id === companyId ? ' company-dropdown-item--active' : ''}`}
+                      onClick={() => { setCompanyId(c.id); setShowCompanyMenu(false) }}
+                    >
+                      <span className="company-dropdown-name">{c.name}</span>
+                      <span className="company-dropdown-sector">{c.sector}</span>
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* Nav items */}
+          <nav className="mobile-nav-items">
+            {navItems.map(item => (
+              <button
+                key={item.id}
+                className={`nav-btn${page === item.id ? ' nav-btn--active' : ''}`}
+                onClick={() => handleNav(item.id)}
+              >
+                <span className="nav-icon">{item.icon}</span>
+                <span>{item.label}</span>
+              </button>
+            ))}
+          </nav>
+
+          {/* Identity (mobile) */}
+          <div style={{ paddingTop: 'var(--space-3)', borderTop: '1px solid rgba(255,255,255,0.1)', fontSize: 'var(--font-size-xs)', color: 'var(--header-muted)', display: 'flex', alignItems: 'center', gap: 'var(--space-2)' }}>
+            {role === 'bank' ? (
+              <span>GLS Bank · Hamburg</span>
+            ) : (
+              <>
+                <span className="identity-avatar" style={{ width: 24, height: 24, fontSize: '0.6rem' }}>{activeCompany.name.charAt(0)}</span>
+                <span>{activeCompany.name}</span>
+              </>
+            )}
+            {demoMode && <span className="badge badge-amber" style={{ marginLeft: 'var(--space-2)' }}>Demo</span>}
+          </div>
+        </div>
+      )}
 
       <main className="app-main">
         <PageComponent {...pageProps} />

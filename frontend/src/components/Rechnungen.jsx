@@ -618,7 +618,8 @@ export default function Rechnungen() {
         </div>
       ) : (
         <div className="card" style={{ padding: 0, overflow: 'hidden' }}>
-          <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 'var(--font-size-sm)' }}>
+          <div style={{ overflowX: 'auto', WebkitOverflowScrolling: 'touch' }}>
+          <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 'var(--font-size-sm)', minWidth: 520 }}>
             <thead>
               <tr style={{ background: 'var(--color-surface-alt)', borderBottom: '2px solid var(--color-border)' }}>
                 {['Von', 'An', 'Betrag', 'Fällig', 'Status', ''].map((h, i) => (
@@ -677,6 +678,7 @@ export default function Rechnungen() {
               })}
             </tbody>
           </table>
+          </div>
         </div>
       )}
 

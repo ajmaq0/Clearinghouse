@@ -432,3 +432,159 @@
   width: 32px;
   height: 32px;
 }
+
+/* =========================================================
+   RESPONSIVE — Hamburger / Mobile Nav
+   ========================================================= */
+
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  margin-left: auto;
+  min-width: 44px;
+  min-height: 44px;
+  flex-shrink: 0;
+}
+
+.nav-hamburger-line {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--header-text);
+  border-radius: 2px;
+  transition: transform 0.2s, opacity 0.2s;
+}
+
+.mobile-nav-drawer {
+  background: var(--header-bg);
+  border-bottom: 2px solid rgba(0,0,0,0.2);
+  padding: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+  position: sticky;
+  top: 64px;
+  z-index: 99;
+}
+
+.mobile-nav-items {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.mobile-nav-items .nav-btn {
+  justify-content: flex-start;
+  min-height: 44px;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  width: 100%;
+}
+
+/* =========================================================
+   RESPONSIVE — Network graph visibility helpers
+   ========================================================= */
+
+.network-graph-desktop { display: block; }
+.network-graph-mobile-summary { display: none; }
+
+/* =========================================================
+   RESPONSIVE — Breakpoints
+   ========================================================= */
+
+/* Tablet + phone: activate hamburger, hide desktop nav */
+@media (max-width: 900px) {
+  .nav-hamburger { display: flex; }
+  .app-nav { display: none; }
+  .role-toggle { display: none; }
+  .app-identity-badge { display: none; }
+  .app-header { gap: var(--space-2); }
+  .app-header-brand { gap: var(--space-2); }
+}
+
+/* Phone: further layout reductions */
+@media (max-width: 768px) {
+  .app-main {
+    padding: var(--space-4) var(--space-3);
+  }
+
+  /* KPI grid: smaller min tile */
+  .kpi-grid {
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: var(--space-4);
+  }
+
+  /* Content sections stack */
+  .content-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Dashboard network section: single column */
+  .dashboard-network-section {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Network graph hidden on mobile — show summary card instead */
+  .network-graph-desktop {
+    display: none !important;
+  }
+  .network-graph-mobile-summary {
+    display: block;
+  }
+
+  /* Identity badge: hide at <768px (shown in drawer) */
+  .app-identity-badge { display: none; }
+
+  /* Touch targets */
+  .nav-btn, .btn, .role-toggle-btn {
+    min-height: 44px;
+  }
+
+  /* Toolbar wraps nicely */
+  .toolbar {
+    gap: var(--space-3);
+  }
+}
+
+/* Narrow phone */
+@media (max-width: 600px) {
+  .app-main {
+    padding: var(--space-3) var(--space-3);
+  }
+
+  /* Reduce oversized KPI numbers */
+  .kpi-value {
+    font-size: var(--font-size-2xl);
+  }
+
+  /* Full-width PDF/action buttons */
+  .btn-mobile-full {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .kpi-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  /* Clearing waterfall: force single-column at very narrow widths */
+  .clearing-steps {
+    flex-direction: column;
+    align-items: stretch !important;
+  }
+  .clearing-steps > * {
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+    width: 100%;
+  }
+}

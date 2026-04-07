@@ -559,10 +559,25 @@ export default function GlsDashboard({ onDrillIn }) {
         </div>
       )}
 
+      {/* Mobile summary card for network (shown only on mobile in place of graph) */}
+      <div className="network-graph-mobile-summary card" style={{ marginBottom: 'var(--space-6)', display: 'flex', alignItems: 'center', gap: 'var(--space-4)', padding: 'var(--space-4) var(--space-5)' }}>
+        <div style={{ fontSize: '1.5rem' }}>⊙</div>
+        <div>
+          <div style={{ fontWeight: 700, fontSize: 'var(--font-size-sm)', marginBottom: 2 }}>Handelsnetzwerk Hamburg</div>
+          <div style={{ fontSize: 'var(--font-size-xs)', color: 'var(--color-text-muted)' }}>
+            {companyCount} Unternehmen · {invoiceCount} Rechnungen
+            {savingsPct > 0 && ` · ${formatPct(savingsPct)} Einsparung`}
+          </div>
+          <div style={{ fontSize: 'var(--font-size-xs)', color: 'var(--color-text-light)', marginTop: 2 }}>
+            Netzwerkgraph auf Desktop verfügbar
+          </div>
+        </div>
+      </div>
+
       {/* Trade network graph + company positions */}
-      <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: 'var(--space-6)', marginBottom: 'var(--space-6)', alignItems: 'start' }}>
-        {/* Network graph */}
-        <div className="card" style={{ padding: 0, overflow: 'hidden' }}>
+      <div className="dashboard-network-section" style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: 'var(--space-6)', marginBottom: 'var(--space-6)', alignItems: 'start' }}>
+        {/* Network graph (hidden on mobile) */}
+        <div className="network-graph-desktop card" style={{ padding: 0, overflow: 'hidden' }}>
           <div style={{
             padding: 'var(--space-4) var(--space-6)',
             borderBottom: '1px solid var(--color-border)',

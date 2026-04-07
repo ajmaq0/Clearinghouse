@@ -98,7 +98,7 @@ function ThreeStepSummary({ multiData }) {
         </div>
       </div>
 
-      <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-2)', flexWrap: 'wrap' }}>
+      <div className="clearing-steps" style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-2)', flexWrap: 'wrap' }}>
         {steps.map((step, i) => (
           <React.Fragment key={step.key}>
             <div style={{
