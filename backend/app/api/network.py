@@ -713,6 +713,163 @@ def matching_hints(
     }
 
 
+def _build_ghost_edges(node_ids: set) -> list:
+    """Derive up to 2 ghost edges from candidate companies that connect to subgraph nodes."""
+    ghost_edges = []
+    for cand_id, cand in _CANDIDATES.items():
+        for inv in cand.get("hypothetical_invoices", []):
+            from_id = inv["from_id"]
+            to_id = inv["to_id"]
+            if from_id in node_ids or to_id in node_ids:
+                sector_label = SECTOR_TO_CLUSTER.get((cand.get("sector") or "").lower(), "")
+                if sector_label:
+                    desc_de = f"Potenzielle Verbindung durch {cand['name']} ({sector_label})"
+                    desc_en = f"Potential connection via {cand['name']} ({sector_label})"
+                else:
+                    desc_de = f"Potenzielle Verbindung durch {cand['name']}"
+                    desc_en = f"Potential connection via {cand['name']}"
+                ghost_edges.append(schemas.GhostEdge(
+                    from_id=from_id,
+                    to_id=to_id,
+                    potential_cents=inv["amount_cents"],
+                    description_de=desc_de,
+                    description_en=desc_en,
+                ))
+            if len(ghost_edges) >= 2:
+                return ghost_edges
+    return ghost_edges
+
+
+@router.get("/clearing-paths", response_model=schemas.ClearingPathsOut)
+def clearing_paths(db: Session = Depends(get_db)):
+    """
+    Return a 9-node subgraph: top 3 companies per sector cluster by invoice volume,
+    with at least 1 GLS member per cluster guaranteed.
+
+    Edges are annotated by gross flow, bilateral residual, and clearing type.
+    Detected cycles (multilateral clearing opportunities) and 1-2 ghost edges
+    from candidate_companies.json are included.
+    """
+    from app.netting import _johnson_cycles
+
+    companies = db.query(models.Company).all()
+    invoices = (
+        db.query(models.Invoice)
+        .filter(models.Invoice.status.in_(["confirmed", "cleared"]))
+        .all()
+    )
+
+    # Per-company total invoice volume (sent + received)
+    volume_map: dict = defaultdict(int)
+    for inv in invoices:
+        volume_map[inv.from_company_id] += inv.amount_cents
+        volume_map[inv.to_company_id] += inv.amount_cents
+
+    # Group companies by cluster
+    cluster_companies: dict = defaultdict(list)
+    for c in companies:
+        cluster = _sector_cluster(c.sector or "")
+        cluster_companies[cluster].append(c)
+
+    # Select top 3 per cluster by volume, with GLS member guarantee
+    selected: list = []
+    for cluster in FALLBACK_CLUSTERS:
+        members = cluster_companies.get(cluster, [])
+        sorted_members = sorted(members, key=lambda c: volume_map.get(c.id, 0), reverse=True)
+        top3 = sorted_members[:3]
+        if not top3:
+            continue
+        if not any(c.gls_member for c in top3):
+            gls_extras = [c for c in sorted_members[3:] if c.gls_member]
+            if gls_extras:
+                if len(top3) == 3:
+                    top3[2] = gls_extras[0]
+                else:
+                    top3.append(gls_extras[0])
+        selected.extend(top3)
+
+    node_ids = {c.id for c in selected}
+
+    # Gross flow among selected nodes only
+    gross_flow: dict = defaultdict(lambda: defaultdict(int))
+    for inv in invoices:
+        if inv.from_company_id in node_ids and inv.to_company_id in node_ids:
+            gross_flow[inv.from_company_id][inv.to_company_id] += inv.amount_cents
+
+    # Bilateral netting: collapse opposing flows into net direction
+    all_flow_nodes = set(gross_flow.keys()) | {b for a_map in gross_flow.values() for b in a_map}
+    visited_pairs: set = set()
+    net_flow: dict = defaultdict(lambda: defaultdict(int))
+    for a in all_flow_nodes:
+        for b in all_flow_nodes:
+            if a == b or (a, b) in visited_pairs or (b, a) in visited_pairs:
+                continue
+            visited_pairs.add((a, b))
+            a_to_b = gross_flow[a][b]
+            b_to_a = gross_flow[b][a]
+            diff = a_to_b - b_to_a
+            if diff > 0:
+                net_flow[a][b] = diff
+            elif diff < 0:
+                net_flow[b][a] = -diff
+
+    # Detect cycles on the bilateral-residual adjacency
+    adj = {a: dict(b_map) for a, b_map in net_flow.items() if b_map}
+    raw_cycles = _johnson_cycles(adj)
+
+    # Collect edges that participate in a cycle
+    cycle_edge_set: set = set()
+    for cycle in raw_cycles:
+        n = len(cycle)
+        for i in range(n):
+            cycle_edge_set.add((cycle[i], cycle[(i + 1) % n]))
+
+    # Build subgraph_edges (one per unordered company pair with any gross flow)
+    seen_pairs: set = set()
+    subgraph_edges = []
+    for src in gross_flow:
+        for tgt in gross_flow[src]:
+            pair = (min(src, tgt), max(src, tgt))
+            if pair in seen_pairs:
+                continue
+            seen_pairs.add(pair)
+            gross_a_b = gross_flow[src][tgt]
+            gross_b_a = gross_flow[tgt][src]
+            gross_total = gross_a_b + gross_b_a
+            diff = gross_a_b - gross_b_a
+            if diff >= 0:
+                from_id, to_id, residual = src, tgt, diff
+            else:
+                from_id, to_id, residual = tgt, src, -diff
+            clearing_type = "cycle" if (from_id, to_id) in cycle_edge_set else "bilateral"
+            subgraph_edges.append(schemas.SubgraphEdge(
+                from_id=from_id,
+                to_id=to_id,
+                gross_cents=gross_total,
+                residual_cents=residual,
+                clearing_type=clearing_type,
+            ))
+
+    # Build cycle infos with cleared_cents = min edge weight in each cycle
+    cycle_infos = []
+    for cycle in raw_cycles:
+        n = len(cycle)
+        min_w = min(
+            net_flow.get(cycle[i], {}).get(cycle[(i + 1) % n], 0)
+            for i in range(n)
+        )
+        cycle_infos.append(schemas.CycleInfo(path=cycle, cleared_cents=min_w))
+
+    ghost_edges = _build_ghost_edges(node_ids)
+
+    return schemas.ClearingPathsOut(
+        subgraph_nodes=list(node_ids),
+        subgraph_edges=subgraph_edges,
+        cycles=cycle_infos,
+        ghost_edges=ghost_edges,
+    )
+
+
 @router.get("/cascade")
 def company_cascade(company_id: str, db: Session = Depends(get_db)):
     """

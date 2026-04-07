@@ -294,3 +294,39 @@ class GrowthSimulateResult(BaseModel):
     new_connections: int
     new_cycles_found: int
     candidate_names: List[str]
+
+
+# ── Clearing Paths (9-node subgraph) ──────────────────────────────────────
+
+class SubgraphEdge(BaseModel):
+    from_id: str = Field(..., alias="from")
+    to_id: str = Field(..., alias="to")
+    gross_cents: int
+    residual_cents: int
+    clearing_type: str  # "bilateral" | "cycle"
+
+    class Config:
+        populate_by_name = True
+
+
+class CycleInfo(BaseModel):
+    path: List[str]
+    cleared_cents: int
+
+
+class GhostEdge(BaseModel):
+    from_id: str = Field(..., alias="from")
+    to_id: str = Field(..., alias="to")
+    potential_cents: int
+    description_de: str
+    description_en: str
+
+    class Config:
+        populate_by_name = True
+
+
+class ClearingPathsOut(BaseModel):
+    subgraph_nodes: List[str]
+    subgraph_edges: List[SubgraphEdge]
+    cycles: List[CycleInfo]
+    ghost_edges: List[GhostEdge]
