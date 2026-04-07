@@ -330,8 +330,8 @@ export default function NetzwerkWachstum() {
 
       {/* Header */}
       <div style={{ display: 'flex', alignItems: 'baseline', gap: 'var(--space-4)', flexWrap: 'wrap' }}>
-        <h2 style={{ margin: 0, fontSize: '1.6rem', fontWeight: 900 }}>Netzwerkwachstum</h2>
-        <span style={{ color: 'var(--color-text-light)', fontSize: '1rem' }}>
+        <h2 style={{ margin: 0, fontSize: 'var(--font-size-xl)', fontWeight: 900 }}>Netzwerkwachstum</h2>
+        <span style={{ color: 'var(--color-text-light)', fontSize: 'var(--font-size-sm)' }}>
           Kandidaten aktivieren und Einsparungspotenzial in Echtzeit berechnen
         </span>
         {usingMock && (
@@ -346,7 +346,7 @@ export default function NetzwerkWachstum() {
         <div className="card" style={{ padding: 0, overflow: 'hidden', position: 'relative' }}>
           <div style={{
             position: 'absolute', top: 12, left: 16, zIndex: 2, pointerEvents: 'none',
-            fontSize: '0.8rem', color: 'var(--color-text-light)',
+            fontSize: 'var(--font-size-xs)', color: 'var(--color-text-light)',
             background: 'rgba(255,255,255,0.88)', padding: '2px 10px', borderRadius: 4,
           }}>
             Ziehen · Scrollen zum Zoomen · Kandidaten im Sidebar aktivieren
@@ -357,7 +357,7 @@ export default function NetzwerkWachstum() {
         {/* Sidebar: candidate cards */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-3)' }}>
           <div style={{
-            fontSize: '0.8rem', fontWeight: 700, color: 'var(--color-text-light)',
+            fontSize: 'var(--font-size-xs)', fontWeight: 700, color: 'var(--color-text-light)',
             textTransform: 'uppercase', letterSpacing: '0.06em', paddingLeft: 2,
           }}>
             Kandidaten-Unternehmen
@@ -373,8 +373,8 @@ export default function NetzwerkWachstum() {
                 className="card"
                 style={{
                   padding: 'var(--space-3) var(--space-4)',
-                  borderLeft: `4px ${on ? 'solid' : 'dashed'} ${on ? color : '#ccc'}`,
-                  background: on ? CLUSTER_BG[cand.cluster] : '#fafafa',
+                  borderLeft: `4px ${on ? 'solid' : 'dashed'} ${on ? color : 'var(--color-border-dark)'}`,
+                  background: on ? CLUSTER_BG[cand.cluster] : 'var(--color-surface)',
                   cursor: 'pointer',
                   transition: 'background 0.25s, border-color 0.25s',
                   userSelect: 'none',
@@ -382,20 +382,20 @@ export default function NetzwerkWachstum() {
               >
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 8 }}>
                   <div style={{ minWidth: 0 }}>
-                    <div style={{ fontWeight: 700, fontSize: '0.95rem', lineHeight: 1.3 }}>
+                    <div style={{ fontWeight: 700, fontSize: 'var(--font-size-sm)', lineHeight: 1.3 }}>
                       {cand.name}
                     </div>
-                    <div style={{ fontSize: '0.8rem', color: 'var(--color-text-light)', marginTop: 2 }}>
+                    <div style={{ fontSize: 'var(--font-size-xs)', color: 'var(--color-text-light)', marginTop: 2 }}>
                       {cand.sector} · Bezirk {cand.district}
                     </div>
-                    <div style={{ fontSize: '0.8rem', marginTop: 4, display: 'flex', gap: 6, alignItems: 'center' }}>
+                    <div style={{ fontSize: 'var(--font-size-xs)', marginTop: 4, display: 'flex', gap: 6, alignItems: 'center' }}>
                       <span style={{ color: 'var(--color-text-light)' }}>
                         {cand.expected_connections} Verbindungen
                       </span>
                       {cand.is_bridge && (
                         <span style={{
-                          background: 'rgba(201,122,47,0.12)', color: '#c97a2f',
-                          fontWeight: 700, fontSize: '0.72rem', padding: '1px 6px',
+                          background: 'rgba(201,122,47,0.12)', color: 'var(--color-accent)',
+                          fontWeight: 700, fontSize: 'var(--font-size-xs)', padding: '1px 6px',
                           borderRadius: 3, border: '1px solid rgba(201,122,47,0.3)',
                         }}>
                           BRÜCKE
@@ -407,17 +407,17 @@ export default function NetzwerkWachstum() {
                     <div style={{
                       width: 30, height: 30, borderRadius: '50%',
                       background: on ? color : 'transparent',
-                      border: `2px solid ${on ? color : '#bbb'}`,
+                      border: `2px solid ${on ? color : 'var(--color-border-dark)'}`,
                       display: 'flex', alignItems: 'center', justifyContent: 'center',
-                      color: on ? '#fff' : '#888',
-                      fontWeight: 700, fontSize: '1.1rem',
+                      color: on ? 'var(--header-text)' : 'var(--color-text-light)',
+                      fontWeight: 700, fontSize: 'var(--font-size-base)',
                       marginLeft: 'auto',
                     }}>
                       {on ? '×' : '+'}
                     </div>
                     <div style={{
-                      fontSize: '0.88rem', fontWeight: 700, marginTop: 5,
-                      color: on ? '#2e7d4f' : 'var(--color-text-light)',
+                      fontSize: 'var(--font-size-sm)', fontWeight: 700, marginTop: 5,
+                      color: on ? 'var(--color-primary-dk)' : 'var(--color-text-light)',
                     }}>
                       +{formatEur(cand.savings_cents_delta)}
                     </div>
@@ -427,7 +427,7 @@ export default function NetzwerkWachstum() {
             )
           })}
 
-          <div style={{ fontSize: '0.78rem', color: 'var(--color-text-light)', textAlign: 'center', paddingTop: 4 }}>
+          <div style={{ fontSize: 'var(--font-size-xs)', color: 'var(--color-text-light)', textAlign: 'center', paddingTop: 4 }}>
             Karte anklicken zum Aktivieren/Deaktivieren
           </div>
         </div>
@@ -445,35 +445,35 @@ export default function NetzwerkWachstum() {
 
           {/* Current */}
           <div>
-            <div style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--color-text-light)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+            <div style={{ fontSize: 'var(--font-size-xs)', fontWeight: 700, color: 'var(--color-text-light)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
               Aktuell
             </div>
-            <div style={{ fontSize: '1.1rem', fontWeight: 700, marginTop: 3 }}>
+            <div style={{ fontSize: 'var(--font-size-base)', fontWeight: 700, marginTop: 3 }}>
               {BASE_COMPANY_COUNT} Unternehmen,{' '}
               <span style={{ color: 'var(--color-text)' }}>{formatPct(BASE_SAVINGS_PCT)} Einsparung</span>
             </div>
           </div>
 
           {/* Arrow */}
-          <div style={{ fontSize: '1.8rem', color: hasCandidates ? '#2e7d4f' : '#d0d0d0', flexShrink: 0, transition: 'color 0.3s' }}>
+          <div style={{ fontSize: 'var(--font-size-xl)', color: hasCandidates ? 'var(--color-primary-dk)' : 'var(--color-border-dark)', flexShrink: 0, transition: 'color 0.3s' }}>
             →
           </div>
 
           {/* Projected */}
           <div>
-            <div style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--color-text-light)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+            <div style={{ fontSize: 'var(--font-size-xs)', fontWeight: 700, color: 'var(--color-text-light)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
               Mit {enabledList.length > 0 ? enabledList.length : '…'} neuen
             </div>
-            <div style={{ fontSize: '1.1rem', fontWeight: 700, marginTop: 3 }}>
-              <span style={{ color: hasCandidates ? '#2e7d4f' : 'var(--color-text)' }}>
+            <div style={{ fontSize: 'var(--font-size-base)', fontWeight: 700, marginTop: 3 }}>
+              <span style={{ color: hasCandidates ? 'var(--color-primary-dk)' : 'var(--color-text)' }}>
                 {newCompanyCount} Unternehmen
               </span>
               {', '}
-              <span style={{ color: hasCandidates ? '#2e7d4f' : 'var(--color-text)' }}>
+              <span style={{ color: hasCandidates ? 'var(--color-primary-dk)' : 'var(--color-text)' }}>
                 {formatPct(newSavingsPct)} Einsparung
               </span>
               {hasCandidates && (
-                <span style={{ color: '#2e7d4f', fontWeight: 900, marginLeft: 10 }}>
+                <span style={{ color: 'var(--color-primary-dk)', fontWeight: 900, marginLeft: 10 }}>
                   (+{formatEur(deltaSavingsCents)})
                 </span>
               )}
@@ -483,13 +483,13 @@ export default function NetzwerkWachstum() {
           {/* Big delta number */}
           {hasCandidates && (
             <div style={{ marginLeft: 'auto', textAlign: 'right' }}>
-              <div style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--color-text-light)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+              <div style={{ fontSize: 'var(--font-size-xs)', fontWeight: 700, color: 'var(--color-text-light)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
                 Zusätzlich eingespart
               </div>
-              <div style={{ fontSize: '2.2rem', fontWeight: 900, color: '#2e7d4f', lineHeight: 1.1, marginTop: 2 }}>
+              <div style={{ fontSize: 'var(--font-size-2xl)', fontWeight: 900, color: 'var(--color-primary-dk)', lineHeight: 1.1, marginTop: 2 }}>
                 +{formatEur(deltaSavingsCents)}
               </div>
-              <div style={{ fontSize: '0.9rem', color: '#2e7d4f', fontWeight: 600 }}>
+              <div style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-primary-dk)', fontWeight: 600 }}>
                 +{formatPct(deltaSavingsPct)} Nettingeffizienz
               </div>
             </div>

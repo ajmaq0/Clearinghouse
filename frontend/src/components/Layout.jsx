@@ -26,7 +26,7 @@ export default function Layout({ activeTab, onTabChange, children }) {
           {/* GLS-style wordmark */}
           <div style={{
             background: 'var(--color-primary)',
-            color: 'white',
+            color: 'var(--header-text)',
             fontWeight: 700,
             fontSize: 'var(--font-size-sm)',
             letterSpacing: '0.06em',

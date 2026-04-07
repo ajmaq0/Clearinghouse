@@ -136,6 +136,14 @@ a {
   border-radius: var(--radius-lg);
   padding: var(--space-6);
   box-shadow: var(--shadow-sm);
+  transition: box-shadow 0.18s;
+}
+
+/* Focus-visible: consistent ring across all interactive elements */
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
 }
 
 .badge {
@@ -169,7 +177,7 @@ a {
 
 .btn-primary {
   background: var(--color-primary);
-  color: white;
+  color: var(--header-text);
 }
 .btn-primary:hover { background: var(--color-primary-dk); }
 
@@ -182,9 +190,9 @@ a {
 
 .btn-accent {
   background: var(--color-accent);
-  color: white;
+  color: var(--header-text);
 }
-.btn-accent:hover { background: #b36c28; }
+.btn-accent:hover { background: var(--color-primary-dk); }
 
 .loading-spinner {
   display: inline-block;

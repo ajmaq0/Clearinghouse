@@ -116,7 +116,7 @@ function StageCard({ stage, isActive, onClick, animated }) {
           top: -12,
           right: 12,
           background: stage.color,
-          color: 'white',
+          color: 'var(--header-text)',
           fontSize: 'var(--font-size-xs)',
           fontWeight: 700,
           padding: '2px 10px',
@@ -131,7 +131,7 @@ function StageCard({ stage, isActive, onClick, animated }) {
       <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-3)', marginBottom: 'var(--space-3)' }}>
         <span style={{
           fontSize: '1.4em', width: 36, height: 36, borderRadius: '50%',
-          background: stage.color, color: 'white',
+          background: stage.color, color: 'var(--header-text)',
           display: 'flex', alignItems: 'center', justifyContent: 'center',
           flexShrink: 0,
         }}>
@@ -341,7 +341,7 @@ export default function NettingVergleich() {
           {/* Total savings banner */}
           <div className="card" style={{
             background: 'linear-gradient(135deg, #1a6b3a 0%, #2c6e8a 100%)',
-            color: 'white',
+            color: 'var(--header-text)',
             marginBottom: 'var(--space-6)',
             display: 'flex', gap: 'var(--space-8)', flexWrap: 'wrap', alignItems: 'center',
           }}>

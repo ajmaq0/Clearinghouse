@@ -141,7 +141,7 @@ export default function NetworkExplorer() {
     defs.append('filter').attr('id', 'hull-shadow')
       .append('feDropShadow')
         .attr('dx', 0).attr('dy', 2).attr('stdDeviation', 6)
-        .attr('flood-color', '#000').attr('flood-opacity', 0.08)
+        .attr('flood-color', '#2d2520').attr('flood-opacity', 0.08)
 
     // Root group (zoom target)
     const root = svg.append('g').attr('class', 'zoom-root')

@@ -227,7 +227,7 @@
   height: 30px;
   border-radius: 50%;
   background: var(--accent-color, #D4A574);
-  color: #fff;
+  color: var(--header-text);
   display: flex;
   align-items: center;
   justify-content: center;

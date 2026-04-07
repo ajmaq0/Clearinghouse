@@ -111,7 +111,7 @@ function ThreeStepSummary({ multiData }) {
               <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-2)', marginBottom: 'var(--space-2)' }}>
                 <span style={{
                   width: 28, height: 28, borderRadius: '50%', background: step.color,
-                  color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  color: 'var(--header-text)', display: 'flex', alignItems: 'center', justifyContent: 'center',
                   fontSize: '0.9em', flexShrink: 0,
                 }}>
                   {step.icon}
@@ -171,7 +171,7 @@ function NettingBarChart({ grossCents, netCents, savingsCents, savingsPct }) {
             width: `${grossPct}%`, height: '100%',
             background: 'linear-gradient(90deg, #c9bfaf, #a89f94)',
             display: 'flex', alignItems: 'center', paddingLeft: 'var(--space-4)',
-            fontSize: 'var(--font-size-sm)', fontWeight: 600, color: 'white',
+            fontSize: 'var(--font-size-sm)', fontWeight: 600, color: 'var(--header-text)',
           }}>
             100 %
           </div>
@@ -194,7 +194,7 @@ function NettingBarChart({ grossCents, netCents, savingsCents, savingsPct }) {
             width: `${netBarPct}%`, height: '100%',
             background: 'linear-gradient(90deg, var(--color-primary), #3a6147)',
             display: 'flex', alignItems: 'center', paddingLeft: 'var(--space-4)',
-            fontSize: 'var(--font-size-sm)', fontWeight: 600, color: 'white',
+            fontSize: 'var(--font-size-sm)', fontWeight: 600, color: 'var(--header-text)',
             transition: 'width 0.8s cubic-bezier(0.4,0,0.2,1)',
           }}>
             {formatPct(100 - savingsPct)}

@@ -164,7 +164,7 @@ function ZahlungskaskadeCard({ summary }) {
               onClick={() => setResolved(v => !v)}
               style={{
                 background: resolved ? 'var(--color-primary)' : '#c97a2f',
-                color: 'white', border: 'none', borderRadius: 'var(--radius-sm)',
+                color: 'var(--header-text)', border: 'none', borderRadius: 'var(--radius-sm)',
                 padding: 'var(--space-1) var(--space-4)',
                 fontSize: 'var(--font-size-xs)', fontWeight: 600, cursor: 'pointer',
                 transition: 'background 0.3s',
@@ -590,7 +590,7 @@ function ConnectionCard({ conn, index }) {
           )}
           <button style={{
             marginLeft: 'auto',
-            background: 'var(--color-primary)', color: 'white',
+            background: 'var(--color-primary)', color: 'var(--header-text)',
             border: 'none', borderRadius: 'var(--radius-sm)',
             padding: 'var(--space-2) var(--space-5)',
             fontSize: 'var(--font-size-sm)', fontWeight: 600,
@@ -732,7 +732,7 @@ function FundingGapCard({ gap }) {
         </div>
 
         <button style={{
-          background: typeColor, color: 'white',
+          background: typeColor, color: 'var(--header-text)',
           border: 'none', borderRadius: 'var(--radius-sm)',
           padding: 'var(--space-2) var(--space-5)',
           fontSize: 'var(--font-size-sm)', fontWeight: 600,

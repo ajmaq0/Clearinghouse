@@ -177,7 +177,7 @@ export default function UnternehmensVergleich() {
                     {i === 0 && (
                       <span style={{
                         marginLeft: 8, fontSize: '0.68em', fontWeight: 700,
-                        background: 'var(--color-primary)', color: 'white',
+                        background: 'var(--color-primary)', color: 'var(--header-text)',
                         borderRadius: 'var(--radius-sm)', padding: '1px 6px',
                         verticalAlign: 'middle',
                       }}>

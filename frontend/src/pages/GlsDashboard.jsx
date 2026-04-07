@@ -554,7 +554,7 @@ export default function GlsDashboard({ onDrillIn }) {
           <div style={{ marginLeft: 'auto' }}>
             <div style={{ fontSize: 'var(--font-size-xs)', color: 'var(--color-primary-dk)', fontWeight: 600, marginBottom: 4 }}>NETTO</div>
             <div style={{ fontSize: 'var(--font-size-2xl)', fontWeight: 800, color: 'var(--color-text)' }}>{formatEur(totalNet)}</div>
-            <div style={{ fontSize: 'var(--font-size-xs)', color: 'var(--color-text-muted)' }}>von {formatEur(totalGross)} brutto</div>
+            <div style={{ fontSize: 'var(--font-size-xs)', color: 'var(--color-primary)' }}>von {formatEur(totalGross)} brutto</div>
           </div>
         </div>
       )}
