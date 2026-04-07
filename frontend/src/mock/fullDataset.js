@@ -30,7 +30,7 @@ export const MOCK_COMPANIES = [
   { id: 'c1', name: 'Hamburger Hafen GmbH',          sector: 'Port/Logistik',   gls_member: true,  size: 'large' },
   { id: 'c2', name: 'Elbe Spedition KG',             sector: 'Port/Logistik',   gls_member: true,  size: 'medium' },
   { id: 'c3', name: 'Nordsee Zolldienstleister AG',  sector: 'Port/Logistik',   gls_member: false, size: 'medium' },
-  { id: 'c4', name: 'Alstermühle Bäckerei GmbH',    sector: 'Lebensmittel',    gls_member: true,  size: 'small' },
+  { id: 'f47ac10b-001d-4000-8000-000000000000', name: 'Elbe Bäckerei Verwaltungs GmbH', sector: 'Lebensmittel', gls_member: true,  size: 'small' },
   { id: 'c5', name: 'Biokontor Hamburg eG',          sector: 'Lebensmittel',    gls_member: true,  size: 'small' },
   { id: 'c6', name: 'Windkraft Nordsee GmbH',        sector: 'Erneuerbare',     gls_member: true,  size: 'large' },
   { id: 'c7', name: 'Lagerhaus Veddel GmbH',         sector: 'Port/Logistik',   gls_member: false, size: 'medium' },
@@ -79,7 +79,7 @@ export const MOCK_INVOICES = [
   },
   {
     id: 'inv4',
-    from_company: { id: 'c4', name: 'Alstermühle Bäckerei GmbH' },
+    from_company: { id: 'f47ac10b-001d-4000-8000-000000000000', name: 'Elbe Bäckerei Verwaltungs GmbH' },
     to_company:   { id: 'c5', name: 'Biokontor Hamburg eG' },
     total_amount_cents: 340_000,
     status: 'confirmed',
@@ -106,7 +106,7 @@ export const MOCK_INVOICES = [
   {
     id: 'inv6',
     from_company: { id: 'c5', name: 'Biokontor Hamburg eG' },
-    to_company:   { id: 'c4', name: 'Alstermühle Bäckerei GmbH' },
+    to_company:   { id: 'f47ac10b-001d-4000-8000-000000000000', name: 'Elbe Bäckerei Verwaltungs GmbH' },
     total_amount_cents: 190_000,
     status: 'confirmed',
     due_date: '2026-04-30',
@@ -130,7 +130,7 @@ export const MOCK_CLEARING_RESULT = {
   savings_pct: 35.0,
   pairs: [
     {
-      company_a: { id: 'c4', name: 'Alstermühle Bäckerei GmbH' },
+      company_a: { id: 'f47ac10b-001d-4000-8000-000000000000', name: 'Elbe Bäckerei Verwaltungs GmbH' },
       company_b: { id: 'c5', name: 'Biokontor Hamburg eG' },
       gross_a_to_b_cents: 340_000,
       gross_b_to_a_cents: 190_000,
@@ -188,8 +188,8 @@ export const MOCK_COMPANY_COMPARISON = {
       savings_vs_bilateral_pct:   39.2,
     },
     {
-      company_id: 'c4',
-      company_name: 'Alstermühle Bäckerei GmbH',
+      company_id: 'f47ac10b-001d-4000-8000-000000000000',
+      company_name: 'Elbe Bäckerei Verwaltungs GmbH',
       gross_payable:              340_000,
       gross_receivable:           190_000,
       bilateral_net:              150_000,
@@ -282,7 +282,7 @@ export const MOCK_ADMIN_DASHBOARD = {
   company_positions: [
     { company_id: 'c1', company_name: 'Hamburger Hafen GmbH',       receivable_cents: 1_240_000, payable_cents:   870_000, net_cents:   370_000 },
     { company_id: 'c2', company_name: 'Elbe Spedition KG',           receivable_cents:         0, payable_cents: 1_240_000, net_cents: -1_240_000 },
-    { company_id: 'c4', company_name: 'Alstermühle Bäckerei GmbH',  receivable_cents:         0, payable_cents:   150_000, net_cents:  -150_000 },
+    { company_id: 'f47ac10b-001d-4000-8000-000000000000', company_name: 'Elbe Bäckerei Verwaltungs GmbH',  receivable_cents:         0, payable_cents:   150_000, net_cents:  -150_000 },
     { company_id: 'c5', company_name: 'Biokontor Hamburg eG',        receivable_cents:   150_000, payable_cents:         0, net_cents:   150_000 },
     { company_id: 'c7', company_name: 'Lagerhaus Veddel GmbH',       receivable_cents:   870_000, payable_cents:         0, net_cents:   870_000 },
   ],
@@ -337,7 +337,7 @@ export const MOCK_POTENTIAL_CONNECTIONS = [
   },
   {
     id: 'pc5',
-    company_a: { id: 'c4', name: 'Alstermühle Bäckerei GmbH',    sector: 'Lebensmittel',  gls_member: true  },
+    company_a: { id: 'f47ac10b-001d-4000-8000-000000000000', name: 'Elbe Bäckerei Verwaltungs GmbH',    sector: 'Lebensmittel',  gls_member: true  },
     company_b: { id: 'c5', name: 'Biokontor Hamburg eG',          sector: 'Lebensmittel',  gls_member: true  },
     sector: 'Lebensmittel',
     estimated_annual_volume_cents: 980_000,
@@ -427,8 +427,8 @@ export const MOCK_COMPANY_POSITIONS = {
       { company_id: 'c3', name: 'Nordsee Zolldienstl. AG', net_cents:  290_000 },
     ],
   },
-  c4: {
-    company_id: 'c4', company_name: 'Alstermühle Bäckerei GmbH',
+  'f47ac10b-001d-4000-8000-000000000000': {
+    company_id: 'f47ac10b-001d-4000-8000-000000000000', company_name: 'Elbe Bäckerei Verwaltungs GmbH',
     open_invoice_count: 2, confirmed_invoice_count: 1,
     gross_payable_cents:     150_000,
     gross_receivable_cents:        0,
@@ -450,7 +450,7 @@ export const MOCK_COMPANY_POSITIONS = {
     savings_pct:               20.0,
     days_until_clearing:        24,
     counterparties: [
-      { company_id: 'c4', name: 'Alstermühle Bäckerei GmbH', net_cents: 150_000 },
+      { company_id: 'f47ac10b-001d-4000-8000-000000000000', name: 'Elbe Bäckerei Verwaltungs GmbH', net_cents: 150_000 },
     ],
   },
   default: {
@@ -465,8 +465,8 @@ export const MOCK_COMPANY_POSITIONS = {
 // ── SME Matching Hints — keyed by companyId ───────────────────────────────────
 
 export const MOCK_MATCHING_HINTS = {
-  c4: {
-    company_id: 'c4',
+  'f47ac10b-001d-4000-8000-000000000000': {
+    company_id: 'f47ac10b-001d-4000-8000-000000000000',
     supplier_matches: [
       {
         id: 'sm-c4-1',

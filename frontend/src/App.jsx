@@ -51,7 +51,7 @@ const SME_PAGES = {
   'sme-entdecken':  SmeEntdecken,
 }
 
-const DEFAULT_SME_COMPANY = MOCK_COMPANIES.find(c => c.id === 'c4') || MOCK_COMPANIES[0]
+const DEFAULT_SME_COMPANY = MOCK_COMPANIES.find(c => c.id === 'f47ac10b-001d-4000-8000-000000000000') || MOCK_COMPANIES[0]
 
 function AppShell() {
   const { role, companyId, setRole, setCompanyId } = useRole()

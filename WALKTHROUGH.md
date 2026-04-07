@@ -50,7 +50,7 @@ URL: `clearflow.poeticte.ch` · Fallback Demo-Modus: URL + `?demo=true`
 
 **GLS-Kunden hervorheben:**
 
-> „Alle farblich vollgesättigten Knoten — Hamburger Hafen GmbH, Elbe Spedition, Windkraft Nordsee, Alstermühle Bäckerei — sind GLS-Mitglieder. Sie profitieren direkt vom Clearing."
+> „Alle farblich vollgesättigten Knoten — Hamburger Hafen GmbH, Elbe Spedition, Windkraft Nordsee, Elbe Bäckerei — sind GLS-Mitglieder. Sie profitieren direkt vom Clearing."
 
 **Drauf zeigen:** Kreis mit Label „Hamb" (Hamburger Hafen GmbH) — größter GLS-Knoten im Port/Logistik-Cluster.
 
@@ -76,9 +76,9 @@ URL: `clearflow.poeticte.ch` · Fallback Demo-Modus: URL + `?demo=true`
 
 > „Wir filtern jetzt auf ein konkretes Beispiel, das Dirk gut kennen wird: zwei Partner, die **gegenseitig Rechnungen aneinander** haben."
 
-**Hervorheben: Alstermühle Bäckerei GmbH ↔ Biokontor Hamburg eG**
+**Hervorheben: Elbe Bäckerei Verwaltungs GmbH ↔ Biokontor Hamburg eG**
 
-> „Alstermühle schuldet Biokontor **3.400 €** für Biomehl — gleichzeitig schuldet Biokontor Alstermühle **1.900 €** für Verpackungsmaterial."
+> „Elbe Bäckerei schuldet Biokontor **3.400 €** für Biomehl — gleichzeitig schuldet Biokontor Elbe Bäckerei **1.900 €** für Verpackungsmaterial."
 >
 > „Ohne ClearFlow: beide müssen zahlen, Liquidität fließt hin und her. Mit ClearFlow: nur die Differenz — **1.500 € netto** — wird bezahlt. **1.900 € werden einfach verrechnet.**"
 
@@ -104,9 +104,9 @@ URL: `clearflow.poeticte.ch` · Fallback Demo-Modus: URL + `?demo=true`
 
 > „Die bisherige Ansicht war die der GLS Bank — das Gesamtnetzwerk aus Bankperspektive. Jetzt machen wir etwas, das ich sehr gerne zeige: **Wir wechseln die Perspektive.**"
 
-**Demo-Moment: Auf den Knoten „Alstermühle" im Netzwerkgraph klicken**
+**Demo-Moment: Auf den Knoten „Elbe Bäckerei" im Netzwerkgraph klicken**
 
-> „Ich klicke hier auf Alstermühle Bäckerei GmbH — einen GLS-Kunden im Lebensmittelsektor."
+> „Ich klicke hier auf Elbe Bäckerei Verwaltungs GmbH — einen GLS-Kunden im Lebensmittelsektor."
 
 *→ Die Oberfläche wechselt in den SME-Modus: Header wird warm-dunkel, Avatar erscheint rechts oben, Navigation wechselt auf 4 Tabs.*
 
@@ -114,7 +114,7 @@ URL: `clearflow.poeticte.ch` · Fallback Demo-Modus: URL + `?demo=true`
 
 **Zeigen: Übersicht-Tab (SME)**
 
-> „Alstermühle sieht ihre **eigenen** Rechnungen, ihre **eigene** Clearing-Ersparnis, ihre direkten Handelspartner."
+> „Elbe Bäckerei sieht ihre **eigenen** Rechnungen, ihre **eigene** Clearing-Ersparnis, ihre direkten Handelspartner."
 
 **Zeigen: KPI-Kacheln**
 
@@ -130,7 +130,7 @@ URL: `clearflow.poeticte.ch` · Fallback Demo-Modus: URL + `?demo=true`
 
 ---
 
-**⚠ Fallback:** Falls der Klick auf den Knoten nicht reagiert → manuell auf „◈ Unternehmen" im Header-Picker klicken und Alstermühle aus dem Dropdown wählen. Gleicher Effekt.
+**⚠ Fallback:** Falls der Klick auf den Knoten nicht reagiert → manuell auf „◈ Unternehmen" im Header-Picker klicken und Elbe Bäckerei aus dem Dropdown wählen. Gleicher Effekt.
 
 ---
 
