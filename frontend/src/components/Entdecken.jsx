@@ -28,8 +28,38 @@ const MOCK_CASCADE_SUMMARY = {
 
 // ── ZahlungskaskadeCard ───────────────────────────────────────────────────────
 
-function CascadeChainNode({ name, role, amount_cents, isLast }) {
+const CASCADE_KEYFRAMES = `
+@keyframes cascade-push-0 {
+  0%   { transform: rotate(0deg) translateY(0); }
+  50%  { transform: rotate(-5deg) translateY(3px); }
+  100% { transform: rotate(-3deg) translateY(1px); }
+}
+@keyframes cascade-push-1 {
+  0%   { transform: rotate(0deg) translateY(0); }
+  50%  { transform: rotate(-3.5deg) translateY(2px); }
+  100% { transform: rotate(-2deg) translateY(1px); }
+}
+@keyframes cascade-push-2 {
+  0%   { transform: rotate(0deg) translateY(0); }
+  50%  { transform: rotate(-2.5deg) translateY(1px); }
+  100% { transform: rotate(-1deg) translateY(0); }
+}
+`
+
+function CascadeChainNode({ name, role, amount_cents, isLast, index = 0, resolved = false }) {
   const { lang } = useLang()
+  const tiltDeg = [-3, -2, -1][index] ?? -2
+  const arrowColor = resolved ? '#4a7c59' : '#c9bfaf'
+  const cardAnimStyle = resolved
+    ? {
+        transform: 'rotate(0deg) translateY(0)',
+        transition: 'transform 0.5s ease, box-shadow 0.5s ease',
+        boxShadow: '0 0 10px 3px rgba(74, 124, 89, 0.18)',
+      }
+    : {
+        animation: `cascade-push-${index} 0.45s ease-out ${index * 0.18}s both`,
+        transition: 'transform 0.5s ease, box-shadow 0.5s ease',
+      }
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
       <div style={{
@@ -39,6 +69,7 @@ function CascadeChainNode({ name, role, amount_cents, isLast }) {
         padding: 'var(--space-3) var(--space-5)',
         textAlign: 'center',
         minWidth: 160,
+        ...cardAnimStyle,
       }}>
         <div style={{
           fontSize: 'var(--font-size-xs)', fontWeight: 700,
@@ -62,9 +93,9 @@ function CascadeChainNode({ name, role, amount_cents, isLast }) {
         )}
       </div>
       {!isLast && (
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '4px 0' }}>
-          <div style={{ width: 2, height: 12, background: '#c9bfaf' }} />
-          <div style={{ fontSize: 10, color: '#c9bfaf' }}>▼</div>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '4px 0', transition: 'color 0.5s ease' }}>
+          <div style={{ width: 2, height: 12, background: arrowColor, transition: 'background 0.5s ease' }} />
+          <div style={{ fontSize: 10, color: arrowColor, transition: 'color 0.5s ease' }}>▼</div>
         </div>
       )}
     </div>
@@ -152,6 +183,9 @@ function ZahlungskaskadeCard({ summary }) {
           </div>
         )}
 
+        {/* Cascade keyframes injection */}
+        <style>{CASCADE_KEYFRAMES}</style>
+
         {/* Before/after cascade animation */}
         <div style={{ marginBottom: 'var(--space-5)' }}>
           <div style={{
@@ -187,18 +221,24 @@ function ZahlungskaskadeCard({ summary }) {
                   role={resolved ? 'resolved' : 'blocked'}
                   amount_cents={resolved ? null : exampleAmounts[1]}
                   isLast={false}
+                  index={0}
+                  resolved={resolved}
                 />
                 <CascadeChainNode
                   name={exampleCompanies[1]}
                   role={resolved ? 'resolved' : 'waiting'}
                   amount_cents={resolved ? null : exampleAmounts[0]}
                   isLast={false}
+                  index={1}
+                  resolved={resolved}
                 />
                 <CascadeChainNode
                   name={exampleCompanies[2]}
                   role="resolved"
                   amount_cents={null}
                   isLast={true}
+                  index={2}
+                  resolved={resolved}
                 />
               </>
             ) : exampleCompanies.length === 2 ? (
@@ -208,12 +248,16 @@ function ZahlungskaskadeCard({ summary }) {
                   role={resolved ? 'resolved' : 'blocked'}
                   amount_cents={resolved ? null : exampleAmounts[1]}
                   isLast={false}
+                  index={0}
+                  resolved={resolved}
                 />
                 <CascadeChainNode
                   name={exampleCompanies[1]}
                   role="resolved"
                   amount_cents={null}
                   isLast={true}
+                  index={1}
+                  resolved={resolved}
                 />
               </>
             ) : null}
