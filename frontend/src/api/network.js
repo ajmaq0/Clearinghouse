@@ -24,4 +24,15 @@ export const networkApi = {
   simulateGrowth:  (candidateIds) => api.post('/network/simulate-growth', { candidates: candidateIds }),
   cascadeSummary:  () => api.get('/network/cascade-summary'),
   cascade:         (companyId) => api.get(`/network/cascade?company_id=${encodeURIComponent(companyId)}`),
+  clearingPaths:   async () => {
+    const [pathsResult, topoResult] = await Promise.allSettled([
+      api.get('/network/clearing-paths'),
+      api.get('/network/topology'),
+    ])
+    if (pathsResult.status === 'rejected') throw pathsResult.reason
+    const paths = pathsResult.value
+    const topo = topoResult.status === 'fulfilled' ? topoResult.value : { nodes: [] }
+    const nodeById = Object.fromEntries((topo.nodes || []).map(n => [n.id, n]))
+    return { ...paths, nodeById }
+  },
 }

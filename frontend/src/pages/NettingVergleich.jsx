@@ -15,6 +15,7 @@ import { MOCK_NETTING_OPTIMAL } from '../mock/fullDataset.js'
 import { formatEur, formatPct } from '../utils/format.js'
 import { t } from '../i18n/index.js'
 import { useLang } from '../hooks/useLang.js'
+import TopologyInsightGraph from '../components/TopologyInsightGraph.jsx'
 
 // ── Stage config ───────────────────────────────────────────────────────────────
 function buildStages(data) {
@@ -417,6 +418,9 @@ export default function NettingVergleich() {
           <p style={{ fontSize: 'var(--font-size-xs)', color: 'var(--color-text-muted)', marginBottom: 'var(--space-4)' }}>
             {t('waterfall.clickStage')}
           </p>
+
+          {/* Network topology graph */}
+          <TopologyInsightGraph />
 
           {/* Detail panel for active stage */}
           <DetailPanel stage={activeStage} data={data} />

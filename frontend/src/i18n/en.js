@@ -368,6 +368,19 @@ export default {
     fullySettled:      'Fully settled ✓',
     bruttoLabel:       'gross',
   },
+  topology: {
+    title: 'Network Structure — Clearing Paths',
+    legend: {
+      obligation: 'Obligation',
+      cycle:      'Cycle (hover)',
+      missing:    'Missing Connection',
+    },
+    tooltip: {
+      ghostWould:      'in additional clearing possible',
+      clearingVolume:  'Clearing volume',
+    },
+    glsMember: 'GLS Member',
+  },
   common: {
     company:       'Company',
     amount:        'Amount',

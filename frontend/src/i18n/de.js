@@ -368,6 +368,19 @@ export default {
     fullySettled:      'Vollständig verrechnet ✓',
     bruttoLabel:       'brutto',
   },
+  topology: {
+    title: 'Netzwerkstruktur — Verrechnungspfade',
+    legend: {
+      obligation: 'Obligation',
+      cycle:      'Zyklus (hover)',
+      missing:    'Fehlende Verbindung',
+    },
+    tooltip: {
+      ghostWould:      'zusätzliche Verrechnung möglich',
+      clearingVolume:  'Clearing-Volumen',
+    },
+    glsMember: 'GLS-Mitglied',
+  },
   common: {
     company:        'Unternehmen',
     amount:         'Betrag',
