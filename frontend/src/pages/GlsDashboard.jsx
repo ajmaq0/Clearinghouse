@@ -18,6 +18,8 @@ import { companiesApi } from '../api/companies.js'
 import { invoicesApi } from '../api/invoices.js'
 import { MOCK_COMPANIES, MOCK_INVOICES, MOCK_CLEARING_RESULT, MOCK_ADMIN_DASHBOARD } from '../mock/fullDataset.js'
 import { formatEur, formatPct } from '../utils/format.js'
+import { t } from '../i18n/index.js'
+import { useLang } from '../hooks/useLang.js'
 
 // ── KPI Card ─────────────────────────────────────────────────────────────────
 
@@ -55,6 +57,7 @@ function KpiCard({ label, value, sub, color }) {
 function TradeNetworkGraph({ nodes, edges, height = 480, highlightGls = false, onNodeClick }) {
   const svgRef    = useRef(null)
   const [tooltip, setTooltip] = useState(null)   // { x, y, node }
+  const { lang } = useLang()
 
   useEffect(() => {
     if (!svgRef.current || nodes.length === 0) return
@@ -190,7 +193,7 @@ function TradeNetworkGraph({ nodes, edges, height = 480, highlightGls = false, o
     })
 
     return () => sim.stop()
-  }, [nodes, edges, height, highlightGls, onNodeClick])
+  }, [nodes, edges, height, highlightGls, onNodeClick, lang])
 
   return (
     <div style={{ position: 'relative' }}>
@@ -210,35 +213,35 @@ function TradeNetworkGraph({ nodes, edges, height = 480, highlightGls = false, o
                 fontSize: 10, fontWeight: 700, padding: '1px 6px',
                 background: '#fef3c7', color: '#92400e',
                 borderRadius: 10, border: '1px solid #e6b800',
-              }}>GLS-Kunde</span>
+              }}>{t('admin.glsClient')}</span>
             )}
           </div>
           {tooltip.node.sector && (
             <div style={{ color: 'var(--color-text-muted)', fontSize: 'var(--font-size-xs)' }}>
-              Sektor: {tooltip.node.sector}
+              {t('admin.tooltipSector')} {tooltip.node.sector}
             </div>
           )}
           {tooltip.node.subtype && (
             <div style={{ color: 'var(--color-text-muted)', fontSize: 'var(--font-size-xs)' }}>
-              Typ: {tooltip.node.subtype}
+              {t('admin.tooltipType')} {tooltip.node.subtype}
             </div>
           )}
           {tooltip.node.district && (
             <div style={{ color: 'var(--color-text-muted)', fontSize: 'var(--font-size-xs)' }}>
-              Stadtteil: {tooltip.node.district}
+              {t('admin.tooltipDistrict')} {tooltip.node.district}
             </div>
           )}
           <div style={{ color: 'var(--color-text-muted)', fontSize: 'var(--font-size-xs)', marginTop: 4, borderTop: '1px solid var(--color-border)', paddingTop: 4 }}>
-            Netto: <strong style={{ color: tooltip.node.net_cents >= 0 ? 'var(--color-primary)' : 'var(--color-danger)' }}>
+            {t('admin.tooltipNet')} <strong style={{ color: tooltip.node.net_cents >= 0 ? 'var(--color-primary)' : 'var(--color-danger)' }}>
               {tooltip.node.net_cents >= 0 ? '+' : ''}{formatEur(tooltip.node.net_cents)}
             </strong>
           </div>
           <div style={{ color: 'var(--color-text-muted)', fontSize: 'var(--font-size-xs)' }}>
-            Durchsatz: {formatEur(tooltip.node.throughput_cents)}
+            {t('admin.tooltipThroughput')} {formatEur(tooltip.node.throughput_cents)}
           </div>
           {onNodeClick && (
             <div style={{ marginTop: 6, fontSize: 'var(--font-size-xs)', color: 'var(--color-primary)', fontWeight: 600 }}>
-              ↗ Klicken für Unternehmensansicht
+              ↗ {t('admin.clickForSme')}
             </div>
           )}
         </div>
@@ -250,6 +253,7 @@ function TradeNetworkGraph({ nodes, edges, height = 480, highlightGls = false, o
 // ── GlsDashboard ─────────────────────────────────────────────────────────────
 
 export default function GlsDashboard({ onDrillIn }) {
+  const { lang } = useLang()
   const [running,      setRunning]      = useState(false)
   const [runMsg,       setRunMsg]       = useState(null)
   const [refreshKey,   setRefreshKey]   = useState(0)
@@ -267,7 +271,7 @@ export default function GlsDashboard({ onDrillIn }) {
         const today = new Date().toISOString().slice(0, 10)
         filename = `ClearFlow_Bericht_${today}.pdf`
         const res = await fetch('/demo_report.pdf')
-        if (!res.ok) throw new Error('Demo-PDF nicht gefunden')
+        if (!res.ok) throw new Error(t('admin.demoPdfNotFound'))
         blob = await res.blob()
       } else {
         ;({ blob, filename } = await clearingApi.downloadReportPdf())
@@ -281,7 +285,7 @@ export default function GlsDashboard({ onDrillIn }) {
       a.remove()
       URL.revokeObjectURL(url)
     } catch (e) {
-      alert(`Fehler beim PDF-Export: ${e.message}`)
+      alert(`${t('admin.pdfError')} ${e.message}`)
     } finally {
       setDownloading(false)
     }
@@ -449,12 +453,12 @@ export default function GlsDashboard({ onDrillIn }) {
     setRunMsg(null)
     try {
       await clearingApi.run()
-      setRunMsg('Clearing erfolgreich durchgeführt.')
+      setRunMsg(t('admin.clearingDone'))
       setRefreshKey(k => k + 1)
       reloadCycles()
       reloadDash()
     } catch (e) {
-      setRunMsg(`Fehler beim Clearing: ${e.message}`)
+      setRunMsg(`${t('admin.clearingError')} ${e.message}`)
     } finally {
       setRunning(false)
     }
@@ -466,14 +470,14 @@ export default function GlsDashboard({ onDrillIn }) {
       <div style={{ marginBottom: 'var(--space-8)', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: 'var(--space-4)' }}>
         <div>
           <h1 style={{ fontSize: 'var(--font-size-xl)', fontWeight: 700, marginBottom: 'var(--space-1)' }}>
-            GLS Netzwerk-Dashboard
+            {t('admin.title')}
           </h1>
           <p style={{ color: 'var(--color-text-muted)', fontSize: 'var(--font-size-sm)' }}>
-            Aggregierte Netzwerkübersicht · Administratoren-Ansicht
+            {t('admin.subtitle')}
           </p>
           {dashMock && (
             <div style={{ marginTop: 'var(--space-3)', fontSize: 'var(--font-size-xs)', color: 'var(--color-accent)', fontStyle: 'italic' }}>
-              Demo-Daten — Backend noch nicht verbunden
+              {t('admin.demoNotice')}
             </div>
           )}
         </div>
@@ -490,22 +494,22 @@ export default function GlsDashboard({ onDrillIn }) {
             }}
           >
             {downloading
-              ? <><span className="loading-spinner" style={{ width: 16, height: 16 }} /> PDF wird erstellt…</>
-              : '↓ Bericht herunterladen'}
+              ? <><span className="loading-spinner" style={{ width: 16, height: 16 }} /> {t('admin.downloadingReport')}</>
+              : `↓ ${t('admin.downloadReport')}`}
           </button>
           <button className="btn btn-primary" onClick={handleRunClearing} disabled={running} style={{ minWidth: 200 }}>
             {running
-              ? <><span className="loading-spinner" style={{ width: 16, height: 16 }} /> Clearing läuft…</>
-              : '⇄ Clearing starten'}
+              ? <><span className="loading-spinner" style={{ width: 16, height: 16 }} /> {t('admin.clearingRunning')}</>
+              : `⇄ ${t('admin.startClearing')}`}
           </button>
         </div>
       </div>
 
       {runMsg && (
         <div className="card" style={{
-          background: runMsg.startsWith('Fehler') ? '#fdeaea' : 'var(--color-primary-lt)',
-          border: `1px solid ${runMsg.startsWith('Fehler') ? '#f5c2c2' : '#c8dfd0'}`,
-          color: runMsg.startsWith('Fehler') ? 'var(--color-danger)' : 'var(--color-primary-dk)',
+          background: runMsg.startsWith('Fehler') || runMsg.startsWith('Clearing error') ? '#fdeaea' : 'var(--color-primary-lt)',
+          border: `1px solid ${runMsg.startsWith('Fehler') || runMsg.startsWith('Clearing error') ? '#f5c2c2' : '#c8dfd0'}`,
+          color: runMsg.startsWith('Fehler') || runMsg.startsWith('Clearing error') ? 'var(--color-danger)' : 'var(--color-primary-dk)',
           marginBottom: 'var(--space-4)',
         }}>
           {runMsg}
@@ -514,14 +518,14 @@ export default function GlsDashboard({ onDrillIn }) {
 
       {/* KPI Row — large, projector-readable */}
       <div style={{ display: 'flex', gap: 'var(--space-4)', flexWrap: 'wrap', marginBottom: 'var(--space-6)' }}>
-        <KpiCard label="Unternehmen" value={companyCount} sub="im Netzwerk" />
-        <KpiCard label="Rechnungen" value={invoiceCount} sub="erfasst" />
-        <KpiCard label="Brutto-Verpflichtungen" value={formatEur(totalGross)} sub="ausstehend (bilateral)" />
-        <KpiCard label="Netto nach Clearing"   value={formatEur(totalNet)} sub={`nach bilateralem Netting`} color="var(--color-primary)" />
+        <KpiCard label={t('admin.companies')} value={companyCount} sub={t('admin.inNetwork')} />
+        <KpiCard label={t('admin.invoices')} value={invoiceCount} sub={t('admin.recorded')} />
+        <KpiCard label={t('admin.grossObligation')} value={formatEur(totalGross)} sub={t('admin.bilateralPending')} />
+        <KpiCard label={t('admin.netAfterClearing')} value={formatEur(totalNet)} sub={t('admin.afterBilateral')} color="var(--color-primary)" />
         <KpiCard
-          label="Einsparungen"
+          label={t('admin.savings')}
           value={formatEur(savingsCents)}
-          sub={`${formatPct(savingsPct)} des Bruttovolumens`}
+          sub={`${formatPct(savingsPct)} ${t('admin.ofGrossVolume')}`}
           color="var(--color-primary-dk)"
         />
       </div>
@@ -536,23 +540,23 @@ export default function GlsDashboard({ onDrillIn }) {
         }}>
           <div>
             <div style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-primary-dk)', fontWeight: 600, marginBottom: 'var(--space-2)' }}>
-              Kapital freigesetzt durch bilaterales Netting
+              {t('admin.capitalFreed')}
             </div>
             <div style={{ fontSize: 'var(--font-size-3xl)', fontWeight: 800, color: 'var(--color-primary-dk)', lineHeight: 1 }}>
               {formatPct(savingsPct)}
             </div>
             <div style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-primary)', marginTop: 'var(--space-2)' }}>
-              {formatEur(savingsCents)} Einsparung
+              {formatEur(savingsCents)} {t('admin.savingsLabel')}
             </div>
           </div>
           <div style={{ width: 1, height: 60, background: '#c8dfd0' }} />
           <div style={{ maxWidth: 300 }}>
             <div style={{ fontSize: 'var(--font-size-md)', color: 'var(--color-primary-dk)', lineHeight: 1.5, fontStyle: 'italic' }}>
-              „{formatPct(savingsPct)} weniger Liquidität nötig — ohne dass eine Zahlung ausbleibt."
+              „{formatPct(savingsPct)} {t('admin.lessLiquidity')}"
             </div>
           </div>
           <div style={{ marginLeft: 'auto' }}>
-            <div style={{ fontSize: 'var(--font-size-xs)', color: 'var(--color-primary-dk)', fontWeight: 600, marginBottom: 4 }}>NETTO</div>
+            <div style={{ fontSize: 'var(--font-size-xs)', color: 'var(--color-primary-dk)', fontWeight: 600, marginBottom: 4 }}>{t('admin.netto')}</div>
             <div style={{ fontSize: 'var(--font-size-2xl)', fontWeight: 800, color: 'var(--color-text)' }}>{formatEur(totalNet)}</div>
             <div style={{ fontSize: 'var(--font-size-xs)', color: 'var(--color-primary)' }}>von {formatEur(totalGross)} brutto</div>
           </div>
@@ -563,13 +567,13 @@ export default function GlsDashboard({ onDrillIn }) {
       <div className="network-graph-mobile-summary card" style={{ marginBottom: 'var(--space-6)', display: 'flex', alignItems: 'center', gap: 'var(--space-4)', padding: 'var(--space-4) var(--space-5)' }}>
         <div style={{ fontSize: '1.5rem' }}>⊙</div>
         <div>
-          <div style={{ fontWeight: 700, fontSize: 'var(--font-size-sm)', marginBottom: 2 }}>Handelsnetzwerk Hamburg</div>
+          <div style={{ fontWeight: 700, fontSize: 'var(--font-size-sm)', marginBottom: 2 }}>{t('admin.tradeNetwork')}</div>
           <div style={{ fontSize: 'var(--font-size-xs)', color: 'var(--color-text-muted)' }}>
-            {companyCount} Unternehmen · {invoiceCount} Rechnungen
-            {savingsPct > 0 && ` · ${formatPct(savingsPct)} Einsparung`}
+            {companyCount} {t('admin.companies')} · {invoiceCount} {t('admin.invoices')}
+            {savingsPct > 0 && ` · ${formatPct(savingsPct)} ${t('admin.savingsLabel')}`}
           </div>
           <div style={{ fontSize: 'var(--font-size-xs)', color: 'var(--color-text-light)', marginTop: 2 }}>
-            Netzwerkgraph auf Desktop verfügbar
+            {t('admin.mobileDesktop')}
           </div>
         </div>
       </div>
@@ -584,9 +588,9 @@ export default function GlsDashboard({ onDrillIn }) {
             display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 'var(--space-3)',
           }}>
             <div>
-              <span style={{ fontWeight: 700, fontSize: 'var(--font-size-sm)' }}>Handelsnetzwerk Hamburg</span>
+              <span style={{ fontWeight: 700, fontSize: 'var(--font-size-sm)' }}>{t('admin.tradeNetwork')}</span>
               <span style={{ marginLeft: 'var(--space-3)', fontSize: 'var(--font-size-xs)', color: 'var(--color-text-muted)' }}>
-                {latestCycleId ? 'Netto-Verpflichtungen nach Clearing' : 'Brutto-Handelsflüsse (vor Clearing)'}
+                {latestCycleId ? t('admin.netObligations') : t('admin.grossFlows')}
               </span>
             </div>
             <div style={{ display: 'flex', gap: 'var(--space-4)', alignItems: 'center', flexWrap: 'wrap' }}>
@@ -608,17 +612,17 @@ export default function GlsDashboard({ onDrillIn }) {
                   border: '2.5px solid #e6b800',
                   display: 'inline-block', background: highlightGls ? '#fef3c7' : 'transparent',
                 }} />
-                GLS-Kunden hervorheben
+                {t('admin.highlightGls')}
               </button>
               {/* Legend */}
               <div style={{ display: 'flex', gap: 'var(--space-4)', fontSize: 'var(--font-size-xs)', color: 'var(--color-text-muted)' }}>
                 <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
                   <span style={{ width: 10, height: 10, borderRadius: '50%', background: '#4a7c59', display: 'inline-block' }} />
-                  Forderungen
+                  {t('admin.receivables')}
                 </span>
                 <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
                   <span style={{ width: 10, height: 10, borderRadius: '50%', background: '#c97a2f', display: 'inline-block' }} />
-                  Verbindlichkeiten
+                  {t('admin.payables')}
                 </span>
                 {highlightGls && (
                   <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
@@ -626,7 +630,7 @@ export default function GlsDashboard({ onDrillIn }) {
                       width: 12, height: 12, borderRadius: '50%',
                       border: '2.5px solid #e6b800', display: 'inline-block',
                     }} />
-                    GLS-Kunde
+                    {t('admin.glsClient')}
                   </span>
                 )}
               </div>
@@ -651,9 +655,9 @@ export default function GlsDashboard({ onDrillIn }) {
             fontSize: 'var(--font-size-xs)', color: 'var(--color-text-muted)',
             display: 'flex', gap: 'var(--space-6)',
           }}>
-            <span>Knotengröße = Handelsdurchsatz</span>
-            <span>Pfeildicke = Nettoobligation</span>
-            <span>Drag zum Verschieben · Scroll zum Zoomen</span>
+            <span>{t('admin.nodeSize')}</span>
+            <span>{t('admin.arrowThickness')}</span>
+            <span>{t('admin.dragZoom')}</span>
           </div>
         </div>
 
@@ -664,11 +668,11 @@ export default function GlsDashboard({ onDrillIn }) {
             borderBottom: '2px solid var(--color-border)',
             fontWeight: 700, fontSize: 'var(--font-size-sm)',
           }}>
-            Nettopositionen
+            {t('admin.netPositions')}
           </div>
           {(dashboard?.company_positions ?? []).length === 0 ? (
             <div style={{ padding: 'var(--space-8)', textAlign: 'center', color: 'var(--color-text-muted)', fontSize: 'var(--font-size-sm)' }}>
-              Noch kein Clearing — keine Positionen.
+              {t('admin.noPositions')}
             </div>
           ) : (
             [...(dashboard?.company_positions ?? [])]
@@ -705,20 +709,20 @@ export default function GlsDashboard({ onDrillIn }) {
       {/* Legend / explainer */}
       <div className="card" style={{ background: 'var(--color-surface-alt)', display: 'flex', gap: 'var(--space-8)', flexWrap: 'wrap', fontSize: 'var(--font-size-sm)', color: 'var(--color-text-muted)' }}>
         <div>
-          <strong style={{ color: 'var(--color-text)' }}>Bilaterales Netting</strong>{' '}
-          — gegenseitige Forderungen werden aufgerechnet. Nur der Nettobetrag muss transferiert werden.
+          <strong style={{ color: 'var(--color-text)' }}>{t('admin.bilateralExplain')}</strong>{' '}
+          — {t('admin.bilateralDesc')}
         </div>
         <div>
-          <strong style={{ color: 'var(--color-primary)' }}>●</strong> Grün = Nettoempfänger (Forderungen überwiegen)
+          <strong style={{ color: 'var(--color-primary)' }}>●</strong> {t('admin.greenMeaning')}
           &nbsp;&nbsp;
-          <strong style={{ color: 'var(--color-accent)' }}>●</strong> Orange = Nettozahler (Verbindlichkeiten überwiegen)
+          <strong style={{ color: 'var(--color-accent)' }}>●</strong> {t('admin.orangeMeaning')}
         </div>
         <div>
           <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5 }}>
             <span style={{ width: 12, height: 12, borderRadius: '50%', border: '2.5px solid #e6b800', display: 'inline-block' }} />
-            <strong style={{ color: 'var(--color-text)' }}>Goldener Ring</strong>
+            <strong style={{ color: 'var(--color-text)' }}>{t('admin.goldenRing')}</strong>
           </span>{' '}
-          = GLS-Kunde (sichtbar bei „GLS-Kunden hervorheben")
+          = {t('admin.glsClientVisible')}
         </div>
       </div>
     </div>

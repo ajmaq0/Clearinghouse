@@ -4,12 +4,19 @@ import { invoicesApi } from '../api/invoices.js'
 import { companiesApi } from '../api/companies.js'
 import { MOCK_INVOICES, MOCK_COMPANIES } from '../mock/data.js'
 import { formatEur, formatDate } from '../utils/format.js'
+import { t } from '../i18n/index.js'
+import { useLang } from '../hooks/useLang.js'
 
-const STATUS_LABELS = {
-  confirmed: { label: 'Bestätigt',  badge: 'badge-green' },
-  pending:   { label: 'Ausstehend', badge: 'badge-amber' },
-  cancelled: { label: 'Storniert',  badge: 'badge-red'   },
-  cleared:   { label: 'Verrechnet', badge: 'badge-blue'  },
+function statusLabel(s) {
+  const map = { confirmed: 'status.confirmed', pending: 'status.pending', cancelled: 'status.cancelled', cleared: 'status.cleared' }
+  return t(map[s] || s)
+}
+
+const STATUS_BADGE = {
+  confirmed: 'badge-green',
+  pending:   'badge-amber',
+  cancelled: 'badge-red',
+  cleared:   'badge-blue',
 }
 
 /**
@@ -67,13 +74,15 @@ function normalizeInvoice(inv, companyMap) {
 // ── StatusBadge ─────────────────────────────────────────────────────────────
 
 function StatusBadge({ status }) {
-  const s = STATUS_LABELS[status] ?? { label: status, badge: 'badge-gray' }
-  return <span className={`badge ${s.badge}`}>{s.label}</span>
+  const { lang } = useLang()
+  const badge = STATUS_BADGE[status] ?? 'badge-gray'
+  return <span className={`badge ${badge}`}>{statusLabel(status)}</span>
 }
 
 // ── NetPositionWidget ────────────────────────────────────────────────────────
 
 function NetPositionWidget({ companyId, refreshKey }) {
+  const { lang } = useLang()
   const [pos, setPos]       = useState(null)
   const [loading, setLoading] = useState(false)
 
@@ -102,7 +111,7 @@ function NetPositionWidget({ companyId, refreshKey }) {
     }}>
       <div>
         <div style={{ fontSize: 'var(--font-size-xs)', fontWeight: 600, color: 'var(--color-primary-dk)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: 'var(--space-1)' }}>
-          Netto-Position nach Clearing
+          {t('invoices.netPosition')}
         </div>
         {loading ? (
           <span className="loading-spinner" style={{ width: 18, height: 18 }} />
@@ -111,18 +120,18 @@ function NetPositionWidget({ companyId, refreshKey }) {
             {pos.net_cents >= 0 ? '+' : ''}{formatEur(pos.net_cents)}
           </div>
         ) : (
-          <div style={{ color: 'var(--color-text-muted)', fontSize: 'var(--font-size-sm)' }}>Kein Clearing-Ergebnis</div>
+          <div style={{ color: 'var(--color-text-muted)', fontSize: 'var(--font-size-sm)' }}>{t('invoices.noClearing')}</div>
         )}
       </div>
       {pos && (
         <>
           <div style={{ width: 1, height: 40, background: '#c8dfd0' }} />
           <div>
-            <div style={{ fontSize: 'var(--font-size-xs)', color: 'var(--color-primary-dk)', fontWeight: 600, marginBottom: 2 }}>Forderungen</div>
+            <div style={{ fontSize: 'var(--font-size-xs)', color: 'var(--color-primary-dk)', fontWeight: 600, marginBottom: 2 }}>{t('invoices.receivables')}</div>
             <div style={{ fontWeight: 600 }}>{formatEur(pos.receivable_cents)}</div>
           </div>
           <div>
-            <div style={{ fontSize: 'var(--font-size-xs)', color: 'var(--color-primary-dk)', fontWeight: 600, marginBottom: 2 }}>Verbindlichkeiten</div>
+            <div style={{ fontSize: 'var(--font-size-xs)', color: 'var(--color-primary-dk)', fontWeight: 600, marginBottom: 2 }}>{t('invoices.payables')}</div>
             <div style={{ fontWeight: 600 }}>{formatEur(pos.payable_cents)}</div>
           </div>
         </>
@@ -134,6 +143,7 @@ function NetPositionWidget({ companyId, refreshKey }) {
 // ── InvoiceDetail ────────────────────────────────────────────────────────────
 
 function InvoiceDetail({ invoice, onClose, onConfirm, confirming, canConfirm }) {
+  const { lang } = useLang()
   if (!invoice) return null
   const lineItems = invoice.line_items ?? []
   return (
@@ -146,7 +156,7 @@ function InvoiceDetail({ invoice, onClose, onConfirm, confirming, canConfirm }) 
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 'var(--space-6)' }}>
           <div>
             <div style={{ fontSize: 'var(--font-size-xs)', color: 'var(--color-text-muted)', marginBottom: 4 }}>
-              Rechnung #{invoice.id?.slice(0, 8)}
+              {t('invoices.invoiceNo')}{invoice.id?.slice(0, 8)}
             </div>
             <h2 style={{ fontSize: 'var(--font-size-lg)', fontWeight: 700 }}>
               {invoice.from_company?.name ?? invoice.from_company}
@@ -163,16 +173,16 @@ function InvoiceDetail({ invoice, onClose, onConfirm, confirming, canConfirm }) 
 
         <div style={{ display: 'flex', gap: 'var(--space-6)', marginBottom: 'var(--space-6)' }}>
           <div>
-            <div style={{ fontSize: 'var(--font-size-xs)', color: 'var(--color-text-muted)', marginBottom: 2 }}>Fällig</div>
+            <div style={{ fontSize: 'var(--font-size-xs)', color: 'var(--color-text-muted)', marginBottom: 2 }}>{t('invoices.dueDate')}</div>
             <div style={{ fontWeight: 600 }}>{formatDate(invoice.due_date)}</div>
           </div>
           <div>
-            <div style={{ fontSize: 'var(--font-size-xs)', color: 'var(--color-text-muted)', marginBottom: 2 }}>Status</div>
+            <div style={{ fontSize: 'var(--font-size-xs)', color: 'var(--color-text-muted)', marginBottom: 2 }}>{t('invoices.statusLabel')}</div>
             <StatusBadge status={invoice.status} />
           </div>
           {invoice.sector && (
             <div>
-              <div style={{ fontSize: 'var(--font-size-xs)', color: 'var(--color-text-muted)', marginBottom: 2 }}>Branche</div>
+              <div style={{ fontSize: 'var(--font-size-xs)', color: 'var(--color-text-muted)', marginBottom: 2 }}>{t('invoices.sector')}</div>
               <div style={{ fontWeight: 500 }}>{invoice.sector}</div>
             </div>
           )}
@@ -198,7 +208,7 @@ function InvoiceDetail({ invoice, onClose, onConfirm, confirming, canConfirm }) 
               fontSize: 'var(--font-size-xs)', fontWeight: 600,
               color: 'var(--color-text-muted)', textTransform: 'uppercase', letterSpacing: '0.04em',
             }}>
-              <span>Posten</span><span>Betrag</span>
+              <span>{t('invoices.lineItems')}</span><span>{t('invoices.amount')}</span>
             </div>
             {lineItems.map((li, i) => (
               <div key={i} style={{
@@ -220,7 +230,7 @@ function InvoiceDetail({ invoice, onClose, onConfirm, confirming, canConfirm }) 
           borderTop: '2px solid var(--color-border)', paddingTop: 'var(--space-4)',
           marginBottom: 'var(--space-6)',
         }}>
-          <span style={{ fontWeight: 700, fontSize: 'var(--font-size-md)' }}>Gesamtbetrag</span>
+          <span style={{ fontWeight: 700, fontSize: 'var(--font-size-md)' }}>{t('invoices.totalAmount')}</span>
           <span style={{ fontWeight: 700, fontSize: 'var(--font-size-xl)', color: 'var(--color-primary)' }}>
             {formatEur(invoice.total_amount_cents)}
           </span>
@@ -228,12 +238,12 @@ function InvoiceDetail({ invoice, onClose, onConfirm, confirming, canConfirm }) 
 
         {/* Actions */}
         <div style={{ display: 'flex', gap: 'var(--space-3)', justifyContent: 'flex-end' }}>
-          <button className="btn btn-secondary" onClick={onClose}>Schließen</button>
+          <button className="btn btn-secondary" onClick={onClose}>{t('invoices.close')}</button>
           {invoice.status === 'pending' && canConfirm && (
             <button className="btn btn-primary" onClick={() => onConfirm(invoice.id)} disabled={confirming}>
               {confirming
-                ? <><span className="loading-spinner" style={{ width: 16, height: 16 }} /> Bestätigen…</>
-                : 'Rechnung bestätigen'}
+                ? <><span className="loading-spinner" style={{ width: 16, height: 16 }} /> {t('invoices.confirming')}</>
+                : t('invoices.confirm')}
             </button>
           )}
         </div>
@@ -247,6 +257,7 @@ function InvoiceDetail({ invoice, onClose, onConfirm, confirming, canConfirm }) 
 const EMPTY_LINE_ITEM = () => ({ description: '', amount_eur: '' })
 
 function InvoiceForm({ companies, myCompanyId, onClose, onSubmitted }) {
+  const { lang } = useLang()
   const [fromId,    setFromId]    = useState(myCompanyId || '')
   const [toId,      setToId]      = useState('')
   const [dueDate,   setDueDate]   = useState('')
@@ -272,15 +283,15 @@ function InvoiceForm({ companies, myCompanyId, onClose, onSubmitted }) {
     e.preventDefault()
     setError(null)
 
-    if (!fromId || !toId) { setError('Bitte Absender und Empfänger auswählen.'); return }
-    if (fromId === toId)   { setError('Absender und Empfänger müssen unterschiedlich sein.'); return }
-    if (totalCents <= 0)   { setError('Mindestens eine Rechnungsposition mit gültigem Betrag erforderlich.'); return }
+    if (!fromId || !toId) { setError(t('invoices.errSenderReceiver')); return }
+    if (fromId === toId)   { setError(t('invoices.errSameCo')); return }
+    if (totalCents <= 0)   { setError(t('invoices.errMinAmount')); return }
 
     const parsedItems = lineItems
       .filter(li => li.description.trim() && parseEurInput(li.amount_eur))
       .map(li => ({ description: li.description.trim(), amount_cents: parseEurInput(li.amount_eur), quantity: 1 }))
 
-    if (parsedItems.length === 0) { setError('Mindestens eine gültige Rechnungsposition erforderlich.'); return }
+    if (parsedItems.length === 0) { setError(t('invoices.errMinItem')); return }
 
     setSubmitting(true)
     try {
@@ -294,7 +305,7 @@ function InvoiceForm({ companies, myCompanyId, onClose, onSubmitted }) {
       })
       onSubmitted()
     } catch (err) {
-      setError(`Fehler: ${err.message}`)
+      setError(`${t('invoices.errGeneric')} ${err.message}`)
     } finally {
       setSubmitting(false)
     }
@@ -314,7 +325,7 @@ function InvoiceForm({ companies, myCompanyId, onClose, onSubmitted }) {
       <div className="card" style={{ width: '100%', maxWidth: 560, maxHeight: '90vh', overflowY: 'auto' }}
         onClick={e => e.stopPropagation()}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 'var(--space-6)' }}>
-          <h2 style={{ fontSize: 'var(--font-size-lg)', fontWeight: 700 }}>Neue Rechnung erfassen</h2>
+          <h2 style={{ fontSize: 'var(--font-size-lg)', fontWeight: 700 }}>{t('invoices.newInvoiceTitle')}</h2>
           <button onClick={onClose} style={{ background: 'none', border: 'none', fontSize: '1.5em', color: 'var(--color-text-muted)', cursor: 'pointer', lineHeight: 1, padding: 4 }}>×</button>
         </div>
 
@@ -326,16 +337,16 @@ function InvoiceForm({ companies, myCompanyId, onClose, onSubmitted }) {
           {/* From / To */}
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-4)', marginBottom: 'var(--space-4)' }}>
             <div>
-              <label style={{ display: 'block', fontWeight: 600, fontSize: 'var(--font-size-sm)', marginBottom: 'var(--space-2)' }}>Von (Absender)</label>
+              <label style={{ display: 'block', fontWeight: 600, fontSize: 'var(--font-size-sm)', marginBottom: 'var(--space-2)' }}>{t('invoices.from')}</label>
               <select value={fromId} onChange={e => setFromId(e.target.value)} style={inputStyle} required>
-                <option value="">Unternehmen wählen…</option>
+                <option value="">{t('invoices.chooseCompany')}</option>
                 {companies.map(c => <option key={c.id} value={c.id}>{c.name}</option>)}
               </select>
             </div>
             <div>
-              <label style={{ display: 'block', fontWeight: 600, fontSize: 'var(--font-size-sm)', marginBottom: 'var(--space-2)' }}>An (Empfänger)</label>
+              <label style={{ display: 'block', fontWeight: 600, fontSize: 'var(--font-size-sm)', marginBottom: 'var(--space-2)' }}>{t('invoices.to')}</label>
               <select value={toId} onChange={e => setToId(e.target.value)} style={inputStyle} required>
-                <option value="">Unternehmen wählen…</option>
+                <option value="">{t('invoices.chooseCompany')}</option>
                 {companies.filter(c => c.id !== fromId).map(c => <option key={c.id} value={c.id}>{c.name}</option>)}
               </select>
             </div>
@@ -344,19 +355,19 @@ function InvoiceForm({ companies, myCompanyId, onClose, onSubmitted }) {
           {/* Due date & description */}
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-4)', marginBottom: 'var(--space-4)' }}>
             <div>
-              <label style={{ display: 'block', fontWeight: 600, fontSize: 'var(--font-size-sm)', marginBottom: 'var(--space-2)' }}>Fälligkeitsdatum</label>
+              <label style={{ display: 'block', fontWeight: 600, fontSize: 'var(--font-size-sm)', marginBottom: 'var(--space-2)' }}>{t('invoices.dueLabel')}</label>
               <input type="date" value={dueDate} onChange={e => setDueDate(e.target.value)} style={inputStyle} />
             </div>
             <div>
-              <label style={{ display: 'block', fontWeight: 600, fontSize: 'var(--font-size-sm)', marginBottom: 'var(--space-2)' }}>Beschreibung (optional)</label>
-              <input type="text" value={desc} onChange={e => setDesc(e.target.value)} placeholder="z. B. Lieferung Mai 2026" style={inputStyle} />
+              <label style={{ display: 'block', fontWeight: 600, fontSize: 'var(--font-size-sm)', marginBottom: 'var(--space-2)' }}>{t('invoices.descOptional')}</label>
+              <input type="text" value={desc} onChange={e => setDesc(e.target.value)} placeholder={t('invoices.descPlaceholder')} style={inputStyle} />
             </div>
           </div>
 
           {/* Line items */}
           <div style={{ marginBottom: 'var(--space-4)' }}>
             <div style={{ fontWeight: 600, fontSize: 'var(--font-size-sm)', marginBottom: 'var(--space-3)' }}>
-              Rechnungspositionen
+              {t('invoices.lineItemsLabel')}
             </div>
             {lineItems.map((li, i) => (
               <div key={i} style={{ display: 'grid', gridTemplateColumns: '1fr 130px auto', gap: 'var(--space-3)', marginBottom: 'var(--space-3)', alignItems: 'center' }}>
@@ -385,7 +396,7 @@ function InvoiceForm({ companies, myCompanyId, onClose, onSubmitted }) {
               </div>
             ))}
             <button type="button" onClick={addLineItem} className="btn btn-secondary" style={{ fontSize: 'var(--font-size-xs)', padding: 'var(--space-2) var(--space-4)' }}>
-              + Position hinzufügen
+              {t('invoices.addPosition')}
             </button>
           </div>
 
@@ -395,18 +406,18 @@ function InvoiceForm({ companies, myCompanyId, onClose, onSubmitted }) {
             borderTop: '2px solid var(--color-border)', paddingTop: 'var(--space-4)',
             marginBottom: 'var(--space-6)',
           }}>
-            <span style={{ fontWeight: 700, fontSize: 'var(--font-size-md)' }}>Gesamtbetrag</span>
+            <span style={{ fontWeight: 700, fontSize: 'var(--font-size-md)' }}>{t('invoices.totalAmount')}</span>
             <span style={{ fontWeight: 700, fontSize: 'var(--font-size-xl)', color: 'var(--color-primary)' }}>
               {formatEur(totalCents)}
             </span>
           </div>
 
           <div style={{ display: 'flex', gap: 'var(--space-3)', justifyContent: 'flex-end' }}>
-            <button type="button" className="btn btn-secondary" onClick={onClose}>Abbrechen</button>
+            <button type="button" className="btn btn-secondary" onClick={onClose}>{t('invoices.cancel')}</button>
             <button type="submit" className="btn btn-primary" disabled={submitting || totalCents === 0}>
               {submitting
-                ? <><span className="loading-spinner" style={{ width: 16, height: 16 }} /> Einreichen…</>
-                : 'Rechnung einreichen'}
+                ? <><span className="loading-spinner" style={{ width: 16, height: 16 }} /> {t('invoices.submitting')}</>
+                : t('invoices.submit')}
             </button>
           </div>
         </form>
@@ -418,6 +429,7 @@ function InvoiceForm({ companies, myCompanyId, onClose, onSubmitted }) {
 // ── Rechnungen (main page) ───────────────────────────────────────────────────
 
 export default function Rechnungen() {
+  const { lang } = useLang()
   const [selectedId,     setSelectedId]     = useState(null)
   const [filterCompany,  setFilterCompany]  = useState('')
   const [filterSector,   setFilterSector]   = useState('')
@@ -495,7 +507,7 @@ export default function Rechnungen() {
       setSelectedId(null)
       reload()
     } catch (e) {
-      setConfirmMsg(`Fehler: ${e.message}`)
+      setConfirmMsg(`${t('invoices.errGeneric')} ${e.message}`)
     } finally {
       setConfirming(false)
     }
@@ -519,7 +531,7 @@ export default function Rechnungen() {
       <div style={{ marginBottom: 'var(--space-6)', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: 'var(--space-4)' }}>
         <div>
           <h1 style={{ fontSize: 'var(--font-size-xl)', fontWeight: 700, marginBottom: 'var(--space-1)' }}>
-            Rechnungen
+            {t('invoices.title')}
           </h1>
           <p style={{ color: 'var(--color-text-muted)', fontSize: 'var(--font-size-sm)' }}>
             Rechnungen anzeigen, einreichen und bestätigen
@@ -531,19 +543,19 @@ export default function Rechnungen() {
           )}
         </div>
         <button className="btn btn-primary" onClick={() => setShowForm(true)}>
-          + Neue Rechnung
+          {t('invoices.newInvoice')}
         </button>
       </div>
 
       {/* Company selector ("Ich bin:") */}
       <div className="card" style={{ marginBottom: 'var(--space-4)', display: 'flex', gap: 'var(--space-4)', alignItems: 'center', flexWrap: 'wrap' }}>
-        <span style={{ fontWeight: 600, fontSize: 'var(--font-size-sm)', whiteSpace: 'nowrap' }}>Ich bin:</span>
+        <span style={{ fontWeight: 600, fontSize: 'var(--font-size-sm)', whiteSpace: 'nowrap' }}>{t('invoices.company')}:</span>
         <select
           value={myCompanyId}
           onChange={e => setMyCompanyId(e.target.value)}
           style={{ ...selectStyle, minWidth: 220, color: myCompanyId ? 'var(--color-text)' : 'var(--color-text-muted)' }}
         >
-          <option value="">Unternehmen wählen (Alle anzeigen)</option>
+          <option value="">{t('invoices.chooseCompany')}</option>
           {companies.map(c => <option key={c.id} value={c.id}>{c.name}</option>)}
         </select>
         {myCompanyId && (
@@ -600,14 +612,14 @@ export default function Rechnungen() {
           onChange={e => setFilterStatus(e.target.value)}
           style={{ ...selectStyle, color: filterStatus ? 'var(--color-text)' : 'var(--color-text-muted)' }}
         >
-          <option value="">Alle Status</option>
-          <option value="pending">Ausstehend</option>
-          <option value="confirmed">Bestätigt</option>
-          <option value="cleared">Verrechnet</option>
-          <option value="cancelled">Storniert</option>
+          <option value="">{t('invoices.filterAll')} Status</option>
+          <option value="pending">{t('invoices.filterPending')}</option>
+          <option value="confirmed">{t('invoices.filterConfirmed')}</option>
+          <option value="cleared">{statusLabel('cleared')}</option>
+          <option value="cancelled">{statusLabel('cancelled')}</option>
         </select>
         <div style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-text-muted)', marginLeft: 'auto' }}>
-          {invoices.length} Rechnungen
+          {invoices.length} {t('invoices.title')}
         </div>
       </div>
 
@@ -622,7 +634,7 @@ export default function Rechnungen() {
           <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 'var(--font-size-sm)', minWidth: 520 }}>
             <thead>
               <tr style={{ background: 'var(--color-surface-alt)', borderBottom: '2px solid var(--color-border)' }}>
-                {['Von', 'An', 'Betrag', 'Fällig', 'Status', ''].map((h, i) => (
+                {['Von', 'An', t('invoices.amount'), t('invoices.dueDate'), t('invoices.statusLabel'), ''].map((h, i) => (
                   <th key={i} style={{
                     padding: 'var(--space-3) var(--space-5)', textAlign: i === 2 ? 'right' : 'left',
                     fontWeight: 600, color: 'var(--color-text-muted)',
@@ -635,7 +647,7 @@ export default function Rechnungen() {
               {invoices.length === 0 ? (
                 <tr>
                   <td colSpan={6} style={{ textAlign: 'center', padding: 'var(--space-10)', color: 'var(--color-text-muted)' }}>
-                    Keine Rechnungen gefunden.
+                    {t('invoices.noData')}
                   </td>
                 </tr>
               ) : invoices.map((inv, i) => {

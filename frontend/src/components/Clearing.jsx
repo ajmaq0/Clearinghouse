@@ -5,6 +5,8 @@ import { clearingApi } from '../api/clearing.js'
 import { companiesApi } from '../api/companies.js'
 import { MOCK_CLEARING_RESULT, MOCK_COMPANIES } from '../mock/data.js'
 import { formatEur, formatPct } from '../utils/format.js'
+import { t } from '../i18n/index.js'
+import { useLang } from '../hooks/useLang.js'
 import UnternehmensVergleich from './UnternehmensVergleich.jsx'
 
 /**
@@ -57,12 +59,13 @@ function normalizeDetail(detail, companyMap) {
 // ── 3-Step Netting Summary ─────────────────────────────────────────────────────
 
 const STEPS = [
-  { key: 'gross',        label: 'Brutto',          icon: '≡',  color: '#c97a2f', colorLight: '#fdf3e7' },
-  { key: 'bilateral',    label: 'Bilateral',        icon: '⇄',  color: '#2c6e8a', colorLight: '#e8f2f7' },
-  { key: 'multilateral', label: 'Multilateral',     icon: '⬡',  color: '#4a7c59', colorLight: '#eef5f1' },
+  { key: 'gross',        labelKey: 'clearing.gross',        icon: '≡',  color: '#c97a2f', colorLight: '#fdf3e7' },
+  { key: 'bilateral',    labelKey: 'clearing.bilateral',    icon: '⇄',  color: '#2c6e8a', colorLight: '#e8f2f7' },
+  { key: 'multilateral', labelKey: 'clearing.multilateral', icon: '⬡',  color: '#4a7c59', colorLight: '#eef5f1' },
 ]
 
 function ThreeStepSummary({ multiData }) {
+  const { lang } = useLang()
   if (!multiData) return null
 
   const gross  = multiData.gross_cents        ?? 0
@@ -82,15 +85,15 @@ function ThreeStepSummary({ multiData }) {
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 'var(--space-5)', flexWrap: 'wrap', gap: 'var(--space-4)' }}>
         <div>
           <h2 style={{ fontSize: 'var(--font-size-md)', fontWeight: 700 }}>
-            Brutto → Bilateral → Multilateral
+            {t('clearing.threeSummaryTitle')}
           </h2>
           <div style={{ fontSize: 'var(--font-size-xs)', color: 'var(--color-text-muted)', marginTop: 2 }}>
-            Drei-Stufen-Netting · Johnson-Algorithmus
+            {t('clearing.threeSummaryDesc')}
           </div>
         </div>
         <div style={{ textAlign: 'right' }}>
           <div style={{ fontSize: 'var(--font-size-xs)', color: 'var(--color-primary-dk)', fontWeight: 600 }}>
-            Gesamteinsparung
+            {t('clearing.totalSavings')}
           </div>
           <div style={{ fontSize: 'var(--font-size-2xl)', fontWeight: 800, color: '#4a7c59' }}>
             {formatPct(totalSavingPct)}
@@ -117,7 +120,7 @@ function ThreeStepSummary({ multiData }) {
                   {step.icon}
                 </span>
                 <span style={{ fontWeight: 700, fontSize: 'var(--font-size-sm)', color: step.color }}>
-                  {step.label}
+                  {t(step.labelKey)}
                 </span>
               </div>
               <div style={{ fontSize: 'clamp(1.1rem, 2.5vw, 1.6rem)', fontWeight: 800, color: step.color, lineHeight: 1.1, marginBottom: 4 }}>
@@ -127,7 +130,7 @@ function ThreeStepSummary({ multiData }) {
                 <div style={{ height: '100%', width: `${step.pct}%`, background: step.color, borderRadius: 99 }} />
               </div>
               <div style={{ fontSize: 'var(--font-size-xs)', color: step.color, opacity: 0.8 }}>
-                {step.pct} % des Brutto
+                {step.pct} {t('clearing.ofGross')}
               </div>
               {step.savingFromPrev != null && step.savingFromPrev > 0 && (
                 <div style={{
@@ -138,7 +141,7 @@ function ThreeStepSummary({ multiData }) {
                   fontSize: 'var(--font-size-xs)', fontWeight: 700, color: '#4a7c59',
                   display: 'inline-block',
                 }}>
-                  −{formatEur(step.savingFromPrev)} gespart
+                  −{formatEur(step.savingFromPrev)} {t('clearing.saved')}
                 </div>
               )}
             </div>
@@ -154,6 +157,7 @@ function ThreeStepSummary({ multiData }) {
 
 /** Horizontal bar chart: Before vs After */
 function NettingBarChart({ grossCents, netCents, savingsCents, savingsPct }) {
+  const { lang } = useLang()
   const maxVal = grossCents || 1
   const grossPct = 100
   const netBarPct = (netCents / maxVal) * 100
@@ -163,7 +167,7 @@ function NettingBarChart({ grossCents, netCents, savingsCents, savingsPct }) {
       {/* Gross bar */}
       <div style={{ marginBottom: 'var(--space-4)' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 'var(--space-2)', fontSize: 'var(--font-size-sm)' }}>
-          <span style={{ fontWeight: 600, color: 'var(--color-text-muted)' }}>Brutto (bilateral)</span>
+          <span style={{ fontWeight: 600, color: 'var(--color-text-muted)' }}>{t('clearing.grossBilateral')}</span>
           <span style={{ fontWeight: 700 }}>{formatEur(grossCents)}</span>
         </div>
         <div style={{ height: 40, borderRadius: 'var(--radius-sm)', overflow: 'hidden', background: 'var(--color-surface-alt)', position: 'relative' }}>
@@ -180,13 +184,13 @@ function NettingBarChart({ grossCents, netCents, savingsCents, savingsPct }) {
 
       {/* Arrow */}
       <div style={{ textAlign: 'center', fontSize: 'var(--font-size-xl)', color: 'var(--color-primary)', marginBottom: 'var(--space-4)' }}>
-        ↓ bilaterales Netting
+        {t('clearing.bilateralNetting')}
       </div>
 
       {/* Net bar */}
       <div style={{ marginBottom: 'var(--space-4)' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 'var(--space-2)', fontSize: 'var(--font-size-sm)' }}>
-          <span style={{ fontWeight: 600, color: 'var(--color-primary-dk)' }}>Netto (nach Clearing)</span>
+          <span style={{ fontWeight: 600, color: 'var(--color-primary-dk)' }}>{t('clearing.netAfterClearing')}</span>
           <span style={{ fontWeight: 700, color: 'var(--color-primary-dk)' }}>{formatEur(netCents)}</span>
         </div>
         <div style={{ height: 40, borderRadius: 'var(--radius-sm)', overflow: 'hidden', background: 'var(--color-surface-alt)', position: 'relative' }}>
@@ -210,7 +214,7 @@ function NettingBarChart({ grossCents, netCents, savingsCents, savingsPct }) {
       }}>
         <div>
           <div style={{ fontSize: 'var(--font-size-xs)', color: 'var(--color-primary-dk)', fontWeight: 600, marginBottom: 2 }}>
-            Freigesetztes Kapital
+            {t('clearing.freedCapital')}
           </div>
           <div style={{ fontSize: 'var(--font-size-2xl)', fontWeight: 700, color: 'var(--color-primary-dk)' }}>
             {formatEur(savingsCents)}
@@ -218,7 +222,7 @@ function NettingBarChart({ grossCents, netCents, savingsCents, savingsPct }) {
         </div>
         <div style={{ textAlign: 'right' }}>
           <div style={{ fontSize: 'var(--font-size-xs)', color: 'var(--color-primary-dk)', fontWeight: 600, marginBottom: 2 }}>
-            Einsparquote
+            {t('clearing.savingsRate')}
           </div>
           <div style={{ fontSize: 'var(--font-size-2xl)', fontWeight: 700, color: 'var(--color-primary)' }}>
             {formatPct(savingsPct)}
@@ -231,6 +235,7 @@ function NettingBarChart({ grossCents, netCents, savingsCents, savingsPct }) {
 
 /** D3 flow diagram for a bilateral pair */
 function PairFlowDiagram({ pair }) {
+  const { lang } = useLang()
   const svgRef = useRef(null)
   const W = 420, H = 120
 
@@ -304,20 +309,21 @@ function PairFlowDiagram({ pair }) {
     if (net > 0) {
       const netFrom = winner === 'B' ? aX : bX
       const netTo   = winner === 'B' ? bX : aX
-      drawArrow(netFrom, netTo, centerY, `Netto: ${formatEur(net)}`, '#4a7c59')
+      drawArrow(netFrom, netTo, centerY, `${t('clearing.netLabel')} ${formatEur(net)}`, '#4a7c59')
     } else {
       svg.append('text').attr('x', midX).attr('y', centerY + 4)
         .attr('text-anchor', 'middle').attr('font-size', 10)
         .attr('fill', '#4a7c59').attr('font-weight', 700)
         .attr('font-family', 'DM Sans, sans-serif')
-        .text('Vollständig verrechnet ✓')
+        .text(t('clearing.fullySettled'))
     }
-  }, [pair])
+  }, [pair, lang])
 
   return <svg ref={svgRef} style={{ width: '100%' }} />
 }
 
 function PairRow({ pair }) {
+  const { lang } = useLang()
   const [open, setOpen] = useState(false)
   const aName = pair.company_a?.name || 'A'
   const bName = pair.company_b?.name || 'B'
@@ -339,11 +345,11 @@ function PairRow({ pair }) {
           {aName} ⇄ {bName}
         </div>
         <div style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-text-muted)', fontVariantNumeric: 'tabular-nums' }}>
-          {formatEur(pair.gross_a_to_b_cents + pair.gross_b_to_a_cents)} brutto
+          {formatEur(pair.gross_a_to_b_cents + pair.gross_b_to_a_cents)} {t('clearing.bruttoLabel')}
         </div>
         <div style={{ minWidth: 80, textAlign: 'right' }}>
           <span className={`badge ${savings > 0 ? 'badge-green' : 'badge-gray'}`}>
-            {savings > 0 ? `${formatPct(savings)} gespart` : 'kein Netting'}
+            {savings > 0 ? `${formatPct(savings)} ${t('clearing.saved')}` : t('clearing.noNetting')}
           </span>
         </div>
         <div style={{ color: 'var(--color-text-muted)', fontSize: '0.85em' }}>{open ? '▲' : '▼'}</div>
@@ -358,8 +364,10 @@ function PairRow({ pair }) {
 }
 
 export default function Clearing() {
+  const { lang } = useLang()
   const [running, setRunning]     = useState(false)
   const [runMsg, setRunMsg]       = useState(null)
+  const [runError, setRunError]   = useState(false)
   const [multiData, setMultiData] = useState(null)
 
   useEffect(() => {
@@ -401,12 +409,15 @@ export default function Clearing() {
   async function handleRunClearing() {
     setRunning(true)
     setRunMsg(null)
+    setRunError(false)
     try {
       await clearingApi.runOptimal()
-      setRunMsg('Clearing erfolgreich gestartet!')
+      setRunMsg(t('clearing.success'))
+      setRunError(false)
       reloadCycles()
     } catch (e) {
-      setRunMsg(`Fehler beim Clearing: ${e.message}`)
+      setRunMsg(`${t('clearing.error')} ${e.message}`)
+      setRunError(true)
     } finally {
       setRunning(false)
     }
@@ -417,14 +428,14 @@ export default function Clearing() {
       <div style={{ marginBottom: 'var(--space-8)', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
         <div>
           <h1 style={{ fontSize: 'var(--font-size-xl)', fontWeight: 700, marginBottom: 'var(--space-1)' }}>
-            Clearing
+            {t('clearing.title')}
           </h1>
           <p style={{ color: 'var(--color-text-muted)', fontSize: 'var(--font-size-sm)' }}>
-            Brutto → Bilateral → Multilateral Netting · Verpflichtungsreduktion
+            {t('clearing.subtitle')}
           </p>
           {useMock && (
             <div style={{ marginTop: 'var(--space-3)', fontSize: 'var(--font-size-xs)', color: 'var(--color-accent)', fontStyle: 'italic' }}>
-              Demo-Ergebnis — Backend noch nicht verbunden
+              {t('clearing.demoNotice')}
             </div>
           )}
         </div>
@@ -435,16 +446,16 @@ export default function Clearing() {
           style={{ minWidth: 180 }}
         >
           {running
-            ? <><span className="loading-spinner" style={{ width: 16, height: 16 }} /> Clearing läuft…</>
-            : '⇄ Clearing starten'}
+            ? <><span className="loading-spinner" style={{ width: 16, height: 16 }} /> {t('clearing.running')}</>
+            : t('clearing.startBtn')}
         </button>
       </div>
 
       {runMsg && (
         <div className="card" style={{
-          background: runMsg.startsWith('Fehler') ? '#fdeaea' : 'var(--color-primary-lt)',
-          border: `1px solid ${runMsg.startsWith('Fehler') ? '#f5c2c2' : '#c8dfd0'}`,
-          color: runMsg.startsWith('Fehler') ? 'var(--color-danger)' : 'var(--color-primary-dk)',
+          background: runError ? '#fdeaea' : 'var(--color-primary-lt)',
+          border: `1px solid ${runError ? '#f5c2c2' : '#c8dfd0'}`,
+          color: runError ? 'var(--color-danger)' : 'var(--color-primary-dk)',
           marginBottom: 'var(--space-4)',
         }}>
           {runMsg}
@@ -463,10 +474,10 @@ export default function Clearing() {
           {/* Before/After bar chart */}
           <div className="card">
             <h2 style={{ fontSize: 'var(--font-size-md)', fontWeight: 700, marginBottom: 'var(--space-2)' }}>
-              Brutto → Netto
+              {t('clearing.grossToNet')}
             </h2>
             <div style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-text-muted)', marginBottom: 'var(--space-4)' }}>
-              Letztes bilaterales Clearing
+              {t('clearing.lastBilateral')}
             </div>
             <NettingBarChart
               grossCents={result.gross_cents}
@@ -480,7 +491,7 @@ export default function Clearing() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-4)' }}>
             <div className="card" style={{ background: 'var(--color-primary-lt)', border: '1px solid #c8dfd0' }}>
               <div style={{ fontSize: 'var(--font-size-xs)', color: 'var(--color-primary-dk)', fontWeight: 600, marginBottom: 'var(--space-2)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-                Brutto-Verpflichtungen
+                {t('clearing.grossObligation')}
               </div>
               <div style={{ fontSize: 'var(--font-size-2xl)', fontWeight: 700, color: 'var(--color-text)' }}>
                 {formatEur(result.gross_cents)}
@@ -488,7 +499,7 @@ export default function Clearing() {
             </div>
             <div className="card" style={{ background: 'var(--color-accent-lt)', border: '1px solid #f2d5b0' }}>
               <div style={{ fontSize: 'var(--font-size-xs)', color: 'var(--color-accent)', fontWeight: 600, marginBottom: 'var(--space-2)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-                Netto nach Clearing
+                {t('clearing.netAfterClearing')}
               </div>
               <div style={{ fontSize: 'var(--font-size-2xl)', fontWeight: 700, color: 'var(--color-text)' }}>
                 {formatEur(result.net_cents)}
@@ -496,13 +507,13 @@ export default function Clearing() {
             </div>
             <div className="card" style={{ background: '#eef5f1', border: '2px solid var(--color-primary)' }}>
               <div style={{ fontSize: 'var(--font-size-xs)', color: 'var(--color-primary-dk)', fontWeight: 600, marginBottom: 'var(--space-2)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-                Freigesetztes Kapital
+                {t('clearing.freedCapital')}
               </div>
               <div style={{ fontSize: 'var(--font-size-3xl)', fontWeight: 700, color: 'var(--color-primary-dk)' }}>
                 {formatEur(result.savings_cents)}
               </div>
               <div style={{ fontSize: 'var(--font-size-lg)', color: 'var(--color-primary)', fontWeight: 600, marginTop: 'var(--space-1)' }}>
-                {formatPct(result.savings_pct)} Einsparung
+                {formatPct(result.savings_pct)} {t('clearing.savings')}
               </div>
             </div>
           </div>
@@ -515,9 +526,9 @@ export default function Clearing() {
               fontWeight: 700, fontSize: 'var(--font-size-md)',
               display: 'flex', justifyContent: 'space-between', alignItems: 'center',
             }}>
-              <span>Unternehmenspaar-Analyse</span>
+              <span>{t('clearing.pairAnalysis')}</span>
               <span style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-text-muted)', fontWeight: 400 }}>
-                {result.pairs?.length || 0} Paare analysiert
+                {result.pairs?.length || 0} {t('clearing.pairsAnalyzed')}
               </span>
             </div>
             {(result.pairs || []).map((pair, i) => (
@@ -527,7 +538,7 @@ export default function Clearing() {
         </div>
       ) : (
         <div style={{ textAlign: 'center', padding: 'var(--space-16)', color: 'var(--color-text-muted)' }}>
-          Noch kein Clearing durchgeführt. Klicken Sie auf „Clearing starten".
+          {t('clearing.noClearing')}
         </div>
       )}
 

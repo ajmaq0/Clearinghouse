@@ -4,6 +4,8 @@ import { useApi } from '../hooks/useApi.js'
 import { clearingApi } from '../api/clearing.js'
 import { MOCK_CLEARING_HISTORY } from '../mock/fullDataset.js'
 import { formatEur, formatPct } from '../utils/format.js'
+import { t } from '../i18n/index.js'
+import { useLang } from '../hooks/useLang.js'
 
 function linearTrend(cycles) {
   const n = cycles.length
@@ -21,6 +23,7 @@ function linearTrend(cycles) {
 }
 
 export default function ClearingVerlauf() {
+  const { lang } = useLang()
   const svgRef = useRef(null)
   const [selected, setSelected] = useState(null)
 
@@ -77,7 +80,7 @@ export default function ClearingVerlauf() {
       .call(
         d3.axisBottom(x).tickFormat(i => {
           const d = new Date(cycles[i].completed_at)
-          return d.toLocaleDateString('de-DE', { month: 'short', year: '2-digit' })
+          return d.toLocaleDateString(lang === 'en' ? 'en-US' : 'de-DE', { month: 'short', year: '2-digit' })
         })
       )
       .call(ax => ax.select('.domain').remove())
@@ -140,7 +143,7 @@ export default function ClearingVerlauf() {
       .attr('stroke-dasharray', '5,3')
       .attr('d', lineGen)
 
-  }, [cycles, selected])
+  }, [cycles, selected, lang])
 
   return (
     <div className="card" style={{ padding: 0, overflow: 'hidden', marginTop: 'var(--space-6)' }}>
@@ -152,20 +155,20 @@ export default function ClearingVerlauf() {
       }}>
         <div>
           <span style={{ fontWeight: 600, fontSize: 'var(--font-size-sm)', color: 'var(--color-text-muted)' }}>
-            Clearing-Verlauf
+            {t('clearingHistory.title')}
           </span>
           <span style={{ marginLeft: 'var(--space-3)', fontSize: 'var(--font-size-xs)', color: 'var(--color-text-light)' }}>
-            Liquiditätsentlastung % je Zyklus · Balken anklicken für Details
+            {t('clearingHistory.subtitle')}
           </span>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-4)', fontSize: 'var(--font-size-xs)', color: 'var(--color-text-light)' }}>
           <span style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-2)' }}>
             <span style={{ width: 12, height: 12, borderRadius: 2, background: '#4a7c59', display: 'inline-block' }} />
-            Einsparung
+            {t('clearingHistory.savings')}
           </span>
           <span style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-2)' }}>
             <span style={{ width: 18, borderTop: '2px dashed #c97a2f', display: 'inline-block' }} />
-            Trend
+            {t('clearingHistory.trend')}
           </span>
         </div>
       </div>
@@ -188,35 +191,35 @@ export default function ClearingVerlauf() {
           gap: 'var(--space-4)',
         }}>
           <div>
-            <div style={{ fontSize: 'var(--font-size-xs)', color: 'var(--color-text-muted)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: 2 }}>Datum</div>
+            <div style={{ fontSize: 'var(--font-size-xs)', color: 'var(--color-text-muted)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: 2 }}>{t('clearingHistory.date')}</div>
             <div style={{ fontWeight: 700, color: 'var(--color-primary-dk)' }}>
-              {new Date(selected.completed_at).toLocaleDateString('de-DE', { day: '2-digit', month: 'short', year: 'numeric' })}
+              {new Date(selected.completed_at).toLocaleDateString(lang === 'en' ? 'en-US' : 'de-DE', { day: '2-digit', month: 'short', year: 'numeric' })}
             </div>
           </div>
           <div>
-            <div style={{ fontSize: 'var(--font-size-xs)', color: 'var(--color-text-muted)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: 2 }}>Einsparung</div>
+            <div style={{ fontSize: 'var(--font-size-xs)', color: 'var(--color-text-muted)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: 2 }}>{t('clearingHistory.savings')}</div>
             <div style={{ fontWeight: 700, color: 'var(--color-primary-dk)', fontSize: 'var(--font-size-lg)' }}>
               {formatPct(selected.savings_pct)}
             </div>
           </div>
           <div>
-            <div style={{ fontSize: 'var(--font-size-xs)', color: 'var(--color-text-muted)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: 2 }}>Brutto</div>
+            <div style={{ fontSize: 'var(--font-size-xs)', color: 'var(--color-text-muted)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: 2 }}>{t('clearingHistory.gross')}</div>
             <div style={{ fontWeight: 600 }}>{formatEur(selected.gross_cents)}</div>
           </div>
           <div>
-            <div style={{ fontSize: 'var(--font-size-xs)', color: 'var(--color-text-muted)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: 2 }}>Netto</div>
+            <div style={{ fontSize: 'var(--font-size-xs)', color: 'var(--color-text-muted)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: 2 }}>{t('clearingHistory.net')}</div>
             <div style={{ fontWeight: 600, color: 'var(--color-accent)' }}>{formatEur(selected.net_cents)}</div>
           </div>
           <div>
-            <div style={{ fontSize: 'var(--font-size-xs)', color: 'var(--color-text-muted)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: 2 }}>Rechnungen</div>
+            <div style={{ fontSize: 'var(--font-size-xs)', color: 'var(--color-text-muted)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: 2 }}>{t('clearingHistory.invoices')}</div>
             <div style={{ fontWeight: 600 }}>{selected.invoice_count}</div>
           </div>
           <div>
-            <div style={{ fontSize: 'var(--font-size-xs)', color: 'var(--color-text-muted)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: 2 }}>Unternehmen</div>
+            <div style={{ fontSize: 'var(--font-size-xs)', color: 'var(--color-text-muted)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: 2 }}>{t('clearingHistory.companies')}</div>
             <div style={{ fontWeight: 600 }}>{selected.company_count}</div>
           </div>
           <div>
-            <div style={{ fontSize: 'var(--font-size-xs)', color: 'var(--color-text-muted)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: 2 }}>Methode</div>
+            <div style={{ fontSize: 'var(--font-size-xs)', color: 'var(--color-text-muted)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: 2 }}>{t('clearingHistory.method')}</div>
             <div>
               <span className="badge badge-gray" style={{ textTransform: 'capitalize' }}>
                 {selected.netting_type}
@@ -235,9 +238,9 @@ export default function ClearingVerlauf() {
         fontStyle: 'italic',
         display: 'flex', justifyContent: 'space-between', alignItems: 'center',
       }}>
-        <span>„Monat für Monat spart das Netzwerk Liquidität"</span>
+        <span>{t('clearingHistory.quote')}</span>
         {cycles.length > 0 && (
-          <span>{cycles.length} Zyklen dokumentiert</span>
+          <span>{cycles.length} {t('clearingHistory.cycles')}</span>
         )}
       </div>
     </div>

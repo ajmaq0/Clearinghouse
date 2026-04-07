@@ -5,14 +5,15 @@ import { useApi } from '../../hooks/useApi.js'
 import { smeApi } from '../../api/sme.js'
 import { invoicesApi } from '../../api/invoices.js'
 import { MOCK_COMPANY_POSITIONS, MOCK_INVOICES, MOCK_COMPANIES } from '../../mock/fullDataset.js'
-import { formatEur, formatDate } from '../../utils/format.js'
+import { formatEur, formatDate, formatPct } from '../../utils/format.js'
+import { t } from '../../i18n/index.js'
+import { useLang } from '../../hooks/useLang.js'
 
-const STATUS_LABELS = {
-  confirmed: 'Bestätigt',
-  pending:   'Offen',
-  draft:     'Entwurf',
-  cleared:   'Verrechnet',
+function statusLabel(s) {
+  const map = { confirmed: 'status.confirmed', pending: 'status.open', draft: 'status.draft', cleared: 'status.cleared' }
+  return t(map[s] || s)
 }
+
 const STATUS_COLORS = {
   confirmed: 'badge-green',
   pending:   'badge-amber',
@@ -41,20 +42,21 @@ function KpiCard({ label, value, sub, color }) {
 }
 
 function ClearingCountdown({ days, confirmed, open }) {
+  const { lang } = useLang()
   const total = confirmed + open || 1
   const pct = Math.round((confirmed / total) * 100)
   return (
     <div className="card" style={{ flex: '0 0 220px' }}>
       <div style={{ fontSize: 'var(--font-size-xs)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--color-text-muted)', marginBottom: 'var(--space-4)' }}>
-        Clearing-Countdown
+        {t('sme.clearingCountdown')}
       </div>
       <div style={{ textAlign: 'center', marginBottom: 'var(--space-4)' }}>
         <div style={{ fontSize: 'var(--font-size-3xl)', fontWeight: 800, color: 'var(--color-primary)', lineHeight: 1 }}>{days}</div>
-        <div style={{ fontSize: 'var(--font-size-xs)', color: 'var(--color-text-muted)' }}>Tage bis Monatsende</div>
+        <div style={{ fontSize: 'var(--font-size-xs)', color: 'var(--color-text-muted)' }}>{t('sme.daysUntilMonthEnd')}</div>
       </div>
       <div style={{ marginBottom: 'var(--space-2)' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 'var(--font-size-xs)', color: 'var(--color-text-muted)', marginBottom: 4 }}>
-          <span>{confirmed} bestätigt</span>
+          <span>{confirmed} {t('sme.confirmed')}</span>
           <span>{pct} %</span>
         </div>
         <div style={{ height: 8, background: 'var(--color-border)', borderRadius: 99 }}>
@@ -62,7 +64,7 @@ function ClearingCountdown({ days, confirmed, open }) {
         </div>
       </div>
       <div style={{ fontSize: 'var(--font-size-xs)', color: 'var(--color-text-muted)' }}>
-        {open} Rechnung{open !== 1 ? 'en' : ''} ausstehend
+        {open} {open !== 1 ? t('sme.invoicePending_p') : t('sme.invoicePending_s')}
       </div>
     </div>
   )
@@ -142,6 +144,7 @@ function MiniTradeGraph({ companyId, companies, invoices }) {
 }
 
 export default function SmeUebersicht() {
+  const { lang } = useLang()
   const { companyId } = useRole()
   const effectiveId = companyId || 'c4'
 
@@ -168,16 +171,16 @@ export default function SmeUebersicht() {
   return (
     <div>
       <div className="page-header">
-        <h1 className="page-title">Übersicht</h1>
-        <p className="page-subtitle">Ihre Finanzlage im GLS Clearing-Netzwerk</p>
+        <h1 className="page-title">{t('sme.overviewTitle')}</h1>
+        <p className="page-subtitle">{t('sme.overviewSubtitle')}</p>
       </div>
 
       {/* KPI row */}
       <div style={{ display: 'flex', gap: 'var(--space-5)', flexWrap: 'wrap', marginBottom: 'var(--space-8)' }}>
-        <KpiCard label="Offene Rechnungen"   value={pos.open_invoice_count}     sub={`${pos.confirmed_invoice_count} bestätigt`} color="blue" />
-        <KpiCard label="Brutto-Verbindl."    value={formatEur(pos.gross_payable_cents)}    sub="Zu zahlen" color="red" />
-        <KpiCard label="Nach Clearing"       value={formatEur(pos.net_after_clearing_cents)} sub="Optimiertes Netto" color="green" />
-        <KpiCard label="Meine Einsparung"    value={formatEur(pos.savings_cents)}  sub={`${Number(pos.savings_pct).toFixed(1).replace('.', ',')} % weniger`} color="amber" />
+        <KpiCard label={t('sme.openInvoices')}     value={pos.open_invoice_count}     sub={`${pos.confirmed_invoice_count} ${t('sme.confirmed')}`} color="blue" />
+        <KpiCard label={t('sme.grossLiabilities')} value={formatEur(pos.gross_payable_cents)}    sub={t('sme.toPay')} color="red" />
+        <KpiCard label={t('sme.afterClearing')}    value={formatEur(pos.net_after_clearing_cents)} sub={t('sme.optimizedNet')} color="green" />
+        <KpiCard label={t('sme.mySavings')}        value={formatEur(pos.savings_cents)}  sub={`${formatPct(pos.savings_pct, 1)} ${t('sme.lessNeeded')}`} color="amber" />
         <ClearingCountdown
           days={pos.days_until_clearing}
           confirmed={pos.confirmed_invoice_count}
@@ -189,7 +192,7 @@ export default function SmeUebersicht() {
       <div className="content-grid">
         <div className="card">
           <div style={{ fontWeight: 700, marginBottom: 'var(--space-4)', color: 'var(--color-text)' }}>
-            Direkte Handelspartner
+            {t('sme.tradePartners')}
           </div>
           <MiniTradeGraph
             companyId={effectiveId}
@@ -200,14 +203,19 @@ export default function SmeUebersicht() {
 
         <div className="card">
           <div style={{ fontWeight: 700, marginBottom: 'var(--space-4)', color: 'var(--color-text)' }}>
-            Letzte Rechnungen
+            {t('sme.recentInvoices')}
           </div>
           {invList.length === 0 ? (
-            <div className="state-empty" style={{ padding: 'var(--space-8) 0' }}>Keine Rechnungen vorhanden.</div>
+            <div className="state-empty" style={{ padding: 'var(--space-8) 0' }}>{t('sme.noInvoices')}</div>
           ) : (
             <table className="data-table">
               <thead>
-                <tr><th>Partner</th><th>Betrag</th><th>Fällig</th><th>Status</th></tr>
+                <tr>
+                  <th>{t('invoices.partner')}</th>
+                  <th>{t('invoices.amount')}</th>
+                  <th>{t('invoices.due')}</th>
+                  <th>{t('invoices.status')}</th>
+                </tr>
               </thead>
               <tbody>
                 {invList.slice(0, 5).map(inv => {
@@ -225,7 +233,7 @@ export default function SmeUebersicht() {
                       <td style={{ color: 'var(--color-text-muted)' }}>{formatDate(inv.due_date)}</td>
                       <td>
                         <span className={`badge ${STATUS_COLORS[inv.status] || 'badge-gray'}`}>
-                          {STATUS_LABELS[inv.status] || inv.status}
+                          {statusLabel(inv.status)}
                         </span>
                       </td>
                     </tr>

@@ -12,7 +12,9 @@ import React, { useEffect, useState } from 'react'
 import { clearingApi } from '../api/clearing.js'
 import { useApi } from '../hooks/useApi.js'
 import { MOCK_NETTING_OPTIMAL } from '../mock/fullDataset.js'
-import { formatEur } from '../utils/format.js'
+import { formatEur, formatPct } from '../utils/format.js'
+import { t } from '../i18n/index.js'
+import { useLang } from '../hooks/useLang.js'
 
 // ── Stage config ───────────────────────────────────────────────────────────────
 function buildStages(data) {
@@ -20,8 +22,8 @@ function buildStages(data) {
   return [
     {
       key:        'gross',
-      label:      'Bruttoverpflichtungen',
-      sub:        'Alle offenen Rechnungen im Netzwerk',
+      label:      t('waterfall.grossObligations'),
+      sub:        t('waterfall.grossObligationsSub'),
       amount:     gross,
       pct:        100,
       reduction:  null,
@@ -31,8 +33,8 @@ function buildStages(data) {
     },
     {
       key:        'bilateral',
-      label:      'Nach bilateraler Verrechnung',
-      sub:        'Gegenseitige Rechnungen werden direkt verrechnet',
+      label:      t('waterfall.afterBilateral'),
+      sub:        t('waterfall.afterBilateralSub'),
       amount:     data.bilateral_cents,
       pct:        gross > 0 ? Math.round(data.bilateral_cents * 1000 / gross) / 10 : 0,
       reduction:  gross > 0 ? Math.round((gross - data.bilateral_cents) * 10000 / gross) / 100 : 0,
@@ -42,8 +44,8 @@ function buildStages(data) {
     },
     {
       key:        'netzwerk',
-      label:      'Nach Netzwerk-Verrechnung',
-      sub:        'Ketten von Verpflichtungen im Netzwerk werden gefunden und aufgelöst',
+      label:      t('waterfall.afterNetwork'),
+      sub:        t('waterfall.afterNetworkSub'),
       amount:     data.johnson_cents,
       pct:        gross > 0 ? Math.round(data.johnson_cents * 1000 / gross) / 10 : 0,
       reduction:  gross > 0 ? Math.round((gross - data.johnson_cents) * 10000 / gross) / 100 : 0,
@@ -53,8 +55,8 @@ function buildStages(data) {
     },
     {
       key:        'optimal',
-      label:      'Nach optimaler Verrechnung',
-      sub:        'Mathematische Optimierung — das bestmögliche Ergebnis',
+      label:      t('waterfall.afterOptimal'),
+      sub:        t('waterfall.afterOptimalSub'),
       amount:     data.optimal_cents,
       pct:        gross > 0 ? Math.round(data.optimal_cents * 1000 / gross) / 10 : 0,
       reduction:  gross > 0 ? Math.round((gross - data.optimal_cents) * 10000 / gross) / 100 : 0,
@@ -70,8 +72,8 @@ function buildStages(data) {
 function StageBar({ pct, color, animated }) {
   const [width, setWidth] = useState(0)
   useEffect(() => {
-    const t = setTimeout(() => setWidth(pct), 60)
-    return () => clearTimeout(t)
+    const timer = setTimeout(() => setWidth(pct), 60)
+    return () => clearTimeout(timer)
   }, [pct, animated])
 
   return (
@@ -123,7 +125,7 @@ function StageCard({ stage, isActive, onClick, animated }) {
           borderRadius: 99,
           letterSpacing: '0.04em',
         }}>
-          OPTIMAL
+          {t('waterfall.optimal')}
         </div>
       )}
 
@@ -160,7 +162,7 @@ function StageCard({ stage, isActive, onClick, animated }) {
       {/* Pct of gross + reduction badge */}
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 4 }}>
         <span style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-text-muted)' }}>
-          {stage.pct} % des Brutto
+          {stage.pct} {t('waterfall.ofGross')}
         </span>
         {stage.reduction != null && (
           <span style={{
@@ -231,10 +233,10 @@ function OptimizationGain({ data }) {
       <span style={{ fontSize: '1.8rem' }}>★</span>
       <div>
         <div style={{ fontWeight: 800, fontSize: 'var(--font-size-md)', color: '#1a6b3a' }}>
-          Zusätzliche Einsparung durch Optimierung: {formatEur(gain)}
+          {t('waterfall.additionalSavings')} {formatEur(gain)}
         </div>
         <div style={{ fontSize: 'var(--font-size-xs)', color: '#4a7c59', marginTop: 2 }}>
-          Gegenüber einfacher Netzwerk-Verrechnung — nur durch optimale Verrechnung erreichbar
+          {t('waterfall.vsNetworkClearing')}
         </div>
       </div>
     </div>
@@ -257,21 +259,21 @@ function DetailPanel({ stage, data }) {
     }}>
       <div style={{ display: 'flex', gap: 'var(--space-8)', flexWrap: 'wrap' }}>
         <div>
-          <div className="kpi-label">Verbleibende Verpflichtungen</div>
+          <div className="kpi-label">{t('waterfall.remainingObl')}</div>
           <div style={{ fontSize: 'var(--font-size-2xl)', fontWeight: 800, color: stage.color }}>
             {formatEur(stage.amount)}
           </div>
         </div>
         <div>
-          <div className="kpi-label">Einsparung vs. Brutto</div>
+          <div className="kpi-label">{t('waterfall.savingsVsGross')}</div>
           <div style={{ fontSize: 'var(--font-size-2xl)', fontWeight: 800, color: '#1a6b3a' }}>
             {formatEur(savedFromGross)}
           </div>
         </div>
         <div>
-          <div className="kpi-label">Reduktionsquote</div>
+          <div className="kpi-label">{t('waterfall.reductionRate')}</div>
           <div style={{ fontSize: 'var(--font-size-2xl)', fontWeight: 800, color: '#1a6b3a' }}>
-            {(savedBps / 100).toFixed(1).replace('.', ',')} %
+            {formatPct(savedBps / 100, 1)}
           </div>
         </div>
       </div>
@@ -288,7 +290,7 @@ function DetailPanel({ stage, data }) {
           borderTop: '1px solid var(--color-border)',
           paddingTop: 'var(--space-3)',
         }}>
-          Die optimale Verrechnung nutzt mathematische Optimierung um das bestmögliche Ergebnis zu berechnen — keine heuristische Annäherung.
+          {t('waterfall.afterOptimalNote')}
         </p>
       )}
     </div>
@@ -297,6 +299,7 @@ function DetailPanel({ stage, data }) {
 
 // ── Main component ─────────────────────────────────────────────────────────────
 export default function NettingVergleich() {
+  const { lang } = useLang()
   const [activeKey, setActiveKey] = useState('optimal')
   const [animated,  setAnimated]  = useState(false)
 
@@ -323,18 +326,18 @@ export default function NettingVergleich() {
     <div>
       {/* Header */}
       <div className="page-header">
-        <h1 className="page-title">Netting-Vergleich</h1>
+        <h1 className="page-title">{t('waterfall.title')}</h1>
         <p className="page-subtitle">
-          Brutto → Bilateral → Netzwerk → Optimal · Liquiditätseinsparung durch ClearFlow
+          {t('waterfall.subtitle')}
           {usingMock && (
-            <span style={{ color: 'var(--color-warning)', marginLeft: 8 }}>· Demo-Daten</span>
+            <span style={{ color: 'var(--color-warning)', marginLeft: 8 }}>· {t('waterfall.demoData')}</span>
           )}
         </p>
       </div>
 
       {loading ? (
         <div style={{ textAlign: 'center', padding: 'var(--space-12)', color: 'var(--color-text-muted)' }}>
-          Berechne Netting…
+          {t('waterfall.calculating')}
         </div>
       ) : (
         <>
@@ -347,7 +350,7 @@ export default function NettingVergleich() {
           }}>
             <div>
               <div style={{ fontSize: 'var(--font-size-xs)', fontWeight: 700, opacity: 0.8, textTransform: 'uppercase', letterSpacing: '0.06em' }}>
-                Gesamteinsparung (optimal)
+                {t('waterfall.totalSavingsLabel')}
               </div>
               <div style={{ fontSize: 'clamp(2rem, 5vw, 3.5rem)', fontWeight: 800, lineHeight: 1.1 }}>
                 {formatEur(data.gross_cents - data.optimal_cents)}
@@ -356,20 +359,20 @@ export default function NettingVergleich() {
             <div style={{ width: 1, height: 60, background: 'rgba(255,255,255,0.2)', flexShrink: 0 }} />
             <div>
               <div style={{ fontSize: 'var(--font-size-xs)', fontWeight: 700, opacity: 0.8, textTransform: 'uppercase', letterSpacing: '0.06em' }}>
-                Reduktionsquote
+                {t('waterfall.reductionRate')}
               </div>
               <div style={{ fontSize: 'clamp(2rem, 5vw, 3.5rem)', fontWeight: 800, lineHeight: 1.1 }}>
-                {(totalSavingBps / 100).toFixed(1).replace('.', ',')} %
+                {formatPct(totalSavingBps / 100, 1)}
               </div>
             </div>
             <div style={{ width: 1, height: 60, background: 'rgba(255,255,255,0.2)', flexShrink: 0 }} />
             <div>
               <div style={{ fontSize: 'var(--font-size-xs)', fontWeight: 700, opacity: 0.8, textTransform: 'uppercase', letterSpacing: '0.06em' }}>
-                Methode
+                {t('waterfall.method')}
               </div>
               <div style={{ fontSize: 'var(--font-size-lg)', fontWeight: 700, lineHeight: 1.3 }}>
-                Optimale Verrechnung<br />
-                <span style={{ fontWeight: 400, fontSize: 'var(--font-size-sm)', opacity: 0.8 }}>Mathematisch garantiertes Optimum</span>
+                {t('waterfall.optimalMethod')}<br />
+                <span style={{ fontWeight: 400, fontSize: 'var(--font-size-sm)', opacity: 0.8 }}>{t('waterfall.mathOptimum')}</span>
               </div>
             </div>
           </div>
@@ -408,11 +411,11 @@ export default function NettingVergleich() {
             marginBottom: 'var(--space-2)',
             lineHeight: 1.5,
           }}>
-            <strong>Stufe 3 → 4:</strong> Bilaterale und zirkuläre Schulden werden verrechnet — die optimale Verrechnung findet zusätzlich partielle Verrechnungen über das gesamte Netzwerk.
+            <strong>Stufe 3 → 4:</strong> {t('waterfall.stage34')}
           </p>
 
           <p style={{ fontSize: 'var(--font-size-xs)', color: 'var(--color-text-muted)', marginBottom: 'var(--space-4)' }}>
-            Auf eine Stufe klicken für Details
+            {t('waterfall.clickStage')}
           </p>
 
           {/* Detail panel for active stage */}

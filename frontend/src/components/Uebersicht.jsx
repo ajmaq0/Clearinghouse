@@ -7,6 +7,8 @@ import { invoicesApi } from '../api/invoices.js'
 import { MOCK_NETWORK_STATS, MOCK_COMPANIES, MOCK_INVOICES } from '../mock/data.js'
 import { formatEur, formatPct, formatHours } from '../utils/format.js'
 import ClearingVerlauf from './ClearingVerlauf.jsx'
+import { t } from '../i18n/index.js'
+import { useLang } from '../hooks/useLang.js'
 
 function StatCard({ label, value, sub, accent }) {
   return (
@@ -34,6 +36,7 @@ function StatCard({ label, value, sub, accent }) {
 }
 
 function MiniNetworkGraph({ companies, invoices }) {
+  const { lang } = useLang()
   const svgRef = useRef(null)
 
   useEffect(() => {
@@ -130,12 +133,12 @@ function MiniNetworkGraph({ companies, invoices }) {
         borderBottom: '1px solid var(--color-border)',
         fontWeight: 600, fontSize: 'var(--font-size-sm)', color: 'var(--color-text-muted)'
       }}>
-        Handelsnetzwerk Hamburg
+        {t('dashboard.tradeNetwork')}
         <span style={{
           marginLeft: 'var(--space-3)', fontWeight: 400, fontSize: 'var(--font-size-xs)',
           color: 'var(--color-text-light)'
         }}>
-          ◎ GLS-Mitglied &nbsp;○ Nicht-Mitglied
+          {`◎ ${t('dashboard.glsMember')} \u00a0○ ${t('dashboard.nonMember')}`}
         </span>
       </div>
       <svg ref={svgRef} style={{ display: 'block', width: '100%' }} />
@@ -145,9 +148,9 @@ function MiniNetworkGraph({ companies, invoices }) {
         display: 'flex', gap: 'var(--space-6)', fontSize: 'var(--font-size-xs)', color: 'var(--color-text-muted)'
       }}>
         {[
-          { color: '#4a7c59', label: 'Port/Logistik' },
-          { color: '#c97a2f', label: 'Lebensmittel' },
-          { color: '#2c6e8a', label: 'Erneuerbare' },
+          { color: '#4a7c59', label: t('dashboard.sectorPort') },
+          { color: '#c97a2f', label: t('dashboard.sectorFood') },
+          { color: '#2c6e8a', label: t('dashboard.sectorRenew') },
         ].map(({ color, label }) => (
           <span key={label} style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-2)' }}>
             <span style={{ width: 10, height: 10, borderRadius: '50%', background: color, display: 'inline-block' }} />
@@ -160,6 +163,7 @@ function MiniNetworkGraph({ companies, invoices }) {
 }
 
 function ClearingCountdown({ hoursLeft }) {
+  const { lang } = useLang()
   if (hoursLeft == null) return null
   const h = Math.floor(hoursLeft)
   const m = Math.round((hoursLeft - h) * 60)
@@ -171,20 +175,21 @@ function ClearingCountdown({ hoursLeft }) {
       padding: 'var(--space-6)', flex: '0 0 220px', textAlign: 'center',
     }}>
       <div style={{ fontSize: 'var(--font-size-xs)', fontWeight: 600, letterSpacing: '0.05em', color: 'var(--color-primary-dk)', textTransform: 'uppercase', marginBottom: 'var(--space-3)' }}>
-        Nächstes Clearing in
+        {t('dashboard.nextClearing')}
       </div>
       <div style={{ fontSize: 'var(--font-size-3xl)', fontWeight: 700, color: 'var(--color-primary-dk)', lineHeight: 1 }}>
         {h}<span style={{ fontSize: 'var(--font-size-lg)' }}>h</span>
         {m > 0 && <>{' '}{m}<span style={{ fontSize: 'var(--font-size-lg)' }}>m</span></>}
       </div>
       <div style={{ marginTop: 'var(--space-4)', fontSize: 'var(--font-size-xs)', color: 'var(--color-primary)' }}>
-        Bilaterales Netting
+        {t('dashboard.bilateralNetting')}
       </div>
     </div>
   )
 }
 
 export default function Uebersicht() {
+  const { lang } = useLang()
   const { data: stats, loading: statsLoading, useMock: statsMock } = useApi(
     () => networkApi.stats(),
     MOCK_NETWORK_STATS
@@ -207,14 +212,14 @@ export default function Uebersicht() {
     <div>
       <div style={{ marginBottom: 'var(--space-8)' }}>
         <h1 style={{ fontSize: 'var(--font-size-xl)', fontWeight: 700, marginBottom: 'var(--space-1)' }}>
-          Übersicht
+          {t('dashboard.title')}
         </h1>
         <p style={{ color: 'var(--color-text-muted)', fontSize: 'var(--font-size-sm)' }}>
-          Netzwerkgesundheit und Clearing-Status auf einen Blick
+          {t('dashboard.subtitle')}
         </p>
         {statsMock && (
           <div style={{ marginTop: 'var(--space-3)', fontSize: 'var(--font-size-xs)', color: 'var(--color-accent)', fontStyle: 'italic' }}>
-            Demo-Daten — Backend noch nicht verbunden
+            {t('dashboard.demoNotice')}
           </div>
         )}
       </div>
@@ -230,20 +235,20 @@ export default function Uebersicht() {
             <ClearingCountdown hoursLeft={stats?.next_clearing_in_hours} />
 
             <StatCard
-              label="Teilnehmende Unternehmen"
+              label={t('dashboard.participatingCo')}
               value={stats?.company_count ?? '—'}
-              sub={`${stats?.invoice_count ?? '—'} aktive Rechnungen`}
+              sub={`${stats?.invoice_count ?? '—'} ${t('dashboard.activeInvoices')}`}
             />
             <StatCard
-              label="Letztes Clearing — Einsparung"
+              label={t('dashboard.lastSavings')}
               value={formatEur(stats?.last_clearing_savings_cents)}
-              sub={`${formatPct(stats?.last_clearing_savings_pct)} von ${formatEur(stats?.gross_total_cents)} Brutto`}
+              sub={`${formatPct(stats?.last_clearing_savings_pct)} ${t('dashboard.ofGross')} ${formatEur(stats?.gross_total_cents)} ${t('dashboard.gross')}`}
               accent
             />
             <StatCard
-              label="Bestätigte Rechnungen"
+              label={t('dashboard.confirmedInv')}
               value={stats?.confirmed_invoice_count ?? '—'}
-              sub={`von ${stats?.invoice_count ?? '—'} gesamt`}
+              sub={`${t('dashboard.ofTotal')} ${stats?.invoice_count ?? '—'} ${t('dashboard.total')}`}
             />
           </div>
 
@@ -259,23 +264,23 @@ export default function Uebersicht() {
             }}>
               <div>
                 <div style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-primary-dk)', fontWeight: 600, marginBottom: 'var(--space-1)' }}>
-                  Letztes bilaterales Clearing
+                  {t('dashboard.lastClearing')}
                 </div>
                 <div style={{ fontSize: 'var(--font-size-2xl)', fontWeight: 700, color: 'var(--color-primary-dk)' }}>
-                  {formatEur(stats.last_clearing_savings_cents)} freigesetzt
+                  {formatEur(stats.last_clearing_savings_cents)} {t('dashboard.freed')}
                 </div>
               </div>
               <div style={{ width: 1, height: 50, background: '#c8dfd0' }} />
               <div>
                 <div style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-primary-dk)', fontWeight: 600, marginBottom: 'var(--space-1)' }}>
-                  aus {formatEur(stats.gross_total_cents)} Brutto
+                  {t('dashboard.ofGross')} {formatEur(stats.gross_total_cents)} {t('dashboard.gross')}
                 </div>
                 <div style={{ fontSize: 'var(--font-size-2xl)', fontWeight: 700, color: 'var(--color-primary)' }}>
-                  {formatPct(stats.last_clearing_savings_pct)} Einsparung
+                  {formatPct(stats.last_clearing_savings_pct)} {t('dashboard.savings')}
                 </div>
               </div>
               <div style={{ marginLeft: 'auto', fontSize: 'var(--font-size-xs)', color: 'var(--color-primary)', fontStyle: 'italic', maxWidth: 200, textAlign: 'right' }}>
-                „70 % der Unternehmen könnten pünktlich zahlen, wenn sie pünktlich bezahlt würden."
+                {t('dashboard.quote')}
               </div>
             </div>
           )}

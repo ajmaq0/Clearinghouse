@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { RoleProvider, useRole } from './hooks/RoleContext.jsx'
 import { isDemoMode } from './hooks/useApi.js'
 import { useCompanies, getDefaultSmeCompany } from './hooks/useCompanies.js'
+import { useLang } from './hooks/useLang.js'
+import { t } from './i18n/index.js'
 import Uebersicht from './components/Uebersicht.jsx'
 import NetworkExplorer from './pages/NetworkExplorer.jsx'
 import NettingVergleich from './pages/NettingVergleich.jsx'
@@ -20,18 +22,18 @@ import './styles/clearing-animation.css'
 import './styles/network-explorer.css'
 
 const GLS_NAV_ITEMS = [
-  { id: 'uebersicht', label: 'Übersicht',  icon: '◈' },
-  { id: 'rechnungen', label: 'Rechnungen', icon: '≡' },
-  { id: 'vergleich',  label: 'Vergleich',  icon: '⇄' },
-  { id: 'entdecken',  label: 'Entdecken',  icon: '⊙' },
-  { id: 'admin',      label: 'GLS Admin',  icon: '⊞' },
+  { id: 'uebersicht', labelKey: 'nav.uebersicht', icon: '◈' },
+  { id: 'rechnungen', labelKey: 'nav.rechnungen', icon: '≡' },
+  { id: 'vergleich',  labelKey: 'nav.vergleich',  icon: '⇄' },
+  { id: 'entdecken',  labelKey: 'nav.entdecken',  icon: '⊙' },
+  { id: 'admin',      labelKey: 'nav.admin',       icon: '⊞' },
 ]
 
 const SME_NAV_ITEMS = [
-  { id: 'sme-uebersicht', label: 'Übersicht',  icon: '◈' },
-  { id: 'sme-rechnungen', label: 'Rechnungen', icon: '≡' },
-  { id: 'sme-clearing',   label: 'Clearing',   icon: '⇄' },
-  { id: 'sme-entdecken',  label: 'Entdecken',  icon: '⊙' },
+  { id: 'sme-uebersicht', labelKey: 'nav.uebersicht', icon: '◈' },
+  { id: 'sme-rechnungen', labelKey: 'nav.rechnungen', icon: '≡' },
+  { id: 'sme-clearing',   labelKey: 'nav.clearing',   icon: '⇄' },
+  { id: 'sme-entdecken',  labelKey: 'nav.entdecken',  icon: '⊙' },
 ]
 
 const GLS_PAGES = {
@@ -56,6 +58,7 @@ function AppShell() {
   const demoMode = isDemoMode()
   const { companies } = useCompanies()
   const defaultSmeCompany = getDefaultSmeCompany(companies)
+  const { lang, setLang } = useLang()
 
   const [page, setPage] = useState('uebersicht')
   const [showCompanyMenu, setShowCompanyMenu] = useState(false)
@@ -68,7 +71,6 @@ function AppShell() {
   }, [role])
 
   const navItems = role === 'bank' ? GLS_NAV_ITEMS : SME_NAV_ITEMS
-  const defaultPage = role === 'bank' ? 'uebersicht' : 'sme-uebersicht'
 
   function handleRoleSwitch(newRole) {
     if (newRole === role) return
@@ -119,7 +121,7 @@ function AppShell() {
             className={`role-toggle-btn${role === 'bank' ? ' role-toggle-btn--active' : ''}`}
             onClick={() => handleRoleSwitch('bank')}
           >
-            <span>⊞</span> GLS-Ansicht
+            <span>⊞</span> {t('header.glsView')}
           </button>
           <div className="role-toggle-divider" />
           <div className="role-toggle-sme-wrap">
@@ -130,7 +132,7 @@ function AppShell() {
                 if (role === 'sme') setShowCompanyMenu(v => !v)
               }}
             >
-              <span>◈</span> Unternehmen
+              <span>◈</span> {t('header.companyView')}
               {role === 'sme' && <span className="role-toggle-caret">▾</span>}
             </button>
             {role === 'sme' && showCompanyMenu && (
@@ -159,34 +161,67 @@ function AppShell() {
               onClick={() => handleNav(item.id)}
             >
               <span className="nav-icon">{item.icon}</span>
-              <span>{item.label}</span>
+              <span>{t(item.labelKey)}</span>
             </button>
           ))}
         </nav>
 
-        {/* Identity badge */}
+        {/* Identity badge + language toggle */}
         <div className="app-identity-badge">
           {role === 'bank' ? (
-            <span className="identity-bank">GLS Bank · Hamburg</span>
+            <span className="identity-bank">{t('header.bankIdentity')}</span>
           ) : (
             <span className="identity-sme">
               <span className="identity-avatar">{activeCompany.name.charAt(0)}</span>
               <span className="identity-sme-text">
                 <span className="identity-sme-name">{activeCompany.name}</span>
-                <span className="identity-sme-sub">GLS Konto 4821</span>
+                <span className="identity-sme-sub">{t('header.accountLabel')}</span>
               </span>
             </span>
           )}
           {demoMode && (
-            <span className="badge badge-amber" title="Demo-Datensatz aktiv" style={{ marginLeft: '0.5rem' }}>Demo</span>
+            <span className="badge badge-amber" title={t('header.demoTooltip')} style={{ marginLeft: '0.5rem' }}>Demo</span>
           )}
+
+          {/* DE | EN language toggle */}
+          <div className="lang-toggle" style={{
+            marginLeft: '0.75rem',
+            display: 'flex', alignItems: 'center',
+            background: 'rgba(255,255,255,0.12)',
+            borderRadius: '99px',
+            padding: '2px',
+            gap: 0,
+          }}>
+            {['de', 'en'].map((code, i) => (
+              <button
+                key={code}
+                onClick={() => setLang(code)}
+                style={{
+                  background: lang === code ? 'rgba(255,255,255,0.22)' : 'transparent',
+                  border: 'none',
+                  borderRadius: '99px',
+                  padding: '2px 8px',
+                  fontSize: 'var(--font-size-xs)',
+                  fontWeight: lang === code ? 700 : 500,
+                  color: lang === code ? 'var(--header-text)' : 'var(--header-muted)',
+                  cursor: 'pointer',
+                  letterSpacing: '0.04em',
+                  textTransform: 'uppercase',
+                  lineHeight: 1.6,
+                  transition: 'all 0.15s',
+                }}
+              >
+                {code.toUpperCase()}
+              </button>
+            ))}
+          </div>
         </div>
 
         {/* Hamburger button — visible only at <900px */}
         <button
           className="nav-hamburger"
           onClick={() => setMobileNavOpen(v => !v)}
-          aria-label={mobileNavOpen ? 'Navigation schließen' : 'Navigation öffnen'}
+          aria-label={mobileNavOpen ? t('header.navClose') : t('header.navOpen')}
           aria-expanded={mobileNavOpen}
         >
           <span className="nav-hamburger-line" style={{ transform: mobileNavOpen ? 'rotate(45deg) translate(4px,4px)' : undefined }} />
@@ -204,7 +239,7 @@ function AppShell() {
               className={`role-toggle-btn${role === 'bank' ? ' role-toggle-btn--active' : ''}`}
               onClick={() => handleRoleSwitch('bank')}
             >
-              <span>⊞</span> GLS-Ansicht
+              <span>⊞</span> {t('header.glsView')}
             </button>
             <div className="role-toggle-divider" />
             <div className="role-toggle-sme-wrap">
@@ -215,7 +250,7 @@ function AppShell() {
                   if (role === 'sme') setShowCompanyMenu(v => !v)
                 }}
               >
-                <span>◈</span> Unternehmen
+                <span>◈</span> {t('header.companyView')}
                 {role === 'sme' && <span className="role-toggle-caret">▾</span>}
               </button>
               {role === 'sme' && showCompanyMenu && (
@@ -244,7 +279,7 @@ function AppShell() {
                 onClick={() => handleNav(item.id)}
               >
                 <span className="nav-icon">{item.icon}</span>
-                <span>{item.label}</span>
+                <span>{t(item.labelKey)}</span>
               </button>
             ))}
           </nav>
@@ -252,7 +287,7 @@ function AppShell() {
           {/* Identity (mobile) */}
           <div style={{ paddingTop: 'var(--space-3)', borderTop: '1px solid rgba(255,255,255,0.1)', fontSize: 'var(--font-size-xs)', color: 'var(--header-muted)', display: 'flex', alignItems: 'center', gap: 'var(--space-2)' }}>
             {role === 'bank' ? (
-              <span>GLS Bank · Hamburg</span>
+              <span>{t('header.bankIdentity')}</span>
             ) : (
               <>
                 <span className="identity-avatar" style={{ width: 24, height: 24, fontSize: '0.6rem' }}>{activeCompany.name.charAt(0)}</span>
@@ -260,6 +295,24 @@ function AppShell() {
               </>
             )}
             {demoMode && <span className="badge badge-amber" style={{ marginLeft: 'var(--space-2)' }}>Demo</span>}
+
+            {/* Language toggle (mobile) */}
+            <div style={{ marginLeft: 'auto', display: 'flex', gap: 4 }}>
+              {['de', 'en'].map(code => (
+                <button
+                  key={code}
+                  onClick={() => setLang(code)}
+                  style={{
+                    background: lang === code ? 'rgba(255,255,255,0.2)' : 'transparent',
+                    border: 'none', borderRadius: 4, padding: '2px 6px',
+                    fontSize: 'var(--font-size-xs)', fontWeight: lang === code ? 700 : 400,
+                    color: 'var(--header-muted)', cursor: 'pointer', textTransform: 'uppercase',
+                  }}
+                >
+                  {code.toUpperCase()}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
       )}

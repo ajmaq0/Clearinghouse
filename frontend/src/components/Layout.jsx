@@ -1,4 +1,6 @@
 import React from 'react'
+import { t } from '../i18n/index.js'
+import { useLang } from '../hooks/useLang.js'
 
 const TABS = [
   { id: 'uebersicht', label: 'Übersicht',  icon: '◈' },
@@ -8,6 +10,7 @@ const TABS = [
 ]
 
 export default function Layout({ activeTab, onTabChange, children }) {
+  const { lang } = useLang()
   return (
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
       {/* Header */}
@@ -38,7 +41,7 @@ export default function Layout({ activeTab, onTabChange, children }) {
               ClearFlow
             </div>
             <div style={{ fontSize: 'var(--font-size-xs)', color: 'var(--color-text-muted)', marginTop: '-2px' }}>
-              Hamburg — Rechnungsclearing-Plattform
+              {t('header.platformSub')}
             </div>
           </div>
         </div>
@@ -82,7 +85,7 @@ export default function Layout({ activeTab, onTabChange, children }) {
               width: 7, height: 7, borderRadius: '50%',
               background: 'var(--color-primary)', display: 'inline-block'
             }} />
-            System aktiv
+            {t('header.systemActive')}
           </span>
         </div>
       </header>
@@ -100,7 +103,7 @@ export default function Layout({ activeTab, onTabChange, children }) {
         textAlign: 'center',
         background: 'var(--color-surface)',
       }}>
-        GLS Bank Hamburg · ClearFlow Clearing-Plattform · Demo-System
+        {t('header.footer')}
       </footer>
     </div>
   )

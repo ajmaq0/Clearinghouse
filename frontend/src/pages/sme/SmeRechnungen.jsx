@@ -4,11 +4,18 @@ import { useApi } from '../../hooks/useApi.js'
 import { smeApi } from '../../api/sme.js'
 import { MOCK_INVOICES } from '../../mock/fullDataset.js'
 import { formatEur, formatDate } from '../../utils/format.js'
+import { t } from '../../i18n/index.js'
+import { useLang } from '../../hooks/useLang.js'
 
-const STATUS_LABELS = { confirmed: 'Bestätigt', pending: 'Offen', draft: 'Entwurf', cleared: 'Verrechnet' }
-const STATUS_CSS    = { confirmed: 'badge-green', pending: 'badge-amber', draft: 'badge-gray', cleared: 'badge-blue' }
+function statusLabel(s) {
+  const map = { confirmed: 'status.confirmed', pending: 'status.open', draft: 'status.draft', cleared: 'status.cleared' }
+  return t(map[s] || s)
+}
+
+const STATUS_CSS = { confirmed: 'badge-green', pending: 'badge-amber', draft: 'badge-gray', cleared: 'badge-blue' }
 
 function NewInvoiceModal({ onClose }) {
+  const { lang } = useLang()
   return (
     <div style={{
       position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.45)',
@@ -16,19 +23,20 @@ function NewInvoiceModal({ onClose }) {
     }} onClick={onClose}>
       <div className="card" style={{ minWidth: 360, maxWidth: 480 }} onClick={e => e.stopPropagation()}>
         <div style={{ fontWeight: 700, fontSize: 'var(--font-size-lg)', marginBottom: 'var(--space-4)' }}>
-          Neue Rechnung
+          {t('sme.newInvoiceTitle')}
         </div>
         <p style={{ color: 'var(--color-text-muted)', fontSize: 'var(--font-size-sm)', marginBottom: 'var(--space-6)' }}>
           Die vollständige Rechnungserfassung ist in der nächsten Version verfügbar.
           Sie können Rechnungen derzeit über Ihre GLS-Beraterin einreichen.
         </p>
-        <button className="btn btn-primary" onClick={onClose}>Schließen</button>
+        <button className="btn btn-primary" onClick={onClose}>{t('sme.close')}</button>
       </div>
     </div>
   )
 }
 
 function InvoiceRow({ inv, myId }) {
+  const { lang } = useLang()
   const [open, setOpen] = useState(false)
   const isOut = inv.from_company?.id === myId
   const partner = isOut ? inv.to_company : inv.from_company
@@ -51,7 +59,7 @@ function InvoiceRow({ inv, myId }) {
         </td>
         <td style={{ fontWeight: 700 }}>{formatEur(inv.total_amount_cents)}</td>
         <td style={{ color: 'var(--color-text-muted)' }}>{formatDate(inv.due_date)}</td>
-        <td><span className={`badge ${STATUS_CSS[inv.status] || 'badge-gray'}`}>{STATUS_LABELS[inv.status] || inv.status}</span></td>
+        <td><span className={`badge ${STATUS_CSS[inv.status] || 'badge-gray'}`}>{statusLabel(inv.status)}</span></td>
         <td style={{ color: 'var(--color-text-muted)', textAlign: 'right' }}>{open ? '▲' : '▼'}</td>
       </tr>
       {open && inv.line_items?.length > 0 && (
@@ -60,8 +68,8 @@ function InvoiceRow({ inv, myId }) {
             <table style={{ width: '100%', fontSize: 'var(--font-size-xs)', borderCollapse: 'collapse' }}>
               <thead>
                 <tr>
-                  <th style={{ padding: '6px 16px 6px 32px', textAlign: 'left', color: 'var(--color-text-muted)', fontWeight: 600 }}>Posten</th>
-                  <th style={{ padding: '6px 16px', textAlign: 'right', color: 'var(--color-text-muted)', fontWeight: 600 }}>Betrag</th>
+                  <th style={{ padding: '6px 16px 6px 32px', textAlign: 'left', color: 'var(--color-text-muted)', fontWeight: 600 }}>{t('sme.item')}</th>
+                  <th style={{ padding: '6px 16px', textAlign: 'right', color: 'var(--color-text-muted)', fontWeight: 600 }}>{t('invoices.amount')}</th>
                 </tr>
               </thead>
               <tbody>
@@ -81,6 +89,7 @@ function InvoiceRow({ inv, myId }) {
 }
 
 export default function SmeRechnungen() {
+  const { lang } = useLang()
   const { companyId } = useRole()
   const effectiveId = companyId || 'c4'
   const [showModal, setShowModal] = useState(false)
@@ -102,25 +111,25 @@ export default function SmeRechnungen() {
       {showModal && <NewInvoiceModal onClose={() => setShowModal(false)} />}
 
       <div className="toolbar">
-        <span className="toolbar-title">Rechnungen</span>
+        <span className="toolbar-title">{t('sme.myInvoices')}</span>
         <button className="btn btn-primary" onClick={() => setShowModal(true)}>
-          + Neue Rechnung
+          {t('sme.newInvoice')}
         </button>
       </div>
 
       <div className="card" style={{ padding: 0, overflow: 'hidden' }}>
         {loading ? (
-          <div className="state-loading"><div className="loading-spinner" /><p>Lädt…</p></div>
+          <div className="state-loading"><div className="loading-spinner" /><p>{t('sme.loading')}</p></div>
         ) : invList.length === 0 ? (
-          <div className="state-empty">Keine Rechnungen für dieses Unternehmen.</div>
+          <div className="state-empty">{t('sme.noInvoicesForCo')}</div>
         ) : (
           <table className="data-table">
             <thead>
               <tr>
-                <th>Partner</th>
-                <th>Betrag</th>
-                <th>Fällig</th>
-                <th>Status</th>
+                <th>{t('invoices.partner')}</th>
+                <th>{t('invoices.amount')}</th>
+                <th>{t('invoices.due')}</th>
+                <th>{t('invoices.status')}</th>
                 <th></th>
               </tr>
             </thead>

@@ -14,6 +14,8 @@ import React, { useState, useEffect } from 'react'
 import { networkApi } from '../api/network.js'
 import { MOCK_POTENTIAL_CONNECTIONS, MOCK_FUNDING_GAPS } from '../mock/fullDataset.js'
 import { formatEur } from '../utils/format.js'
+import { t } from '../i18n/index.js'
+import { useLang } from '../hooks/useLang.js'
 
 // ── Mock fallback for cascade data ────────────────────────────────────────────
 
@@ -27,6 +29,7 @@ const MOCK_CASCADE_SUMMARY = {
 // ── ZahlungskaskadeCard ───────────────────────────────────────────────────────
 
 function CascadeChainNode({ name, role, amount_cents, isLast }) {
+  const { lang } = useLang()
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
       <div style={{
@@ -42,7 +45,7 @@ function CascadeChainNode({ name, role, amount_cents, isLast }) {
           color: role === 'blocked' ? '#b94040' : role === 'waiting' ? '#c97a2f' : '#4a7c59',
           textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 4,
         }}>
-          {role === 'blocked' ? 'Blockiert' : role === 'waiting' ? 'Wartend' : 'Ausgeglichen'}
+          {role === 'blocked' ? t('cascade.blockedLabel') : role === 'waiting' ? t('cascade.waitingLabel') : t('cascade.resolvedLabel')}
         </div>
         <div style={{ fontWeight: 700, fontSize: 'var(--font-size-sm)', color: 'var(--color-text)', lineHeight: 1.3 }}>
           {name}
@@ -53,8 +56,8 @@ function CascadeChainNode({ name, role, amount_cents, isLast }) {
             color: role === 'blocked' ? '#b94040' : role === 'waiting' ? '#c97a2f' : '#4a7c59',
             fontWeight: 600,
           }}>
-            {role === 'blocked' ? 'kann nicht zahlen: ' : role === 'waiting' ? 'wartet auf: ' : 'ausgeglichen: '}
-            {formatEur(amount_cents)}
+            {role === 'blocked' ? t('cascade.cantPay') : role === 'waiting' ? t('cascade.waiting') : t('cascade.balanced')}
+            {' '}{formatEur(amount_cents)}
           </div>
         )}
       </div>
@@ -69,6 +72,7 @@ function CascadeChainNode({ name, role, amount_cents, isLast }) {
 }
 
 function ZahlungskaskadeCard({ summary }) {
+  const { lang } = useLang()
   const [resolved, setResolved] = useState(false)
 
   const chain = summary?.worst_cascade_chain ?? []
@@ -91,11 +95,11 @@ function ZahlungskaskadeCard({ summary }) {
         <div style={{ display: 'flex', alignItems: 'baseline', gap: 'var(--space-3)' }}>
           <span style={{ fontSize: '1.3em' }}>⛓</span>
           <h2 style={{ fontSize: 'var(--font-size-lg)', fontWeight: 700, color: 'var(--color-text)' }}>
-            Zahlungskaskade
+            {t('cascade.title')}
           </h2>
         </div>
         <p style={{ color: 'var(--color-text-muted)', fontSize: 'var(--font-size-sm)', marginTop: 'var(--space-1)', paddingLeft: 'var(--space-8)' }}>
-          Wie verspätete Zahlungen das gesamte Netzwerk blockieren — und wie Clearing das löst
+          {t('cascade.subtitle')}
         </p>
       </div>
 
@@ -120,7 +124,7 @@ function ZahlungskaskadeCard({ summary }) {
               fontSize: 'var(--font-size-xs)', fontWeight: 700, letterSpacing: '0.07em',
               color: 'var(--color-text-muted)', textTransform: 'uppercase', marginBottom: 'var(--space-3)',
             }}>
-              Konkretes Beispiel
+              {t('cascade.concreteExample')}
             </div>
             <div style={{
               background: 'var(--color-surface-alt)', borderRadius: 'var(--radius-sm)',
@@ -130,18 +134,18 @@ function ZahlungskaskadeCard({ summary }) {
             }}>
               {exampleCompanies.length >= 3 ? (
                 <>
-                  <strong>{exampleCompanies[0]}</strong> wartet auf{' '}
+                  <strong>{exampleCompanies[0]}</strong> {t('cascade.waitingFor')}{' '}
                   <strong style={{ color: '#c97a2f' }}>{formatEur(exampleAmounts[0])}</strong>{' '}
-                  von <strong>{exampleCompanies[1]}</strong> —
-                  kann deshalb <strong style={{ color: '#b94040' }}>{formatEur(exampleAmounts[1])}</strong>{' '}
-                  an <strong>{exampleCompanies[2]}</strong> nicht überweisen.
+                  {t('cascade.waitingForFrom')} <strong>{exampleCompanies[1]}</strong> —
+                  {t('cascade.cantPay2')} <strong style={{ color: '#b94040' }}>{formatEur(exampleAmounts[1])}</strong>{' '}
+                  {t('cascade.cantSendTo')} <strong>{exampleCompanies[2]}</strong> {t('cascade.cantTransfer')}
                 </>
               ) : (
                 <>
-                  <strong>{exampleCompanies[0]}</strong> wartet auf{' '}
+                  <strong>{exampleCompanies[0]}</strong> {t('cascade.waitingFor')}{' '}
                   <strong style={{ color: '#c97a2f' }}>{formatEur(exampleAmounts[0])}</strong>{' '}
-                  und kann deshalb <strong style={{ color: '#b94040' }}>{formatEur(exampleAmounts[1])}</strong>{' '}
-                  an <strong>{exampleCompanies[1]}</strong> nicht überweisen.
+                  {t('cascade.cantSend')} <strong style={{ color: '#b94040' }}>{formatEur(exampleAmounts[1])}</strong>{' '}
+                  {t('cascade.cantSendTo')} <strong>{exampleCompanies[1]}</strong> {t('cascade.cantTransfer')}
                 </>
               )}
             </div>
@@ -158,7 +162,7 @@ function ZahlungskaskadeCard({ summary }) {
               fontSize: 'var(--font-size-xs)', fontWeight: 700, letterSpacing: '0.07em',
               color: 'var(--color-text-muted)', textTransform: 'uppercase',
             }}>
-              {resolved ? 'Nach dem Clearing' : 'Vor dem Clearing'}
+              {resolved ? t('cascade.afterClearing') : t('cascade.beforeClearing')}
             </div>
             <button
               onClick={() => setResolved(v => !v)}
@@ -170,7 +174,7 @@ function ZahlungskaskadeCard({ summary }) {
                 transition: 'background 0.3s',
               }}
             >
-              {resolved ? '← Vorher anzeigen' : 'Clearing simulieren →'}
+              {resolved ? t('cascade.showBefore') : t('cascade.simulate')}
             </button>
           </div>
 
@@ -223,8 +227,8 @@ function ZahlungskaskadeCard({ summary }) {
             borderRadius: 'var(--radius-sm)', padding: 'var(--space-4) var(--space-5)',
             color: 'var(--color-primary-dk)', fontWeight: 600, fontSize: 'var(--font-size-sm)',
           }}>
-            ✓ Nach dem Clearing: alle {exampleCompanies.length} Unternehmen sind ausgeglichen —{' '}
-            {formatEur(totalBlocked)} Liquidität freigesetzt
+            ✓ {t('cascade.afterResolved')} {exampleCompanies.length} {t('cascade.companies')} {t('cascade.areBalanced')}{' '}
+            {formatEur(totalBlocked)} {t('cascade.liquidityFreed')}
           </div>
         )}
 
@@ -237,13 +241,13 @@ function ZahlungskaskadeCard({ summary }) {
         }}>
           {chain.length > 0 && (
             <span>
-              Längste Kaskadenkette:{' '}
-              <strong style={{ color: 'var(--color-text)' }}>{chain.length} Glieder</strong>
+              {t('cascade.longestChain')}{' '}
+              <strong style={{ color: 'var(--color-text)' }}>{chain.length} {t('cascade.links')}</strong>
             </span>
           )}
           <span>
-            Durchschn. blockiert:{' '}
-            <strong style={{ color: 'var(--color-text)' }}>{(summary?.avg_days_blocked ?? 0).toFixed(0)} Tage</strong>
+            {t('cascade.avgBlocked')}{' '}
+            <strong style={{ color: 'var(--color-text)' }}>{(summary?.avg_days_blocked ?? 0).toFixed(0)} {t('cascade.days')}</strong>
           </span>
         </div>
       </div>
@@ -254,6 +258,7 @@ function ZahlungskaskadeCard({ summary }) {
 // ── Network topology stats section ────────────────────────────────────────────
 
 function TopologieStats({ topo }) {
+  const { lang } = useLang()
   if (!topo) return null
 
   const nodeCount    = topo.nodes?.length ?? 0
@@ -282,20 +287,20 @@ function TopologieStats({ topo }) {
         <div style={{ display: 'flex', alignItems: 'baseline', gap: 'var(--space-3)' }}>
           <span style={{ fontSize: '1.3em' }}>⬡</span>
           <h2 style={{ fontSize: 'var(--font-size-lg)', fontWeight: 700, color: 'var(--color-text)' }}>
-            Netzwerk-Statistiken
+            {t('discover.networkStats')}
           </h2>
         </div>
         <p style={{ color: 'var(--color-text-muted)', fontSize: 'var(--font-size-sm)', marginTop: 'var(--space-1)', paddingLeft: 'var(--space-8)' }}>
-          Live-Daten aus dem ClearFlow-Handelsgraph
+          {t('discover.networkStatsSub')}
         </p>
       </div>
 
       {/* KPI row */}
       <div style={{ display: 'flex', gap: 'var(--space-4)', flexWrap: 'wrap', marginBottom: 'var(--space-6)' }}>
         {[
-          { label: 'Unternehmen', value: nodeCount, icon: '◉', color: 'var(--color-primary)', bg: 'var(--color-primary-lt)', border: '#c8dfd0' },
-          { label: 'Handelsverbindungen', value: edgeCount, icon: '⇄', color: '#2c6e8a', bg: '#e8f2f7', border: '#a8cfe0' },
-          { label: 'Cluster', value: Object.keys(clusterMap).length, icon: '⬢', color: '#c97a2f', bg: '#fdf3e7', border: '#f0c880' },
+          { label: t('discover.companies'), value: nodeCount, icon: '◉', color: 'var(--color-primary)', bg: 'var(--color-primary-lt)', border: '#c8dfd0' },
+          { label: t('discover.tradeConnections'), value: edgeCount, icon: '⇄', color: '#2c6e8a', bg: '#e8f2f7', border: '#a8cfe0' },
+          { label: t('discover.clusters'), value: Object.keys(clusterMap).length, icon: '⬢', color: '#c97a2f', bg: '#fdf3e7', border: '#f0c880' },
         ].map(stat => (
           <div key={stat.label} className="card" style={{
             flex: '1 1 160px', minWidth: 140,
@@ -317,7 +322,7 @@ function TopologieStats({ topo }) {
         {/* Cluster breakdown */}
         <div className="card">
           <div style={{ fontWeight: 700, fontSize: 'var(--font-size-sm)', marginBottom: 'var(--space-4)', color: 'var(--color-text)' }}>
-            Branchencluster
+            {t('discover.sectorCluster')}
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-3)' }}>
             {Object.entries(clusterMap).map(([cluster, count]) => {
@@ -348,7 +353,7 @@ function TopologieStats({ topo }) {
         {/* Top connected companies */}
         <div className="card">
           <div style={{ fontWeight: 700, fontSize: 'var(--font-size-sm)', marginBottom: 'var(--space-4)', color: 'var(--color-text)' }}>
-            Aktivste Unternehmen (nach Volumen)
+            {t('discover.mostActive')}
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-3)' }}>
             {topCompanies.map((company, i) => {
@@ -473,6 +478,7 @@ function SectionHeader({ icon, title, sub, count }) {
 // ── Connection card ───────────────────────────────────────────────────────────
 
 function ConnectionCard({ conn, index }) {
+  const { lang } = useLang()
   const [expanded, setExpanded] = useState(false)
   const hasNonMember = conn.non_member !== null
 
@@ -510,7 +516,7 @@ function ConnectionCard({ conn, index }) {
                 background: '#fdf3e7', color: '#c97a2f', border: '1px solid #f0c88033',
                 borderRadius: '4px', padding: '1px 7px', fontSize: 'var(--font-size-xs)', fontWeight: 600,
               }}>
-                Nicht-Mitglied
+                {t('discover.notMember')}
               </span>
             )}
             <span style={{ color: 'var(--color-text-muted)', fontSize: 'var(--font-size-sm)', fontWeight: 400 }}>↔</span>
@@ -522,14 +528,14 @@ function ConnectionCard({ conn, index }) {
                 background: '#fdf3e7', color: '#c97a2f', border: '1px solid #f0c88033',
                 borderRadius: '4px', padding: '1px 7px', fontSize: 'var(--font-size-xs)', fontWeight: 600,
               }}>
-                Nicht-Mitglied
+                {t('discover.notMember')}
               </span>
             )}
           </div>
           <div style={{ display: 'flex', gap: 'var(--space-3)', flexWrap: 'wrap', alignItems: 'center' }}>
             {sectorPill(conn.sector)}
             <span style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-text-muted)' }}>
-              Geschätztes Jahresvolumen:&nbsp;
+              {t('discover.estimatedVolume')}&nbsp;
               <strong style={{ color: 'var(--color-text)' }}>{formatEur(conn.estimated_annual_volume_cents)}</strong>
             </span>
           </div>
@@ -539,7 +545,7 @@ function ConnectionCard({ conn, index }) {
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2 }}>
           <ScoreRing score={conn.similarity_score} />
           <span style={{ fontSize: 'var(--font-size-xs)', color: 'var(--color-text-muted)', whiteSpace: 'nowrap' }}>
-            Ähnlichkeit
+            {t('discover.similarity')}
           </span>
         </div>
       </div>
@@ -561,7 +567,7 @@ function ConnectionCard({ conn, index }) {
           <span style={{ fontSize: '0.7em', transition: 'transform 0.15s', display: 'inline-block', transform: expanded ? 'rotate(90deg)' : 'none' }}>
             ▶
           </span>
-          {expanded ? 'Details ausblenden' : 'Details anzeigen'}
+          {expanded ? t('discover.hideDetails') : t('discover.showDetails')}
         </button>
 
         {expanded && (
@@ -585,7 +591,7 @@ function ConnectionCard({ conn, index }) {
               display: 'flex', alignItems: 'center', gap: 'var(--space-2)',
             }}>
               <span>⚠</span>
-              <span>Onboarding erforderlich: <strong>{conn.non_member}</strong></span>
+              <span>{t('discover.onboardingRequired')} <strong>{conn.non_member}</strong></span>
             </div>
           )}
           <button style={{
@@ -630,6 +636,7 @@ function UrgencyBar({ daysUntilDue }) {
 }
 
 function FundingGapCard({ gap }) {
+  const { lang } = useLang()
   const typeColor = GAP_TYPE_COLOR[gap.gap_type] ?? '#7a6e64'
   const marginEur = Math.round(gap.opportunity_cents * gap.margin_bps / 10000)
 
@@ -674,7 +681,7 @@ function FundingGapCard({ gap }) {
                 background: '#fdf3e7', color: '#c97a2f', border: '1px solid #f0c88033',
                 borderRadius: '4px', padding: '1px 7px', fontSize: 'var(--font-size-xs)', fontWeight: 600,
               }}>
-                Nicht-Mitglied
+                {t('discover.notMember')}
               </span>
             )}
           </div>
@@ -810,6 +817,7 @@ function InsightSummaryBar({ connections, gaps }) {
 // ── Main component ────────────────────────────────────────────────────────────
 
 export default function Entdecken() {
+  const { lang } = useLang()
   const connections = MOCK_POTENTIAL_CONNECTIONS
   const gaps        = MOCK_FUNDING_GAPS
 
@@ -835,10 +843,10 @@ export default function Entdecken() {
       {/* Page header */}
       <div style={{ marginBottom: 'var(--space-8)' }}>
         <h1 style={{ fontSize: 'var(--font-size-xl)', fontWeight: 700, marginBottom: 'var(--space-1)' }}>
-          Entdecken
+          {t('discover.title')}
         </h1>
         <p style={{ color: 'var(--color-text-muted)', fontSize: 'var(--font-size-sm)' }}>
-          Netzwerkwachstum und Finanzierungschancen für GLS Bank Hamburg
+          {t('discover.subtitle')}
         </p>
         <div style={{
           marginTop: 'var(--space-3)', fontSize: 'var(--font-size-xs)',
@@ -867,7 +875,7 @@ export default function Entdecken() {
       <div style={{ marginBottom: 'var(--space-10)' }}>
         <SectionHeader
           icon="⊛"
-          title="Potenzielle Neue Verbindungen"
+          title={t('discover.potentialConnections')}
           sub="Unternehmenspaare im selben Sektor — noch kein direkter Rechnungsaustausch. Sortiert nach geschätztem Netting-Potenzial."
           count={connections.length}
         />
@@ -882,7 +890,7 @@ export default function Entdecken() {
       <div>
         <SectionHeader
           icon="⬡"
-          title="Finanzierungslücken"
+          title={t('discover.fundingGaps')}
           sub="Rechnungen mit hohem Volumen — Factoring oder Lieferantenfinanzierung durch GLS Bank möglich."
           count={gaps.length}
         />

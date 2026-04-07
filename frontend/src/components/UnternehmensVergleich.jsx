@@ -3,6 +3,8 @@ import { useApi } from '../hooks/useApi.js'
 import { clearingApi } from '../api/clearing.js'
 import { MOCK_COMPANY_COMPARISON } from '../mock/data.js'
 import { formatEur, formatPct } from '../utils/format.js'
+import { t } from '../i18n/index.js'
+import { useLang } from '../hooks/useLang.js'
 
 // ── Animated EUR count-up ──────────────────────────────────────────────────────
 
@@ -53,6 +55,7 @@ function savingsBgColor(pct) {
 // ── Main component ─────────────────────────────────────────────────────────────
 
 export default function UnternehmensVergleich() {
+  const { lang } = useLang()
   const [animated, setAnimated] = useState(false)
 
   const { data, loading, error, useMock } = useApi(
@@ -63,8 +66,8 @@ export default function UnternehmensVergleich() {
   // Trigger count-up animation shortly after data arrives
   useEffect(() => {
     if (!data) return
-    const t = setTimeout(() => setAnimated(true), 80)
-    return () => clearTimeout(t)
+    const timer = setTimeout(() => setAnimated(true), 80)
+    return () => clearTimeout(timer)
   }, [data])
 
   if (loading) {
@@ -78,7 +81,7 @@ export default function UnternehmensVergleich() {
   if (error) {
     return (
       <div className="card" style={{ padding: 'var(--space-5)', color: 'var(--color-danger)', fontSize: 'var(--font-size-sm)' }}>
-        Vergleich konnte nicht geladen werden: {error}
+        {t('comparison.loadError')} {error}
       </div>
     )
   }
@@ -99,16 +102,16 @@ export default function UnternehmensVergleich() {
       }}>
         <div>
           <div style={{ fontWeight: 700, fontSize: 'var(--font-size-md)' }}>
-            UnternehmensVergleich
+            {t('comparison.title')}
           </div>
           <div style={{ fontSize: 'var(--font-size-xs)', color: 'var(--color-text-muted)', marginTop: 2 }}>
-            Bilateral vs. Optimal-Netting · {totalCompanies} Firmen · sortiert nach Einsparung
+            Bilateral vs. Optimal-Netting · {totalCompanies} {t('comparison.firms')} · {t('comparison.subtitle')}
           </div>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-3)' }}>
           {useMock && (
             <span style={{ fontSize: 'var(--font-size-xs)', color: 'var(--color-accent)', fontStyle: 'italic' }}>
-              Demo-Daten
+              {t('comparison.demoData')}
             </span>
           )}
           {lpStatus && (
@@ -131,12 +134,12 @@ export default function UnternehmensVergleich() {
           <thead>
             <tr style={{ background: 'var(--color-surface-alt)', borderBottom: '2px solid var(--color-border)' }}>
               <th style={{ ...thSt, width: 40 }}>#</th>
-              <th style={{ ...thSt, textAlign: 'left', paddingLeft: 'var(--space-4)' }}>Unternehmen</th>
-              <th style={thSt}>Brutto gesamt</th>
-              <th style={thSt}>Bilateral-Netto</th>
-              <th style={thSt}>Optimal-Netto</th>
-              <th style={{ ...thSt, background: '#eef5f1', color: 'var(--color-primary-dk)' }}>Einsparung</th>
-              <th style={{ ...thSt, background: '#eef5f1', color: 'var(--color-primary-dk)' }}>Quote</th>
+              <th style={{ ...thSt, textAlign: 'left', paddingLeft: 'var(--space-4)' }}>{t('comparison.company')}</th>
+              <th style={thSt}>{t('comparison.grossTotal')}</th>
+              <th style={thSt}>{t('comparison.bilateralNet')}</th>
+              <th style={thSt}>{t('comparison.optimalNet')}</th>
+              <th style={{ ...thSt, background: '#eef5f1', color: 'var(--color-primary-dk)' }}>{t('comparison.savings')}</th>
+              <th style={{ ...thSt, background: '#eef5f1', color: 'var(--color-primary-dk)' }}>{t('comparison.quote')}</th>
             </tr>
           </thead>
           <tbody>
@@ -181,7 +184,7 @@ export default function UnternehmensVergleich() {
                         borderRadius: 'var(--radius-sm)', padding: '1px 6px',
                         verticalAlign: 'middle',
                       }}>
-                        Top-Sparer
+                        {t('comparison.topSaver')}
                       </span>
                     )}
                   </td>
@@ -226,7 +229,7 @@ export default function UnternehmensVergleich() {
 
         {rows.length === 0 && (
           <div style={{ padding: 'var(--space-10)', textAlign: 'center', color: 'var(--color-text-muted)' }}>
-            Keine Vergleichsdaten verfügbar. Bitte zuerst ein Clearing durchführen.
+            {t('comparison.noData')}
           </div>
         )}
       </div>

@@ -3,7 +3,9 @@ import { useRole } from '../../hooks/RoleContext.jsx'
 import { useApi } from '../../hooks/useApi.js'
 import { smeApi } from '../../api/sme.js'
 import { MOCK_COMPANY_POSITIONS } from '../../mock/fullDataset.js'
-import { formatEur } from '../../utils/format.js'
+import { formatEur, formatPct } from '../../utils/format.js'
+import { t } from '../../i18n/index.js'
+import { useLang } from '../../hooks/useLang.js'
 
 function SummaryCard({ label, value, sub, color }) {
   const palette = {
@@ -28,7 +30,8 @@ function SummaryCard({ label, value, sub, color }) {
 }
 
 function CounterpartyBar({ counterparties }) {
-  if (!counterparties?.length) return <div style={{ color: 'var(--color-text-muted)', fontSize: 'var(--font-size-sm)' }}>Keine Gegenpositionen.</div>
+  const { lang } = useLang()
+  if (!counterparties?.length) return <div style={{ color: 'var(--color-text-muted)', fontSize: 'var(--font-size-sm)' }}>{t('sme.noCounterpositions')}</div>
   const maxAbs = Math.max(...counterparties.map(c => Math.abs(c.net_cents)), 1)
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-3)' }}>
@@ -61,10 +64,11 @@ function CounterpartyBar({ counterparties }) {
 }
 
 function NettingExplainer() {
+  const { lang } = useLang()
   const steps = [
-    { icon: '≡', title: 'Rechnungen einreichen', text: 'Alle offenen Rechnungen werden im GLS-System gesammelt und bestätigt.' },
-    { icon: '⇄', title: 'Multilaterales Netting', text: 'Der Algorithmus verrechnet alle Forderungen und Verbindlichkeiten im Netzwerk.' },
-    { icon: '✓', title: 'Netto-Zahlung', text: 'Nur der Netto-Betrag wird überwiesen — Sie sparen Transaktionskosten.' },
+    { icon: '≡', title: t('sme.step1Title'), text: t('sme.step1Desc') },
+    { icon: '⇄', title: t('sme.step2Title'), text: t('sme.step2Desc') },
+    { icon: '✓', title: t('sme.step3Title'), text: t('sme.step3Desc') },
   ]
   return (
     <div style={{ display: 'flex', gap: 'var(--space-4)', flexWrap: 'wrap' }}>
@@ -80,6 +84,7 @@ function NettingExplainer() {
 }
 
 export default function SmeClearing() {
+  const { lang } = useLang()
   const { companyId } = useRole()
   const effectiveId = companyId || 'c4'
   const [simRunning, setSimRunning] = useState(false)
@@ -109,28 +114,28 @@ export default function SmeClearing() {
   return (
     <div>
       <div className="page-header">
-        <h1 className="page-title">Clearing</h1>
-        <p className="page-subtitle">Ihre Position im multilateralen Netting-Zyklus</p>
+        <h1 className="page-title">{t('sme.clearingTitle')}</h1>
+        <p className="page-subtitle">{t('sme.clearingSubtitle')}</p>
       </div>
 
       {/* 3 summary cards */}
       <div style={{ display: 'flex', gap: 'var(--space-5)', flexWrap: 'wrap', marginBottom: 'var(--space-8)' }}>
         <SummaryCard
-          label="Brutto-Verbindlichkeiten"
+          label={t('sme.grossLiabilitiesFull')}
           value={formatEur(pos.gross_payable_cents)}
-          sub="Vor Clearing"
+          sub={t('sme.beforeClearing')}
           color="red"
         />
         <SummaryCard
-          label="Netto nach Clearing"
+          label={t('sme.netAfterClearing')}
           value={formatEur(pos.net_after_clearing_cents)}
-          sub="Optimierter Zahlbetrag"
+          sub={t('sme.optimizedPayment')}
           color="green"
         />
         <SummaryCard
-          label="Ihre Einsparung"
+          label={t('sme.yourSavings')}
           value={formatEur(pos.savings_cents)}
-          sub={`${Number(pos.savings_pct).toFixed(1).replace('.', ',')} % Reduktion`}
+          sub={`${formatPct(pos.savings_pct, 1)} ${t('sme.reduction')}`}
           color="amber"
         />
       </div>
@@ -138,19 +143,19 @@ export default function SmeClearing() {
       {/* Counterparty bar chart */}
       <div className="card" style={{ marginBottom: 'var(--space-8)' }}>
         <div style={{ fontWeight: 700, fontSize: 'var(--font-size-md)', marginBottom: 'var(--space-5)' }}>
-          Netto-Positionen je Gegenpartei
+          {t('sme.netPositionsByCounterparty')}
         </div>
         <CounterpartyBar counterparties={pos.counterparties} />
         <div style={{ marginTop: 'var(--space-4)', fontSize: 'var(--font-size-xs)', color: 'var(--color-text-muted)' }}>
-          <span style={{ color: 'var(--color-primary)', fontWeight: 700 }}>+</span> Forderung (Sie erhalten) &nbsp;·&nbsp;
-          <span style={{ color: 'var(--color-danger)', fontWeight: 700 }}>−</span> Verbindlichkeit (Sie zahlen)
+          <span style={{ color: 'var(--color-primary)', fontWeight: 700 }}>+</span> {t('sme.receivable')} &nbsp;·&nbsp;
+          <span style={{ color: 'var(--color-danger)', fontWeight: 700 }}>−</span> {t('sme.payable')}
         </div>
       </div>
 
       {/* Explainer */}
       <div className="card" style={{ marginBottom: 'var(--space-8)' }}>
         <div style={{ fontWeight: 700, fontSize: 'var(--font-size-md)', marginBottom: 'var(--space-5)' }}>
-          So funktioniert multilaterales Netting
+          {t('sme.howItWorks')}
         </div>
         <NettingExplainer />
       </div>
@@ -158,22 +163,22 @@ export default function SmeClearing() {
       {/* Clearing preview */}
       <div className="card">
         <div style={{ fontWeight: 700, fontSize: 'var(--font-size-md)', marginBottom: 'var(--space-3)' }}>
-          Clearing-Vorschau
+          {t('sme.clearingPreview')}
         </div>
         <p style={{ color: 'var(--color-text-muted)', fontSize: 'var(--font-size-sm)', marginBottom: 'var(--space-5)' }}>
-          Simulieren Sie das nächste Clearing mit Ihren aktuellen Rechnungen.
+          {t('sme.simulateDesc')}
         </p>
 
         {!simRunning && !simDone && (
           <button className="btn btn-primary" onClick={runSim}>
-            ⇄ Clearing-Vorschau starten
+            {t('sme.startPreview')}
           </button>
         )}
 
         {simRunning && (
           <div>
             <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 'var(--font-size-xs)', color: 'var(--color-text-muted)', marginBottom: 6 }}>
-              <span>Optimierung läuft…</span><span>{Math.round(simProgress)} %</span>
+              <span>{t('sme.optimizingRunning')}</span><span>{Math.round(simProgress)} %</span>
             </div>
             <div style={{ height: 10, background: 'var(--color-border)', borderRadius: 99 }}>
               <div style={{ height: '100%', width: `${simProgress}%`, background: 'var(--color-primary)', borderRadius: 99, transition: 'width 0.2s' }} />
@@ -189,13 +194,13 @@ export default function SmeClearing() {
           }}>
             <span style={{ fontSize: '1.5rem' }}>✓</span>
             <div>
-              <div style={{ fontWeight: 700, color: 'var(--color-primary-dk)' }}>Clearing-Vorschau abgeschlossen</div>
+              <div style={{ fontWeight: 700, color: 'var(--color-primary-dk)' }}>{t('sme.previewDone')}</div>
               <div style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-text-muted)' }}>
-                Erwartete Einsparung: <strong>{formatEur(pos.savings_cents)}</strong> ({Number(pos.savings_pct).toFixed(1).replace('.', ',')} %)
+                {t('sme.expectedSavings')} <strong>{formatEur(pos.savings_cents)}</strong> ({formatPct(pos.savings_pct, 1)})
               </div>
             </div>
             <button className="btn btn-secondary" style={{ marginLeft: 'auto' }} onClick={() => { setSimDone(false); setSimProgress(0) }}>
-              Zurücksetzen
+              {t('sme.reset')}
             </button>
           </div>
         )}

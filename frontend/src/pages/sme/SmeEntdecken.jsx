@@ -4,6 +4,8 @@ import { useApi } from '../../hooks/useApi.js'
 import { smeApi } from '../../api/sme.js'
 import { MOCK_MATCHING_HINTS } from '../../mock/fullDataset.js'
 import { formatEur } from '../../utils/format.js'
+import { t } from '../../i18n/index.js'
+import { useLang } from '../../hooks/useLang.js'
 
 function SimilarityBar({ score }) {
   const color = score >= 80 ? 'var(--color-primary)' : score >= 60 ? 'var(--color-accent)' : 'var(--color-info)'
@@ -18,6 +20,7 @@ function SimilarityBar({ score }) {
 }
 
 function MatchCard({ match }) {
+  const { lang } = useLang()
   const typeLabels = {
     bilateral:      'Bilateral',
     multilateral:   'Multilateral',
@@ -39,7 +42,7 @@ function MatchCard({ match }) {
           <div style={{ fontSize: 'var(--font-size-xs)', color: 'var(--color-text-muted)', marginTop: 2 }}>
             {match.partner.sector}
             {match.partner.gls_member && (
-              <span className="badge badge-green" style={{ marginLeft: 6 }}>GLS Mitglied</span>
+              <span className="badge badge-green" style={{ marginLeft: 6 }}>{t('sme.glsMember')}</span>
             )}
           </div>
         </div>
@@ -50,7 +53,7 @@ function MatchCard({ match }) {
 
       <div style={{ marginBottom: 'var(--space-3)' }}>
         <div style={{ fontSize: 'var(--font-size-xs)', color: 'var(--color-text-muted)', marginBottom: 4 }}>
-          Ähnlichkeit
+          {t('sme.similarity')}
         </div>
         <SimilarityBar score={match.similarity_score} />
       </div>
@@ -61,16 +64,16 @@ function MatchCard({ match }) {
 
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <div>
-          <span style={{ fontSize: 'var(--font-size-xs)', color: 'var(--color-text-muted)' }}>Geschätztes Monatsvol.&nbsp;</span>
+          <span style={{ fontSize: 'var(--font-size-xs)', color: 'var(--color-text-muted)' }}>{t('sme.estimatedMonthly')}&nbsp;</span>
           <span style={{ fontWeight: 700, color: 'var(--color-text)' }}>{formatEur(match.estimated_monthly_volume_cents)}</span>
           {match.shared_customers > 0 && (
             <span style={{ marginLeft: 8, fontSize: 'var(--font-size-xs)', color: 'var(--color-text-muted)' }}>
-              · {match.shared_customers} gemeinsame Kunden
+              · {match.shared_customers} {t('sme.sharedCustomers')}
             </span>
           )}
         </div>
         <button className="btn btn-secondary" style={{ fontSize: 'var(--font-size-xs)', padding: '6px 14px' }}>
-          Kontakt aufnehmen
+          {t('sme.contactUs')}
         </button>
       </div>
     </div>
@@ -78,6 +81,7 @@ function MatchCard({ match }) {
 }
 
 function OpportunityCard({ opp }) {
+  const { lang } = useLang()
   return (
     <div className="card" style={{ marginBottom: 'var(--space-4)', borderLeft: '3px solid var(--color-accent)' }}>
       <div style={{ fontWeight: 700, marginBottom: 'var(--space-2)' }}>{opp.title}</div>
@@ -87,7 +91,7 @@ function OpportunityCard({ opp }) {
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         {opp.opportunity_cents > 0 && (
           <div style={{ fontSize: 'var(--font-size-xs)', color: 'var(--color-text-muted)' }}>
-            Potenzial: <strong style={{ color: 'var(--color-text)' }}>{formatEur(opp.opportunity_cents)}</strong>
+            {t('sme.potential')} <strong style={{ color: 'var(--color-text)' }}>{formatEur(opp.opportunity_cents)}</strong>
           </div>
         )}
         <button className="btn btn-accent" style={{ fontSize: 'var(--font-size-xs)', padding: '6px 14px', marginLeft: 'auto' }}>
@@ -99,6 +103,7 @@ function OpportunityCard({ opp }) {
 }
 
 export default function SmeEntdecken() {
+  const { lang } = useLang()
   const { companyId } = useRole()
   const effectiveId = companyId || 'c4'
 
@@ -114,22 +119,22 @@ export default function SmeEntdecken() {
   return (
     <div>
       <div className="page-header">
-        <h1 className="page-title">Entdecken</h1>
-        <p className="page-subtitle">Lieferanten-Matches und Geschäftsmöglichkeiten im GLS-Netzwerk</p>
+        <h1 className="page-title">{t('sme.discoverTitle')}</h1>
+        <p className="page-subtitle">{t('sme.discoverSubtitle')}</p>
       </div>
 
       {loading ? (
-        <div className="state-loading"><div className="loading-spinner" /><p>Lädt…</p></div>
+        <div className="state-loading"><div className="loading-spinner" /><p>{t('sme.loading')}</p></div>
       ) : (
         <div className="content-grid">
           {/* Section A: Supplier matches */}
           <div>
             <h2 style={{ fontSize: 'var(--font-size-md)', fontWeight: 700, marginBottom: 'var(--space-5)', color: 'var(--color-text)' }}>
-              ◈ Lieferanten-Matches
+              {t('sme.supplierMatches')}
             </h2>
             {h.supplier_matches?.length === 0 ? (
               <div className="card" style={{ color: 'var(--color-text-muted)', textAlign: 'center', padding: 'var(--space-10)' }}>
-                Keine Matches gefunden.
+                {t('sme.noMatches')}
               </div>
             ) : (
               h.supplier_matches?.map(m => <MatchCard key={m.id} match={m} />)
@@ -139,11 +144,11 @@ export default function SmeEntdecken() {
           {/* Section B: Business opportunities */}
           <div>
             <h2 style={{ fontSize: 'var(--font-size-md)', fontWeight: 700, marginBottom: 'var(--space-5)', color: 'var(--color-text)' }}>
-              ⊙ Geschäftsmöglichkeiten
+              {t('sme.bizOpportunities')}
             </h2>
             {h.business_opportunities?.length === 0 ? (
               <div className="card" style={{ color: 'var(--color-text-muted)', textAlign: 'center', padding: 'var(--space-10)' }}>
-                Keine Möglichkeiten gefunden.
+                {t('sme.noOpportunities')}
               </div>
             ) : (
               h.business_opportunities?.map(o => <OpportunityCard key={o.id} opp={o} />)
